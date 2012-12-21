@@ -14,10 +14,10 @@
              <li class="dropdown">
           	  <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size: 13px;"><?php echo "Administrator"; ?>&nbsp;<b class="caret"></b></a>
               <ul class="dropdown-menu" style="font-size: 13px;">
-              	<li><a href="/">Home</a></li>
+              	<li><a href="<?php echo site_url().'/admin'; ?>">Home</a></li>
                 <li><a href="#">Account</a></li>
                 <li class="divider"></li>
-                <li><a href="/logout">Log out!</a></li>
+                <li><a href="#">Log out!</a></li>
               </ul>
              </li>
           </ul>
