@@ -6037,3 +6037,13 @@ a.badge:hover {
 .affix {
   position: fixed;
 }
+
+.adminFirstDiv{
+	margin-left: -30px;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-o-border-radius: 5px;
+	padding-top: 10px;
+	background-color: #fff;
+}
