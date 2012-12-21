@@ -1,4 +1,6 @@
 *~
+database.php
+user_guide
 */config/development
 */logs/log-*.php
 */logs/!index.html
