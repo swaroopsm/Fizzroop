@@ -6047,3 +6047,7 @@ a.badge:hover {
 	padding-top: 10px;
 	background-color: #fff;
 }
+
+.formAdjustFields{
+	margin-left: -100px;
+}
