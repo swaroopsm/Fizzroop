@@ -13,7 +13,7 @@
 		<?php $this->load->view("layouts/adminNavbar"); ?>
 		<div class="container">
 			<div class="span12">
-				<div class="span8 well adminFirstDiv">
+				<div class="span7 well adminFirstDiv">
 					<?php echo form_open("conference/new", array("class" => "form form-horizontal", "id" => "newConf", "style" => "margin-left: 0px;")); ?>
 							<?php echo form_fieldset("Create Conference"); ?>
 							<?php echo form_fieldset_close(); ?>
@@ -47,6 +47,9 @@
 									</div>
 								</div>
 					<?php echo form_close(); ?>
+				</div>
+				<div class="span3 well pull-right adminSecondDiv">
+					<legend>History</legend>
 				</div>
 			</div>
 		</div>
