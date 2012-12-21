@@ -1937,7 +1937,7 @@ legend + .control-group {
 
 .form-horizontal .control-label {
   float: left;
-  width: 160px;
+  width: 85px;
   padding-top: 5px;
   text-align: right;
 }
@@ -1945,7 +1945,7 @@ legend + .control-group {
 .form-horizontal .controls {
   *display: inline-block;
   *padding-left: 20px;
-  margin-left: 180px;
+  margin-left: 130px;
   *margin-left: 0;
 }
 
@@ -6039,7 +6039,7 @@ a.badge:hover {
 }
 
 .adminFirstDiv{
-	margin-left: -30px;
+//	margin-left: -30px;
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -6050,4 +6050,13 @@ a.badge:hover {
 
 .formAdjustFields{
 	margin-left: -100px;
+}
+
+.adminSecondDiv{
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-o-border-radius: 5px;
+	padding-top: 10px;
+	background-color: #fff;
 }
