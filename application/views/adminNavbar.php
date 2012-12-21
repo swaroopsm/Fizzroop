@@ -12,7 +12,7 @@
           <ul class="nav pull-right">
              <li class="divider-vertical"></li>
              <li class="dropdown">
-          	  <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size: 13px;"><?php echo "Display Name"; ?><b class="caret"></b></a>
+          	  <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size: 13px;"><?php echo "Administrator"; ?>&nbsp;<b class="caret"></b></a>
               <ul class="dropdown-menu" style="font-size: 13px;">
               	<li><a href="/">Home</a></li>
                 <li><a href="#">Account</a></li>
