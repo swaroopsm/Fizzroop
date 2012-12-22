@@ -10,16 +10,23 @@
 jQuery.fn.validateFormEmpty = function(){
 	
 	var inputsTextList = $(this).find("input[type=text]");
-	var flag=0;
+	var inputsLabelList = $(this).find("label");
+	var flag = 0;
+	var errorMsg = "";
 	for(var i=0;i<inputsTextList.length;i++){
 		if($.trim(inputsTextList[i].value) == ''){
+			errorMsg = errorMsg + "<strong>" + inputsLabelList[i].outerText.substring(0, inputsLabelList[i].outerText.length-1) + "</strong>, ";
 			flag++;
 		}
 	}
-	if(flag>0)
-		return false;
-	else
-		return true;
+	
+	if(flag>0){
+		errorMsg = errorMsg.substring(0,errorMsg.length-2)+" cannot be empty!";
+		return {"success": false, "errorMsg": errorMsg}; 
+	}
+	else{
+		return {"success": true};
+	}
 	
 };
 
