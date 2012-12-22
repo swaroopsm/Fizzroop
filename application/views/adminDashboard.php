@@ -14,7 +14,7 @@
 		<div class="container">
 			<div class="span12">
 				<div class="span7 well adminFirstDiv">
-					<?php echo form_open("conference/new", array("class" => "form form-horizontal", "id" => "newConf", "style" => "margin-left: 0px;")); ?>
+					<?php echo form_open("conference/create", array("class" => "form form-horizontal", "id" => "newConf", "style" => "margin-left: 0px;")); ?>
 							<?php echo form_fieldset("Create Conference"); ?>
 							<?php echo form_fieldset_close(); ?>
 								<div class="control-group">
@@ -32,13 +32,13 @@
 								<div class="control-group">
 									<?php echo form_label("Start Date: ", "inputStartDate", array("class" => "control-label")); ?>
 									<div class="controls">
-										<?php echo form_input(array("name" => "inputStartDate", "id" => "inputStartDate", "class" => "span4", "placeholder" => "DD/MM/YYYY")); ?>
+										<?php echo form_input(array("name" => "inputStartDate", "id" => "inputStartDate", "class" => "span4", "placeholder" => "YYYY/MM/DD")); ?>
 									</div>
 								</div>
 								<div class="control-group">
 									<?php echo form_label("End Date: ", "inputEndDate", array("class" => "control-label")); ?>
 									<div class="controls">
-										<?php echo form_input(array("name" => "inputEndDate", "id" => "inputEndDate", "class" => "span4", "placeholder" => "DD/MM/YYYY")); ?>
+										<?php echo form_input(array("name" => "inputEndDate", "id" => "inputEndDate", "class" => "span4", "placeholder" => "YYYY/MM/DD")); ?>
 									</div>
 								</div>
 								<div class="control-group">
@@ -55,5 +55,12 @@
 		</div>
 		<script src="<?php echo base_url().'js/jquery.js'; ?>"></script>
 		<script src="<?php echo base_url().'js/vendor.js'; ?>"></script>
+		<script src="<?php echo base_url().'js/app.js'; ?>"></script>
+		<script>
+			$("form#newConf").submit(function(){
+					console.log($(this).validateFormEmpty());
+					return false;
+				});
+		</script>
 	</body>
 </html>
