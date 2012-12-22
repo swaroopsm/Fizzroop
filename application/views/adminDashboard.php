@@ -60,7 +60,8 @@
 		<script src="<?php echo base_url().'js/app.js'; ?>"></script>
 		<script>
 			$("form#newConf").submit(function(){
-					if($(this).validateFormEmpty()){
+					var stat = $(this).validateFormEmpty();
+					if(stat.success){
 						$(this).asyncSubmit({
 							'target': '#js-messages',
 							'loadTarget': '#loader',
@@ -68,6 +69,8 @@
 							'successMsg': 'Conference added successfully!',
 							'errorMsg': 'There was an error, please try again later!'
 						});
+					}else{
+						$("#js-messages").html("<span class='span6 alert alert-danger'><a class='close' data-dismiss='alert' href='#'>&times;</a>"+stat.errorMsg+"</span>").hide().fadeIn(500);
 					}
 					return false;
 				});
