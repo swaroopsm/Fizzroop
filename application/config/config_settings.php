@@ -364,5 +364,17 @@ $config['rewrite_short_tags'] = FALSE;
 $config['proxy_ips'] = '';
 
 
+/*
+|--------------------------------------------------------------------------
+| Password Salt hash
+|--------------------------------------------------------------------------
+|
+|	This is used to ensure password security so that it becomes difficult/impossible to 
+|	crack a hashed password.
+|	Place atleast a 32-bit alpha-numeric string for maximum security.
+|
+*/
+$config['password_salt'] = '';
+
 /* End of file config.php */
 /* Location: ./application/config/config.php */
