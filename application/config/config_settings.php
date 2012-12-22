@@ -2,7 +2,7 @@
 
 /**
 	*
-	*	CHANGE THIS FILE NAME TO database.php AND EDIT YOUR MYSQL CONFIG BELOW.
+	*	CHANGE THIS FILE NAME TO config.php and also set your password salt hash at the end of this file.
 	*
 */
 
