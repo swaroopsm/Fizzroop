@@ -1,3 +1,12 @@
+/**
+	* Custom JS necessary for application
+*/
+
+
+/**
+	* Validate form for emptyness
+*/
+
 jQuery.fn.validateFormEmpty = function(){
 	
 	var inputsTextList = $(this).find("input[type=text]");
