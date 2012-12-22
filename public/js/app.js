@@ -38,6 +38,7 @@ jQuery.fn.asyncSubmit = function(options){
 	paramList = paramList.substring(0,paramList.length-1);
 	var url = $(this).attr("action");
 	var method = $(this).attr("method");
+	var formID = "#"+$(this).attr("id");
 	$.ajax({
 		url: url,
 		type: 'POST',
@@ -50,6 +51,7 @@ jQuery.fn.asyncSubmit = function(options){
 			else
 				resp = "<span class='span6 alert alert-danger'>"+options.errorMsg+"</span>";
 			$(options.target).html(resp).hide().fadeIn(500);
+			$(formID)[0].reset();
 			$(options.loadTarget).html('').show();
 		},
 		error: function(data){
