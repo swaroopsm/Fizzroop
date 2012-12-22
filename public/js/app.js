@@ -9,7 +9,7 @@
 
 jQuery.fn.validateFormEmpty = function(){
 	
-	var inputsTextList = $(this).find("input[type=text]");
+	var inputsTextList = $(this).find("input[type=text], input[type=password]");
 	var inputsLabelList = $(this).find("label");
 	var flag = 0;
 	var errorMsg = "";
