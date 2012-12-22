@@ -1,5 +1,11 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+	*
+	*	CHANGE THIS FILE NAME TO database.php AND EDIT YOUR MYSQL CONFIG BELOW.
+	*
+*/
+
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
