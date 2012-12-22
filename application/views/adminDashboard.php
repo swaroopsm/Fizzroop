@@ -17,6 +17,7 @@
 					<?php echo form_open("conference/create", array("class" => "form form-horizontal", "id" => "newConf", "style" => "margin-left: 0px;")); ?>
 							<?php echo form_fieldset("Create Conference"); ?>
 							<?php echo form_fieldset_close(); ?>
+							<div id="js-messages" style="text-align: center;display: none;"></div>
 								<div class="control-group">
 									<?php echo form_label("Year: ", "inputYear", array("class" => "control-label")); ?>
 									<div class="controls">
@@ -44,6 +45,7 @@
 								<div class="control-group">
 									<div class="controls" style="text-align: center;">
 										<?php echo form_submit(array("class" => "btn btn-success", "value" => "Create Conference\xBB")); ?>
+										&nbsp;<div id="loader"></div>
 									</div>
 								</div>
 					<?php echo form_close(); ?>
@@ -58,7 +60,15 @@
 		<script src="<?php echo base_url().'js/app.js'; ?>"></script>
 		<script>
 			$("form#newConf").submit(function(){
-					console.log($(this).validateFormEmpty());
+					if($(this).validateFormEmpty()){
+						$(this).asyncSubmit({
+							'target': '#js-messages',
+							'loadTarget': '#loader',
+							'loader': '<br><img src="<?php echo base_url()."images/loader.gif"; ?>">',
+							'successMsg': 'Conference added successfully!',
+							'errorMsg': 'There was an error, please try again later!'
+						});
+					}
 					return false;
 				});
 		</script>
