@@ -1,5 +1,6 @@
 *~
 database.php
+config.php
 user_guide
 */config/development
 */logs/log-*.php
