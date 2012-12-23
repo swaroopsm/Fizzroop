@@ -8,7 +8,11 @@
 			else
 				return false;
 		}
-	
+		
+		public function login($data){
+			return $this->db->get_where("attendees", $data);
+		}
+			
 	}
 
 ?>
