@@ -5,13 +5,22 @@
 		public function index(){
 			$this->load->library("session");
 			if($this->session->userdata("attendeeLoggedIn")){
-				echo ":)";
+				$this->load->model("attendees");
+				$attendeeEmail = array(
+					"attendeeEmail" => $this->session->userdata("attendeeEmail")
+				);
+				$q = $this->attendees->view($attendeeEmail);
+				foreach($q->result() as $row){
+					$data['attendeeFirstName'] = $row->attendeeFirstName;
+					$data['attendeeLastName'] = $row->attendeeLastName;
+					$data['attendeeRegistered'] = $row->registered;
+				}
+				$this->load->view("attendeeDashboard", $data);
 			}
 			else{
 				$this->session->set_flashdata("message", "<span class='span3 alert alert-danger'><center>You are not logged in!</center></span>");
 				redirect(base_url()."index.php/login");
 			}
-			$this->load->view("attendeeDashboard");
 		}
 		
 		public function create(){
