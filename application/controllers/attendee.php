@@ -22,7 +22,29 @@
 				show_404();
 			}
 		}
-	
+		
+		public function login(){
+			if($_SERVER['REQUEST_METHOD'] == "POST"){
+				$this->load->library("encrypt");
+				$this->load->library("session");
+				$this->load->model("attendees");
+				$data = array(
+					"attendeeEmail" => $this->input->post("inputLoginEmail"),
+					"attendeePassword" => $this->encrypt->sha1($this->input->post("inputLoginPwd").$this->encrypt->sha1($this->config->item("password_salt")))
+				);
+				
+				if($this->attendees->login($data)->num_rows() > 0){
+					echo "login success";
+				}
+				else{
+					echo "Login failed!";
+				}
+			}
+			else{
+				show_404();
+			}
+		}
+		
 	}
 
 ?>
