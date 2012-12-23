@@ -4,10 +4,10 @@
 		
 		public function index(){
 			$this->load->library("session");
-			if($this->session->userdata("attendeeLoggedIn")){
+			if($this->session->userdata("loggedin")){
 				$this->load->model("attendees");
 				$attendeeEmail = array(
-					"attendeeEmail" => $this->session->userdata("attendeeEmail")
+					"attendeeEmail" => $this->session->userdata("email")
 				);
 				$q = $this->attendees->view($attendeeEmail);
 				foreach($q->result() as $row){
@@ -57,8 +57,8 @@
 				
 				if($this->attendees->login($data)->num_rows() > 0){
 					$this->session->set_userdata(array(
-						"attendeeLoggedIn" => true,
-						"attendeeEmail" => $this->input->post("inputLoginEmail")
+						"loggedin" => true,
+						"email" => $this->input->post("inputLoginEmail")
 					));
 					redirect(base_url()."index.php/attendee");
 				}
