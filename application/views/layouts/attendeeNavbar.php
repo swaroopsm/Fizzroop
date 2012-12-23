@@ -17,7 +17,7 @@
               	<li><a href="<?php echo site_url().'/admin'; ?>">Home</a></li>
                 <li><a href="#">Account</a></li>
                 <li class="divider"></li>
-                <li><a href="#">Log out!</a></li>
+                <li><a href="<?php echo base_url().'index.php/logout' ?>">Log out!</a></li>
               </ul>
              </li>
           </ul>
