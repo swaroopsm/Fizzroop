@@ -12,7 +12,11 @@
 		public function login($data){
 			return $this->db->get_where("attendees", $data);
 		}
-			
+		
+		public function view($attendeeEmail){
+			return $this->db->get_where("attendees", $attendeeEmail);
+		}
+		
 	}
 
 ?>
