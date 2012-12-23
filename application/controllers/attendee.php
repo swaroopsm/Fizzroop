@@ -14,6 +14,7 @@
 					$data['attendeeFirstName'] = $row->attendeeFirstName;
 					$data['attendeeLastName'] = $row->attendeeLastName;
 					$data['attendeeRegistered'] = $row->registered;
+					$data['page_title'] = "Welcome ".$row->attendeeFirstName." ".$row->attendeeLastName."!";
 				}
 				$this->load->view("attendeeDashboard", $data);
 			}
