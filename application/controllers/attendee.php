@@ -34,7 +34,11 @@
 				);
 				
 				if($this->attendees->login($data)->num_rows() > 0){
-					echo "login success";
+					$this->session->set_userdata(array(
+						"loggedin" => true,
+						"email" => $this->input->post("inputLoginEmail")
+					));
+					redirect(base_url()."/index.php/attendee");
 				}
 				else{
 					 $this->session->set_flashdata('message', '<span class="span3 alert alert-danger"><center>Login failed!</center></span>');
