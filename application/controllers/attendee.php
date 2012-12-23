@@ -1,7 +1,19 @@
 <?php
 
 	class Attendee extends CI_Controller{
-	
+		
+		public function index(){
+			$this->load->library("session");
+			if($this->session->userdata("attendeeLoggedIn")){
+				echo ":)";
+			}
+			else{
+				$this->session->set_flashdata("message", "<span class='span3 alert alert-danger'><center>You are not logged in!</center></span>");
+				redirect(base_url()."index.php/login");
+			}
+			$this->load->view("attendeeDashboard");
+		}
+		
 		public function create(){
 			if($_SERVER['REQUEST_METHOD'] == "POST"){
 				$this->load->library("encrypt");
@@ -35,13 +47,13 @@
 				
 				if($this->attendees->login($data)->num_rows() > 0){
 					$this->session->set_userdata(array(
-						"loggedin" => true,
-						"email" => $this->input->post("inputLoginEmail")
+						"attendeeLoggedIn" => true,
+						"attendeeEmail" => $this->input->post("inputLoginEmail")
 					));
-					redirect(base_url()."/index.php/attendee");
+					redirect(base_url()."index.php/attendee");
 				}
 				else{
-					 $this->session->set_flashdata('message', '<span class="span3 alert alert-danger"><center>Login failed!</center></span>');
+					 $this->session->set_flashdata("message", "<span class='span3 alert alert-danger'><center>Login failed!</center></span>");
            redirect(base_url()."index.php/login");
 				}
 			}
