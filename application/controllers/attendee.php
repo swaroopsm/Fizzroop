@@ -37,7 +37,7 @@
 					echo "login success";
 				}
 				else{
-					 $this->session->set_flashdata('message', '<span class="span3 alert alert-danger"><a class="close" data-dismiss="alert">&times</a>Login failed!</span>');
+					 $this->session->set_flashdata('message', '<span class="span3 alert alert-danger"><center>Login failed!</center></span>');
            redirect(base_url()."index.php/login");
 				}
 			}
