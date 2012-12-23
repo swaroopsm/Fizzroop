@@ -13,7 +13,7 @@
 	</head>
 	<body>
 		 <div class="container">
-      <?php echo form_open("session", array("class" => "form-signin")); ?>
+      <?php echo form_open("attendee/login", array("class" => "form-signin")); ?>
         <h2 class="form-signin-heading">Login</h2>
         <hr>
         <input type="text" class="input-block-level" placeholder="Your Email" name="inputLoginEmail">
