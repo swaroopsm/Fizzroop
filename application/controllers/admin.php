@@ -71,11 +71,16 @@
 			}
 	 
 	 public function view_where(){
-	 		$data = array(
+	 		if($this->session->userdata("adminLoggedin") == true){
+	 			$data = array(
 				"adminID" => $this->uri->segment(2)
-			);
-			$q = $this->admins->view_where($data);
-			echo json_encode($q->result());
+				);
+				$q = $this->admins->view_where($data);
+				echo json_encode($q->result());
+	 		}
+	 		else{
+	 			show_404();
+	 		}
 	 }
 	 
 	}
