@@ -3,12 +3,22 @@
 	class Attendee extends CI_Controller{
 		
 		/**
+			* Constructor function
+		**/
+		
+		public function __construct(){
+			parent::__construct();
+			$this->load->library("session");
+			$this->load->library("encrypt");
+			$this->load->model("attendees");
+		}
+		
+		
+		/**
 			* Index function for the Attendee Dashboard.
 		*/
 		public function index(){
-			$this->load->library("session");
 			if($this->session->userdata("loggedin")){
-				$this->load->model("attendees");
 				$attendeeEmail = array(
 					"attendeeEmail" => $this->session->userdata("email")
 				);
@@ -34,9 +44,6 @@
 		
 		public function create(){
 			if($_SERVER['REQUEST_METHOD'] == "POST"){
-				$this->load->library("encrypt");
-				$this->load->library("session");
-				$this->load->model("attendees");
 				$data = array(
 					"attendeeFirstName" => $this->input->post("inputFirstName"),
 					"attendeeLastName" => $this->input->post("inputLastName"),
@@ -60,9 +67,6 @@
 		
 		public function login(){
 			if($_SERVER['REQUEST_METHOD'] == "POST"){
-				$this->load->library("encrypt");
-				$this->load->library("session");
-				$this->load->model("attendees");
 				$data = array(
 					"attendeeEmail" => $this->input->post("inputLoginEmail"),
 					"attendeePassword" => $this->encrypt->sha1($this->input->post("inputLoginPwd").$this->encrypt->sha1($this->config->item("password_salt")))
