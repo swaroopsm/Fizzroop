@@ -27,6 +27,22 @@
 			}
 		}
 		
+		public function update(){
+			if($_SERVER['REQUEST_METHOD'] == "POST"){
+				$data = array(
+					"year" => $this->input->post("inputYear"),
+					"venue" => $this->input->post("inputVenue"),
+					"startDate" => $this->input->post("inputStartDate"),
+					"endDate" => $this->input->post("inputEndDate"),
+					"visibility" => $this->input->post("inputVisibility")
+				);
+				$where = array(
+					"conferenceID" => $this->input->post("inputConferenceID")
+				);
+				$this->conferences->update($data, $where);
+			}
+		}
+		
 	}
 	
 ?>
