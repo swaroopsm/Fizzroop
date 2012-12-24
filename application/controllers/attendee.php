@@ -12,7 +12,7 @@
 				$attendeeEmail = array(
 					"attendeeEmail" => $this->session->userdata("email")
 				);
-				$q = $this->attendees->view($attendeeEmail);
+				$q = $this->attendees->view_where($attendeeEmail);
 				foreach($q->result() as $row){
 					$data['attendeeFirstName'] = $row->attendeeFirstName;
 					$data['attendeeLastName'] = $row->attendeeLastName;
