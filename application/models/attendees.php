@@ -63,12 +63,21 @@
 		
 		
 		/**
-			* Updates values of a particular attendee
+			* Updates values of a particular attendee.
 		*/
 		
 		public function update($data, $where){
 			$this->db->where($where);
 			$this->db->update("attendees", $data);
+		}
+		
+		
+		/**
+			* Removes a particular attendee.
+		*/
+		
+		public function delete($data){
+			$this->db->delete("attendees", $data);
 		}
 		
 	}
