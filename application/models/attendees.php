@@ -51,6 +51,17 @@
 			return $this->db->get("attendees");
 		}
 		
+		
+		/**
+			* Returns specific column fields subjected to a where clause.
+		*/
+		
+		public function select_where($data, $where){
+			$this->db->select($data);
+			return $this->db->get_where("attendees", $where);
+		}
+		
+		
 	}
 
 ?>
