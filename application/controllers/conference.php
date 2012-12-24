@@ -3,8 +3,12 @@
 	
 	class Conference extends CI_Controller{
 		
-		public function create(){
+		public function __construct(){
+			parent::__construct();
 			$this->load->model("conferences");
+		}
+		
+		public function create(){
 			$method = $_SERVER['REQUEST_METHOD'];
 			if($method=="POST"){
 				$data = array(
@@ -22,7 +26,7 @@
 				show_404();
 			}
 		}
-	
+		
 	}
 	
 ?>
