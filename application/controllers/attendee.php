@@ -2,6 +2,9 @@
 
 	class Attendee extends CI_Controller{
 		
+		/**
+			* Index function for the Attendee Dashboard.
+		*/
 		public function index(){
 			$this->load->library("session");
 			if($this->session->userdata("loggedin")){
@@ -24,6 +27,11 @@
 			}
 		}
 		
+		
+		/**
+			* Handles creation of an Attendee.
+		**/
+		
 		public function create(){
 			if($_SERVER['REQUEST_METHOD'] == "POST"){
 				$this->load->library("encrypt");
@@ -44,6 +52,11 @@
 				show_404();
 			}
 		}
+		
+		
+		/*
+			*	Handles login of Attendee.
+		**/
 		
 		public function login(){
 			if($_SERVER['REQUEST_METHOD'] == "POST"){
