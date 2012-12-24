@@ -10,8 +10,14 @@
 		}
 		
 		public function index(){
-			$data['page_title'] = "Welcome Admin!";
-			$this->load->view("adminDashboard", $data);
+			if($this->session->userdata("adminLoggedin")){
+				$data['page_title'] = "Welcome Admin!";
+				$this->load->view("adminDashboard", $data);
+			}
+			else{
+				$this->session->set_flashdata("message", "<span class='span3 alert alert-danger'><center>You are not logged in!</center></span>");
+				redirect(base_url()."signin");
+			}
 		}
 	 
 	 public function login(){
@@ -23,7 +29,7 @@
 				
 				if($this->admins->view_where($data)->num_rows() > 0){
 					$this->session->set_userdata(array(
-						"loggedin" => true,
+						"adminLoggedin" => true,
 						"email" => $this->input->post("inputLoginEmail")
 					));
 					redirect(base_url()."admin");
