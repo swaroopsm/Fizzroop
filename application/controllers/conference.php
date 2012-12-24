@@ -6,6 +6,7 @@
 		public function __construct(){
 			parent::__construct();
 			$this->load->model("conferences");
+			$this->load->library("uri");
 		}
 		
 		public function create(){
@@ -71,9 +72,9 @@
 				}
 		}
 		
-		public function view_where($id){
+		public function view_where(){
 			$data = array(
-				"conferenceID" => $id
+				"conferenceID" => $this->uri->segment(2)
 			);
 			$q = $this->conferences->view_where($data);
 			echo json_encode($q->result());
