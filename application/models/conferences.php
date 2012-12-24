@@ -19,7 +19,7 @@
 		
 		
 		/**
-			* Returns all conferences subjected to a where clause. 
+			* Returns a specific conference subjected to a where clause. 
 		*/
 		
 		public function view_where($data){
