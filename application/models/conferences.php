@@ -13,6 +13,10 @@
 			return $this->db->get("conferences");
 		}
 		
+		public function view_where($data){
+			return $this->db->get_where("conferences", $data);
+		}
+		
 	}
 
 ?>
