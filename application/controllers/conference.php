@@ -55,6 +55,7 @@
 						"conferenceID" => $this->input->post("inputConferenceID")
 					);
 					$this->conferences->update($data, $where);
+					echo json_encode(array("success" => true, "conferenceID" => $this->input->post("inputConferenceID")));
 				}
 				else{
 					show_404();
