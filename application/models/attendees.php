@@ -13,8 +13,8 @@
 			return $this->db->get_where("attendees", $data);
 		}
 		
-		public function view($attendeeEmail){
-			return $this->db->get_where("attendees", $attendeeEmail);
+		public function view(){
+			return $this->db->get("attendees");
 		}
 		
 	}
