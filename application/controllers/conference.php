@@ -71,6 +71,14 @@
 				}
 		}
 		
+		public function view_where($id){
+			$data = array(
+				"conferenceID" => $id
+			);
+			$q = $this->conferences->view_where($data);
+			echo json_encode($q->result());
+		}
+		
 	}
 	
 ?>
