@@ -230,6 +230,27 @@
 		}
 		
 		
+		/**
+			* Handles deletion of an Attendee.
+			* @TODO Need to develop checks, so that only the Administrator can call this function.
+		**/
+		
+		public function delete(){
+			if($_SERVER['REQUEST_METHOD'] == "POST"){
+				$data = array(
+					"attendeeID" => $this->input->post("inputAttendeeID")
+				);
+				$this->attendees->delete($data);
+				echo json_encode(array(
+						"success" => true,
+						"responseMsg" => "Attendee has been removed!"
+					)
+				);
+			}
+			else{
+				show_404();
+			}
+		}
 		
 		
 	}
