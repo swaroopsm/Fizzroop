@@ -178,7 +178,8 @@
 		
 		public function reset(){
 			$oldData = array(
-				"attendeePassword"
+				"attendeePassword",
+				"attendeeEmail"
 			);
 			$where = array(
 				"attendeeID" => $this->input->post("inputAttendeeID")
@@ -187,7 +188,10 @@
 			$q = $this->attendees->select_where($oldData, $where);
 			$r = $q->result();
 			$oldPwd = $r[0]->attendeePassword;
-			if($oldPwd == $confirmPwd){
+			$myEmail = $r[0]->attendeeEmail;
+			$sessionEmail = $this->session->userdata("email");
+			if($myEmail == $sessionEmail){
+				if($oldPwd == $confirmPwd){
 			$newPwd = $this->encrypt->sha1($this->input->post("inputNewPassword").$this->encrypt->sha1($this->config->item("password_salt")));
 				$data = array(
 				"attendeePassword" => $newPwd
@@ -208,7 +212,18 @@
 					)
 				);
 			}
+			}
+			else{
+				echo json_encode(array(
+						"success" => false,
+						"attendeeID" => $this->input->post("inputAttendeeID"),
+						"responseMsg" => "Authorization failed!"
+					)
+				);
+			}
 		}
+		
+		
 		
 		
 	}
