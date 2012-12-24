@@ -73,7 +73,7 @@
 					"attendeePassword" => $this->encrypt->sha1($this->input->post("inputLoginPwd").$this->encrypt->sha1($this->config->item("password_salt")))
 				);
 				
-				if($this->attendees->login($data)->num_rows() > 0){
+				if($this->attendees->view_where($data)->num_rows() > 0){
 					$this->session->set_userdata(array(
 						"loggedin" => true,
 						"email" => $this->input->post("inputLoginEmail")
