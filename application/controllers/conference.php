@@ -12,10 +12,10 @@
 			$method = $_SERVER['REQUEST_METHOD'];
 			if($method=="POST"){
 				$data = array(
-					"venue" => $_POST['inputVenue'],
-					"year" => $_POST['inputYear'],
-					"startDate" => $_POST['inputStartDate'],
-					"endDate" => $_POST['inputEndDate']
+					"venue" => trim($_POST['inputVenue']),
+					"year" => trim($_POST['inputYear']),
+					"startDate" => trim($_POST['inputStartDate']),
+					"endDate" => trim($_POST['inputEndDate'])
 				);
 				if($this->conferences->insert($data))
 					echo json_encode(array("success" => true));
