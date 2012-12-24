@@ -40,7 +40,7 @@
 
 $route['default_controller'] = "welcome";
 $route['404_override'] = '';
-
+$route['conference/(:num)'] = "conference/view_where/$1";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
