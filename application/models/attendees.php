@@ -31,6 +31,19 @@
 			return $this->db->get("attendees");
 		}
 		
+		
+		
+		/**
+			* Returns a specific attendee subjected to a where clause. 
+		*/
+		
+		public function view_where($data){
+			return $this->db->get_where("attendees", $data);
+		}
+		
+		
+		
+		
 	}
 
 ?>
