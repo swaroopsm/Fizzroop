@@ -11,6 +11,7 @@
 			$this->load->library("session");
 			$this->load->library("encrypt");
 			$this->load->model("attendees");
+			$this->load->library("uri");
 		}
 		
 		
@@ -140,6 +141,19 @@
 					show_404();
 				}
 		}
+		
+		/**
+			* Handles viewing of a particular Attendee.
+		**/
+		
+		public function view_where(){
+			$data = array(
+				"attendeeID" => $this->uri->segment(2)
+			);
+			$q = $this->attendees->view_where($data);
+			echo json_encode($q->result());
+		}
+		
 		
 	}
 
