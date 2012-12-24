@@ -20,7 +20,7 @@
 			}
 			else{
 				$this->session->set_flashdata("message", "<span class='span3 alert alert-danger'><center>You are not logged in!</center></span>");
-				redirect(base_url()."index.php/login");
+				redirect(base_url()."login");
 			}
 		}
 		
@@ -60,7 +60,7 @@
 						"loggedin" => true,
 						"email" => $this->input->post("inputLoginEmail")
 					));
-					redirect(base_url()."index.php/attendee");
+					redirect(base_url()."attendee");
 				}
 				else{
 					 $this->session->set_flashdata("message", "<span class='span3 alert alert-danger'><center>Login failed!</center></span>");

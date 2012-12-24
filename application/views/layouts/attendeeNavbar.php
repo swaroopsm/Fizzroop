@@ -14,10 +14,10 @@
              <li class="dropdown">
           	  <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size: 13px;"><?php echo $attendeeFirstName." ".$attendeeLastName; ?>&nbsp;<b class="caret"></b></a>
               <ul class="dropdown-menu" style="font-size: 13px;">
-              	<li><a href="<?php echo base_url().'index.php/attendee'; ?>">Home</a></li>
+              	<li><a href="<?php echo base_url().'attendee'; ?>">Home</a></li>
                 <li><a href="#">Account</a></li>
                 <li class="divider"></li>
-                <li><a href="<?php echo base_url().'index.php/logout' ?>">Log out!</a></li>
+                <li><a href="<?php echo base_url().'logout' ?>">Log out!</a></li>
               </ul>
              </li>
           </ul>
