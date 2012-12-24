@@ -9,9 +9,18 @@
 				return false;
 		}
 		
+		/**
+			* Returns all conferences.
+		*/
+		
 		public function view(){
 			return $this->db->get("conferences");
 		}
+		
+		
+		/**
+			* Returns all conferences subjected to a where clause. 
+		*/
 		
 		public function view_where($data){
 			return $this->db->get_where("conferences", $data);
