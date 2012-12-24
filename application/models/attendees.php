@@ -62,6 +62,15 @@
 		}
 		
 		
+		/**
+			* Updates values of a particular attendee
+		*/
+		
+		public function update($data, $where){
+			$this->db->where($where);
+			$this->db->update("attendees", $data);
+		}
+		
 	}
 
 ?>
