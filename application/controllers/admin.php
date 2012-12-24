@@ -44,6 +44,32 @@
 			}
 	 }
 	 
+	 public function update(){
+				if($_SERVER['REQUEST_METHOD'] == "POST"){
+					if($this->session->userdata("adminLoggedin") == true){
+						$data = array(
+						"adminEmail" => $this->input->post("inputEmail"),
+						"adminPassword" => $this->encrypt->sha1($this->input->post("inputPassword").$this->encrypt->sha1($this->config->item("password_salt")))
+					);
+						$where = array(
+							"adminID" => $this->input->post("inputAdminID")
+						);
+						$this->admins->update($data, $where);
+						echo json_encode(array(
+								"success" => true,
+								"adminID" => $this->input->post("inputAdminID")
+							)
+						);
+					}
+					else{
+						show_404();
+					}
+				}
+				else{
+					show_404();
+				}
+			}
+	 
 	}
 
 ?>
