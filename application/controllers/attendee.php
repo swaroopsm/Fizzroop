@@ -90,7 +90,7 @@
 		}
 		
 		/**
-			* Handles edit/update of Attendee.
+			*	Handles edit/update of Attendee.
 		**/
 	
 		public function update(){
@@ -116,6 +116,30 @@
 				}
 			}
 		
+		
+		/**
+			*	Handles registration of an Attendee
+		**/
+		
+		public function register(){
+			if($_SERVER['REQUEST_METHOD'] == "POST"){
+				$data = array(
+						"registered" => 1
+					);
+					$where = array(
+						"attendeeID" => $this->input->post("inputAttendeeID")
+					);
+					$this->attendees->update($data, $where);
+					echo json_encode(array(
+							"success" => true,
+							"attendeeID" => $this->input->post("inputAttendeeID")
+						)
+					);
+				}
+				else{
+					show_404();
+				}
+		}
 		
 	}
 
