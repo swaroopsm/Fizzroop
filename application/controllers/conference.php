@@ -43,6 +43,21 @@
 			}
 		}
 		
+		public function publish(){
+			if($_SERVER['REQUEST_METHOD'] == "POST"){
+				$data = array(
+						"visibility" => 1
+					);
+					$where = array(
+						"conferenceID" => $this->input->post("inputConferenceID")
+					);
+					$this->conferences->update($data, $where);
+				}
+				else{
+					show_404();
+				}
+		}
+		
 	}
 	
 ?>
