@@ -46,6 +46,16 @@
 			return $this->db->get_where("conferences", $where);
 		}
 		
+		
+		/**
+			* Updates values of a particular conference
+		*/
+		
+		public function update($data, $where){
+			$this->db->where($where);
+			$this->db->update("conferences", $data);
+		}
+		
 	}
 
 ?>
