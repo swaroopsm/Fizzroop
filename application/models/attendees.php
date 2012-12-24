@@ -42,7 +42,14 @@
 		}
 		
 		
+		/**
+			* Returns specific column fields of all attendees.
+		*/
 		
+		public function select($data){
+			$this->db->select($data);
+			return $this->db->get("attendees");
+		}
 		
 	}
 
