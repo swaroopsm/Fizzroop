@@ -155,6 +155,23 @@
 		}
 		
 		
+		/**
+			*	Handles viewing of all Attendees.
+		**/
+		
+		public function view(){
+			$data = array(
+				"attendeeID",
+				"attendeeFirstName",
+				"attendeeLastName",
+				"attendeeEmail",
+				"registered"
+			);
+			$q = $this->attendees->select($data);
+			echo json_encode($q->result());
+		}
+		
+		
 	}
 
 ?>
