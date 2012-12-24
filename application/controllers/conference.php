@@ -80,6 +80,11 @@
 			echo json_encode($q->result());
 		}
 		
+		public function view(){
+			$q = $this->conferences->view();
+			echo json_encode($q->result());
+		}
+		
 	}
 	
 ?>
