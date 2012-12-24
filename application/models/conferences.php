@@ -8,7 +8,11 @@
 			else
 				return false;
 		}
-	
+		
+		public function view(){
+			return $this->db->get("conferences");
+		}
+		
 	}
 
 ?>
