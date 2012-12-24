@@ -70,6 +70,14 @@
 				}
 			}
 	 
+	 public function view_where(){
+	 		$data = array(
+				"adminID" => $this->uri->segment(2)
+			);
+			$q = $this->admins->view_where($data);
+			echo json_encode($q->result());
+	 }
+	 
 	}
 
 ?>
