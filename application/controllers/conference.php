@@ -41,6 +41,9 @@
 				);
 				$this->conferences->update($data, $where);
 			}
+			else{
+				show_404();
+			}
 		}
 		
 		public function publish(){
