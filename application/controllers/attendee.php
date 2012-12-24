@@ -96,21 +96,23 @@
 	
 		public function update(){
 				if($_SERVER['REQUEST_METHOD'] == "POST"){
-					$data = array(
+					if($this->session->userdata("loggedin") == true || $this->session->userdata("adminLoggedin") == true){
+						$data = array(
 						"attendeeFirstName" => $this->input->post("inputFirstName"),
 						"attendeeLastName" => $this->input->post("inputLastName"),
 						"attendeeEmail" => $this->input->post("inputEmail"),
 						"attendeePassword" => $this->encrypt->sha1($this->input->post("inputPassword").$this->encrypt->sha1($this->config->item("password_salt")))
 					);
-					$where = array(
-						"attendeeID" => $this->input->post("inputAttendeeID")
-					);
-					$this->attendees->update($data, $where);
-					echo json_encode(array(
-							"success" => true,
+						$where = array(
 							"attendeeID" => $this->input->post("inputAttendeeID")
-						)
-					);
+						);
+						$this->attendees->update($data, $where);
+						echo json_encode(array(
+								"success" => true,
+								"attendeeID" => $this->input->post("inputAttendeeID")
+							)
+						);
+					}
 				}
 				else{
 					show_404();
@@ -124,18 +126,20 @@
 		
 		public function register(){
 			if($_SERVER['REQUEST_METHOD'] == "POST"){
-				$data = array(
-						"registered" => 1
-					);
-					$where = array(
-						"attendeeID" => $this->input->post("inputAttendeeID")
-					);
-					$this->attendees->update($data, $where);
-					echo json_encode(array(
-							"success" => true,
+				if($this->session->userdata("loggedin") ==true || $this->session->userdata("adminLoggedin") == true){
+						$data = array(
+							"registered" => 1
+						);
+						$where = array(
 							"attendeeID" => $this->input->post("inputAttendeeID")
-						)
-					);
+						);
+						$this->attendees->update($data, $where);
+						echo json_encode(array(
+								"success" => true,
+								"attendeeID" => $this->input->post("inputAttendeeID")
+							)
+						);
+					}
 				}
 				else{
 					show_404();
@@ -178,50 +182,53 @@
 		
 		public function reset(){
 			if($_SERVER['REQUEST_METHOD'] == "POST"){
-				$oldData = array(
-				"attendeePassword",
-				"attendeeEmail"
-			);
-				$where = array(
-					"attendeeID" => $this->input->post("inputAttendeeID")
+				if($this->session->userdata("loggedin") == true || $this->session->userdata("adminLoggedin") == true){
+					$oldData = array(
+					"attendeePassword",
+					"attendeeEmail"
 				);
-				$confirmPwd = $this->encrypt->sha1($this->input->post("inputConfPassword").$this->encrypt->sha1($this->config->item("password_salt")));
-				$q = $this->attendees->select_where($oldData, $where);
-				$r = $q->result();
-				$oldPwd = $r[0]->attendeePassword;
-				$myEmail = $r[0]->attendeeEmail;
-				$sessionEmail = $this->session->userdata("email");
-				if($myEmail == $sessionEmail){
-					if($oldPwd == $confirmPwd){
-				$newPwd = $this->encrypt->sha1($this->input->post("inputNewPassword").$this->encrypt->sha1($this->config->item("password_salt")));
-					$data = array(
-					"attendeePassword" => $newPwd
-				);
-				$this->attendees->update($data, $where);
-				echo json_encode(array(
-						"success" => true,
-						"attendeeID" => $this->input->post("inputAttendeeID"),
-						"responseMsg" => "Passwords updated successfully!"
-					)
-				);
-				}
-				else{
+					$where = array(
+						"attendeeID" => $this->input->post("inputAttendeeID")
+					);
+					$confirmPwd = $this->encrypt->sha1($this->input->post("inputConfPassword").$this->encrypt->sha1($this->config->item("password_salt")));
+					$q = $this->attendees->select_where($oldData, $where);
+					$r = $q->result();
+					$oldPwd = $r[0]->attendeePassword;
+					$myEmail = $r[0]->attendeeEmail;
+					$sessionEmail = $this->session->userdata("email");
+					if($myEmail == $sessionEmail){
+						if($oldPwd == $confirmPwd){
+					$newPwd = $this->encrypt->sha1($this->input->post("inputNewPassword").$this->encrypt->sha1($this->config->item("password_salt")));
+						$data = array(
+						"attendeePassword" => $newPwd
+					);
+					$this->attendees->update($data, $where);
 					echo json_encode(array(
-							"success" => false,
+							"success" => true,
 							"attendeeID" => $this->input->post("inputAttendeeID"),
-							"responseMsg" => "Passwords do not match!"
+							"responseMsg" => "Passwords updated successfully!"
 						)
 					);
+					}
+					else{
+						echo json_encode(array(
+								"success" => false,
+								"attendeeID" => $this->input->post("inputAttendeeID"),
+								"responseMsg" => "Passwords do not match!"
+							)
+						);
+					}
+					}
+					else{
+						echo json_encode(array(
+								"success" => false,
+								"attendeeID" => $this->input->post("inputAttendeeID"),
+								"responseMsg" => "Authorization failed!"
+							)
+						);
+					}
 				}
-				}
-				else{
-					echo json_encode(array(
-							"success" => false,
-							"attendeeID" => $this->input->post("inputAttendeeID"),
-							"responseMsg" => "Authorization failed!"
-						)
-					);
-				}
+				
 			}
 			else{
 				show_404();
