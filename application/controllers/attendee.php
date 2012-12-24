@@ -232,28 +232,32 @@
 		
 		/**
 			* Handles deletion of an Attendee.
-			* @TODO Need to develop checks, so that only the Administrator can call this function.
 		**/
 		
 		public function delete(){
 			if($_SERVER['REQUEST_METHOD'] == "POST"){
-				if($this->attendees->view_where(array("attendeeID" => $this->input->post("inputAttendeeID")))->num_rows()>0){
-					$data = array(
-					"attendeeID" => $this->input->post("inputAttendeeID")
-					);
-					$this->attendees->delete($data);
-					echo json_encode(array(
-							"success" => true,
-							"responseMsg" => "Attendee has been removed!"
-						)
-					);
+				if($this->session->userdata("adminLoggedin") == true){
+					if($this->attendees->view_where(array("attendeeID" => $this->input->post("inputAttendeeID")))->num_rows()>0){
+						$data = array(
+						"attendeeID" => $this->input->post("inputAttendeeID")
+						);
+						$this->attendees->delete($data);
+						echo json_encode(array(
+								"success" => true,
+								"responseMsg" => "Attendee has been removed!"
+							)
+						);
 				}
 				else{
-					echo json_encode(array(
-							"success" => false,
-							"responseMsg" => "No such Attendee exists!"
-						)
-					);
+						echo json_encode(array(
+								"success" => false,
+								"responseMsg" => "No such Attendee exists!"
+							)
+						);
+					}
+				}
+				else{
+					show_404();
 				}
 			}
 			else{
