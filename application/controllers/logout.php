@@ -4,11 +4,18 @@
 	
 		public function index(){
 			$this->load->library("session");
+			$l = $this->session->userdata("loggedin");
+			$al = $this->session->userdata("adminLoggedin");
+			if($l == true)
+				$logout = "login";
+			else
+				$logout = "signin";
 			$this->session->unset_userdata(array(
 				"loggedin" => false,
+				"adminLoggedin" => false,
 				"email" => ""
 			));
-			redirect(base_url()."login");
+			redirect(base_url().$logout);
 		}
 	
 	}
