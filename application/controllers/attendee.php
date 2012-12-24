@@ -89,6 +89,34 @@
 			}
 		}
 		
+		/**
+			* Handles edit/update of Attendee.
+		**/
+	
+		public function update(){
+				if($_SERVER['REQUEST_METHOD'] == "POST"){
+					$data = array(
+						"attendeeFirstName" => $this->input->post("inputFirstName"),
+						"attendeeLastName" => $this->input->post("inputLastName"),
+						"attendeeEmail" => $this->input->post("inputEmail"),
+						"attendeePassword" => $this->encrypt->sha1($this->input->post("inputPassword").$this->encrypt->sha1($this->config->item("password_salt")))
+					);
+					$where = array(
+						"attendeeID" => $this->input->post("inputAttendeeID")
+					);
+					$this->attendees->update($data, $where);
+					echo json_encode(array(
+							"success" => true,
+							"attendeeID" => $this->input->post("inputAttendeeID")
+						)
+					);
+				}
+				else{
+					show_404();
+				}
+			}
+		
+		
 	}
 
 ?>
