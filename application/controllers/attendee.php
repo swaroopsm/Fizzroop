@@ -172,6 +172,45 @@
 		}
 		
 		
+		/**
+			* Handles password reset for an Attendee.
+		**/
+		
+		public function reset(){
+			$oldData = array(
+				"attendeePassword"
+			);
+			$where = array(
+				"attendeeID" => $this->input->post("inputAttendeeID")
+			);
+			$confirmPwd = $this->encrypt->sha1($this->input->post("inputConfPassword").$this->encrypt->sha1($this->config->item("password_salt")));
+			$q = $this->attendees->select_where($oldData, $where);
+			$r = $q->result();
+			$oldPwd = $r[0]->attendeePassword;
+			if($oldPwd == $confirmPwd){
+			$newPwd = $this->encrypt->sha1($this->input->post("inputNewPassword").$this->encrypt->sha1($this->config->item("password_salt")));
+				$data = array(
+				"attendeePassword" => $newPwd
+			);
+			$this->attendees->update($data, $where);
+			echo json_encode(array(
+					"success" => true,
+					"attendeeID" => $this->input->post("inputAttendeeID"),
+					"responseMsg" => "Passwords updated successfully!"
+				)
+			);
+			}
+			else{
+				echo json_encode(array(
+						"success" => false,
+						"attendeeID" => $this->input->post("inputAttendeeID"),
+						"responseMsg" => "Passwords do not match!"
+					)
+				);
+			}
+		}
+		
+		
 	}
 
 ?>
