@@ -15,15 +15,6 @@
 		
 		
 		/**
-			* Log in an Attendee
-		*/
-		
-		public function login($data){
-			return $this->db->get_where("attendees", $data);
-		}
-		
-		
-		/**
 			* Returns all attendees
 		*/
 		
