@@ -26,6 +26,16 @@
 			return $this->db->get_where("conferences", $data);
 		}
 		
+		
+		/**
+			* Returns specific column fields of all conferences.
+		*/
+		
+		public function select($data){
+			$this->db->select($data);
+			return $this->db->get("conferences");
+		}
+		
 	}
 
 ?>
