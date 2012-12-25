@@ -38,6 +38,16 @@
 			return $this->db->get("reviewers");
 		}
 		
+		
+		/**
+			* Returns specific column fields of a Reviewer subjected to a where clause.
+		*/
+		
+		public function select_where($data, $where){
+			$this->db->select($data);
+			return $this->db->get_where("reviewers", $where);
+		}
+		
 	}
 
 ?>
