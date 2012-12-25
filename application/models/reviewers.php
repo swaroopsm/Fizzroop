@@ -48,6 +48,17 @@
 			return $this->db->get_where("reviewers", $where);
 		}
 		
+		
+		/**
+			* Updates values of a particular Reviewer.
+		*/
+		
+		public function update($data, $where){
+			$this->db->where($where);
+			$this->db->update("reviewers", $data);
+		}
+		
+		
 	}
 
 ?>
