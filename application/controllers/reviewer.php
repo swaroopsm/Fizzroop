@@ -45,6 +45,36 @@
 			}
 		}
 		
+		
+		/*
+			*	Handles login of Attendee.
+		**/
+		
+		public function login(){
+			if($_SERVER['REQUEST_METHOD'] == "POST"){
+				$data = array(
+					"reviewerEmail" => $this->input->post("inputLoginEmail"),
+					"reviewerPassword" => $this->encrypt->sha1($this->input->post("inputLoginPwd").$this->encrypt->sha1($this->config->item("password_salt")))
+				);
+				
+				if($this->reviewers->view_where($data)->num_rows() > 0){
+					$this->session->set_userdata(array(
+						"reviewerLoggedin" => true,
+						"email" => $this->input->post("inputLoginEmail")
+					));
+					redirect(base_url()."reviewer");
+				}
+				else{
+					 $this->session->set_flashdata("message", "<span class='span3 alert alert-danger'><center>Login failed!</center></span>");
+           redirect(base_url()."signin");
+				}
+			}
+			else{
+				show_404();
+			}
+		}
+		
+		
 	}
 
 ?>
