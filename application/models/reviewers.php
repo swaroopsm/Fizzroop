@@ -59,6 +59,14 @@
 		}
 		
 		
+		/**
+			* Removes a particular Reviewer.
+		*/
+		
+		public function delete($data){
+			$this->db->delete("reviewers", $data);
+		}
+		
 	}
 
 ?>
