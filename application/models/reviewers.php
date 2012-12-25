@@ -19,6 +19,15 @@
 			return $this->db->get("reviewers");
 		}
 		
+		
+		/**
+			* Returns a specific Reviewer subjected to a where clause. 
+		*/
+		
+		public function view_where($data){
+			return $this->db->get_where("reviewers", $data);
+		}
+		
 	}
 
 ?>
