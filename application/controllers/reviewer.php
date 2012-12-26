@@ -136,6 +136,21 @@
 			}
 		}
 		
+		
+		/**
+			* Handles viewing of a particular Reviewer.
+		**/
+		
+		public function view_where(){
+			$data = array(
+				"reviewerID" => $this->uri->segment(2)
+			);
+			$q = $this->reviewers->view_where($data);
+			echo json_encode($q->result());
+		}
+		
+		
+		
 	}
 
 ?>
