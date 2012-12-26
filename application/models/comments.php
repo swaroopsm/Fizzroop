@@ -30,7 +30,7 @@
 		
 		
 		/**
-			* Returns specific column fields of all Reviewers.
+			* Returns specific column fields of all Comment.
 		*/
 		
 		public function select($data){
@@ -38,6 +38,15 @@
 			return $this->db->get("comments");
 		}
 		
+		
+		/**
+			* Returns specific column fields of a Comment subjected to a where clause.
+		*/
+		
+		public function select_where($data, $where){
+			$this->db->select($data);
+			return $this->db->get_where("comments", $where);
+		}
 	}
 
 ?>
