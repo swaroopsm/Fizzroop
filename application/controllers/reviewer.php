@@ -47,7 +47,7 @@
 		
 		
 		/*
-			*	Handles login of Attendee.
+			*	Handles login of Reviewer.
 		**/
 		
 		public function login(){
