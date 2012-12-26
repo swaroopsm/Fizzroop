@@ -78,6 +78,23 @@
 			echo json_encode($q->result());
 		}
 	 
+	 
+	 /**
+			*	Handles viewing of all Comments.
+		**/
+		
+		public function view(){
+			$data = array(
+				"commentID",
+				"commentContent",
+				"abstractID",
+				"reviewerID",
+				"commentType"
+			);
+			$q = $this->comments->select($data);
+			echo json_encode($q->result());
+		}
+		
 	}
 
 ?>
