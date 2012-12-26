@@ -166,6 +166,67 @@
 			echo json_encode($q->result());
 		}
 		
+		
+		/**
+			* Handles password reset for a Reviewer.
+		**/
+		
+		public function reset(){
+			if($_SERVER['REQUEST_METHOD'] == "POST"){
+				if($this->session->userdata("reviewerLoggedin") == true || $this->session->userdata("adminLoggedin") == true){
+					$oldData = array(
+					"reviewerPassword",
+					"reviewerEmail"
+				);
+					$where = array(
+						"reviewerID" => $this->input->post("inputReviewerID")
+					);
+					$confirmPwd = $this->encrypt->sha1($this->input->post("inputConfPassword").$this->encrypt->sha1($this->config->item("password_salt")));
+					$q = $this->reviewers->select_where($oldData, $where);
+					$r = $q->result();
+					$oldPwd = $r[0]->reviewerPassword;
+					$myEmail = $r[0]->reviewerEmail;
+					$sessionEmail = $this->session->userdata("email");
+					if($myEmail == $sessionEmail){
+						if($oldPwd == $confirmPwd){
+					$newPwd = $this->encrypt->sha1($this->input->post("inputNewPassword").$this->encrypt->sha1($this->config->item("password_salt")));
+						$data = array(
+						"reviewerPassword" => $newPwd
+					);
+					$this->reviewers->update($data, $where);
+					echo json_encode(array(
+							"success" => true,
+							"reviewerID" => $this->input->post("inputReviewerID"),
+							"responseMsg" => "Passwords updated successfully!"
+						)
+					);
+					}
+					else{
+						echo json_encode(array(
+								"success" => false,
+								"reviewerID" => $this->input->post("inputReviewerID"),
+								"responseMsg" => "Passwords do not match!"
+							)
+						);
+					}
+					}
+					else{
+						echo json_encode(array(
+								"success" => false,
+								"reviewerID" => $this->input->post("inputReviewerID"),
+								"responseMsg" => "Authorization failed!"
+							)
+						);
+					}
+				}
+				
+			}
+			else{
+				show_404();
+			}
+			
+		}
+		
 	}
 
 ?>
