@@ -150,6 +150,21 @@
 		}
 		
 		
+		/**
+			*	Handles viewing of all Reviewers.
+		**/
+		
+		public function view(){
+			$data = array(
+				"reviewerID",
+				"reviewerFirstName",
+				"reviewerLastName",
+				"reviewerEmail",
+				"abstractID"
+			);
+			$q = $this->reviewers->select($data);
+			echo json_encode($q->result());
+		}
 		
 	}
 
