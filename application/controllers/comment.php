@@ -64,6 +64,19 @@
 					show_404();
 				}
 			}
+			
+		
+		/**
+			* Handles viewing of a particular Comment.
+		**/
+		
+		public function view_where(){
+			$data = array(
+				"commentID" => $this->uri->segment(2)
+			);
+			$q = $this->comments->view_where($data);
+			echo json_encode($q->result());
+		}
 	 
 	}
 
