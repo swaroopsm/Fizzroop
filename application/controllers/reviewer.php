@@ -107,7 +107,34 @@
 			}
 		
 		
+		/**
+			*	Handles assignment of an Abstract.
+		**/
 		
+		public function assign(){
+			if($_SERVER['REQUEST_METHOD'] == "POST"){
+				if($this->session->userdata("adminLoggedin") == true){
+					$data = array(
+						"abstractID" => $this->input->post("inputAbstractID"),
+					);
+						$where = array(
+							"reviewerID" => $this->input->post("inputReviewerID")
+						);
+						$this->reviewers->update($data, $where);
+						echo json_encode(array(
+								"success" => true,
+								"reviewerID" => $this->input->post("inputReviewerID")
+							)
+						);
+				}
+				else{
+					show_404();
+				}
+			}
+			else{
+				show_404();
+			}
+		}
 		
 	}
 
