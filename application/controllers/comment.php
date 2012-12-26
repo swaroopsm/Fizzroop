@@ -95,6 +95,42 @@
 			echo json_encode($q->result());
 		}
 		
+		
+	 /**
+			* Handles deletion of an Attendee.
+		**/
+		
+		public function delete(){
+			if($_SERVER['REQUEST_METHOD'] == "POST"){
+				if($this->session->userdata("adminLoggedin") == true || $this->session->userdata("reviewerLoggedin") ==true){
+					if($this->comments->view_where(array("commentID" => $this->input->post("inputCommentID")))->num_rows()>0){
+						$data = array(
+						"commentID" => $this->input->post("inputCommentID")
+						);
+						$this->comments->delete($data);
+						echo json_encode(array(
+								"success" => true,
+								"responseMsg" => "Comment has been removed!"
+							)
+						);
+				}
+				else{
+						echo json_encode(array(
+								"success" => false,
+								"responseMsg" => "No such Comment exists!"
+							)
+						);
+					}
+				}
+				else{
+					show_404();
+				}
+			}
+			else{
+				show_404();
+			}
+		}
+		
 	}
 
 ?>
