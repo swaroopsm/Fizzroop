@@ -100,8 +100,7 @@
 						$data = array(
 						"attendeeFirstName" => $this->input->post("inputFirstName"),
 						"attendeeLastName" => $this->input->post("inputLastName"),
-						"attendeeEmail" => $this->input->post("inputEmail"),
-						"attendeePassword" => $this->encrypt->sha1($this->input->post("inputPassword").$this->encrypt->sha1($this->config->item("password_salt")))
+						"attendeeEmail" => $this->input->post("inputEmail")
 					);
 						$where = array(
 							"attendeeID" => $this->input->post("inputAttendeeID")
