@@ -58,6 +58,15 @@
 			$this->db->update("comments", $data);
 		}
 		
+		
+		/**
+			* Removes a particular Comment.
+		*/
+		
+		public function delete($data){
+			$this->db->delete("comments", $data);
+		}
+		
 	}
 
 ?>
