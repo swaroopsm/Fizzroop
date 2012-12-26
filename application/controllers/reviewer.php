@@ -85,7 +85,7 @@
 						$data = array(
 						"reviewerFirstName" => $this->input->post("inputFirstName"),
 						"reviewerLastName" => $this->input->post("inputLastName"),
-						"reviewerEmail" => $this->input->post("inputEmail"),
+						"reviewerEmail" => $this->input->post("inputEmail")
 					);
 						$where = array(
 							"reviewerID" => $this->input->post("inputReviewerID")
@@ -105,6 +105,8 @@
 					show_404();
 				}
 			}
+		
+		
 		
 		
 	}
