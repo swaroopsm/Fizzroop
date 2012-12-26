@@ -75,6 +75,38 @@
 		}
 		
 		
+		/**
+			*	Handles edit/update of Reviewer.
+		**/
+	
+		public function update(){
+				if($_SERVER['REQUEST_METHOD'] == "POST"){
+					if($this->session->userdata("reviewerLoggedin") == true || $this->session->userdata("adminLoggedin") == true){
+						$data = array(
+						"reviewerFirstName" => $this->input->post("inputFirstName"),
+						"reviewerLastName" => $this->input->post("inputLastName"),
+						"reviewerEmail" => $this->input->post("inputEmail"),
+					);
+						$where = array(
+							"reviewerID" => $this->input->post("inputReviewerID")
+						);
+						$this->reviewers->update($data, $where);
+						echo json_encode(array(
+								"success" => true,
+								"reviewerID" => $this->input->post("inputReviewerID")
+							)
+						);
+					}
+					else{
+						show_404();
+					}
+				}
+				else{
+					show_404();
+				}
+			}
+		
+		
 	}
 
 ?>
