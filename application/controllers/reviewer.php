@@ -109,6 +109,7 @@
 		
 		/**
 			*	Handles assignment of an Abstract.
+			* @TODO: Need to implement Foreign Key checks.
 		**/
 		
 		public function assign(){
