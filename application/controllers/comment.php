@@ -68,6 +68,7 @@
 		
 		/**
 			* Handles viewing of a particular Comment.
+			* @TODO: Need to perform join, returning the abstract title, reviewer's name instead of their respective ID's
 		**/
 		
 		public function view_where(){
