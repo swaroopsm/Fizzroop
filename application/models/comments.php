@@ -28,6 +28,16 @@
 			return $this->db->get_where("comments", $data);
 		}
 		
+		
+		/**
+			* Returns specific column fields of all Reviewers.
+		*/
+		
+		public function select($data){
+			$this->db->select($data);
+			return $this->db->get("comments");
+		}
+		
 	}
 
 ?>
