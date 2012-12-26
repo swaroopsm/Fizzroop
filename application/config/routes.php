@@ -44,6 +44,7 @@ $route['conference/(:num)'] = "conference/view_where/$1";
 $route['attendee/(:num)'] = "attendee/view_where/$1";
 $route['admin/(:num)'] = "admin/view_where/$1";
 $route['reviewer/(:num)'] = "reviewer/view_where/$1";
+$route['comment/(:num)'] = "comment/view_where/$1";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
