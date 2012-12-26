@@ -97,7 +97,7 @@
 		
 		
 	 /**
-			* Handles deletion of an Attendee.
+			* Handles deletion of a Comment.
 		**/
 		
 		public function delete(){
