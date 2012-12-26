@@ -227,6 +227,42 @@
 			
 		}
 		
+		
+		/**
+			* Handles deletion of a Reviewer.
+		**/
+		
+		public function delete(){
+			if($_SERVER['REQUEST_METHOD'] == "POST"){
+				if($this->session->userdata("adminLoggedin") == true){
+					if($this->reviewers->view_where(array("reviewerID" => $this->input->post("inputReviewerID")))->num_rows()>0){
+						$data = array(
+						"reviewerID" => $this->input->post("inputReviewerID")
+						);
+						$this->reviewers->delete($data);
+						echo json_encode(array(
+								"success" => true,
+								"responseMsg" => "Reviewer has been removed!"
+							)
+						);
+				}
+				else{
+						echo json_encode(array(
+								"success" => false,
+								"responseMsg" => "No such Reviewer exists!"
+							)
+						);
+					}
+				}
+				else{
+					show_404();
+				}
+			}
+			else{
+				show_404();
+			}
+		}
+		
 	}
 
 ?>
