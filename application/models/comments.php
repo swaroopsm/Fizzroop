@@ -10,6 +10,14 @@
 			$this->db->insert("comments", $data);
 		}
 		
+		/**
+			* Returns all Comments.
+		*/
+		
+		public function view(){
+			return $this->db->get("comments");
+		}
+		
 	}
 
 ?>
