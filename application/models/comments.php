@@ -47,6 +47,17 @@
 			$this->db->select($data);
 			return $this->db->get_where("comments", $where);
 		}
+		
+		
+		/**
+			* Updates values of a particular Comment.
+		*/
+		
+		public function update($data, $where){
+			$this->db->where($where);
+			$this->db->update("comments", $data);
+		}
+		
 	}
 
 ?>
