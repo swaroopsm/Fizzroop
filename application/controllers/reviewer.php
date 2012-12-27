@@ -14,7 +14,7 @@
 			$this->load->library("uri");
 		}
 		
-		
+
 		/**
 			* Handles creation of a Reviewer.
 		**/
@@ -56,11 +56,11 @@
 					"reviewerEmail" => $this->input->post("inputLoginEmail"),
 					"reviewerPassword" => $this->encrypt->sha1($this->input->post("inputLoginPwd").$this->encrypt->sha1($this->config->item("password_salt")))
 				);
-				
 				if($this->reviewers->view_where($data)->num_rows() > 0){
 					$this->session->set_userdata(array(
 						"reviewerLoggedin" => true,
-						"email" => $this->input->post("inputLoginEmail")
+						"email" => $this->input->post("inputLoginEmail"),
+						"id" => $this->reviewers->view_where($data)->row()->reviewerID
 					));
 					redirect(base_url()."reviewer");
 				}
