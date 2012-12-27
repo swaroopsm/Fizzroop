@@ -31,12 +31,21 @@
 		
 	 
 	 /**
-			* Updates values of a particular score.
+			* Updates values of a particular Score.
 		*/
 		
 		public function update($data, $where){
 			$this->db->where($where);
 			$this->db->update("scores", $data);
+		}
+		
+		
+	 /**
+			* Removes a particular Score.
+		*/
+		
+		public function delete($data){
+			$this->db->delete("scores", $data);
 		}
 		
 	}
