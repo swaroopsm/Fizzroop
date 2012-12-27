@@ -29,6 +29,16 @@
 			return $this->db->get_where("scores", $data);
 		}
 		
+	 
+	 /**
+			* Updates values of a particular score.
+		*/
+		
+		public function update($data, $where){
+			$this->db->where($where);
+			$this->db->update("scores", $data);
+		}
+		
 	}
 
 ?>
