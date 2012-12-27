@@ -84,7 +84,25 @@
 			$q = $this->scores->view_avg($data);
 			echo json_encode($q->result());
 		}
-	  	
+	 
+	 
+	 /**
+		 * Handles viewing of all Scores.
+		 * TODO Retreive Abstract Title, Reviewer Name by using JOIN.
+		**/
+		
+		public function view(){
+			$data = array(
+				"scoreID",
+				"score",
+				"abstractID",
+				"reviewerID",
+				"recommendation"
+			);
+			$q = $this->scores->select($data);
+			echo json_encode($q->result());
+		}
+			
 	}
 
 ?>
