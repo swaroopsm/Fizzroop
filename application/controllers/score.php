@@ -44,7 +44,33 @@
 				show_404();
 			}
 		}
-			 
+		
+	 /**
+		 * Handles edit/update of a Score.
+		**/
+	
+		public function update(){
+				if($_SERVER['REQUEST_METHOD'] == "POST"){
+					if($this->session->userdata("reviewerLoggedin")){
+						$data = array(
+						"score" => $this->input->post("inputScore")
+					);
+						$where = array(
+							"abstractID" => $this->input->post("inputAbstractID"),
+							"reviewerID" => $this->input->post("inputReviewerID")
+						);
+						$this->scores->update($data, $where);
+						echo json_encode(array(
+								"success" => true
+							)
+						);
+					}
+				}
+				else{
+					show_404();
+				}
+			}	
+		 
 	}
 
 ?>
