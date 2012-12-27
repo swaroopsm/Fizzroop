@@ -13,7 +13,8 @@
 			$this->session->unset_userdata(array(
 				"loggedin" => false,
 				"adminLoggedin" => false,
-				"email" => ""
+				"email" => "",
+				"id" => ""
 			));
 			redirect(base_url().$logout);
 		}
