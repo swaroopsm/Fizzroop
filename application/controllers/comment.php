@@ -14,7 +14,7 @@
 		}
 	
 	 /**
-			* Handles creation of a Comment.
+		 * Handles creation of a Comment.
 		**/
 		
 		public function create(){
@@ -40,7 +40,7 @@
 	 
 	 
 	 /**
-			*	Handles edit/update of a Comment.
+		 * Handles edit/update of a Comment.
 		**/
 	
 		public function update(){
@@ -81,7 +81,7 @@
 	 
 	 
 	 /**
-			*	Handles viewing of all Comments.
+		 * Handles viewing of all Comments.
 		**/
 		
 		public function view(){
@@ -98,7 +98,7 @@
 		
 		
 	 /**
-			* Handles deletion of a Comment.
+		 * Handles deletion of a Comment.
 		**/
 		
 		public function delete(){
