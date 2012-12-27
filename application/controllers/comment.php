@@ -29,7 +29,7 @@
 				echo json_encode(
 					array(
 						"success" => true,
-						"commentType" => $this->db->insert_id()
+						"commentID" => $this->db->insert_id()
 					)
 				);
 			}
