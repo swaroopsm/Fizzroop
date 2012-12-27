@@ -70,7 +70,21 @@
 					show_404();
 				}
 			}	
-		 
+		
+		
+	  /**
+			* Handles viewing of Avg. Score of a particular Abstract.
+			* @TODO: Need to perform join, returning the abstract title, reviewer's name instead of their respective ID's
+		**/
+		
+		public function view_avg(){
+			$data = array(
+				"abstractID" => $this->uri->segment(3)
+			);
+			$q = $this->scores->view_avg($data);
+			echo json_encode($q->result());
+		}
+	  	
 	}
 
 ?>
