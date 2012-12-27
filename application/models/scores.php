@@ -19,6 +19,16 @@
 			return $this->db->get_where("scores", $data);
 		}
 		
+		
+	 /**
+			* Returns Average score subjected to a where clause. 
+		*/
+		
+		public function view_avg($data){
+			$this->db->select_avg("score");
+			return $this->db->get_where("scores", $data);
+		}
+		
 	}
 
 ?>
