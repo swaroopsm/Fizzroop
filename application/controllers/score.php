@@ -103,6 +103,40 @@
 			echo json_encode($q->result());
 		}
 			
+	 /**
+		 * Handles deletion of a Score.
+		**/
+		
+		public function delete(){
+			if($_SERVER['REQUEST_METHOD'] == "POST"){
+				if($this->session->userdata("reviewerLoggedin") ==true){
+					if($this->scores->view_where(array("scoreID" => $this->input->post("inputScoreID")))->num_rows()>0){
+						$data = array(
+						"scoreID" => $this->input->post("inputScoreID")
+						);
+						$this->scores->delete($data);
+						echo json_encode(array(
+								"success" => true,
+								"responseMsg" => "Score has been removed!"
+							)
+						);
+				}
+				else{
+						echo json_encode(array(
+								"success" => false,
+								"responseMsg" => "No such Score exists!"
+							)
+						);
+					}
+				}
+				else{
+					show_404();
+				}
+			}
+			else{
+				show_404();
+			}
+		}
 	}
 
 ?>
