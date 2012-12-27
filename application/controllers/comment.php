@@ -15,23 +15,26 @@
 	
 	 /**
 		 * Handles creation of a Comment.
+		 * @TODO Need to implement Foreign Key checks.
 		**/
 		
 		public function create(){
 			if($_SERVER['REQUEST_METHOD'] == "POST"){
-				$data = array(
-					"commentContent" => $this->input->post("inputComment"),
-					"abstractID" => $this->input->post("inputAbstractID"),
-					"reviewerID" => $this->input->post("inputReviewerID"),
-					"commentType" => $this->input->post("inputCommentType")
-				);
-				$this->comments->insert($data);
-				echo json_encode(
-					array(
-						"success" => true,
-						"commentID" => $this->db->insert_id()
-					)
-				);
+				if($this->session->userdata("reviewerLoggedin") == true){
+					$data = array(
+						"commentContent" => $this->input->post("inputComment"),
+						"abstractID" => $this->input->post("inputAbstractID"),
+						"reviewerID" => $this->input->post("inputReviewerID"),
+						"commentType" => $this->input->post("inputCommentType")
+					);
+					$this->comments->insert($data);
+					echo json_encode(
+						array(
+							"success" => true,
+							"commentID" => $this->db->insert_id()
+						)
+					);
+				}
 			}
 			else{
 				show_404();
