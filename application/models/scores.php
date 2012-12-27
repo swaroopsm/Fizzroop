@@ -39,6 +39,16 @@
 			$this->db->update("scores", $data);
 		}
 		
+	
+	/**
+		* Returns specific column fields of all Scores.
+		*/
+		
+		public function select($data){
+			$this->db->select($data);
+			return $this->db->get("scores");
+		}
+		
 		
 	 /**
 			* Removes a particular Score.
