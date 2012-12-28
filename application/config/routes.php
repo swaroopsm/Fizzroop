@@ -47,6 +47,7 @@ $route['reviewer/(:num)'] = "reviewer/view_where/$1";
 $route['comment/(:num)'] = "comment/view_where/$1";
 $route['score/abstract/(:num)'] = "score/view_avg/$1";
 $route['abstract'] = "abstractc";
+$route['abstract/create'] = "abstractc/create";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
