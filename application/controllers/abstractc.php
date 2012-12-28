@@ -41,6 +41,42 @@
 				show_404();
 			}
 		}
+		
+		
+		/**
+			* Handles uploading of a file.
+			* @TODO Need to improve the clarity, think of a way to store it in the DB.
+		**/
+		
+		public function upload(){
+			if($_SERVER['REQUEST_METHOD'] == "POST"){
+				if($this->session->userdata("loggedin") == true){
+					$config['upload_path'] = $this->config->item("upload_path");
+			 	  $config['allowed_types'] = $this->config->item("allowed_types");
+					$config['max_size']	= $this->config->item("max_size");
+					$config['file_name'] = $this->encrypt->sha1($this->session->userdata("email").time().$this->encrypt->sha1($this->config->item("password_salt")));
+					$this->load->library('upload', $config);
+					$file = "myFile";
+					if ( ! $this->upload->do_upload($file))
+					{
+						$error = array('error' => $this->upload->display_errors());
+						echo json_encode($error);
+					}
+					else
+					{
+						$success = array('upload_data' => $this->upload->data());
+				
+						echo json_encode($success);
+					}
+				}
+				else{
+					show_404();
+				}
+			}
+			else{
+				show_404();
+			}
+		}
 	 
 	}
 
