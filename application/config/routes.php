@@ -49,6 +49,7 @@ $route['score/abstract/(:num)'] = "score/view_avg/$1";
 $route['abstract'] = "abstractc";
 $route['abstract/create'] = "abstractc/create";
 $route['abstract/upload'] = "abstractc/upload";
+$route['abstract/view'] = "abstractc/view";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
