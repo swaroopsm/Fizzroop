@@ -112,6 +112,42 @@
 	 		}
 	 	}
 	 	
+	 	
+	 	/**
+		 * Handles deletion of a Abstract.
+		**/
+		
+		public function delete(){
+			if($_SERVER['REQUEST_METHOD'] == "POST"){
+				if($this->session->userdata("loggedin") ==true && $this->session->userdata("adminLoggedin") == true){
+					if($this->abstracts->view_where(array("abstractID" => $this->input->post("inputAbstractID")))->num_rows()>0){
+						$data = array(
+						"abstractID" => $this->input->post("inputAbstractID")
+						);
+						$this->abstracts->delete($data);
+						echo json_encode(array(
+								"success" => true,
+								"responseMsg" => "Abstract has been removed!"
+							)
+						);
+				}
+				else{
+						echo json_encode(array(
+								"success" => false,
+								"responseMsg" => "No such Abstract exists!"
+							)
+						);
+					}
+				}
+				else{
+					show_404();
+				}
+			}
+			else{
+				show_404();
+			}
+		}
+		
 	}
 
 ?>
