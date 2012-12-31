@@ -230,6 +230,16 @@
 		
 		
 		/**
+			* Handles select_where of a Reviewer
+		**/
+		
+		public function select_where($data, $where){
+			$q = $this->reviewers->select_where($data, $where);
+			return $q->result();
+		}
+		
+		
+		/**
 			* Handles deletion of a Reviewer.
 		**/
 		
