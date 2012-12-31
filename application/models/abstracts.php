@@ -22,6 +22,15 @@
 			return $q->result();
 		}
 		
+		
+	 /**
+			* Removes a particular Abstract.
+		*/
+		
+		public function delete($data){
+			$this->db->delete("abstracts", $data);
+		}
+		
 	}
 
 ?>
