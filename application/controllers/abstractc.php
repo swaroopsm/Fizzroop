@@ -125,8 +125,23 @@
 	 	}
 	 	
 	 	
+	 	
+	 	
+		/**
+			* Handles viewing of a particular Abstract.
+		**/
+		
+		public function view_where(){
+			$data = array(
+				"abstractID" => $this->uri->segment(2)
+			);
+			$q = $this->abstracts->view_where($data);
+			echo json_encode($q->result());
+		}
+		
+	 	
 	 	/**
-		 * Handles deletion of a Abstract.
+		 * Handles deletion of an Abstract.
 		**/
 		
 		public function delete(){
