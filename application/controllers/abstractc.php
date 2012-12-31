@@ -178,11 +178,15 @@
 		public function delete(){
 			if($_SERVER['REQUEST_METHOD'] == "POST"){
 				if($this->session->userdata("loggedin") ==true && $this->session->userdata("adminLoggedin") == true){
-					if($this->abstracts->view_where(array("abstractID" => $this->input->post("inputAbstractID")))->num_rows()>0){
+					$q = $this->abstracts->view_where(array("abstractID" => $this->input->post("inputAbstractID")));
+					$r = $q->result();
+					$dir = $r[0]->abstractImageFolder;
+					if($q->num_rows()>0){
 						$data = array(
 						"abstractID" => $this->input->post("inputAbstractID")
 						);
 						$this->abstracts->delete($data);
+						$this->rrmdir($this->config->item("upload_path").$dir);
 						echo json_encode(array(
 								"success" => true,
 								"responseMsg" => "Abstract has been removed!"
@@ -205,6 +209,23 @@
 				show_404();
 			}
 		}
+		
+		/**
+			* Handles deletion of abstractImageFolder and it's sub-files/sub-directories.
+		**/
+		
+		private function rrmdir($dir) { 
+		 if (is_dir($dir)) { 
+		   $objects = scandir($dir); 
+		   foreach ($objects as $object) { 
+		     if ($object != "." && $object != "..") { 
+		       if (filetype($dir."/".$object) == "dir") rrmdir($dir."/".$object); else unlink($dir."/".$object); 
+		     } 
+		   } 
+		   reset($objects); 
+		   rmdir($dir); 
+		 } 
+	 	}
 		
 	}
 
