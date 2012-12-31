@@ -13,13 +13,13 @@
 				<p>400 Registered | 10 Reviewers | 12 JUN - 15 JUN | 2012</p>
 				<p><a href="#">Manage this conference</a></p>
 
-				<h2>Archived Conferences</h2>
-				<p>3 archived Conferences</p>
-				<p>Manage:<a href="#">2012</a> | <a href="#">2011</a> | <a href="#">2010</a></p>
+				<h2>FRONTEND PAGES</h2>
+				<p>Manage the pages and content accross the public site</p>
+				<p><a href="#">Manage Pages</a></p>
 
-				<h2>Create New Conference</h2>
-				<p><a href="#">Create new conference</a></p>
-				<p>This will wipe certain records in the database. <br>Proceed with caution.</p>
+				<h2>CONFERENCE ARCHIVE PAGES</h2>
+				<p>Manage the conference archive accross the public site</p>
+				<p><a href="#">Manage Pages</a></p>
 			</div>
 			
 			<div class="col mid">
@@ -37,19 +37,21 @@
 			</div>
 
 			<div class="col">
-				<h2>FRONTEND PAGES</h2>
-				<p>Manage the pages and content accross the public site</p>
-				<p><a href="#">Manage Pages</a></p>
+				<h2>Archived Conferences</h2>
+				<p>3 archived Conferences</p>
+				<p>Manage:<a href="#">2012</a> | <a href="#">2011</a> | <a href="#">2010</a></p>
 
-				<h2>CONFERENCE ARCHIVE PAGES</h2>
-				<p>Manage the conference archive accross the public site</p>
-				<p><a href="#">Manage Pages</a></p>
+				<h2>Create New Conference</h2>
+				<p><a href="#">Create new conference</a></p>
+				<p>This will wipe certain records in the database. <br>Proceed with caution.</p>
 			</div>
 			<div class="clear"></div>
 
 			<div id="header">
 				<h1>SCCS</h1>
-				<p>You are logged in as an Administrator <a href="logout">Logout</a></p>
+				<p id="poweredby">powered by Colloquy </p>
+				<p id="down"> <a href="#"> <img src="images/dropdown.jpg" width="23" height="23" alt=""> </a></p>
+				<p>You are logged in as an Administrator <a href="logout">Logout </a> </p>
 				<div class="clear"></div>
 			</div>
 		
@@ -59,7 +61,7 @@
 
 	<div id="ajaxer">
 		<p>here is where ajax content will come in. use this loader <br></p>
-		<p class="center"><img src="img/loader.gif"></p>
+		<p class="center"><img src="images/loader.gif"></p>
 	</div>
 
 </body>
