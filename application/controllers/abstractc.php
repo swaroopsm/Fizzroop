@@ -216,17 +216,28 @@
 		
 		public function delete_abstractImage(){
 			$image = $this->input->post("inputAbstractImage");
-			if(unlink($image)){
-				echo json_encode(
-					array(
-						"success" => true
-					)
-				);
+			if(file_exists($image)){
+				if(unlink($image)){
+					echo json_encode(
+						array(
+							"success" => true
+						)
+					);
+				}
+				else{
+					echo json_encode(
+						array(
+							"success" => false,
+							"error" => "An error occurred."
+						)
+					);
+				}
 			}
 			else{
 				echo json_encode(
 					array(
-						"success" => false
+						"success" => false,
+						"error" => "File does not exist!"
 					)
 				);
 			}
