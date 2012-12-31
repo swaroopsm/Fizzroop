@@ -111,6 +111,19 @@
 			$q = $this->scores->select($data);
 			echo json_encode($q->result());
 		}
+		
+		
+	 /**
+			*	Handles get_recommendation score for a given abstractID.
+		**/
+		
+		public function get_recommendation($id){
+			$where = array(
+				"abstractID" => $id
+			);
+			return $this->scores->get_recommendation($where);
+		}
+		
 			
 	 /**
 		 * Handles deletion of a Score.
