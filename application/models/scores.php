@@ -49,15 +49,14 @@
 			return $this->db->get("scores");
 		}
 		
-	 /**
-			* Returns recommendation for a particular Abstract.
+		
+		/**
+			* Returns specific column fields of a Score subjected to a where clause.
 		*/
 		
-		public function get_recommendation($where){
-			$this->db->select("abstractID, GROUP_CONCAT(scores.recommendation) AS recommendation");
-			$this->db->from("scores");
-			$this->db->where($where);
-			return $this->db->get();
+		public function select_where($data, $where){
+			$this->db->select($data);
+			return $this->db->get_where("scores", $where);
 		}
 		
 		
