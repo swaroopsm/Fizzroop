@@ -22,17 +22,22 @@
 		public function create(){
 			if($_SERVER['REQUEST_METHOD'] == "POST"){
 				if($this->session->userdata("loggedin") == true){
+					$dir =  $this->encrypt->sha1($this->session->userdata("email").time().$this->encrypt->sha1($this->config->item("password_salt")));
 					$data = array(
 						"abstractTitle" => $this->input->post("inputAbstractTitle"),
 						"abstractContent" => $this->input->post("inputAbstractContent"),
 						"conferenceID" => $this->input->post("inputConferenceID"),
-						"attendeeID" => $this->input->post("inputAttendeeID")
+						"attendeeID" => $this->input->post("inputAttendeeID"),
+						"abstractImageFolder" => $dir
 					);
 					$this->abstracts->insert($data);
+					mkdir($this->config->item("upload_path").$dir); 				# Creates image directory.
+					chmod($this->config->item("upload_path").$dir, 0777);		# Changes permission to 0777.
 					echo json_encode(
 						array(
 							"success" => true,
-							"attendeeID" => $this->db->insert_id()
+							"abstractID" => $this->db->insert_id(),
+							"abstractImageFolder" => $this->config->item("upload_path").$dir
 						)
 					);
 				}
