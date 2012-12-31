@@ -82,7 +82,7 @@
 				}
 				else{
 					 $this->session->set_flashdata("message", "<span class='span3 alert alert-danger'><center>Login failed!</center></span>");
-           redirect(base_url()."index.php/login");
+           redirect(base_url()."login");
 				}
 			}
 			else{
