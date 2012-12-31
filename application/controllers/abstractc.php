@@ -217,7 +217,7 @@
 		public function delete_abstractImage(){
 			if($_SERVER['REQUEST_METHOD'] == "POST"){
 				if($this->session->userdata("loggedin") ==true && $this->session->userdata("adminLoggedin") == true){
-					$image = $this->input->post("inputAbstractImage");
+					$image = $this->config->item("upload_path").$this->input->post("inputAbstractImage");
 					if(file_exists($image)){
 						if(unlink($image)){
 							echo json_encode(
@@ -253,6 +253,35 @@
 			}
 		}
 		
+		
+		/**
+			* Deletes all images from an abstractImageFolder.
+		**/
+		
+		public function delete_allAbstractImage(){
+			if($_SERVER['REQUEST_METHOD'] == "POST"){
+				if($this->session->userdata("loggedin") ==true && $this->session->userdata("adminLoggedin") == true){
+					$dir = $this->config->item("upload_path").$this->input->post("inputAbstractImageFolder");
+					$count = 0;
+					if ($handle = opendir($dir)) {
+							while (false !== ($file = readdir($handle))){
+									if ('.' === $file) continue;
+									if ('..' === $file) continue;
+									$to_remove = $dir."/".$file;
+									unlink($to_remove);
+									$count+=1;
+							}
+							closedir($handle);
+					}
+					echo json_encode(
+						array(
+							"success" => true,
+							"count" => $count
+						)
+					);
+				}
+			}
+		}
 		
 		
 		/**
