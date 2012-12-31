@@ -59,6 +59,7 @@ body {
 	font-weight: 400;
 	color: #666;
 	line-height: 18px;
+	min-height: 2000px;
 }
 
 .container {
@@ -110,21 +111,22 @@ a {
 .col {
 	width: 390px;
 	float: left;
-	height: 400px;
+	height: 330px;
 }
 
 .mid {
 	padding-left: 15px;
-	padding-right: 15px;
+	margin-right: 14px;
+	border-right: 1px #999 solid;
 }
 
 #header {
 	height: 40px;
+	padding-top: 30px;
 	border-bottom: 1px #999 solid;
 }
 
 #header h1 {
-	width: 600px;
 	float: left;
 	text-transform: capitalize;
 	font-style: italic;
@@ -132,5 +134,24 @@ a {
 
 #header p {
 	float: right;
+}
+
+p#poweredby {
+	width: 80px;
+	float: left;
+	font-size: 9px;
+	margin-left: 20px;
+	
+	line-height: 12px;
+}
+
+p#down {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+#ajaxer {
+	width: 1200px;
+	margin: 100 auto;
 }
 
