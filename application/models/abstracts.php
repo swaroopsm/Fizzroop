@@ -22,7 +22,17 @@
 			return $q->result();
 		}
 		
+	 
+	 	
+	 /**
+			* Returns a specific Score subjected to a where clause. 
+		*/
 		
+		public function view_where($data){
+			return $this->db->get_where("abstracts", $data);
+		}	
+		
+	
 	 /**
 			* Removes a particular Abstract.
 		*/
