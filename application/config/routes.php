@@ -51,6 +51,7 @@ $route['abstract/create'] = "abstractc/create";
 $route['abstract/upload'] = "abstractc/upload";
 $route['abstract/view'] = "abstractc/view";
 $route['abstract/(:num)'] = "abstractc/view_where/$1";
+$route['abstract/update'] = "abstractc/update";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
