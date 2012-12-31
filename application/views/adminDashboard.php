@@ -1,0 +1,66 @@
+<html>
+<head>
+	<title>SCCS :: COLLOQUY</title>
+	<link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+	<div id="slider">
+		<div class="container">
+			<div class="col">
+				<h2>Current Conference</h2>
+				<p>400 Registered | 10 Reviewers | 12 JUN - 15 JUN | 2012</p>
+				<p><a href="#">Manage this conference</a></p>
+
+				<h2>Archived Conferences</h2>
+				<p>3 archived Conferences</p>
+				<p>Manage:<a href="#">2012</a> | <a href="#">2011</a> | <a href="#">2010</a></p>
+
+				<h2>Create New Conference</h2>
+				<p><a href="#">Create new conference</a></p>
+				<p>This will wipe certain records in the database. <br>Proceed with caution.</p>
+			</div>
+			
+			<div class="col mid">
+				<h2>Abstracts</h2>
+				<p>300 submitted | 0 approved | 10 reviewers | 140 have comments</p>
+				<p><a href="#">Manage Abstracts</a></p>
+
+				<h2>Reviewers</h2>
+				<p>10 reviewers | 140 reviews commented | 160 recommended</p>
+				<p><a href="#">Manage Reviewers</a> | <a href="#">Add reviewer</a></p>
+
+				<h2>Attendees</h2>
+				<p>400 Registered Attendees</p>
+				<p><a href="#">Manage Attendees</a> | <a href="#">Add Attendee</a></p>
+			</div>
+
+			<div class="col">
+				<h2>FRONTEND PAGES</h2>
+				<p>Manage the pages and content accross the public site</p>
+				<p><a href="#">Manage Pages</a></p>
+
+				<h2>CONFERENCE ARCHIVE PAGES</h2>
+				<p>Manage the conference archive accross the public site</p>
+				<p><a href="#">Manage Pages</a></p>
+			</div>
+			<div class="clear"></div>
+
+			<div id="header">
+				<h1>SCCS</h1>
+				<p>You are logged in as an Administrator <a href="#">Logout</a></p>
+				<div class="clear"></div>
+			</div>
+		
+		</div>
+	</div>
+
+
+	<div id="ajaxer">
+		<p>here is where ajax content will come in. use this loader <br></p>
+		<p class="center"><img src="img/loader.gif"></p>
+	</div>
+
+</body>
+</html>
