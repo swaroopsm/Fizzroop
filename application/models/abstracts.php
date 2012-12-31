@@ -25,12 +25,24 @@
 	 
 	 	
 	 /**
-			* Returns a specific Score subjected to a where clause. 
+			* Returns a specific Abstract subjected to a where clause. 
 		*/
 		
 		public function view_where($data){
 			return $this->db->get_where("abstracts", $data);
 		}	
+		
+		
+		
+		/**
+			* Handles select_where of an Abstract.
+		**/
+		
+		public function select_where($data, $where){
+			$this->db->select($data);
+			$q = $this->db->get_where("abstracts", $where);
+			return $q->result();
+		}
 		
 	
 	 /**
