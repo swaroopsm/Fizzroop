@@ -215,31 +215,41 @@
 		**/
 		
 		public function delete_abstractImage(){
-			$image = $this->input->post("inputAbstractImage");
-			if(file_exists($image)){
-				if(unlink($image)){
-					echo json_encode(
-						array(
-							"success" => true
-						)
-					);
+			if($_SERVER['REQUEST_METHOD'] == "POST"){
+				if($this->session->userdata("loggedin") ==true && $this->session->userdata("adminLoggedin") == true){
+					$image = $this->input->post("inputAbstractImage");
+					if(file_exists($image)){
+						if(unlink($image)){
+							echo json_encode(
+								array(
+									"success" => true
+								)
+							);
+						}
+						else{
+							echo json_encode(
+								array(
+									"success" => false,
+									"error" => "An error occurred."
+								)
+							);
+						}
+					}
+					else{
+						echo json_encode(
+							array(
+								"success" => false,
+								"error" => "File does not exist!"
+							)
+						);
+					}
 				}
 				else{
-					echo json_encode(
-						array(
-							"success" => false,
-							"error" => "An error occurred."
-						)
-					);
+					show_404();
 				}
 			}
 			else{
-				echo json_encode(
-					array(
-						"success" => false,
-						"error" => "File does not exist!"
-					)
-				);
+				show_404();
 			}
 		}
 		
