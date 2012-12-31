@@ -44,7 +44,17 @@
 			return $q->result();
 		}
 		
-	
+		
+	 /**
+			* Updates values of a particular Abstract.
+		*/
+		
+		public function update($data, $where){
+			$this->db->where($where);
+			$this->db->update("abstracts", $data);
+		}
+		
+		
 	 /**
 			* Removes a particular Abstract.
 		*/
