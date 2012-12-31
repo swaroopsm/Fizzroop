@@ -179,9 +179,9 @@
 			if($_SERVER['REQUEST_METHOD'] == "POST"){
 				if($this->session->userdata("loggedin") ==true && $this->session->userdata("adminLoggedin") == true){
 					$q = $this->abstracts->view_where(array("abstractID" => $this->input->post("inputAbstractID")));
-					$r = $q->result();
-					$dir = $r[0]->abstractImageFolder;
 					if($q->num_rows()>0){
+						$r = $q->result();
+						$dir = $r[0]->abstractImageFolder;
 						$data = array(
 						"abstractID" => $this->input->post("inputAbstractID")
 						);
