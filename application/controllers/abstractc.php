@@ -211,6 +211,30 @@
 		}
 		
 		/**
+			* Handles a single Abstract Image deletion.
+		**/
+		
+		public function delete_abstractImage(){
+			$image = $this->input->post("inputAbstractImage");
+			if(unlink($image)){
+				echo json_encode(
+					array(
+						"success" => true
+					)
+				);
+			}
+			else{
+				echo json_encode(
+					array(
+						"success" => false
+					)
+				);
+			}
+		}
+		
+		
+		
+		/**
 			* Handles deletion of abstractImageFolder and it's sub-files/sub-directories.
 		**/
 		
