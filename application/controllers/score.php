@@ -113,15 +113,14 @@
 		}
 		
 		
-	 /**
-			*	Handles get_recommendation score for a given abstractID.
+		
+		/**
+			* Handles select_where of a Score.
 		**/
 		
-		public function get_recommendation($id){
-			$where = array(
-				"abstractID" => $id
-			);
-			return $this->scores->get_recommendation($where);
+		public function select_where($data, $where){
+			$q = $this->scores->select_where($data, $where);
+			return $q->result();
 		}
 		
 			
