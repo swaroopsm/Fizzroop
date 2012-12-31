@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title><?php echo $page_title; ?></title>
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url().'css/style.css'; ?>">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url().'css/bootstrap.css'; ?>">
 		<style type="text/css">
 			 body {
         padding-top: 40px;
