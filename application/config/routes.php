@@ -54,6 +54,7 @@ $route['abstract/(:num)'] = "abstractc/view_where/$1";
 $route['abstract/update'] = "abstractc/update";
 $route['abstract/delete'] = "abstractc/delete";
 $route['abstract/delete_abstractImage'] = "abstractc/delete_abstractImage";
+$route['abstract/delete_allAbstractImage'] = "abstractc/delete_allAbstractImage";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
