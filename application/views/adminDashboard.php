@@ -49,7 +49,7 @@
 
 			<div id="header">
 				<h1>SCCS</h1>
-				<p>You are logged in as an Administrator <a href="#">Logout</a></p>
+				<p>You are logged in as an Administrator <a href="logout">Logout</a></p>
 				<div class="clear"></div>
 			</div>
 		
