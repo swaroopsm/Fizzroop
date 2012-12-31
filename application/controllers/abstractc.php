@@ -141,6 +141,37 @@
 		
 	 	
 	 	/**
+			*	Handles edit/update of an Abstract.
+		**/
+	
+		public function update(){
+				if($_SERVER['REQUEST_METHOD'] == "POST"){
+					if($this->session->userdata("loggedin") == true || $this->session->userdata("adminLoggedin") == true){
+						$data = array(
+						"abstractTitle" => $this->input->post("inputAbstractTitle"),
+						"abstractContent" => $this->input->post("inputAbstractContent")
+					);
+						$where = array(
+							"abstractID" => $this->input->post("inputAbstractID")
+						);
+						$this->abstracts->update($data, $where);
+						echo json_encode(array(
+								"success" => true,
+								"abstractID" => $this->input->post("inputAbstractID")
+							)
+						);
+					}
+					else{
+						show_404();
+					}
+				}
+				else{
+					show_404();
+				}
+			}
+	 	
+	 	
+	 	/**
 		 * Handles deletion of an Abstract.
 		**/
 		
