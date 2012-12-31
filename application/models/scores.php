@@ -49,6 +49,17 @@
 			return $this->db->get("scores");
 		}
 		
+	 /**
+			* Returns recommendation for a particular Abstract.
+		*/
+		
+		public function get_recommendation($where){
+			$this->db->select("abstractID, GROUP_CONCAT(scores.recommendation) AS recommendation");
+			$this->db->from("scores");
+			$this->db->where($where);
+			return $this->db->get();
+		}
+		
 		
 	 /**
 			* Removes a particular Score.
