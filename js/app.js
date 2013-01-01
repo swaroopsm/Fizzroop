@@ -67,3 +67,117 @@ jQuery.fn.asyncSubmit = function(options){
 	});
 	
 }
+
+
+$("#manageAbstracts").live("click", function(){
+	$("#loader").show();
+	$.getJSON("abstract/view", function(data){
+		obj = [];
+		for(i=0;i<data.length;i++){
+			var l = data[i].reviewers.length;
+			var r = data[i].recommendations;
+			var ratings = "";
+			var t, ra="";
+			for(var j=0;j<r.length;j++){
+				ra = r[j].recommendation;
+				console.log(ra);
+				switch(ra){
+					case 0: ra += "N";
+									break;
+									
+					case 1: ra += "T";
+									break;
+									
+					case 2: ra += "P";
+									break;
+									
+					case 3: ra += "R";
+									break;
+									
+					default: ra += "N/A";
+				}
+				ratings = ratings + ra + " ";
+			}
+			switch(l){
+				case 0: obj.push({
+					"title": "<a href='#'>"+data[i].abstractTitle+"</a>",
+					"attendee": data[i].attendeeFirstName+" "+data[i].attendeeLastName,
+					"reviewer1": "-",
+					"reviewer2": "-",
+					"reviewer3": "-",
+					"ratings": ratings
+				});
+				break;
+				
+				case 1: obj.push({
+					"title": "<a href='#'>"+data[i].abstractTitle+"</a>",
+					"attendee": data[i].attendeeFirstName+" "+data[i].attendeeLastName,
+					"reviewer1": data[i].reviewers[0].reviewerFirstName,
+					"reviewer2": "-",
+					"reviewer3": "-",
+					"ratings": ratings
+				});
+				break;
+				
+				case 2: obj.push({
+					"title": "<a href='#'>"+data[i].abstractTitle+"</a>",
+					"attendee": data[i].attendeeFirstName+" "+data[i].attendeeLastName,
+					"reviewer1": data[i].reviewers[0].reviewerFirstName,
+					"reviewer2": data[i].reviewers[1].reviewerFirstName,
+					"reviewer3": "-",
+					"ratings": ratings
+				});
+				break;
+				
+				case 3: obj.push({
+					"title": "<a href='#'>"+data[i].abstractTitle+"</a>",
+					"attendee": data[i].attendeeFirstName+" "+data[i].attendeeLastName,
+					"reviewer1": data[i].reviewers[0].reviewerFirstName,
+					"reviewer2": data[i].reviewers[1].reviewerFirstName,
+					"reviewer3": data[i].reviewers[2].reviewerFirstName,
+					"ratings": ratings
+				});
+				break;
+				
+			}
+		}
+		console.log(obj);
+		$("#ajaxer").html("<table id='test'></table>");
+		$('table#test').dataTable({
+				"aaData": obj,
+				"aoColumns": [
+				    { 
+				    	"mDataProp": "title",
+				    	"sTitle": "Title",
+				    	"sClass": "title"
+				    },
+				    { 
+				    	"mDataProp": "attendee",
+				    	"sTitle": "Attendee",
+				    	"sClass": "attendee"
+				    },
+				    { 
+				    	"mDataProp": "reviewer1",
+				    	"sTitle": "Reviewer 1",
+				    	"sClass": "reviewer1"
+				    },
+				    { 
+				    	"mDataProp": "reviewer2",
+				    	"sTitle": "Reviewer 2",
+				    	"sClass": "reviewer2"
+				    },
+				    { 
+				    	"mDataProp": "reviewer3",
+				    	"sTitle": "Reviewer 3",
+				    	"sClass": "reviewer3"
+				    },
+				    { 
+				    	"mDataProp": "ratings",
+				    	"sTitle": "Ratings",
+				    	"sClass": "ratings"
+				    }
+				]
+	});		
+	});
+	return false;
+});
