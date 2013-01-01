@@ -153,6 +153,7 @@ p#down {
 #ajaxer {
        width: 1200px;
        margin: 100 auto;
+       padding-top: 100px;
 }
 
 table {
@@ -172,6 +173,18 @@ table td {
        padding: 3px 15px;
        color: #333;
        height: 18px;
+}
+
+table tr.even {
+	background-color: #F8F8F8;
+}
+
+table#test tr td.title {
+	width: 600px;
+}
+
+table#test tr td.reviewer1, table#test tr td.reviewer2, table#test tr td.reviewer3 {
+	width: 100px;
 }
 
 .loader{
