@@ -195,4 +195,8 @@ $("#manageAbstracts").live("click", function(){
 
 
 
+<<<<<<< HEAD
 //swaroop..... fizzroooop.... balah blah blah!!! did this.. hahaha :p
+=======
+//but if you did this? then ehat?
+>>>>>>> c9da9cd174d6aa847e5d42a1f49577bb448f9cf4
