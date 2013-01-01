@@ -160,17 +160,17 @@ $("#manageAbstracts").live("click", function(){
 				    },
 				    { 
 				    	"mDataProp": "reviewer1",
-				    	"sTitle": "Reviewer 1",
+				    	"sTitle": "&#10022; 1",
 				    	"sClass": "reviewer1"
 				    },
 				    { 
 				    	"mDataProp": "reviewer2",
-				    	"sTitle": "Reviewer 2",
+				    	"sTitle": "&#10022; 2",
 				    	"sClass": "reviewer2"
 				    },
 				    { 
 				    	"mDataProp": "reviewer3",
-				    	"sTitle": "Reviewer 3",
+				    	"sTitle": "&#10022; 3",
 				    	"sClass": "reviewer3"
 				    },
 				    { 
