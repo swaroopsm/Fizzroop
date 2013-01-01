@@ -98,7 +98,7 @@
 	 		if($this->session->userdata("adminLoggedin") == true){
 	 			require_once(APPPATH."controllers/score.php");
 		 		require_once(APPPATH."controllers/reviewer.php");
-		 		$q = $this->abstracts->view();
+		 		$q = $this->abstracts->view($this->session->userdata("conferenceID"));
 		 		$s = new Score();
 		 		$r = new Reviewer();
 		 		foreach($q as $row){
