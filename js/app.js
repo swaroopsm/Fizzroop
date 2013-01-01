@@ -80,7 +80,6 @@ $("#manageAbstracts").live("click", function(){
 			var t, ra="";
 			for(var j=0;j<r.length;j++){
 				ra = r[j].recommendation;
-				console.log(ra);
 				switch(ra){
 					case 0: ra += "N";
 									break;
@@ -105,7 +104,8 @@ $("#manageAbstracts").live("click", function(){
 					"reviewer1": "-",
 					"reviewer2": "-",
 					"reviewer3": "-",
-					"ratings": ratings
+					"ratings": ratings,
+					"score": data[i].score
 				});
 				break;
 				
@@ -115,7 +115,8 @@ $("#manageAbstracts").live("click", function(){
 					"reviewer1": data[i].reviewers[0].reviewerFirstName,
 					"reviewer2": "-",
 					"reviewer3": "-",
-					"ratings": ratings
+					"ratings": ratings,
+					"score": data[i].score
 				});
 				break;
 				
@@ -125,7 +126,8 @@ $("#manageAbstracts").live("click", function(){
 					"reviewer1": data[i].reviewers[0].reviewerFirstName,
 					"reviewer2": data[i].reviewers[1].reviewerFirstName,
 					"reviewer3": "-",
-					"ratings": ratings
+					"ratings": ratings,
+					"score": data[i].score
 				});
 				break;
 				
@@ -135,13 +137,13 @@ $("#manageAbstracts").live("click", function(){
 					"reviewer1": data[i].reviewers[0].reviewerFirstName,
 					"reviewer2": data[i].reviewers[1].reviewerFirstName,
 					"reviewer3": data[i].reviewers[2].reviewerFirstName,
-					"ratings": ratings
+					"ratings": ratings,
+					"score": data[i].score
 				});
 				break;
 				
 			}
 		}
-		console.log(obj);
 		$("#ajaxer").html("<table id='test'></table>");
 		$('table#test').dataTable({
 				"aaData": obj,
@@ -175,6 +177,11 @@ $("#manageAbstracts").live("click", function(){
 				    	"mDataProp": "ratings",
 				    	"sTitle": "Ratings",
 				    	"sClass": "ratings"
+				    },
+				    { 
+				    	"mDataProp": "score",
+				    	"sTitle": "Score",
+				    	"sClass": "score"
 				    }
 				]
 	});		
