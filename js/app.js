@@ -192,3 +192,7 @@ $("#manageAbstracts").live("click", function(){
 	});
 	return false;
 });
+
+
+
+//swaroop did this.. hahaha :p
