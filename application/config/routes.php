@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "welcome";
+$route['default_controller'] = "signin";
 $route['404_override'] = '';
 $route['conference/(:num)'] = "conference/view_where/$1";
 $route['attendee/(:num)'] = "attendee/view_where/$1";
