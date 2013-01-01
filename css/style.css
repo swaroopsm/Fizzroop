@@ -156,6 +156,36 @@ p#down {
        padding-top: 50px;
 }
 
+
+.loader{
+	display: none;
+	text-align: center;
+	margin-top: 40px;
+}
+
+
+
+/*DATATABLES STYLES*/
+
+h2#title {
+	margin-bottom: 20px;
+}
+
+#test_length {
+	width: 600px;
+	display: inline;
+}
+
+.dataTables_filter {
+	text-align: right;
+	display: inline-block;
+	margin-left: 200px;
+}
+
+.dataTables_scroll {
+	margin-top: 20px;
+}
+
 table {
        width: 1200px;
        font-size: 12px;
@@ -170,38 +200,11 @@ table th {
 
 table td {
        text-align: left;
-       padding: 3px 15px;
+       padding: 5px 15px;
        color: #333;
        height: 18px;
 }
 
 table tr.even {
 	background-color: #F8F8F8;
-}
-
-/*table#test tr td.title {
-	width: 600px;
-}
-
-table#test tr td.reviewer1, table#test tr td.reviewer2, table#test tr td.reviewer3 {
-	width: 100px;
-}*/
-
-.loader{
-	display: none;
-	text-align: center;
-	margin-top: 40px;
-}
-
-
-/*DATATABLES STYLES*/
-
-
-#test_length {
-	width: 600px;
-	display: inline;
-}
-
-.dataTables_filter {
-	text-align: right;
 }
