@@ -56,6 +56,20 @@
 			$this->db->update("conferences", $data);
 		}
 		
+		
+		/**
+			* Retrieve latest conference
+		**/
+		
+		public function get_order_limit($data, $order, $ordering, $limit){
+			$this->db->select($data);
+			$this->db->from("conferences");
+			$this->db->order_by($order, $ordering);
+			$this->db->limit($limit);
+			$q = $this->db->get();
+			return $q->result();
+		}
+		
 	}
 
 ?>
