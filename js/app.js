@@ -147,6 +147,10 @@ $("#manageAbstracts").live("click", function(){
 		$("#ajaxer").html("<h2 id='title'>ABSTRACTS MANAGER</h2><table id='test'></table>");
 		$('table#test').dataTable({
 				"aaData": obj,
+				"sScrollX": "100%",
+ 				"bScrollCollapse": true,
+ 				"bScrollAutoCss": false,
+ 				"iDisplayLength": 50,
 				"aoColumns": [
 				    { 
 				    	"mDataProp": "title",
