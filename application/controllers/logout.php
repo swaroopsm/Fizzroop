@@ -14,7 +14,8 @@
 				"loggedin" => false,
 				"adminLoggedin" => false,
 				"email" => "",
-				"id" => ""
+				"id" => "",
+				"conferenceID" => ""
 			));
 			redirect(base_url().$logout);
 		}
