@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
 	<title>SCCS :: COLLOQUY</title>
@@ -25,7 +26,7 @@
 			<div class="col mid">
 				<h2>Abstracts</h2>
 				<p>300 submitted | 0 approved | 10 reviewers | 140 have comments</p>
-				<p><a href="#">Manage Abstracts</a></p>
+				<p><a href="#" id="manageAbstracts">Manage Abstracts</a></p>
 
 				<h2>Reviewers</h2>
 				<p>10 reviewers | 140 reviews commented | 160 recommended</p>
@@ -54,15 +55,18 @@
 				<p>You are logged in as an Administrator <a href="logout">Logout </a> </p>
 				<div class="clear"></div>
 			</div>
-		
+			
+			<div id="ajaxer">
+				<div  id="loader" class="loader"><img src="images/loader.gif"></img></div>
+			</div>
+			
 		</div>
 	</div>
 
 
-	<div id="ajaxer">
-		<p>here is where ajax content will come in. use this loader <br></p>
-		<p class="center"><img src="images/loader.gif"></p>
-	</div>
-
+	
+	<script src="<?php echo base_url().'js/jquery.js'; ?>"></script>
+	<script src="<?php echo base_url().'js/app.js'; ?>"></script>
+	<script src="<?php echo base_url().'js/jquery.dataTables.min.js'; ?>"></script>
 </body>
 </html>
