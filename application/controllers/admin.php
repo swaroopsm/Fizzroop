@@ -28,9 +28,14 @@
 				);
 				
 				if($this->admins->view_where($data)->num_rows() > 0){
+					require_once(APPPATH."controllers/conference.php");
+					$c = new Conference();
+					$q = $c->get_order_limit();
+					$conferenceID = $q[0]->conferenceID;
 					$this->session->set_userdata(array(
 						"adminLoggedin" => true,
-						"email" => $this->input->post("inputLoginEmail")
+						"email" => $this->input->post("inputLoginEmail"),
+						"conferenceID" => $conferenceID
 					));
 					redirect(base_url()."admin");
 				}
