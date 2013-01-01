@@ -151,7 +151,31 @@ p#down {
 }
 
 #ajaxer {
-	width: 1200px;
-	margin: 100 auto;
+       width: 1200px;
+       margin: 100 auto;
 }
 
+table {
+       width: 1200px;
+       font-size: 12px;
+}
+
+table th {
+       background-color: #E6E6E6;
+       text-align: left;
+       padding: 3px 15px;
+       height: 18px;
+}
+
+table td {
+       text-align: left;
+       padding: 3px 15px;
+       color: #333;
+       height: 18px;
+}
+
+.loader{
+	display: none;
+	text-align: center;
+	margin-top: 40px;
+}
