@@ -153,7 +153,7 @@ p#down {
 #ajaxer {
        width: 1200px;
        margin: 100 auto;
-       padding-top: 100px;
+       padding-top: 50px;
 }
 
 table {
@@ -179,16 +179,29 @@ table tr.even {
 	background-color: #F8F8F8;
 }
 
-table#test tr td.title {
+/*table#test tr td.title {
 	width: 600px;
 }
 
 table#test tr td.reviewer1, table#test tr td.reviewer2, table#test tr td.reviewer3 {
 	width: 100px;
-}
+}*/
 
 .loader{
 	display: none;
 	text-align: center;
 	margin-top: 40px;
+}
+
+
+/*DATATABLES STYLES*/
+
+
+#test_length {
+	width: 600px;
+	display: inline;
+}
+
+.dataTables_filter {
+	text-align: right;
 }

@@ -194,5 +194,4 @@ $("#manageAbstracts").live("click", function(){
 });
 
 
-
-//but if you did this? then ehat?
+//swaroop..... fizzroooop.... balah blah blah!!! did this.. hahaha :p
