@@ -182,7 +182,7 @@ $("#manageAbstracts").live("click", function(){
 										},
 										{ 
 											"mDataProp": "ratings",
-											"sTitle": "<img class='explain' src='images/talk.png' alt='talk'>",
+											"sTitle": "Rating",
 											"sClass": "ratings"
 										},
 										{ 
