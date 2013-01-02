@@ -82,19 +82,17 @@ $("#manageAbstracts").live("click", function(){
 					for(var j=0;j<r.length;j++){
 						ra = r[j].recommendation;
 						switch(ra){
-							case 0: ra += "N";
-											break;
-									
-							case 1: ra += "T";
-											break;
-									
-							case 2: ra += "P";
-											break;
-									
-							case 3: ra += "R";
-											break;
-									
-							default: ra += "N/A";
+							case '1': ra = "T"; //@TODO Add icon for Talk.
+												break;
+												
+							case '2': ra = "P"; //@TODO Add icon for Poster.
+										  	break;
+											
+							case '3': ra = "R"; //@TODO Add icon for Reject.
+												break;
+												
+							default : ra = "-";
+												break;
 						}
 						ratings = ratings + ra + " ";
 					}
