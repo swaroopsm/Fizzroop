@@ -161,6 +161,7 @@
 			 			$result[]=array(
 			 				"abstractID" => $row->abstractID,
 			 				"abstractTitle" => $row->abstractTitle,
+			 				"abstractContent" => $row->abstractContent, // Fizz added to get abstract content
 			 				"abstractImageFolder" => $row->abstractImageFolder,
 			 				"attendeeFirstName" => $row->attendeeFirstName,
 			 				"attendeeLastName" => $row->attendeeLastName,
