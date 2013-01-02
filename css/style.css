@@ -216,3 +216,8 @@ table td {
 table tr.even {
 	background-color: #F8F8F8;
 }
+
+
+table tr:hover {
+	background-color: #F0F0F0;
+}
