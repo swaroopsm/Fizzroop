@@ -139,11 +139,46 @@
 		**/
 		
 		public function view_where(){
-			$data = array(
-				"abstractID" => $this->uri->segment(2)
-			);
-			$q = $this->abstracts->view_where($data);
-			echo json_encode($q->result());
+			if($this->session->userdata("adminLoggedin") == true){
+	 			require_once(APPPATH."controllers/score.php");
+		 		require_once(APPPATH."controllers/reviewer.php");
+		 		require_once(APPPATH."controllers/comment.php");
+		 		$a = $this->abstracts->view_where($this->uri->segment(2), $this->session->userdata("conferenceID"));
+		 		$n = $a->num_rows();
+		 		$aid = $this->uri->segment(2);
+		 		
+		 		if($n>0){
+		 			$q = $a->result();
+		 			$s = new Score();
+			 		$r = new Reviewer();
+			 		$c = new Comment();
+			 		foreach($q as $row){
+			 			$aid = $row->abstractID;
+			 			$q2 = $s->view_avg($row->abstractID); # Result Set that holds avg. score of an abstract.
+			 			$q3 = $s->select_where(array("recommendation"), array("abstractID" => $aid));
+			 			$r2 = $r->select_where(array("reviewerFirstName", "reviewerLastName"), array("abstractID" => $aid));
+			 			$r3 = $c->select_where_reviewer(array("commentContent", "commentType", "reviewerID"), array("abstractID" => $aid));
+			 			$result[]=array(
+			 				"abstractID" => $row->abstractID,
+			 				"abstractTitle" => $row->abstractTitle,
+			 				"abstractImageFolder" => $row->abstractImageFolder,
+			 				"attendeeFirstName" => $row->attendeeFirstName,
+			 				"attendeeLastName" => $row->attendeeLastName,
+			 				"reviewers" => $r2,
+			 				"score" => $q2[0]->score,
+			 				"recommendations" => $q3,
+			 				"comments" => $r3
+			 			);
+			 		}
+			 		echo json_encode($result);
+		 		}
+		 		else{
+		 			echo json_encode(array());
+		 		}
+	 		}
+	 		else{
+	 			show_404();
+	 		}
 		}
 		
 	 	
