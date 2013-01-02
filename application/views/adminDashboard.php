@@ -63,7 +63,10 @@
 		</div>
 	</div>
 
-
+	<div id="explain">
+		<img class="explain" src="images/talk.png" alt="talk"> : has been voted as a speaker for a talk |
+		<img class="explain" src="images/poster.png" alt="poster"> : has been voted as a poster presentation
+	</div>
 	<div id="footer">
 		<p>Colloquy</p>
 	</div>
