@@ -19,7 +19,7 @@
 			$this->db->select(array("abstracts.abstractID", "abstracts.abstractTitle", "abstracts.abstractImageFolder", "abstracts.attendeeID", "attendees.attendeeFirstName", "attendees.attendeeLastName"))->from("abstracts");
 			$this->db->join("attendees", "attendees.attendeeID=abstracts.attendeeID AND abstracts.conferenceID=$conferenceID");
 			$q = $this->db->get();
-			return $q->result();
+			return $q;
 		}
 		
 	 
