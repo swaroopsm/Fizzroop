@@ -57,7 +57,7 @@
 			</div>
 			
 			<div id="ajaxer">
-				<div  id="loader" class="loader"><img src="images/loader.gif"></img></div>
+
 			</div>
 			
 		</div>
