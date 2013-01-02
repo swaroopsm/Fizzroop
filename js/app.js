@@ -192,6 +192,3 @@ $("#manageAbstracts").live("click", function(){
 	});
 	return false;
 });
-
-
-//swaroop..... fizzroooop.... balah blah blah!!! did this.. hahaha :p
