@@ -70,7 +70,7 @@ jQuery.fn.asyncSubmit = function(options){
 
 
 $("#manageAbstracts").live("click", function(){
-	$("#loader").show();
+	$("#ajaxer").html("<div class='loader'><img src='images/loader.gif'/></div>");
 	$.getJSON("abstract/view", function(data){
 		obj = [];
 		if(data.length>0){
