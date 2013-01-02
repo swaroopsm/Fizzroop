@@ -59,6 +59,7 @@ body {
 	font-weight: 400;
 	color: #666;
 	line-height: 18px;
+	overflow-y: scroll;
 }
 
 .container {
