@@ -102,7 +102,7 @@ $("#manageAbstracts").live("click", function(){
 							}
 							switch(l){
 								case 0: obj.push({
-									"title": "<a href='#'>"+data[i].abstractTitle+"</a>",
+									"title": "<a href='#"+data[i].abstractID+"' class='abstract_title'>"+data[i].abstractTitle+"</a>",
 									"attendee": data[i].attendeeFirstName+" "+data[i].attendeeLastName,
 									"reviewer1": "-",
 									"reviewer2": "-",
@@ -113,7 +113,7 @@ $("#manageAbstracts").live("click", function(){
 								break;
 				
 								case 1: obj.push({
-									"title": "<a href='#'>"+data[i].abstractTitle+"</a>",
+									"title": "<a href='#"+data[i].abstractID+"' class='abstract_title'>"+data[i].abstractTitle+"</a>",
 									"attendee": data[i].attendeeFirstName+" "+data[i].attendeeLastName,
 									"reviewer1": data[i].reviewers[0].reviewerFirstName,
 									"reviewer2": "-",
@@ -124,7 +124,7 @@ $("#manageAbstracts").live("click", function(){
 								break;
 				
 								case 2: obj.push({
-									"title": "<a href='#'>"+data[i].abstractTitle+"</a>",
+									"title": "<a href='#"+data[i].abstractID+"' class='abstract_title'>"+data[i].abstractTitle+"</a>",
 									"attendee": data[i].attendeeFirstName+" "+data[i].attendeeLastName,
 									"reviewer1": data[i].reviewers[0].reviewerFirstName,
 									"reviewer2": data[i].reviewers[1].reviewerFirstName,
@@ -135,7 +135,7 @@ $("#manageAbstracts").live("click", function(){
 								break;
 				
 								case 3: obj.push({
-									"title": "<a href='#'>"+data[i].abstractTitle+"</a>",
+									"title": "<a href='#"+data[i].abstractID+"' class='abstract_title'>"+data[i].abstractTitle+"</a>",
 									"attendee": data[i].attendeeFirstName+" "+data[i].attendeeLastName,
 									"reviewer1": data[i].reviewers[0].reviewerFirstName,
 									"reviewer2": data[i].reviewers[1].reviewerFirstName,
@@ -207,4 +207,16 @@ $("#manageAbstracts").live("click", function(){
 	});
 	
 	return false;
+});
+
+/**
+	* Abstract Title click function that returns json of all the details of an Abstract.
+**/
+
+$(".abstract_title").live("click", function(){
+	var id = $(this).attr("href");
+	id = id.substring(1);
+	$.getJSON("abstract/"+id, function(data){
+		console.log(data);
+	});
 });
