@@ -100,6 +100,31 @@
 		}
 		
 		
+		/**
+			* Handles select_where of a Comment with Reviewer name.
+		**/
+		
+		public function select_where_reviewer($data, $where){
+			require_once(APPPATH."controllers/reviewer.php");
+			$r = new Reviewer();
+			$q = $this->comments->select_where($data, $where);
+			if($q->num_rows > 0){
+				$row = $q->result();
+					foreach($row as $comment){
+						$rid = $comment->reviewerID;
+						$rev = $r->select_where(array("reviewerFirstName", "reviewerLastName"), array("reviewerID" => $rid));
+						$result[] = array(
+							"commentContent" => $comment->commentContent,
+							"commentType" => $comment->commentType,
+							"reviewerFirstName" => $rev[0]->reviewerFirstName,
+							"reviewerLastName" => $rev[0]->reviewerLastName
+						);
+					}
+				return $result;
+			}
+		}
+		
+		
 	 /**
 		 * Handles deletion of a Comment.
 		**/
