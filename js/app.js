@@ -208,3 +208,15 @@ $("#manageAbstracts").live("click", function(){
 	
 	return false;
 });
+
+/**
+	* Abstract Title click function that returns json of all the details of an Abstract.
+**/
+
+$(".abstract_title").live("click", function(){
+	var id = $(this).attr("href");
+	id = id.substring(1);
+	$.getJSON("abstract/"+id, function(data){
+		console.log(data);
+	});
+});
