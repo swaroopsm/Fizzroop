@@ -98,26 +98,33 @@
 	 		if($this->session->userdata("adminLoggedin") == true){
 	 			require_once(APPPATH."controllers/score.php");
 		 		require_once(APPPATH."controllers/reviewer.php");
-		 		$q = $this->abstracts->view($this->session->userdata("conferenceID"));
-		 		$s = new Score();
-		 		$r = new Reviewer();
-		 		foreach($q as $row){
-		 			$aid = $row->abstractID;
-		 			$q2 = $s->view_avg($row->abstractID); # Result Set that holds avg. score of an abstract.
-		 			$q3 = $s->select_where(array("recommendation"), array("abstractID" => $aid));
-		 			$r2 = $r->select_where(array("reviewerFirstName", "reviewerLastName"), array("abstractID" => $aid));
-		 			$result[]=array(
-		 				"abstractID" => $row->abstractID,
-		 				"abstractTitle" => $row->abstractTitle,
-		 				"abstractImageFolder" => $row->abstractImageFolder,
-		 				"attendeeFirstName" => $row->attendeeFirstName,
-		 				"attendeeLastName" => $row->attendeeLastName,
-		 				"reviewers" => $r2,
-		 				"score" => $q2[0]->score,
-		 				"recommendations" => $q3
-		 			);
+		 		$a = $this->abstracts->view($this->session->userdata("conferenceID"));
+		 		$n = $a->num_rows();
+		 		if($n>0){
+		 			$q = $a->result();
+		 			$s = new Score();
+			 		$r = new Reviewer();
+			 		foreach($q as $row){
+			 			$aid = $row->abstractID;
+			 			$q2 = $s->view_avg($row->abstractID); # Result Set that holds avg. score of an abstract.
+			 			$q3 = $s->select_where(array("recommendation"), array("abstractID" => $aid));
+			 			$r2 = $r->select_where(array("reviewerFirstName", "reviewerLastName"), array("abstractID" => $aid));
+			 			$result[]=array(
+			 				"abstractID" => $row->abstractID,
+			 				"abstractTitle" => $row->abstractTitle,
+			 				"abstractImageFolder" => $row->abstractImageFolder,
+			 				"attendeeFirstName" => $row->attendeeFirstName,
+			 				"attendeeLastName" => $row->attendeeLastName,
+			 				"reviewers" => $r2,
+			 				"score" => $q2[0]->score,
+			 				"recommendations" => $q3
+			 			);
+			 		}
+			 		echo json_encode($result);
 		 		}
-		 		echo json_encode($result);
+		 		else{
+		 			echo json_encode(array());
+		 		}
 	 		}
 	 		else{
 	 			show_404();
