@@ -70,129 +70,141 @@ jQuery.fn.asyncSubmit = function(options){
 
 
 $("#manageAbstracts").live("click", function(){
-	$("#ajaxer").html("<div class='loader'><img src='images/loader.gif'/></div>");
-	$.getJSON("abstract/view", function(data){
-		obj = [];
-		if(data.length>0){
-			for(i=0;i<data.length;i++){
-					var l = data[i].reviewers.length;
-					var r = data[i].recommendations;
-					var ratings = "";
-					var t, ra="";
-					for(var j=0;j<r.length;j++){
-						ra = r[j].recommendation;
-						switch(ra){
-							case '1': ra = "T"; //@TODO Add icon for Talk.
-												break;
+	var flag;
+	$.getJSON("session", function(session){
+		flag=session.adminLoggedin;
+		if(flag==true){
+			$("#ajaxer").html("<div class='loader'><img src='images/loader.gif'/></div>");
+			$.getJSON("abstract/view", function(data){
+				obj = [];
+				if(data.length>0){
+					for(i=0;i<data.length;i++){
+							var l = data[i].reviewers.length;
+							var r = data[i].recommendations;
+							var ratings = "";
+							var t, ra="";
+							for(var j=0;j<r.length;j++){
+								ra = r[j].recommendation;
+								switch(ra){
+									case '1': ra = "T"; //@TODO Add icon for Talk.
+														break;
 												
-							case '2': ra = "P"; //@TODO Add icon for Poster.
-										  	break;
+									case '2': ra = "P"; //@TODO Add icon for Poster.
+														break;
 											
-							case '3': ra = "R"; //@TODO Add icon for Reject.
-												break;
+									case '3': ra = "R"; //@TODO Add icon for Reject.
+														break;
 												
-							default : ra = "-";
-												break;
-						}
-						ratings = ratings + ra + " ";
-					}
-					switch(l){
-						case 0: obj.push({
-							"title": "<a href='#'>"+data[i].abstractTitle+"</a>",
-							"attendee": data[i].attendeeFirstName+" "+data[i].attendeeLastName,
-							"reviewer1": "-",
-							"reviewer2": "-",
-							"reviewer3": "-",
-							"ratings": ratings,
-							"score": data[i].score
-						});
-						break;
-				
-						case 1: obj.push({
-							"title": "<a href='#'>"+data[i].abstractTitle+"</a>",
-							"attendee": data[i].attendeeFirstName+" "+data[i].attendeeLastName,
-							"reviewer1": data[i].reviewers[0].reviewerFirstName,
-							"reviewer2": "-",
-							"reviewer3": "-",
-							"ratings": ratings,
-							"score": data[i].score
-						});
-						break;
-				
-						case 2: obj.push({
-							"title": "<a href='#'>"+data[i].abstractTitle+"</a>",
-							"attendee": data[i].attendeeFirstName+" "+data[i].attendeeLastName,
-							"reviewer1": data[i].reviewers[0].reviewerFirstName,
-							"reviewer2": data[i].reviewers[1].reviewerFirstName,
-							"reviewer3": "-",
-							"ratings": ratings,
-							"score": data[i].score
-						});
-						break;
-				
-						case 3: obj.push({
-							"title": "<a href='#'>"+data[i].abstractTitle+"</a>",
-							"attendee": data[i].attendeeFirstName+" "+data[i].attendeeLastName,
-							"reviewer1": data[i].reviewers[0].reviewerFirstName,
-							"reviewer2": data[i].reviewers[1].reviewerFirstName,
-							"reviewer3": data[i].reviewers[2].reviewerFirstName,
-							"ratings": ratings,
-							"score": data[i].score
-						});
-						break;
-				
-					}
-				}
-				$("#ajaxer").html("<h2 id='title'>ABSTRACTS MANAGER</h2><table id='test'></table>");
-				$('table#test').dataTable({
-						"aaData": obj,
-						"sScrollX": "100%",
-		 				"bScrollCollapse": true,
-		 				"bScrollAutoCss": false,
-		 				"iDisplayLength": 50,
-						"aoColumns": [
-								{ 
-									"mDataProp": "title",
-									"sTitle": "Title",
-									"sClass": "title"
-								},
-								{ 
-									"mDataProp": "attendee",
-									"sTitle": "Attendee",
-									"sClass": "attendee"
-								},
-								{ 
-									"mDataProp": "reviewer1",
-									"sTitle": "&#10022; 1",
-									"sClass": "reviewer1"
-								},
-								{ 
-									"mDataProp": "reviewer2",
-									"sTitle": "&#10022; 2",
-									"sClass": "reviewer2"
-								},
-								{ 
-									"mDataProp": "reviewer3",
-									"sTitle": "&#10022; 3",
-									"sClass": "reviewer3"
-								},
-								{ 
-									"mDataProp": "ratings",
-									"sTitle": "Rating",
-									"sClass": "ratings"
-								},
-								{ 
-									"mDataProp": "score",
-									"sTitle": "Score",
-									"sClass": "score"
+									default : ra = "-";
+														break;
 								}
-						]
-			});		
+								ratings = ratings + ra + " ";
+							}
+							switch(l){
+								case 0: obj.push({
+									"title": "<a href='#'>"+data[i].abstractTitle+"</a>",
+									"attendee": data[i].attendeeFirstName+" "+data[i].attendeeLastName,
+									"reviewer1": "-",
+									"reviewer2": "-",
+									"reviewer3": "-",
+									"ratings": ratings,
+									"score": data[i].score
+								});
+								break;
+				
+								case 1: obj.push({
+									"title": "<a href='#'>"+data[i].abstractTitle+"</a>",
+									"attendee": data[i].attendeeFirstName+" "+data[i].attendeeLastName,
+									"reviewer1": data[i].reviewers[0].reviewerFirstName,
+									"reviewer2": "-",
+									"reviewer3": "-",
+									"ratings": ratings,
+									"score": data[i].score
+								});
+								break;
+				
+								case 2: obj.push({
+									"title": "<a href='#'>"+data[i].abstractTitle+"</a>",
+									"attendee": data[i].attendeeFirstName+" "+data[i].attendeeLastName,
+									"reviewer1": data[i].reviewers[0].reviewerFirstName,
+									"reviewer2": data[i].reviewers[1].reviewerFirstName,
+									"reviewer3": "-",
+									"ratings": ratings,
+									"score": data[i].score
+								});
+								break;
+				
+								case 3: obj.push({
+									"title": "<a href='#'>"+data[i].abstractTitle+"</a>",
+									"attendee": data[i].attendeeFirstName+" "+data[i].attendeeLastName,
+									"reviewer1": data[i].reviewers[0].reviewerFirstName,
+									"reviewer2": data[i].reviewers[1].reviewerFirstName,
+									"reviewer3": data[i].reviewers[2].reviewerFirstName,
+									"ratings": ratings,
+									"score": data[i].score
+								});
+								break;
+				
+							}
+						}
+						$("#ajaxer").html("<h2 id='title'>ABSTRACTS MANAGER</h2><table id='test'></table>");
+						$('table#test').dataTable({
+								"aaData": obj,
+								"sScrollX": "100%",
+				 				"bScrollCollapse": true,
+				 				"bScrollAutoCss": false,
+				 				"iDisplayLength": 50,
+								"aoColumns": [
+										{ 
+											"mDataProp": "title",
+											"sTitle": "Title",
+											"sClass": "title"
+										},
+										{ 
+											"mDataProp": "attendee",
+											"sTitle": "Attendee",
+											"sClass": "attendee"
+										},
+										{ 
+											"mDataProp": "reviewer1",
+											"sTitle": "&#10022; 1",
+											"sClass": "reviewer1"
+										},
+										{ 
+											"mDataProp": "reviewer2",
+											"sTitle": "&#10022; 2",
+											"sClass": "reviewer2"
+										},
+										{ 
+											"mDataProp": "reviewer3",
+											"sTitle": "&#10022; 3",
+											"sClass": "reviewer3"
+										},
+										{ 
+											"mDataProp": "ratings",
+											"sTitle": "Rating",
+											"sClass": "ratings"
+										},
+										{ 
+											"mDataProp": "score",
+											"sTitle": "Score",
+											"sClass": "score"
+										}
+								]
+					});		
+				}
+				else{
+					$("#ajaxer").html("<h2 class='no-records'>\" No Abstracts have been uploaded yet! \"</h2>");
+				}
+		
+			});
+			return false;
 		}
 		else{
-			$("#ajaxer").html("<h2 class='no-records'>\" No Abstracts have been uploaded yet! \"</h2>");
+			window.location = "admin";
+			return true;
 		}
-		
 	});
+	
 	return false;
 });
