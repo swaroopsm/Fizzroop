@@ -55,13 +55,14 @@
 				<p>You are logged in as an Administrator <a href="logout">Logout </a> </p>
 				<div class="clear"></div>
 			</div>
-			
-			<div id="ajaxer">
-
-			</div>
-			
 		</div>
 	</div>
+
+	<div class="container">
+		<div id="ajaxer">
+		</div>
+	</div>
+
 
 	<div id="explain">
 		<img class="explain" src="images/talk.png" alt="talk"> : has been voted as a speaker for a talk |
