@@ -28,8 +28,11 @@
 			* Returns a specific Abstract subjected to a where clause. 
 		*/
 		
-		public function view_where($data){
-			return $this->db->get_where("abstracts", $data);
+		public function view_where($abstractID, $conferenceID){
+			$this->db->select(array("abstracts.abstractID", "abstracts.abstractTitle", "abstracts.abstractImageFolder", "abstracts.attendeeID", "attendees.attendeeFirstName", "attendees.attendeeLastName"))->from("abstracts");
+			$this->db->join("attendees", "attendees.attendeeID=abstracts.attendeeID AND abstracts.abstractID=$abstractID AND abstracts.conferenceID=$conferenceID");
+			$q = $this->db->get();
+			return $q;
 		}	
 		
 		
