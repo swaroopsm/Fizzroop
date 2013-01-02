@@ -221,4 +221,6 @@ table tr:hover {
 	background-color: #F0F0F0;
 }
 
-
+.no-records{
+	text-align: center;
+}
