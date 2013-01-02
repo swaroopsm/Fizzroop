@@ -167,22 +167,22 @@ $("#manageAbstracts").live("click", function(){
 										},
 										{ 
 											"mDataProp": "reviewer1",
-											"sTitle": "&#10022; 1",
+											"sTitle": "&#9673; 1",
 											"sClass": "reviewer1"
 										},
 										{ 
 											"mDataProp": "reviewer2",
-											"sTitle": "&#10022; 2",
+											"sTitle": "&#9673; 2",
 											"sClass": "reviewer2"
 										},
 										{ 
 											"mDataProp": "reviewer3",
-											"sTitle": "&#10022; 3",
+											"sTitle": "&#9673; 3",
 											"sClass": "reviewer3"
 										},
 										{ 
 											"mDataProp": "ratings",
-											"sTitle": "Rating",
+											"sTitle": "<img class='explain' src='images/talk.png' alt='talk'>",
 											"sClass": "ratings"
 										},
 										{ 
