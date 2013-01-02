@@ -179,7 +179,7 @@ $("#manageAbstracts").live("click", function(){
 				    },
 				    { 
 				    	"mDataProp": "ratings",
-				    	"sTitle": "Ratings",
+				    	"sTitle": "Rating",
 				    	"sClass": "ratings"
 				    },
 				    { 
