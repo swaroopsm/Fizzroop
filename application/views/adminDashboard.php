@@ -30,7 +30,7 @@
 
 				<h2>Reviewers</h2>
 				<p>10 reviewers | 140 reviews commented | 160 recommended</p>
-				<p><a href="#">Manage Reviewers</a> | <a href="#">Add reviewer</a></p>
+				<p><a href="#" id="manageReviewers">Manage Reviewers</a> | <a href="#">Add reviewer</a></p>
 
 				<h2>Attendees</h2>
 				<p>400 Registered Attendees</p>
