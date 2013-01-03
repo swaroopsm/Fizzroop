@@ -57,6 +57,23 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- Abstract Modal -->
+	
+	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  style="display: none;">
+		<div class="modal-header">
+		  <a class="close" data-dismiss="modal" aria-hidden="true" href="#">&times;</a>
+		  <h3 id="abstractModalLabel"></h3>
+		</div>
+		<div class="modal-body" id="abstractData">
+		  <p>One fine body…</p>
+		</div>
+		<div class="modal-footer">
+		  <button class="btn btn-primary">Save changes</button>
+		</div>
+	</div>
+	
+	<!-- End Abstract Modal -->
 
 	<div class="container">
 		<div id="ajaxer">
@@ -72,6 +89,7 @@
 		<p>Colloquy</p>
 	</div>
 	<script src="<?php echo base_url().'js/jquery.js'; ?>"></script>
+	<script src="<?php echo base_url().'js/vendor.js'; ?>"></script>
 	<script src="<?php echo base_url().'js/app.js'; ?>"></script>
 	<script src="<?php echo base_url().'js/jquery.dataTables.min.js'; ?>"></script>
 </body>
