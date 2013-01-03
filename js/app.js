@@ -234,3 +234,63 @@ $(".abstract_title").live("click", function(){
 	});
 	return false;
 });
+
+
+/**
+	* Manage Reviewers click function.
+**/
+$("#manageReviewers").live("click", function(){
+	
+	$.getJSON("session", function(session){
+		flag=session.adminLoggedin;
+		if(flag==true){
+			$("#ajaxer").html("<div class='loader'><img src='images/loader.gif'/></div>");
+			$.getJSON("reviewer/view", function(data){
+				if(data.length > 0){
+					var obj = [];
+					for(var j=0;j<data.length;j++){
+						obj.push({
+							"reviewerFirstName": "<a href='#"+data[j].reviewerID+"'>"+data[j].reviewerFirstName+"</a>",
+							"reviewerLastName": "<a href='#"+data[j].reviewerID+"'>"+data[j].reviewerLastName+"</a>",
+							"reviewerEmail": data[j].reviewerEmail,
+							"workingAbstracts": data[j].workingAbstracts
+						});
+					}
+					$("#ajaxer").html("<h2 id='title'>REVIEWERS MANAGER</h2><table id='test'></table>");
+					$('table#test').dataTable({
+								"aaData": obj,
+								"sScrollX": "100%",
+				 				"bScrollCollapse": true,
+				 				"bScrollAutoCss": false,
+				 				"iDisplayLength": 50,
+								"aoColumns": [
+															{
+																"mDataProp": "reviewerFirstName",
+																"sTitle": "Firstname"
+															},
+															{
+																"mDataProp": "reviewerLastName",
+																"sTitle": "Lastname"
+															},
+															{
+																"mDataProp": "reviewerEmail",
+																"sTitle": "Email"
+															},
+															{
+																"mDataProp": "workingAbstracts",
+																"sTitle": "Abstracts Assigned"
+															}
+								]
+					});
+				}
+				else{
+					$("#ajaxer").html("<h2 class='no-records'>\" There are no Reviewers added! \"</h2>");
+				}
+			});
+		}
+		else{
+			window.location = "admin";
+			return true;
+		}
+	});
+});
