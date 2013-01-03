@@ -354,3 +354,18 @@ table tr:hover {
 }
 
 /** End styling for modal. **/
+
+.close{
+	float: right;
+	font-size: 19px;
+	font-weight: bold;
+	color: gray;
+}
+
+a.close:visited{
+	color: gray;
+}
+
+a.close:active{
+	color: gray;
+}
