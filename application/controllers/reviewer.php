@@ -147,7 +147,36 @@
 				"reviewerID" => $this->uri->segment(2)
 			);
 			$q = $this->reviewers->view_where($data);
-			echo json_encode($q->result());
+			if($q->num_rows > 0){
+					$qres = $q->result();
+				$rid = $qres[0]->reviewerID;
+				require_once(APPPATH."controllers/abstractc.php");
+				$a = new Abstractc();
+				$ares = $a->select_where(array("abstractID", "abstractTitle", "abstractImageFolder"), "reviewer1 = $rid OR reviewer2 = $rid OR reviewer3 = $rid", 1);
+				if($ares->num_rows() > 0){
+					foreach($ares->result() as $abstract){
+						$abstracts[] = array(
+							"abstractID" => $abstract->abstractID,
+							"abstractTitle" => $abstract->abstractTitle,
+							"abstractImageFolder" => $abstract->abstractImageFolder
+						);
+					}
+				}
+				else{
+					$abstracts = array();
+				}
+				$reviewer = array(
+					"reviewerID" => $rid,
+					"reviewerFirstName" => $qres[0]->reviewerFirstName,
+					"reviewerLastName" => $qres[0]->reviewerLastName,
+					"reviewerEmail" => $qres[0]->reviewerEmail,
+					"abstracts" => $abstracts
+				);
+				echo json_encode($reviewer);
+			}
+			else{
+				echo json_encode(array());
+			}
 		}
 		
 		
