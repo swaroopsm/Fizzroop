@@ -250,8 +250,8 @@ $("#manageReviewers").live("click", function(){
 					var obj = [];
 					for(var j=0;j<data.length;j++){
 						obj.push({
-							"reviewerFirstName": "<a href='#"+data[j].reviewerID+"'>"+data[j].reviewerFirstName+"</a>",
-							"reviewerLastName": "<a href='#"+data[j].reviewerID+"'>"+data[j].reviewerLastName+"</a>",
+							"reviewerFirstName": "<a href='#"+data[j].reviewerID+"' class='reviewer_id'>"+data[j].reviewerFirstName+"</a>",
+							"reviewerLastName": "<a href='#"+data[j].reviewerID+"' class='reviewer_id'>"+data[j].reviewerLastName+"</a>",
 							"reviewerEmail": data[j].reviewerEmail,
 							"workingAbstracts": data[j].workingAbstracts
 						});
