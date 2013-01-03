@@ -161,10 +161,22 @@
 				"reviewerFirstName",
 				"reviewerLastName",
 				"reviewerEmail",
-				"abstractID"
 			);
+			require_once(APPPATH."controllers/abstractc.php");
+			$a = new Abstractc();
 			$q = $this->reviewers->select($data);
-			echo json_encode($q->result());
+			foreach($q->result() as $r){
+				$rid = $r->reviewerID;
+				$ares = $a->select_where(array("abstractID"), "reviewer1 = $rid OR reviewer2 = $rid OR reviewer3 = $rid", 1);
+				$reviewers[] = array(
+					"reviewerID" => $rid,
+					"reviewerFirstName" => $r->reviewerFirstName,
+					"reviewerLastName" => $r->reviewerLastName,
+					"reviewerEmail" => $r->reviewerEmail,
+					"workingAbstracts" => $ares->num_rows()
+				);
+			}
+			echo json_encode($reviewers);
 		}
 		
 		
