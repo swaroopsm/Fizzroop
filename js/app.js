@@ -221,7 +221,8 @@ $(".abstract_title").live("click", function(){
 		backdrop: 'static',
 		show: true
 	});
-	$("#abstractData").append("<div class='loader'><img src='images/loader.gif' /></div>");
+	$("#abstractModalLabel").html("");
+	$("#abstractData").html('').append("<div class='loader'><img src='images/loader.gif' /></div>");
 	$.getJSON("abstract/"+id, function(data){
 		$("#abstractModalLabel").html(data[0].abstractTitle);
 		$("#abstractData").html(
