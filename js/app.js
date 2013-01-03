@@ -216,7 +216,16 @@ $("#manageAbstracts").live("click", function(){
 $(".abstract_title").live("click", function(){
 	var id = $(this).attr("href");
 	id = id.substring(1);
+	$("#myModal").modal({
+		keyboard: true,
+		backdrop: 'static',
+		show: true
+	});
+	$("#abstractData").append("<div class='loader'><img src='images/loader.gif' /></div>");
 	$.getJSON("abstract/"+id, function(data){
+		$("#abstractModalLabel").html("Title: "+data[0].abstractTitle);
+		$("#abstractData").html("Content: "+data[0].abstractContent);
 		console.log(data);
 	});
+	return false;
 });
