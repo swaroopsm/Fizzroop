@@ -311,7 +311,6 @@ $(".reviewer_id").live("click", function(){
 	$("#abstractModalLabel").html("");
 	$("#abstractData").html('').append("<div class='loader'><img src='images/loader.gif' /></div>");
 	$.getJSON("reviewer/"+id, function(data){
-		console.log(data);
 		$("#reviewersModalLabel").html(data.reviewerFirstName+" "+data.reviewerLastName);
 		if(data.abstracts){
 			if(data.abstracts.length>0){
