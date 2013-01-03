@@ -106,16 +106,28 @@
 			 		$r = new Reviewer();
 			 		foreach($q as $row){
 			 			$aid = $row->abstractID;
+			 			$rids = array($row->reviewer1, $row->reviewer2, $row->reviewer3);
+			 			$reviewers = array();
+			 			for($i=0;$i<3;$i++){
+			 				$rev = $r->select_where(array("reviewerFirstName", "reviewerLastName"), array("reviewerID" => $rids[$i]));
+			 				if($rev->num_rows > 0){
+			 					foreach($rev->result() as $revs){
+			 						$reviewers[] = array(
+			 							"reviewerFirstName" => $revs->reviewerFirstName,
+			 							"reviewerLastName" => $revs->reviewerLastName
+			 						);
+			 					}
+			 				}
+			 			}
 			 			$q2 = $s->view_avg($row->abstractID); # Result Set that holds avg. score of an abstract.
 			 			$q3 = $s->select_where(array("recommendation"), array("abstractID" => $aid));
-			 			$r2 = $r->select_where(array("reviewerFirstName", "reviewerLastName"), array("abstractID" => $aid));
 			 			$result[]=array(
 			 				"abstractID" => $row->abstractID,
 			 				"abstractTitle" => $row->abstractTitle,
 			 				"abstractImageFolder" => $row->abstractImageFolder,
 			 				"attendeeFirstName" => $row->attendeeFirstName,
 			 				"attendeeLastName" => $row->attendeeLastName,
-			 				"reviewers" => $r2,
+			 				"reviewers" => $reviewers,
 			 				"score" => $q2[0]->score,
 			 				"recommendations" => $q3
 			 			);
