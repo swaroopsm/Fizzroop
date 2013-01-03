@@ -294,3 +294,36 @@ $("#manageReviewers").live("click", function(){
 		}
 	});
 });
+
+
+/**
+	* Reviewer Firstname/Lastname click function that returns json of all the details of a Reviewer.
+**/
+
+$(".reviewer_id").live("click", function(){
+	var id = $(this).attr("href");
+	id = id.substring(1);
+	$("#reviewersModal").modal({
+		keyboard: true,
+		backdrop: 'static',
+		show: true
+	});
+	$("#abstractModalLabel").html("");
+	$("#abstractData").html('').append("<div class='loader'><img src='images/loader.gif' /></div>");
+	$.getJSON("reviewer/"+id, function(data){
+		console.log(data);
+		$("#reviewersModalLabel").html(data.reviewerFirstName+" "+data.reviewerLastName);
+		if(data.abstracts){
+			if(data.abstracts.length>0){
+				$("#reviewersData").html("");
+				for(var i=0;i<data.abstracts.length;i++){
+					$("#reviewersData").append("Abstract "+(i+1)+": "+data.abstracts[i].abstractTitle+"<br>");
+				}
+			}
+			else{
+				$("#reviewersData").html("Working on no abstracts...");
+			}	
+		}
+	});
+	return false;
+});
