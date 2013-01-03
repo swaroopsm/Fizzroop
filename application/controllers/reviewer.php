@@ -234,8 +234,7 @@
 		**/
 		
 		public function select_where($data, $where){
-			$q = $this->reviewers->select_where($data, $where);
-			return $q->result();
+			return $this->reviewers->select_where($data, $where);
 		}
 		
 		
