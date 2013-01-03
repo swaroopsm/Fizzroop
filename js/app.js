@@ -231,7 +231,6 @@ $(".abstract_title").live("click", function(){
 			data[0].abstractContent+
 			"<div id='imagesppt'></div>" // need to add the images folder and write necessary JS
 			);
-		console.log(data);
 	});
 	return false;
 });
