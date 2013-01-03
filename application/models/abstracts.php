@@ -44,7 +44,7 @@
 		public function select_where($data, $where){
 			$this->db->select($data);
 			$q = $this->db->get_where("abstracts", $where);
-			return $q->result();
+			return $q;
 		}
 		
 		
