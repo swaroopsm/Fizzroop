@@ -213,6 +213,14 @@
 				}
 			}
 	 	
+	 	/**
+			* Handles select_where of an Abstract.
+		**/
+		
+		public function select_where($data, $where){
+			return $this->abstracts->select_where($data, $where);
+		}
+	 	
 	 	
 	 	/**
 		 * Handles deletion of an Abstract.
