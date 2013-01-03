@@ -241,8 +241,11 @@
 			* Handles select_where of an Abstract.
 		**/
 		
-		public function select_where($data, $where){
-			return $this->abstracts->select_where($data, $where);
+		public function select_where($data, $where, $or=0){
+			if($or==0)
+				return $this->abstracts->select_where($data, $where);
+			else
+				return $this->abstracts->select_where_plain($data, $where);
 		}
 	 	
 	 	
