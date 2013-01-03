@@ -223,8 +223,13 @@ $(".abstract_title").live("click", function(){
 	});
 	$("#abstractData").append("<div class='loader'><img src='images/loader.gif' /></div>");
 	$.getJSON("abstract/"+id, function(data){
-		$("#abstractModalLabel").html("Title: "+data[0].abstractTitle);
-		$("#abstractData").html("Content: "+data[0].abstractContent);
+		$("#abstractModalLabel").html(data[0].abstractTitle);
+		$("#abstractData").html(
+			"by "+data[0].attendeeFirstName+" "+data[0].attendeeLastName+"<br>"+
+			"<br>"+"<h2>content</h2>"+
+			data[0].abstractContent+
+			"<div id='imagesppt'></div>" // need to add the images folder and write necessary JS
+			);
 		console.log(data);
 	});
 	return false;
