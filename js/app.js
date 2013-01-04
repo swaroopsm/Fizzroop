@@ -326,3 +326,33 @@ $(".reviewer_id").live("click", function(){
 	});
 	return false;
 });
+
+
+/**
+	* Manage Attendees click function.
+**/
+
+$("#manageAttendees").live("click", function(){
+	var flag;
+	$.getJSON("session", function(session){
+		flag=session.adminLoggedin;
+		if(flag==true){
+			$("#ajaxer").html("<div class='loader'><img src='images/loader.gif'/></div>");
+			$.getJSON("attendee/view", function(data){
+				if(data.length > 0){
+					$("#ajaxer").html("<h2 id='title'>ATTENDEES MANAGER</h2><table id='test'></table>");
+					console.log(data);
+				}
+				else{
+					$("#ajaxer").html("<h2 class='no-records'>\" There are no Attendees registered! \"</h2>");
+				}
+			});
+		}
+		else
+		{
+			window.location = "admin";
+			return true;
+		}
+	});
+	return false;
+});
