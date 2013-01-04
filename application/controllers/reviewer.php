@@ -108,37 +108,6 @@
 		
 		
 		/**
-			*	Handles assignment of an Abstract.
-			* @TODO: Need to implement Foreign Key checks.
-		**/
-		
-		public function assign(){
-			if($_SERVER['REQUEST_METHOD'] == "POST"){
-				if($this->session->userdata("adminLoggedin") == true){
-					$data = array(
-						"abstractID" => $this->input->post("inputAbstractID"),
-					);
-						$where = array(
-							"reviewerID" => $this->input->post("inputReviewerID")
-						);
-						$this->reviewers->update($data, $where);
-						echo json_encode(array(
-								"success" => true,
-								"reviewerID" => $this->input->post("inputReviewerID")
-							)
-						);
-				}
-				else{
-					show_404();
-				}
-			}
-			else{
-				show_404();
-			}
-		}
-		
-		
-		/**
 			* Handles viewing of a particular Reviewer.
 		**/
 		
@@ -147,7 +116,36 @@
 				"reviewerID" => $this->uri->segment(2)
 			);
 			$q = $this->reviewers->view_where($data);
-			echo json_encode($q->result());
+			if($q->num_rows > 0){
+					$qres = $q->result();
+				$rid = $qres[0]->reviewerID;
+				require_once(APPPATH."controllers/abstractc.php");
+				$a = new Abstractc();
+				$ares = $a->select_where(array("abstractID", "abstractTitle", "abstractImageFolder"), "reviewer1 = $rid OR reviewer2 = $rid OR reviewer3 = $rid", 1);
+				if($ares->num_rows() > 0){
+					foreach($ares->result() as $abstract){
+						$abstracts[] = array(
+							"abstractID" => $abstract->abstractID,
+							"abstractTitle" => $abstract->abstractTitle,
+							"abstractImageFolder" => $abstract->abstractImageFolder
+						);
+					}
+				}
+				else{
+					$abstracts = array();
+				}
+				$reviewer = array(
+					"reviewerID" => $rid,
+					"reviewerFirstName" => $qres[0]->reviewerFirstName,
+					"reviewerLastName" => $qres[0]->reviewerLastName,
+					"reviewerEmail" => $qres[0]->reviewerEmail,
+					"abstracts" => $abstracts
+				);
+				echo json_encode($reviewer);
+			}
+			else{
+				echo json_encode(array());
+			}
 		}
 		
 		
@@ -161,10 +159,22 @@
 				"reviewerFirstName",
 				"reviewerLastName",
 				"reviewerEmail",
-				"abstractID"
 			);
+			require_once(APPPATH."controllers/abstractc.php");
+			$a = new Abstractc();
 			$q = $this->reviewers->select($data);
-			echo json_encode($q->result());
+			foreach($q->result() as $r){
+				$rid = $r->reviewerID;
+				$ares = $a->select_where(array("abstractID"), "reviewer1 = $rid OR reviewer2 = $rid OR reviewer3 = $rid", 1);
+				$reviewers[] = array(
+					"reviewerID" => $rid,
+					"reviewerFirstName" => $r->reviewerFirstName,
+					"reviewerLastName" => $r->reviewerLastName,
+					"reviewerEmail" => $r->reviewerEmail,
+					"workingAbstracts" => $ares->num_rows()
+				);
+			}
+			echo json_encode($reviewers);
 		}
 		
 		

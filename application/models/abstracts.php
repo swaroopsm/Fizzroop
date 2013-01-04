@@ -47,7 +47,17 @@
 			return $q;
 		}
 		
-		
+	 
+	 /**
+	 	 * Select using where. This is straight-forward!!
+	 **/
+	 public function select_where_plain($data, $where){
+	 	$this->db->select($data);
+	 	$this->db->from("abstracts");
+	 	$this->db->where($where);
+	 	return $this->db->get();
+	 }
+	 
 	 /**
 			* Updates values of a particular Abstract.
 		*/

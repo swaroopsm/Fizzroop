@@ -231,7 +231,128 @@ $(".abstract_title").live("click", function(){
 			data[0].abstractContent+
 			"<div id='imagesppt'></div>" // need to add the images folder and write necessary JS
 			);
-		console.log(data);
+	});
+	return false;
+});
+
+
+/**
+	* Manage Reviewers click function.
+**/
+$("#manageReviewers").live("click", function(){
+	
+	$.getJSON("session", function(session){
+		flag=session.adminLoggedin;
+		if(flag==true){
+			$("#ajaxer").html("<div class='loader'><img src='images/loader.gif'/></div>");
+			$.getJSON("reviewer/view", function(data){
+				if(data.length > 0){
+					var obj = [];
+					for(var j=0;j<data.length;j++){
+						obj.push({
+							"reviewerFirstName": "<a href='#"+data[j].reviewerID+"' class='reviewer_id'>"+data[j].reviewerFirstName+"</a>",
+							"reviewerLastName": "<a href='#"+data[j].reviewerID+"' class='reviewer_id'>"+data[j].reviewerLastName+"</a>",
+							"reviewerEmail": data[j].reviewerEmail,
+							"workingAbstracts": data[j].workingAbstracts
+						});
+					}
+					$("#ajaxer").html("<h2 id='title'>REVIEWERS MANAGER</h2><table id='test'></table>");
+					$('table#test').dataTable({
+								"aaData": obj,
+								"sScrollX": "100%",
+				 				"bScrollCollapse": true,
+				 				"bScrollAutoCss": false,
+				 				"iDisplayLength": 50,
+								"aoColumns": [
+															{
+																"mDataProp": "reviewerFirstName",
+																"sTitle": "Firstname"
+															},
+															{
+																"mDataProp": "reviewerLastName",
+																"sTitle": "Lastname"
+															},
+															{
+																"mDataProp": "reviewerEmail",
+																"sTitle": "Email"
+															},
+															{
+																"mDataProp": "workingAbstracts",
+																"sTitle": "Abstracts Assigned"
+															}
+								]
+					});
+				}
+				else{
+					$("#ajaxer").html("<h2 class='no-records'>\" There are no Reviewers added! \"</h2>");
+				}
+			});
+		}
+		else{
+			window.location = "admin";
+			return true;
+		}
+	});
+});
+
+
+/**
+	* Reviewer Firstname/Lastname click function that returns json of all the details of a Reviewer.
+**/
+
+$(".reviewer_id").live("click", function(){
+	var id = $(this).attr("href");
+	id = id.substring(1);
+	$("#reviewersModal").modal({
+		keyboard: true,
+		backdrop: 'static',
+		show: true
+	});
+	$("#abstractModalLabel").html("");
+	$("#abstractData").html('').append("<div class='loader'><img src='images/loader.gif' /></div>");
+	$.getJSON("reviewer/"+id, function(data){
+		$("#reviewersModalLabel").html(data.reviewerFirstName+" "+data.reviewerLastName);
+		if(data.abstracts){
+			if(data.abstracts.length>0){
+				$("#reviewersData").html("");
+				for(var i=0;i<data.abstracts.length;i++){
+					$("#reviewersData").append("Abstract "+(i+1)+": "+data.abstracts[i].abstractTitle+"<br>");
+				}
+			}
+			else{
+				$("#reviewersData").html("Working on no abstracts...");
+			}	
+		}
+	});
+	return false;
+});
+
+
+/**
+	* Manage Attendees click function.
+**/
+
+$("#manageAttendees").live("click", function(){
+	var flag;
+	$.getJSON("session", function(session){
+		flag=session.adminLoggedin;
+		if(flag==true){
+			$("#ajaxer").html("<div class='loader'><img src='images/loader.gif'/></div>");
+			$.getJSON("attendee/view", function(data){
+				if(data.length > 0){
+					$("#ajaxer").html("<h2 id='title'>ATTENDEES MANAGER</h2><table id='test'></table>");
+					console.log(data);
+				}
+				else{
+					$("#ajaxer").html("<h2 class='no-records'>\" There are no Attendees registered! \"</h2>");
+				}
+			});
+		}
+		else
+		{
+			window.location = "admin";
+			return true;
+		}
 	});
 	return false;
 });

@@ -34,7 +34,7 @@
 
 				<h2>Attendees</h2>
 				<p>400 Registered Attendees</p>
-				<p><a href="#">Manage Attendees</a> | <a href="#">Add Attendee</a></p>
+				<p><a href="#" id="manageAttendees">Manage Attendees</a> | <a href="#">Add Attendee</a></p>
 			</div>
 
 			<div class="col">
@@ -74,6 +74,23 @@
 	</div>
 	
 	<!-- End Abstract Modal -->
+	
+	<!-- Reviewer Modal -->
+	
+	<div id="reviewersModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="reviewersModalLabel" aria-hidden="true"  style="display: none;">
+		<div class="modal-header">
+		  <a class="close" data-dismiss="modal" aria-hidden="true" href="#">&times;</a>
+		  <h3 id="reviewersModalLabel"></h3>
+		</div>
+		<div class="modal-body" id="reviewersData">
+		  <p></p>
+		</div>
+		<div class="modal-footer">
+		  <button class="btn btn-primary">Save changes</button>
+		</div>
+	</div>
+	
+	<!-- End Reviewer Modal -->
 
 	<div class="container">
 		<div id="ajaxer">
