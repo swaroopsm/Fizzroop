@@ -237,6 +237,98 @@
 				}
 			}
 	 	
+	 	
+	 	/**
+			*	Handles assignment of an Abstract.
+			* @TODO: Need to implement Foreign Key checks.
+		**/
+		
+		public function assign(){
+			if($_SERVER['REQUEST_METHOD'] == "POST"){
+				if($this->session->userdata("adminLoggedin") == true){
+					$data2 = array(
+						"reviewer1", "reviewer2", "reviewer3"
+					);
+					$where2 = array(
+						"abstractID" => $this->input->post("inputAbstractID")
+					);
+					$reviewerID = $this->input->post("inputReviewerID");
+					$abstractID = $this->input->post("inputAbstractID");
+					$q = $this->abstracts->select_where($data2, $where2);
+					if($q->num_rows > 0){
+						$qr = $q->result();
+						foreach($qr as $r){
+							$rev1 = $r->reviewer1;
+							$rev2 = $r->reviewer2;
+							$rev3 = $r->reviewer3;
+							if($r->reviewer1 == null){
+								if($reviewerID==$rev2 || $reviewerID==$rev3){
+									$flag = 0;
+									$error = "This reviewer has already been assigned to this Abstract.";
+								}
+								else{
+									$flag = 1;
+									$set_field = "reviewer1";
+								}
+							}
+							else if($r->reviewer2 == null){
+								if($reviewerID==$rev1 || $reviewerID==$rev3){
+									$flag = 0;
+									$error = "This reviewer has already been assigned to this Abstract.";
+								}
+								else{
+									$flag = 1;
+									$set_field = "reviewer2";
+								}
+							}
+							else if($r->reviewer3 == null){
+								if($reviewerID == $rev1 || $reviewerID == $rev2){
+									$flag = 0;
+									$error = "This reviewer has already been assigned to this Abstract.";
+								}
+								else{
+									$flag = 1;
+									$set_field = "reviewer3";
+								}
+							}
+							else{
+								$flag = 0;
+								$error = "All Reviewers have been assigned to this Abstract.";
+							}
+						}
+					}
+					if($flag == 1){
+						$data = array(
+							$set_field => $reviewerID
+						);
+							$where = array(
+								"abstractID" => $abstractID
+							);
+							$this->abstracts->update($data, $where);
+							echo json_encode(array(
+									"success" => true,
+									"abstractID" => $abstractID
+								)
+							);	
+					}
+					else{
+						echo json_encode(array(
+								"success" => false,
+								"error" => $error
+							)
+						);
+					}
+				}
+				else{
+					show_404();
+				}
+			}
+			else{
+				show_404();
+			}
+		}
+		
+	 	
 	 	/**
 			* Handles select_where of an Abstract.
 		**/
