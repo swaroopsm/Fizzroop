@@ -171,7 +171,27 @@
 				"registered"
 			);
 			$q = $this->attendees->select($data);
-			echo json_encode($q->result());
+			if($q->num_rows > 0){
+				foreach($q->result() as $attendee){
+					if($attendee->registered == 1){
+						$reg = "Yes";
+					}
+					else{
+						$reg = "No";
+					}
+					$attendees[] = array(
+						"attendeeID" => $attendee->attendeeID,
+						"attendeeFirstName" => $attendee->attendeeFirstName,
+						"attendeeLastName" => $attendee->attendeeLastName,
+						"attendeeEmail" => $attendee->attendeeEmail,
+						"registered" => $reg
+					);
+				}
+			}
+			else{
+				$attendees = array();
+			}
+			echo json_encode($attendees);
 		}
 		
 		
