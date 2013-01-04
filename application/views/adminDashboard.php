@@ -34,7 +34,7 @@
 
 				<h2>Attendees</h2>
 				<p>400 Registered Attendees</p>
-				<p><a href="#">Manage Attendees</a> | <a href="#">Add Attendee</a></p>
+				<p><a href="#" id="manageAttendees">Manage Attendees</a> | <a href="#">Add Attendee</a></p>
 			</div>
 
 			<div class="col">
