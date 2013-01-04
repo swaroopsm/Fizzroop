@@ -349,8 +349,8 @@ $("#manageAttendees").live("click", function(){
 							var reg="NO";
 						}
 						obj.push({
-							"attendeeFirstName": "<a href='#"+data[i].attendeeID+"' class='attendee_firstname'>"+data[i].attendeeFirstName+"</a>",
-							"attendeeLastName": "<a href='#"+data[i].attendeeID+"' class='attendee_lastname'>"+data[i].attendeeLastName+"</a>",
+							"attendeeFirstName": "<a href='#"+data[i].attendeeID+"' class='attendee_id'>"+data[i].attendeeFirstName+"</a>",
+							"attendeeLastName": "<a href='#"+data[i].attendeeID+"' class='attendee_id'>"+data[i].attendeeLastName+"</a>",
 							"attendeeEmail": data[i].attendeeEmail,
 							"registered": reg
 						});
@@ -392,6 +392,36 @@ $("#manageAttendees").live("click", function(){
 		{
 			window.location = "admin";
 			return true;
+		}
+	});
+	return false;
+});
+
+
+/**
+	*	Attendee Firstname/Lastname click function that returns json of all the details of an Attendee.
+**/
+
+$(".attendee_id").live("click", function(){
+	var id = $(this).attr("href");
+	id = id.substring(1);
+	$("#attendeeModal").modal({
+		keyboard: true,
+		backdrop: 'static',
+		show: true
+	});
+	$("#attendeesModalLabel").html("");
+	$("#attendeesData").html('').append("<div class='loader'><img src='images/loader.gif' /></div>");
+	$.getJSON("attendee/"+id, function(data){
+		console.log(data);
+		$("#attendeesModalLabel").html(data[0].attendeeFirstName+" "+data[0].attendeeLastName);
+		$("#attendeesData").html("");
+		var reg = data[0].registered;
+		if(reg==1){
+			$("#attendeesData").append("<h3>"+data[0].attendeeFirstName+" "+data[0].attendeeLastName+" is registered!</h3>");
+		}
+		else{
+			$("#attendeesData").append("<h3>"+data[0].attendeeFirstName+" "+data[0].attendeeLastName+" is not registered!</h3>");
 		}
 	});
 	return false;
