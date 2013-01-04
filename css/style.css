@@ -355,7 +355,7 @@ table tr:hover {
 
 h3#abstractModalLabel {
 	font-size: 21px;
-	font-weight: 300px;
+	font-weight: 300;
 }
 
 /** End styling for modal. **/
