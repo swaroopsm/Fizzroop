@@ -340,8 +340,48 @@ $("#manageAttendees").live("click", function(){
 			$("#ajaxer").html("<div class='loader'><img src='images/loader.gif'/></div>");
 			$.getJSON("attendee/view", function(data){
 				if(data.length > 0){
+					var obj = [];
+					for(var i=0;i<data.length;i++){
+						if(data[i].registered==1){
+							var reg="YES";
+						}
+						else{
+							var reg="NO";
+						}
+						obj.push({
+							"attendeeFirstName": "<a href='#"+data[i].attendeeID+"' class='attendee_firstname'>"+data[i].attendeeFirstName+"</a>",
+							"attendeeLastName": "<a href='#"+data[i].attendeeID+"' class='attendee_lastname'>"+data[i].attendeeLastName+"</a>",
+							"attendeeEmail": data[i].attendeeEmail,
+							"registered": reg
+						});
+					}
 					$("#ajaxer").html("<h2 id='title'>ATTENDEES MANAGER</h2><table id='test'></table>");
-					console.log(data);
+					$('table#test').dataTable({
+								"aaData": obj,
+								"sScrollX": "100%",
+				 				"bScrollCollapse": true,
+				 				"bScrollAutoCss": false,
+				 				"iDisplayLength": 50,
+								"aoColumns": [
+															
+															{
+																"mDataProp": "attendeeFirstName",
+																"sTitle": "Firstname"
+															},
+															{
+																"mDataProp": "attendeeLastName",
+																"sTitle": "Lastname"
+															},
+															{
+																"mDataProp": "attendeeEmail",
+																"sTitle": "Email"
+															},
+															{
+																"mDataProp": "registered",
+																"sTitle": "Registered?"
+															}
+								]
+						});
 				}
 				else{
 					$("#ajaxer").html("<h2 class='no-records'>\" There are no Attendees registered! \"</h2>");
