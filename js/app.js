@@ -226,18 +226,68 @@ $(".abstract_title").live("click", function(){
 	$.getJSON("abstract/"+id, function(data){
 		console.log(data); // take this out later post completion
 		$("#abstractModalLabel").html(data[0].abstractTitle);
+		var revf1="", revf2="", revf3="", revl1="", revl2="", revl3="";
+		var rec1="", rec2="", rec3="";
+		var recs = data[0].recommendations;
+		if(recs.length == 1){
+				rec1 = recs[0].recommendation;
+		}
+		else if(recs.length == 2){
+				rec1 = recs[0].recommendation;
+				rec2 = recs[1].recommendation;
+		}
+		else if(recs.length == 3){
+				rec1 = recs[0].recommendation;
+				rec2 = recs[1].recommendation;
+				rec3 = recs[2].recommendation;
+		}
+		else{
+			
+		}
+		
+		var comment = "";
+		var revs = data[0].reviewers;
+		if(revs.length == 1){
+				revf1 = revs[0].reviewerFirstName;
+				revl1 = revs[0].reviewerLastName;
+		}
+		else if(revs.length == 2){
+				revf1 = revs[0].reviewerFirstName;
+				revl1 = revs[0].reviewerLastName;
+				revf2 = revs[1].reviewerFirstName;
+				revl2 = revs[1].reviewerLastName;
+		}
+		else if(recs.length == 3){
+				revf1 = revs[0].reviewerFirstName;
+				revl1 = revs[0].reviewerLastName;
+				revf2 = revs[1].reviewerFirstName;
+				revl2 = revs[1].reviewerLastName;
+				revf3 = revs[2].reviewerFirstName;
+				revl3 = revs[2].reviewerLastName;
+		}
+		else{
+			
+		}
+		
+		if(data[0].comments.length > 0){
+			for(var k=0;k<data[0].comments.length;k++){
+				//@TODO @gonecase needs to fix some styling stuffs in order to display the comments neatly!!
+				console.log(data[0].comments[k].commentContent);
+			}
+		}
 		$("#abstractData").html(
 			"by "+data[0].attendeeFirstName+" "+data[0].attendeeLastName+"<br>"
 			+"<br>"+"<h2>content</h2>"
 			+data[0].abstractContent
 			+"<div id='imagesppt'></div>" // need to add the images folder and write necessary JS
 			+"<div class='reviewerclass'>"
-			+data[0].reviewers[0].reviewerFirstName+" "+data[0].reviewers[0].reviewerLastName // First Reviewer
-			+data[0].recommendations[0].recommendation+"<br>" // First reviewer recommendation
-			+data[0].reviewers[1].reviewerFirstName+" "+data[0].reviewers[1].reviewerLastName // Second Reviewer
-			+data[0].recommendations[1].recommendation+"<br>" // First reviewer recommendation
+			+revf1+" "+revl1 // First Reviewer
+			+rec1+"<br>" // First reviewer recommendation
+			+revf2+" "+revl2 // Second Reviewer
+			+rec2+"<br>" // First reviewer recommendation
 			// Third reviewer not present breaks the json. and it does not load. if else statement necessary
-			// +data[0].reviewers[2].reviewerFirstName+" "+data[0].reviewers[2].reviewerLastName // Third Reviewer
+			 +revf3+" "+revl3 // Third Reviewer
+			 +rec3
 			+"</div>"
 			);
 	});

@@ -113,14 +113,18 @@
 					foreach($row as $comment){
 						$rid = $comment->reviewerID;
 						$rev = $r->select_where(array("reviewerFirstName", "reviewerLastName"), array("reviewerID" => $rid));
+						$rev_res = $rev->result();
 						$result[] = array(
 							"commentContent" => $comment->commentContent,
 							"commentType" => $comment->commentType,
-							"reviewerFirstName" => $rev[0]->reviewerFirstName,
-							"reviewerLastName" => $rev[0]->reviewerLastName
+							"reviewerFirstName" => $rev_res[0]->reviewerFirstName,
+							"reviewerLastName" => $rev_res[0]->reviewerLastName
 						);
 					}
 				return $result;
+			}
+			else{
+			 return array();
 			}
 		}
 		
