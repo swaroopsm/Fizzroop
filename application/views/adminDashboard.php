@@ -67,6 +67,7 @@
 		  <div id="abstractBy"></div>
 		</div>
 		<div class="modal-body">
+			<div id="hidden_abstractID"></div>
 		  <div id="abstractContent"></div>
 		</div>
 		<div class="modal-footer">
