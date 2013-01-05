@@ -245,6 +245,7 @@ $(".abstract_title").live("click", function(){
 			
 		}
 		
+		var comment = "";
 		var revs = data[0].reviewers;
 		if(revs.length == 1){
 				revf1 = revs[0].reviewerFirstName;
@@ -266,6 +267,13 @@ $(".abstract_title").live("click", function(){
 		}
 		else{
 			
+		}
+		
+		if(data[0].comments.length > 0){
+			for(var k=0;k<data[0].comments.length;k++){
+				//@TODO @gonecase needs to fix some styling stuffs in order to display the comments neatly!!
+				console.log(data[0].comments[k].commentContent);
+			}
 		}
 		$("#abstractData").html(
 			"by "+data[0].attendeeFirstName+" "+data[0].attendeeLastName+"<br>"
