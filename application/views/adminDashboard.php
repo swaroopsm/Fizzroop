@@ -63,12 +63,11 @@
 	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  style="display: none;">
 		<div class="modal-header">
 		  <a class="close" data-dismiss="modal" aria-hidden="true" href="#">&times;</a>
-		  <h3 id="abstractModalLabel" contenteditable="true"></h3>
+		  <h3 id="abstractModalLabel"></h3>
+		  <div id="abstractBy"></div>
 		</div>
 		<div class="modal-body">
-		  <div id="abstractBy"></div>
-		  <h2>Content</h2>
-		  <div id="abstractContent" contenteditable="true"></div>
+		  <div id="abstractContent"></div>
 		</div>
 		<div class="modal-footer">
 		  <button class="btn btn-primary" id="abstract_edit_submit">Save changes</button>

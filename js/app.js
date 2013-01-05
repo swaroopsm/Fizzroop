@@ -279,9 +279,9 @@ $(".abstract_title").live("click", function(){
 		$("#abstractBy").html(
 			"by "+data[0].attendeeFirstName+" "+data[0].attendeeLastName+"<br>"
 			);
-			$("#abstractContent").html(
-			data[0].abstractContent
-			+"<div id='imagesppt'></div>" // need to add the images folder and write necessary JS
+		$("#abstractContent").html(
+			"<div id='imagesppt'></div>" // need to add the images folder and write necessary JS
+			+"<div class='abscontent' contenteditable='true'>"+data[0].abstractContent+"</div>"
 			+"<div class='reviewerclass'>"
 			+revf1+" "+revl1 // First Reviewer
 			+rec1+"<br>" // First reviewer recommendation
@@ -291,7 +291,7 @@ $(".abstract_title").live("click", function(){
 			 +revf3+" "+revl3 // Third Reviewer
 			 +rec3
 			+"</div>"
-			);
+		);
 	});
 	return false;
 });
