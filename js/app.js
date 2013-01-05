@@ -86,13 +86,13 @@ $("#manageAbstracts").live("click", function(){
 							for(var j=0;j<r.length;j++){
 								ra = r[j].recommendation;
 								switch(ra){
-									case '1': ra = "T"; //@TODO Add icon for Talk.
+									case '1': ra = "<img src='images/talk.png'>"; //@TODO Add icon for Talk.
 														break;
 												
-									case '2': ra = "P"; //@TODO Add icon for Poster.
+									case '2': ra = "<img src='images/poster.png'>"; //@TODO Add icon for Poster.
 														break;
 											
-									case '3': ra = "R"; //@TODO Add icon for Reject.
+									case '3': ra = "<img src='images/reject.gif'>"; //@TODO Add icon for Reject.
 														break;
 												
 									default : ra = "-";
