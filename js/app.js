@@ -281,6 +281,7 @@ $(".abstract_title").live("click", function(){
 			);
 		$("#abstractContent").html(
 			"<div id='imagesppt'></div>" // need to add the images folder and write necessary JS
+			+"<div id='modalleft'>"
 			+"<div id='abscontent' contenteditable='true'>"+data[0].abstractContent+"</div>"
 			+"<div class='reviewerclass'>"
 			+revf1+" "+revl1 // First Reviewer
