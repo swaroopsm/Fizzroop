@@ -224,12 +224,21 @@ $(".abstract_title").live("click", function(){
 	$("#abstractModalLabel").html("");
 	$("#abstractData").html('').append("<div class='loader'><img src='images/loader.gif' /></div>");
 	$.getJSON("abstract/"+id, function(data){
+		console.log(data); // take this out later post completion
 		$("#abstractModalLabel").html(data[0].abstractTitle);
 		$("#abstractData").html(
-			"by "+data[0].attendeeFirstName+" "+data[0].attendeeLastName+"<br>"+
-			"<br>"+"<h2>content</h2>"+
-			data[0].abstractContent+
-			"<div id='imagesppt'></div>" // need to add the images folder and write necessary JS
+			"by "+data[0].attendeeFirstName+" "+data[0].attendeeLastName+"<br>"
+			+"<br>"+"<h2>content</h2>"
+			+data[0].abstractContent
+			+"<div id='imagesppt'></div>" // need to add the images folder and write necessary JS
+			+"<div class='reviewerclass'>"
+			+data[0].reviewers[0].reviewerFirstName+" "+data[0].reviewers[0].reviewerLastName // First Reviewer
+			+data[0].recommendations[0].recommendation+"<br>" // First reviewer recommendation
+			+data[0].reviewers[1].reviewerFirstName+" "+data[0].reviewers[1].reviewerLastName // Second Reviewer
+			+data[0].recommendations[1].recommendation+"<br>" // First reviewer recommendation
+			// Third reviewer not present breaks the json. and it does not load. if else statement necessary
+			// +data[0].reviewers[2].reviewerFirstName+" "+data[0].reviewers[2].reviewerLastName // Third Reviewer
+			+"</div>"
 			);
 	});
 	return false;
