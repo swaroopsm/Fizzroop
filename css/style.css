@@ -402,3 +402,13 @@ a.close:active{
 	margin-bottom: 9px;
 	border-bottom: 1px grey solid;
 }
+
+
+[contenteditable="true"]:focus::before{
+	content:"Careful! You are editing this field";
+	color: red;
+	display: block;
+	text-align: right;
+	border-bottom: 1px red dotted;
+	
+}
