@@ -222,7 +222,8 @@ $(".abstract_title").live("click", function(){
 		show: true
 	});
 	$("#abstractModalLabel").html("");
-	$("#abstractData").html('').append("<div class='loader'><img src='images/loader.gif' /></div>");
+	$("#abstractBy").html('').append("<div class='loader'><img src='images/loader.gif' /></div>");
+	$("#abstractContent").html('');
 	$.getJSON("abstract/"+id, function(data){
 		console.log(data); // take this out later post completion
 		$("#abstractModalLabel").html(data[0].abstractTitle);
@@ -275,10 +276,11 @@ $(".abstract_title").live("click", function(){
 				console.log(data[0].comments[k].commentContent);
 			}
 		}
-		$("#abstractData").html(
+		$("#abstractBy").html(
 			"by "+data[0].attendeeFirstName+" "+data[0].attendeeLastName+"<br>"
-			+"<br>"+"<h2>content</h2>"
-			+data[0].abstractContent
+			);
+			$("#abstractContent").html(
+			data[0].abstractContent
 			+"<div id='imagesppt'></div>" // need to add the images folder and write necessary JS
 			+"<div class='reviewerclass'>"
 			+revf1+" "+revl1 // First Reviewer
