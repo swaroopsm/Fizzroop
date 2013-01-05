@@ -123,6 +123,9 @@
 					}
 				return $result;
 			}
+			else{
+			 return array();
+			}
 		}
 		
 		
