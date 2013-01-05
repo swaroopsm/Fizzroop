@@ -223,7 +223,7 @@ $(".abstract_title").live("click", function(){
 	});
 	$("#abstractModalLabel").html("");
 	$("#abstractBy").html('').append("<div class='loader'><img src='images/loader.gif' /></div>");
-	$("#abstractContent").html('');
+	$("#abstractContent").html("");
 	$.getJSON("abstract/"+id, function(data){
 		console.log(data); // take this out later post completion
 		$("#abstractModalLabel").html(data[0].abstractTitle+"<input type='hidden' id='abstractID' value='"+data[0].abstractID+"'/>");
@@ -281,16 +281,20 @@ $(".abstract_title").live("click", function(){
 			);
 		$("#abstractContent").html(
 			"<div id='imagesppt'></div>" // need to add the images folder and write necessary JS
-			+"<div class='abscontent' contenteditable='true'>"+data[0].abstractContent+"</div>"
+			+"<div id='modalleft'>"
+			+"<div id='abscontent' contenteditable='true'>"+data[0].abstractContent+"</div>"
 			+"<div class='reviewerclass'>"
 			+revf1+" "+revl1 // First Reviewer
 			+rec1+"<br>" // First reviewer recommendation
 			+revf2+" "+revl2 // Second Reviewer
 			+rec2+"<br>" // First reviewer recommendation
 			// Third reviewer not present breaks the json. and it does not load. if else statement necessary
-			 +revf3+" "+revl3 // Third Reviewer
-			 +rec3
-			+"</div>"
+			+revf3+" "+revl3 // Third Reviewer
+			+rec3
+			+"<div id='actions'>"+""+"</div>"
+			+"</div>" // the left div
+			+"<div class='clear'></div>" // clearing floats before the comments section
+			+"<div id='comments'>"+"</div>"
 		);
 	});
 	return false;
@@ -491,7 +495,7 @@ $(".attendee_id").live("click", function(){
 $("#abstract_edit_submit").live("click", function(){
 	var id = $("#abstractID").val();
 	var title = $("#abstractModalLabel").html().replace(/&nbsp;/gi, "");
-	var content = $("#abstractContent").html().replace(/&nbsp;/gi, "");
+	var content = $("#abscontent").html().replace(/&nbsp;/gi, "");
 	var title_strip_html = title.replace(/(<([^>]+)>)/ig,"");
 	var content_strip_html = content.replace(/(<([^>]+)>)/ig,"");
 	$.post("abstract/update", {inputAbstractID: id, inputAbstractTitle: title, inputAbstractContent: content},

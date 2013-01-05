@@ -47,6 +47,13 @@ table {
 	border-spacing: 0;
 }
 
+/*CONTENTEDITABLE RESET*/
+
+[contenteditable="true"]:active, [contenteditable="true"]:focus{
+border:none;
+outline:none;
+}
+
 
 /*
 RESET OVER
@@ -257,9 +264,9 @@ table tr:hover {
 .modal {
   position: absolute;
   top: 0px;
-  left: 290px;
+  left: 280px;
   z-index: 1050;
-  width: 98%;
+  width: 99%;
   margin-left: -280px;
   background-color: #ffffff;
   border: 1px solid #999;
@@ -286,7 +293,7 @@ table tr:hover {
 }
 
 .modal.fade.in {
-  top: 10%;
+  top: 0%;
 }
 
 .modal-header {
@@ -377,12 +384,31 @@ a.close:active{
 
 #imagesppt {
 	width: 1024px;
-	height: 768px;
+	max-width: 75%;
+	min-height: 500px;
 	background-color: black;
 	float: left;
+	margin-right: 10px;
 }
 
-.abscontent {
+#modalleft {
 	float: left;
-	width: 180px;
+	width: 23%;
+	margin-bottom: 10px;
+}
+
+#abscontent {
+	padding-bottom: 10px;
+	margin-bottom: 9px;
+	border-bottom: 1px grey solid;
+}
+
+
+[contenteditable="true"]:focus::before{
+	content:"Careful! You are editing this field";
+	color: red;
+	display: block;
+	text-align: right;
+	border-bottom: 1px red dotted;
+	
 }
