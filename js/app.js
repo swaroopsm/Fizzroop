@@ -291,8 +291,10 @@ $(".abstract_title").live("click", function(){
 			// Third reviewer not present breaks the json. and it does not load. if else statement necessary
 			+revf3+" "+revl3 // Third Reviewer
 			+rec3
-			+"<div id='actions'>"+"</div>"
-			+"</div>"
+			+"<div id='actions'>"+""+"</div>"
+			+"</div>" // the left div
+			+"<div class='clear'></div>" // clearing floats before the comments section
+			+"<div id='comments'>"+"</div>"
 		);
 	});
 	return false;
