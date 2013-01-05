@@ -226,7 +226,7 @@ $(".abstract_title").live("click", function(){
 	$("#abstractContent").html('');
 	$.getJSON("abstract/"+id, function(data){
 		console.log(data); // take this out later post completion
-		$("#abstractModalLabel").html(data[0].abstractTitle);
+		$("#abstractModalLabel").html(data[0].abstractTitle+"<input type='hidden' id='abstractID' value='"+data[0].abstractID+"'/>");
 		var revf1="", revf2="", revf3="", revl1="", revl2="", revl3="";
 		var rec1="", rec2="", rec3="";
 		var recs = data[0].recommendations;
@@ -486,4 +486,16 @@ $(".attendee_id").live("click", function(){
 		}
 	});
 	return false;
+});
+
+$("#abstract_edit_submit").live("click", function(){
+	var id = $("#abstractID").val();
+	var title = $("#abstractModalLabel").html().replace(/&nbsp;/gi, "");
+	var content = $("#abstractContent").html().replace(/&nbsp;/gi, "");
+	var title_strip_html = title.replace(/(<([^>]+)>)/ig,"");
+	var content_strip_html = content.replace(/(<([^>]+)>)/ig,"");
+	$.post("abstract/update", {inputAbstractID: id, inputAbstractTitle: title, inputAbstractContent: content},
+	function(data){
+		console.log(data);
+	});
 });
