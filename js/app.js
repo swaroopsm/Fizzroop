@@ -226,7 +226,8 @@ $(".abstract_title").live("click", function(){
 	$("#abstractContent").html("");
 	$.getJSON("abstract/"+id, function(data){
 		console.log(data); // take this out later post completion
-		$("#abstractModalLabel").html(data[0].abstractTitle+"<input type='hidden' id='abstractID' value='"+data[0].abstractID+"'/>");
+		$("#hidden_abstractID").html("<input type='hidden' id='abstractID' value='"+data[0].abstractID+"'/>");
+		$("#abstractModalLabel").html(data[0].abstractTitle);
 		var revf1="", revf2="", revf3="", revl1="", revl2="", revl3="";
 		var rec1="", rec2="", rec3="";
 		var recs = data[0].recommendations;
