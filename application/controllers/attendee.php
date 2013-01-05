@@ -37,12 +37,11 @@
 				redirect(base_url()."login");
 			}
 		}
-		
-		
+
 		/**
 			* Handles creation of an Attendee.
 		**/
-		
+
 		public function create(){
 			if($_SERVER['REQUEST_METHOD'] == "POST"){
 				$data = array(
