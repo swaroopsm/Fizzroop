@@ -416,3 +416,7 @@ a.close:active{
 .alert-danger{
 	color: red;
 }
+
+.alert-success{
+	color: green;
+}
