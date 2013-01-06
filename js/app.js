@@ -487,9 +487,16 @@ $(".attendee_id").live("click", function(){
 	$("#attendeesModalLabel").html("");
 	$("#attendeesData").html('').append("<div class='loader'><img src='images/loader.gif' /></div>");
 	$.getJSON("attendee/"+id, function(data){
-		console.log(data);
+		$("#hidden_attendeeID").html("<input type='hidden' id='inputAttendeeID' value='"+data[0].attendeeID+"'/>");
 		$("#attendeesModalLabel").html(data[0].attendeeFirstName+" "+data[0].attendeeLastName);
 		$("#attendeesData").html("");
+		$("#attendeesData").append(
+			"<div id='editAttendeeForm'>"
+					+"Firstname: <input id='inputAttendeeFirstName' value='"+data[0].attendeeFirstName+"'<br><br>"
+					+"Lastname: <input id='inputAttendeeLastName' value='"+data[0].attendeeLastName+"'<br><br>"
+					+"Email: <input id='inputAttendeeEmail' value='"+data[0].attendeeEmail+"'"
+					+"</div>"
+		);
 		var reg = data[0].registered;
 		if(reg==1){
 			$("#attendeesData").append("<h3>"+data[0].attendeeFirstName+" "+data[0].attendeeLastName+" is registered!</h3>");
