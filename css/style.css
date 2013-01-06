@@ -412,3 +412,7 @@ a.close:active{
 	border-bottom: 1px red dotted;
 	
 }
+
+.alert-danger{
+	color: red;
+}
