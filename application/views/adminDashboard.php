@@ -125,14 +125,14 @@
 			<div id="js-messages"></div>
 		  <?php
 		  	 echo form_open("reviewer/create", array("class" => "form form-horizontal", "id" => "new_reviewer", "style" => "margin-left: 0px;"));
-		  	echo form_label("Firstname:", "newReviewerFirstName", array("class" => "control-label")); 
-		  	echo form_input(array("name" => "newReviewerFirstName", "id" => "newReviewerFirstName", "class" => "", "placeholder" => "Reviewer's Firstname"));
-		  	echo form_label("Lastname:", "newReviewerLastName", array("class" => "control-label")); 
-		  	echo form_input(array("name" => "newReviewerLastName", "id" => "newReviewerLastName", "class" => "", "placeholder" => "Reviewer's Lastname"));
-		  	echo form_label("Email:", "newReviewerEmail", array("class" => "control-label")); 
-		  	echo form_input(array("name" => "newReviewerEmail", "id" => "newReviewerEmail", "class" => "", "placeholder" => "Reviewer's Email"));
-		  	echo form_label("Password:", "newReviewerPassword", array("class" => "control-label")); 
-		  	echo form_password(array("name" => "newReviewerPassword", "id" => "newReviewerPassword", "class" => "", "placeholder" => "Reviewer' Password"));
+		  	echo form_label("Firstname:", "inputFirstName", array("class" => "control-label")); 
+		  	echo form_input(array("name" => "inputFirstName", "id" => "inputFirstName", "class" => "", "placeholder" => "Reviewer's Firstname"));
+		  	echo form_label("Lastname:", "inputLastName", array("class" => "control-label")); 
+		  	echo form_input(array("name" => "inputLastName", "id" => "inputLastName", "class" => "", "placeholder" => "Reviewer's Lastname"));
+		  	echo form_label("Email:", "inputEmail", array("class" => "control-label")); 
+		  	echo form_input(array("name" => "inputEmail", "id" => "inputEmail", "class" => "", "placeholder" => "Reviewer's Email"));
+		  	echo form_label("Password:", "inputPassword", array("class" => "control-label")); 
+		  	echo form_password(array("name" => "inputPassword", "id" => "inputPassword", "class" => "", "placeholder" => "Reviewer' Password"));
 		  ?>
 		</div>
 		<div class="modal-footer">
