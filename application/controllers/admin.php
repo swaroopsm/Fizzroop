@@ -12,11 +12,14 @@
 		public function index(){
 			if($this->session->userdata("adminLoggedin")){
 				$this->load->model("abstracts");
+				$this->load->model("reviewers");
 				$a = $this->abstracts->select(array("abstractID"));
 				$approved = $this->abstracts->select_where_plain(array("abstractID"), array("approved" => 1));
+				$r = $this->reviewers->select(array("reviewerID"));
 				$data['page_title'] = "Welcome Admin!";
 				$data['total_abstracts'] = $a->num_rows;
 				$data['approved_abstracts'] = $approved->num_rows();
+				$data['total_reviewers'] = $r->num_rows();
 				$this->load->view("adminDashboard", $data);
 			}
 			else{
