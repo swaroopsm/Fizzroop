@@ -374,8 +374,8 @@ $(".reviewer_id").live("click", function(){
 		backdrop: 'static',
 		show: true
 	});
-	$("#abstractModalLabel").html("");
-	$("#abstractData").html('').append("<div class='loader'><img src='images/loader.gif' /></div>");
+	$("#reviewersModalLabel").html("");
+	$("#reviewersData").html('').append("<div class='loader'><img src='images/loader.gif' /></div>");
 	$.getJSON("reviewer/"+id, function(data){
 		$("#hidden_reviewerID").html("<input type='hidden' id='inputReviewerID' value='"+data.reviewerID+"'/>");
 		$("#reviewersModalLabel").html(data.reviewerFirstName+" "+data.reviewerLastName);
@@ -390,7 +390,7 @@ $(".reviewer_id").live("click", function(){
 					+"</div>"
 				);
 				for(var i=0;i<data.abstracts.length;i++){
-					$("#reviewersData").append("Abstract "+(i+1)+": "+data.abstracts[i].abstractTitle+" <a href='#"+data.abstracts[i].abstractID+"' class='unassign_reviewer'>Unassign</a><br>");
+					$("#reviewersData").append("<div id='abstract_"+data.abstracts[i].abstractID+"'>Abstract "+(i+1)+": "+data.abstracts[i].abstractTitle+" <a href='#"+data.abstracts[i].abstractID+"' class='unassign_reviewer'>Unassign</a><br></div>");
 				}
 			}
 			else{
@@ -532,6 +532,27 @@ $("#reviewer_edit_submit").live("click", function(){
 		},
 	function(data){
 		console.log(data);
+	});
+	return false;
+});
+
+
+/**
+	*	Unassign click function.
+**/
+
+$(".unassign_reviewer").live("click", function(){
+	var abstractID = $(this).attr("href").substring(1);
+	var reviewerID = $("#inputReviewerID").val();
+	$.post("abstract/unassign", {
+		inputReviewerID: reviewerID,
+		inputAbstractID: abstractID
+	},
+	function(data){
+		obj = $.parseJSON(data);
+		if(obj.success){
+			$("#abstract_"+abstractID).fadeOut(300);
+		}
 	});
 	return false;
 });
