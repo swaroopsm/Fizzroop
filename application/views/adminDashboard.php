@@ -30,7 +30,7 @@
 
 				<h2>Reviewers</h2>
 				<p><?php echo $total_reviewers; ?> reviewers | 140 reviews commented | <?php echo $recommendations; ?> recommended</p>
-				<p><a href="#" id="manageReviewers">Manage Reviewers</a> | <a href="#">Add reviewer</a></p>
+				<p><a href="#" id="manageReviewers">Manage Reviewers</a> | <a href="#" id="add_reviewer">Add reviewer</a></p>
 
 				<h2>Attendees</h2>
 				<p><?php echo $registered_attendees; ?> Registered Attendees</p>
@@ -112,6 +112,35 @@
 	</div>
 	
 	<!-- End Attendee Modal -->
+	
+	
+	<!-- Add Reviewer Modal -->
+	
+	<div id="addReviewerModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true"  style="display: none;">
+		<div class="modal-header">
+		  <a class="close" data-dismiss="modal" aria-hidden="true" href="#">&times;</a>
+		  <h3>Add Reviewer</h3>
+		</div>
+		<div class="modal-body">
+			<div id="js-messages"></div>
+		  <?php
+		  	 echo form_open("reviewer/create", array("class" => "form form-horizontal", "id" => "new_reviewer", "style" => "margin-left: 0px;"));
+		  	echo form_label("Firstname:", "newReviewerFirstName", array("class" => "control-label")); 
+		  	echo form_input(array("name" => "newReviewerFirstName", "id" => "newReviewerFirstName", "class" => "", "placeholder" => "Reviewer's Firstname"));
+		  	echo form_label("Lastname:", "newReviewerLastName", array("class" => "control-label")); 
+		  	echo form_input(array("name" => "newReviewerLastName", "id" => "newReviewerLastName", "class" => "", "placeholder" => "Reviewer's Lastname"));
+		  	echo form_label("Email:", "newReviewerEmail", array("class" => "control-label")); 
+		  	echo form_input(array("name" => "newReviewerEmail", "id" => "newReviewerEmail", "class" => "", "placeholder" => "Reviewer's Email"));
+		  	echo form_label("Password:", "newReviewerPassword", array("class" => "control-label")); 
+		  	echo form_password(array("name" => "newReviewerPassword", "id" => "newReviewerPassword", "class" => "", "placeholder" => "Reviewer' Password"));
+		  ?>
+		</div>
+		<div class="modal-footer">
+		  <input type="submit" value="Add Reviewer"/>
+		</div>
+	</div>
+	
+	<!-- End Add Reviewer Modal -->
 	
 	<div class="container">
 		<div id="ajaxer">
