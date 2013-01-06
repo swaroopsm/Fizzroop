@@ -11,7 +11,10 @@
 		
 		public function index(){
 			if($this->session->userdata("adminLoggedin")){
+				$this->load->model("abstracts");
+				$a = $this->abstracts->select(array("abstractID"));
 				$data['page_title'] = "Welcome Admin!";
+				$data['total_abstracts'] = $a->num_rows;
 				$this->load->view("adminDashboard", $data);
 			}
 			else{
