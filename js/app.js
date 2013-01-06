@@ -381,8 +381,15 @@ $(".reviewer_id").live("click", function(){
 		if(data.abstracts){
 			if(data.abstracts.length>0){
 				$("#reviewersData").html("");
+				$("#reviewersData").append(
+					"<div id='editReviewerForm'>"
+					+"Firstname: <input id='inputFirstName' value='"+data.reviewerFirstName+"'<br><br>"
+					+"Lastname: <input id='inputLastName' value='"+data.reviewerLastName+"'<br><br>"
+					+"Email: <input id='inputEmail' value='"+data.reviewerEmail+"'"
+					+"</div>"
+				);
 				for(var i=0;i<data.abstracts.length;i++){
-					$("#reviewersData").append("Abstract "+(i+1)+": "+data.abstracts[i].abstractTitle+"<br>");
+					$("#reviewersData").append("Working Abstracts: <br>Abstract "+(i+1)+": "+data.abstracts[i].abstractTitle+"<br>");
 				}
 			}
 			else{
