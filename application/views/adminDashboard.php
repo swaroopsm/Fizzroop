@@ -102,11 +102,12 @@
 		  <a class="close" data-dismiss="modal" aria-hidden="true" href="#">&times;</a>
 		  <h3 id="attendeesModalLabel"></h3>
 		</div>
+		<div id="hidden_attendeeID"></div>
 		<div class="modal-body" id="attendeesData">
 		  <p></p>
 		</div>
 		<div class="modal-footer">
-		  <button class="btn btn-primary">Save changes</button>
+		  <button class="btn btn-primary" id="attendee_edit_submit">Save changes</button>
 		</div>
 	</div>
 	
