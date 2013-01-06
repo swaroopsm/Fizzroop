@@ -377,6 +377,7 @@ $(".reviewer_id").live("click", function(){
 	$("#abstractModalLabel").html("");
 	$("#abstractData").html('').append("<div class='loader'><img src='images/loader.gif' /></div>");
 	$.getJSON("reviewer/"+id, function(data){
+		$("#hidden_reviewerID").html("<input type='hidden' id='inputReviewerID' value='"+data.reviewerID+"'/>");
 		$("#reviewersModalLabel").html(data.reviewerFirstName+" "+data.reviewerLastName);
 		if(data.abstracts){
 			if(data.abstracts.length>0){
@@ -500,6 +501,11 @@ $(".attendee_id").live("click", function(){
 	return false;
 });
 
+
+/**
+	* Edit button action for Abstracts.
+**/
+
 $("#abstract_edit_submit").live("click", function(){
 	var id = $("#abstractID").val();
 	var title = $("#abstractModalLabel").html().replace(/&nbsp;/gi, "");
@@ -510,4 +516,22 @@ $("#abstract_edit_submit").live("click", function(){
 	function(data){
 		console.log(data);
 	});
+});
+
+
+/**
+	*	Edit button action for Reviewers.
+**/
+
+$("#reviewer_edit_submit").live("click", function(){
+	$.post("reviewer/update", {
+			inputFirstName: $.trim($("#inputFirstName").val()),
+			inputLastName: $.trim($("#inputLastName").val()),
+			inputEmail: $.trim($("#inputEmail").val()),
+			inputReviewerID: $("#inputReviewerID").val()
+		},
+	function(data){
+		console.log(data);
+	});
+	return false;
 });
