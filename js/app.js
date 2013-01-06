@@ -390,7 +390,7 @@ $(".reviewer_id").live("click", function(){
 					+"</div>"
 				);
 				for(var i=0;i<data.abstracts.length;i++){
-					$("#reviewersData").append("Working Abstracts: <br>Abstract "+(i+1)+": "+data.abstracts[i].abstractTitle+"<br>");
+					$("#reviewersData").append("Abstract "+(i+1)+": "+data.abstracts[i].abstractTitle+" <a href='#"+data.abstracts[i].abstractID+"' class='unassign_reviewer'>Unassign</a><br>");
 				}
 			}
 			else{
