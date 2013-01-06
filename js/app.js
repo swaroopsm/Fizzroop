@@ -580,3 +580,18 @@ $("#attendee_edit_submit").live("click", function(){
 		console.log(data);
 	});
 });
+
+
+/**
+	* Add Reviewer Modal open.
+**/
+
+$("#add_reviewer").live("click", function(){
+	$("#addReviewerModal").modal({
+		keyboard: true,
+		backdrop: 'static',
+		show: true
+	});
+	return false;
+});
+
