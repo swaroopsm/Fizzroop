@@ -13,8 +13,10 @@
 			if($this->session->userdata("adminLoggedin")){
 				$this->load->model("abstracts");
 				$a = $this->abstracts->select(array("abstractID"));
+				$approved = $this->abstracts->select_where_plain(array("abstractID"), array("approved" => 1));
 				$data['page_title'] = "Welcome Admin!";
 				$data['total_abstracts'] = $a->num_rows;
+				$data['approved_abstracts'] = $approved->num_rows();
 				$this->load->view("adminDashboard", $data);
 			}
 			else{
