@@ -25,7 +25,7 @@
 			
 			<div class="col mid">
 				<h2>Abstracts</h2>
-				<p><?php echo $total_abstracts; ?> submitted | <?php echo $approved_abstracts; ?> approved | 10 reviewers | 140 have comments</p>
+				<p><?php echo $total_abstracts; ?> submitted | <?php echo $approved_abstracts; ?> approved | <?php echo $total_reviewers; ?> reviewers | 140 have comments</p>
 				<p><a href="#" id="manageAbstracts">Manage Abstracts</a></p>
 
 				<h2>Reviewers</h2>
