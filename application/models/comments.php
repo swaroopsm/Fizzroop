@@ -50,6 +50,17 @@
 		
 		
 		/**
+			*	Returns count of Abstracts that have comments.
+		**/
+		
+		public function abs_with_comments_count(){
+			$this->db->select("abstractID, COUNT(*) AS count");
+			$this->db->from("comments");
+			$this->db->group_by("abstractID");
+			return $this->db->get();
+		}
+		
+		/**
 			* Updates values of a particular Comment.
 		*/
 		
