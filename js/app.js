@@ -37,10 +37,10 @@ jQuery.fn.validateFormEmpty = function(){
 jQuery.fn.asyncSubmit = function(options){
 	
 	$(options.loadTarget).html(options.loader).show();
-	var inputsList = $(this).find("input[type=text]");
+	var inputsList = $(this).find("input[type=text], input[type=password]");
 	var paramList="";
 	for(var i=0;i<inputsList.length;i++){
-		paramList = paramList+inputsList[i].name+"= "+inputsList[i].value+"&";
+		paramList = paramList+inputsList[i].name+"="+inputsList[i].value+"&";
 	}
 	paramList = paramList.substring(0,paramList.length-1);
 	var url = $(this).attr("action");
@@ -54,7 +54,7 @@ jQuery.fn.asyncSubmit = function(options){
 			var obj=jQuery.parseJSON(data);
 			var resp;
 			if(obj.success)
-				resp = "<span class='span6 alert alert-success'><a class='close' data-dismiss='alert' href='#'>&times;</a>"+options.successMsg+"</span>";
+				resp = "<span class='span6 alert alert-success'>"+options.successMsg+"</span>";
 			else
 				resp = "<span class='span6 alert alert-danger'>"+options.errorMsg+"</span>";
 			$(options.target).html(resp).hide().fadeIn(500);
@@ -587,6 +587,7 @@ $("#attendee_edit_submit").live("click", function(){
 **/
 
 $("#add_reviewer").live("click", function(){
+	$("#js-messages").hide();
 	$("#addReviewerModal").modal({
 		keyboard: true,
 		backdrop: 'static',
@@ -595,3 +596,23 @@ $("#add_reviewer").live("click", function(){
 	return false;
 });
 
+
+/**
+	* Add Reviewer click function.
+**/
+
+$("form#new_reviewer").submit(function(){
+	var stat = $(this).validateFormEmpty();
+	if(stat.success){
+		$(this).asyncSubmit({
+			'target': '#js-messages',
+			'loadTarget': '#loader',
+			'loader': '<br><img src="<?php echo base_url()."images/loader.gif"; ?>">',
+			'successMsg': 'Reviewer added successfully!',
+			'errorMsg': 'There was an error, please try again later!'
+		});
+	}else{
+		$("#js-messages").html("<span class='span6 alert alert-danger'>"+stat.errorMsg+"</span>").hide().fadeIn(500);
+	}
+	return false;
+});
