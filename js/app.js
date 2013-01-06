@@ -563,3 +563,20 @@ $(".unassign_reviewer").live("click", function(){
 	});
 	return false;
 });
+
+
+/**
+	*	Edit button action for Attendee.
+**/
+
+$("#attendee_edit_submit").live("click", function(){
+	$.post("attendee/update", {
+		inputAttendeeID: $("#inputAttendeeID").val(),
+		inputFirstName: $.trim($("#inputAttendeeFirstName").val()),
+		inputLastName: $.trim($("#inputAttendeeLastName").val()),
+		inputEmail: $.trim($("#inputAttendeeEmail").val())
+	},
+	function(data){
+		console.log(data);
+	});
+});
