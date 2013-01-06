@@ -36,6 +36,14 @@
 		}	
 		
 		
+		/**
+			*	Handles select of all Abstracts.
+		**/
+		public function select($data){
+			$this->db->select($data);
+			return $this->db->get("abstracts");
+		}
+		
 		
 		/**
 			* Handles select_where of an Abstract.
