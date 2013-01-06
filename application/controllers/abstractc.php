@@ -328,6 +328,72 @@
 			}
 		}
 		
+		
+		/**
+			*	Handles unassignment of a Reviewer for a particular Abstract.
+		**/
+		
+		public function unassign(){
+			if($_SERVER['REQUEST_METHOD'] == "POST"){
+				if($this->session->userdata("adminLoggedin") == true){
+					$reviewerID = $this->input->post("inputReviewerID");
+					$abstractID = $this->input->post("inputAbstractID");
+					$data2 = array(
+						"reviewer1", "reviewer2", "reviewer3"
+					);
+					$where2 = array(
+						"abstractID" => $abstractID
+					);
+					$q = $this->abstracts->select_where($data2, $where2);
+					if($q->num_rows() > 0){
+						foreach($q->result() as $r){
+							if($r->reviewer1 == $reviewerID){
+								$flag = 1;
+								$data = array(
+									"reviewer1" => NULL
+								);
+							}
+							else if($r->reviewer2 == $reviewerID){
+								$flag = 1;
+								$data = array(
+									"reviewer2" => NULL
+								);
+							}
+							else if($r->reviewer3 == $reviewerID){
+								$flag = 1;
+								$data = array(
+									"reviewer3" => NULL
+								);
+							}
+							else{
+								$flag = 2;
+								$error = "It doesn't exist!";
+							}
+						}
+						if($flag == 1){
+							$this->abstracts->update($data, array("abstractID" => $abstractID));
+							echo json_encode(array(
+								"success" => true
+							));
+						}
+						if($flag == 2){
+							echo json_encode(array(
+								"success" => false,
+								"error" => $error
+							));
+						}
+					}
+				}
+				else{
+					show_404();
+				}
+			}
+			else{
+				show_404();
+			}
+		}
+		
+		
 	 	
 	 	/**
 			* Handles select_where of an Abstract.
