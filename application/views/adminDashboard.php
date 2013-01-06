@@ -84,11 +84,12 @@
 		  <a class="close" data-dismiss="modal" aria-hidden="true" href="#">&times;</a>
 		  <h3 id="reviewersModalLabel"></h3>
 		</div>
+		<div id="hidden_reviewerID"></div>
 		<div class="modal-body" id="reviewersData">
 		  <p></p>
 		</div>
 		<div class="modal-footer">
-		  <button class="btn btn-primary">Save changes</button>
+		  <button class="btn btn-primary" id="reviewer_edit_submit">Save changes</button>
 		</div>
 	</div>
 	
