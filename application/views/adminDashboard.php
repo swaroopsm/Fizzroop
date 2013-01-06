@@ -29,7 +29,7 @@
 				<p><a href="#" id="manageAbstracts">Manage Abstracts</a></p>
 
 				<h2>Reviewers</h2>
-				<p>10 reviewers | 140 reviews commented | 160 recommended</p>
+				<p>10 reviewers | 140 reviews commented | <?php print_r($recommendations); ?> recommended</p>
 				<p><a href="#" id="manageReviewers">Manage Reviewers</a> | <a href="#">Add reviewer</a></p>
 
 				<h2>Attendees</h2>
