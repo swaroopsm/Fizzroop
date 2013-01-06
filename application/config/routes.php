@@ -56,6 +56,7 @@ $route['abstract/delete'] = "abstractc/delete";
 $route['abstract/delete_abstractImage'] = "abstractc/delete_abstractImage";
 $route['abstract/delete_allAbstractImage'] = "abstractc/delete_allAbstractImage";
 $route['abstract/assign'] = "abstractc/assign";
+$route['abstract/unassign'] = "abstractc/unassign";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
