@@ -211,8 +211,7 @@
 			$q = $a->select_where(
 				array(
 					"abstractID",
-					"abstractContent",
-					"abstractImageFolder",
+					"abstractTitle",
 					"active",
 					"approved"
 				),
@@ -250,8 +249,7 @@
 						}
 						$result[] = array(
 						"abstractID" => $abstractID,
-						"abstractContent" => $abstract->abstractContent,
-						"abstractImageFolder" => $abstract->abstractImageFolder,
+						"abstractTitle" => $abstract->abstractTitle,
 						"active" => $abstract->active,
 						"approved" => $abstract->approved,
 						"score" => $ab_score,
