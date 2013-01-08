@@ -198,6 +198,72 @@
 		}
 		
 		
+		
+		/**
+			*	Handles Reviewers table that conssts of assigned Abstracts.
+		**/
+		
+		public function reviewer_abstracts(){
+			$reviewerID = 26;//$this->input->post("reviewerID");
+			$conferenceID = $this->session->userdata("conferenceID");
+			require_once(APPPATH."controllers/abstractc.php");
+			$a = new Abstractc();
+			$q = $a->select_where(
+				array(
+					"abstractID",
+					"abstractContent",
+					"abstractImageFolder",
+					"active",
+					"approved"
+				),
+				"reviewer1 = $reviewerID OR reviewer2 = $reviewerID OR reviewer3 = $reviewerID AND (conferenceID = $conferenceID)",
+				1
+			);
+			if($q->num_rows() > 0){
+				require_once(APPPATH."controllers/score.php");
+				$s = new Score();
+				foreach($q->result() as $abstract){
+					$abstractID = $abstract->abstractID;
+					$score = $s->select_where(
+						array(
+							"score",
+							"recommendation"
+						),
+						array(
+							"abstractID" => $abstractID,
+							"reviewerID" => $reviewerID
+						)
+					);
+					$count = 0;
+					foreach($score as $s_count){
+						if($s_count->score){
+							$ab_score = $s_count->score;
+						}
+						else{
+							$ab_score = NULL;
+						}
+						if($s_count->recommendation){
+							$ab_recommendation = $s_count->recommendation;
+						}
+						else{
+							$ab_recommendation = NULL;
+						}
+						$result[] = array(
+						"abstractID" => $abstractID,
+						"abstractContent" => $abstract->abstractContent,
+						"abstractImageFolder" => $abstract->abstractImageFolder,
+						"active" => $abstract->active,
+						"approved" => $abstract->approved,
+						"score" => $ab_score,
+						"recommendation" => $ab_recommendation
+					);
+					}	
+				}
+				echo json_encode($result);
+			}
+		}
+		
+		
 		/**
 			* Handles password reset for a Reviewer.
 		**/
