@@ -20,18 +20,24 @@
 		**/
 		
 		public function index(){
-			$q = $this->reviewers->select_where(
-				array(
-					"reviewerFirstName",
-					"reviewerLastName"
-				),
-				array(
-					"reviewerID" => $this->session->userdata("id")
-				)
-			);
-			$r = $q->result();
-			$data['reviewerName'] = $r[0]->reviewerFirstName." ".$r[0]->reviewerLastName;
-			$this->load->view("reviewerDashboard", $data);
+			if($this->session->userdata("reviewerLoggedin")){
+				$q = $this->reviewers->select_where(
+					array(
+						"reviewerFirstName",
+						"reviewerLastName"
+					),
+					array(
+						"reviewerID" => $this->session->userdata("id")
+					)
+				);
+				$r = $q->result();
+				$data['reviewerName'] = $r[0]->reviewerFirstName." ".$r[0]->reviewerLastName;
+				$this->load->view("reviewerDashboard", $data);
+			}
+			else{
+				$this->session->set_flashdata("message", "<span class='span3 alert alert-danger'><center>You are not logged in!</center></span>");
+				redirect(base_url()."signin");
+			}
 		}
 		
 
