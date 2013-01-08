@@ -13,6 +13,7 @@
 			$this->session->unset_userdata(array(
 				"loggedin" => false,
 				"adminLoggedin" => false,
+				"reviewerLoggedin" => false,
 				"email" => "",
 				"id" => "",
 				"conferenceID" => ""
