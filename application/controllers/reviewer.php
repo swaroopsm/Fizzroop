@@ -77,10 +77,15 @@
 					"reviewerPassword" => $this->encrypt->sha1($this->input->post("inputLoginPwd").$this->encrypt->sha1($this->config->item("password_salt")))
 				);
 				if($this->reviewers->view_where($data)->num_rows() > 0){
+					require_once(APPPATH."controllers/conference.php");
+					$c = new Conference();
+					$q = $c->get_order_limit();
+					$conferenceID = $q[0]->conferenceID;
 					$this->session->set_userdata(array(
 						"reviewerLoggedin" => true,
 						"email" => $this->input->post("inputLoginEmail"),
-						"id" => $this->reviewers->view_where($data)->row()->reviewerID
+						"id" => $this->reviewers->view_where($data)->row()->reviewerID,
+						"conferenceID" => $conferenceID
 					));
 					redirect(base_url()."reviewer");
 				}
@@ -204,7 +209,7 @@
 		**/
 		
 		public function reviewer_abstracts(){
-			$reviewerID = 26;//$this->input->post("reviewerID");
+			$reviewerID = $this->uri->segment(3);
 			$conferenceID = $this->session->userdata("conferenceID");
 			require_once(APPPATH."controllers/abstractc.php");
 			$a = new Abstractc();
@@ -234,20 +239,17 @@
 						)
 					);
 					$count = 0;
+					$ab_score = null;
+					$ab_recommendation = null;
 					foreach($score as $s_count){
 						if($s_count->score){
 							$ab_score = $s_count->score;
 						}
-						else{
-							$ab_score = NULL;
-						}
 						if($s_count->recommendation){
 							$ab_recommendation = $s_count->recommendation;
 						}
-						else{
-							$ab_recommendation = NULL;
-						}
-						$result[] = array(
+					}	
+					$result[] = array(
 						"abstractID" => $abstractID,
 						"abstractTitle" => $abstract->abstractTitle,
 						"active" => $abstract->active,
@@ -255,9 +257,11 @@
 						"score" => $ab_score,
 						"recommendation" => $ab_recommendation
 					);
-					}	
 				}
 				echo json_encode($result);
+			}
+			else{
+				echo json_encode(array());
 			}
 		}
 		
