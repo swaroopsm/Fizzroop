@@ -5,7 +5,7 @@
 	<link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body data-page="reviewerDashboard">
 
 	<div id="slider">
 		<div class="container">
