@@ -70,3 +70,14 @@ $.getJSON("session", function(data){
 	}
 });
 }
+
+if(page == "reviewerAbstract"){
+	var abstractID = document.URL.split("/")[6];
+	if(abstractID.substring(abstractID.length-1) == "#"){
+		abstractID = abstractID.substring(0, abstractID.length-1);
+	}
+	$.getJSON("assigned/"+abstractID, function(data){
+		//@TODO Display the json data appropriately in the view.
+		console.log(data)
+	});	
+}
