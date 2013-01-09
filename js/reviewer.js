@@ -1,8 +1,11 @@
-/**
-	* Check if Reviewer Logged in.
-**/
+var page = $("body").attr("data-page");
 
-$.getJSON("<?php echo base_url() ?>session", function(data){
+if(page == "reviewerDashboard"){
+	/**
+		* Check if Reviewer Logged in.
+	**/
+
+$.getJSON("session", function(data){
 	if(data.reviewerLoggedin){
 		/**
 			* Load assigned Abstracts of the loggedin reviewers' 
@@ -66,3 +69,4 @@ $.getJSON("<?php echo base_url() ?>session", function(data){
 		});
 	}
 });
+}
