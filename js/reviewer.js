@@ -2,7 +2,7 @@
 	* Check if Reviewer Logged in.
 **/
 
-$.getJSON("session", function(data){
+$.getJSON("<?php echo base_url() ?>session", function(data){
 	if(data.reviewerLoggedin){
 		/**
 			* Load assigned Abstracts of the loggedin reviewers' 
