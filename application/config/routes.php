@@ -58,6 +58,7 @@ $route['abstract/delete_allAbstractImage'] = "abstractc/delete_allAbstractImage"
 $route['abstract/assign'] = "abstractc/assign";
 $route['abstract/unassign'] = "abstractc/unassign";
 $route['reviewer/abstract/(:num)'] = "reviewer/abstract_view/$1";
+$route['reviewer/abstract/assigned/(:num)'] = "reviewer/reviewer_abstracts_by_id/$1";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
