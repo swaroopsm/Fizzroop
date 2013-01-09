@@ -273,6 +273,71 @@
 		
 		
 		/**
+			*	Handles viewing of a single Abstract assigned to a Reviewer.
+		**/
+		
+		public function reviewer_abstracts_by_id(){
+			if($this->session->userdata("reviewerLoggedin") == true){
+				$abstractID = $this->uri->segment(4);
+				$reviewerID = $this->session->userdata("id");
+				$conferenceID = $this->session->userdata("conferenceID");
+				require_once(APPPATH."controllers/abstractc.php");
+				$a = new Abstractc();
+				$q = $a->select_where(
+					array(
+						"abstractID",
+						"abstractTitle",
+						"abstractContent",
+						"abstractImageFolder",
+						"active",
+						"approved"
+					),
+					"abstractID = $abstractID AND conferenceID = $conferenceID AND (reviewer1 = $reviewerID OR reviewer2 = $reviewerID OR reviewer3 = $reviewerID)",
+					1
+				);
+				if($q->num_rows() > 0){
+					$aq = $q->result();
+					$rq = $this->reviewers->select_where(array("reviewerFirstName", "reviewerLastName"), array("reviewerID" => $reviewerID));
+					$reviewer = $rq->result();
+					require_once(APPPATH."controllers/comment.php");
+					$c = new comment();
+					require_once(APPPATH."controllers/score.php");
+					$s = new score();
+					$cq = $c->select_where_reviewer(array("commentContent", "commentType", "reviewerID"), array("abstractID" => $abstractID, "reviewerID" => $reviewerID));
+						if(count($cq > 0)){
+							$comments = $cq;
+						}
+						else{
+							$comments = array();
+						}
+					$sq = $s->select_where(array("score", "recommendation"), array("abstractID" => $abstractID, "reviewerID" => $reviewerID));
+					if(count($sq) > 0){
+						$scores = $sq;
+					}
+					else{
+						$scores = array();
+					}
+					$result[] = array(
+						"abstractID" => $abstractID,
+						"abstractTitle" => $aq[0]->abstractTitle,
+						"abstractContent" => $aq[0]->abstractContent,
+						"abstractImageFolder" => $aq[0]->abstractImageFolder,
+						"reviewerFirstName" => $reviewer[0]->reviewerFirstName,
+						"reviewerLastName" => $reviewer[0]->reviewerLastName,
+						"comments" => $comments,
+						"scores" => $scores
+					);
+					echo json_encode($result);
+				}
+				else{
+					echo json_encode(array());
+				}
+			}
+		}
+		
+		
+		
+		/**
 			* Handles password reset for a Reviewer.
 		**/
 		
