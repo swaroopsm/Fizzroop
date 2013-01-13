@@ -104,9 +104,9 @@ $("#manageAbstracts").live("click", function(){
 								case 0: obj.push({
 									"title": "<a href='#"+data[i].abstractID+"' class='abstract_title'>"+data[i].abstractTitle+"</a>",
 									"attendee": data[i].attendeeFirstName+" "+data[i].attendeeLastName,
-									"reviewer1": "-",
-									"reviewer2": "-",
-									"reviewer3": "-",
+									"reviewer1": "<a href='#' class='reviewer_assign_click'>Assign a Reviewer</a>",
+									"reviewer2": "<a href='#' class='reviewer_assign_click'>Assign a Reviewer</a>",
+									"reviewer3": "<a href='#' class='reviewer_assign_click'>Assign a Reviewer</a>",
 									"ratings": ratings,
 									"score": data[i].score
 								});
@@ -115,9 +115,9 @@ $("#manageAbstracts").live("click", function(){
 								case 1: obj.push({
 									"title": "<a href='#"+data[i].abstractID+"' class='abstract_title'>"+data[i].abstractTitle+"</a>",
 									"attendee": data[i].attendeeFirstName+" "+data[i].attendeeLastName,
-									"reviewer1": data[i].reviewers[0].reviewerFirstName,
-									"reviewer2": "-",
-									"reviewer3": "-",
+									"reviewer1": "<a href='#' class='reviewer_assign_click'>"+data[i].reviewers[0].reviewerFirstName+"</a>",
+									"reviewer2": "<a href='#' class='reviewer_assign_click'>Assign a Reviewer</a>",
+									"reviewer3": "<a href='#' class='reviewer_assign_click'>Assign a Reviewer</a>",
 									"ratings": ratings,
 									"score": data[i].score
 								});
@@ -126,9 +126,9 @@ $("#manageAbstracts").live("click", function(){
 								case 2: obj.push({
 									"title": "<a href='#"+data[i].abstractID+"' class='abstract_title'>"+data[i].abstractTitle+"</a>",
 									"attendee": data[i].attendeeFirstName+" "+data[i].attendeeLastName,
-									"reviewer1": data[i].reviewers[0].reviewerFirstName,
-									"reviewer2": data[i].reviewers[1].reviewerFirstName,
-									"reviewer3": "-",
+									"reviewer1": "<a href='#' class='reviewer_assign_click'>"+data[i].reviewers[0].reviewerFirstName+"</a>",
+									"reviewer2": "<a href='#' class='reviewer_assign_click'>"+data[i].reviewers[1].reviewerFirstName+"</a>",
+									"reviewer3": "<a href='#' class='reviewer_assign_click'>Assign a Reviewer</a>",
 									"ratings": ratings,
 									"score": data[i].score
 								});
@@ -137,9 +137,9 @@ $("#manageAbstracts").live("click", function(){
 								case 3: obj.push({
 									"title": "<a href='#"+data[i].abstractID+"' class='abstract_title'>"+data[i].abstractTitle+"</a>",
 									"attendee": data[i].attendeeFirstName+" "+data[i].attendeeLastName,
-									"reviewer1": data[i].reviewers[0].reviewerFirstName,
-									"reviewer2": data[i].reviewers[1].reviewerFirstName,
-									"reviewer3": data[i].reviewers[2].reviewerFirstName,
+									"reviewer1": "<a href='#' class='reviewer_assign_click'>"+data[i].reviewers[0].reviewerFirstName+"</a>",
+									"reviewer2": "<a href='#' class='reviewer_assign_click'>"+data[i].reviewers[1].reviewerFirstName+"</a>",
+									"reviewer3": "<a href='#' class='reviewer_assign_click'>"+data[i].reviewers[2].reviewerFirstName+"</a>",
 									"ratings": ratings,
 									"score": data[i].score
 								});
