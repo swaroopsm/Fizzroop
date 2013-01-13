@@ -617,4 +617,18 @@ $("form#new_reviewer").submit(function(){
 	return false;
 });
 
+/**
+	*	Reviewer Assign click function.
+**/
 
+$(".reviewer_assign_click").live("click", function(){
+	var abstractID = $(this).attr("data-abstract");
+	var reviewerID = $(this).attr("data-reviewer");
+	console.log(reviewerID);
+	$("#reviewersListModal").modal({
+		keyboard: true,
+		backdrop: 'static',
+		show: true
+	});
+	return false;
+});
