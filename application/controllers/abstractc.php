@@ -264,12 +264,17 @@
 					"abstractID" => $abstractID
 				);
 				//echo $abstractID.", ".$reviewerID." and ".$reviewername;
-				echo json_encode($data);
-				echo json_encode($where);
 				$this->abstracts->update($data, $where);
+				require_once(APPPATH."controllers/reviewer.php");
+				$r = new Reviewer();
+				$q = $r->select_where(array("reviewerFirstName", "reviewerLastName"), array("reviewerID" => $reviewerID));
+				$row = $q->result();
 				echo json_encode(
 					array(
-						"success" => true
+						"success" => true,
+						"reviewerFirstName" => $row[0]->reviewerFirstName,
+						"reviewerLastName" => $row[0]->reviewerLastName,
+						"reviewerID" => $reviewerID
 					)
 				);
 				}
