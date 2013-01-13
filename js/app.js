@@ -624,7 +624,26 @@ $("form#new_reviewer").submit(function(){
 $(".reviewer_assign_click").live("click", function(){
 	var abstractID = $(this).attr("data-abstract");
 	var reviewerID = $(this).attr("data-reviewer");
-	console.log(reviewerID);
+	var currect_reviewers = [];
+	$.getJSON("reviewer/view", function(data){
+		for(var i=0;i<data.length;i++){
+			if(data[i].abstracts.length>0){
+				if($.inArray(abstractID, data[i].abstracts) > -1){
+				}
+				else{
+					currect_reviewers.push(data[i]);
+				}
+			}
+			else{
+				currect_reviewers.push(data[i]);
+			}
+		}
+		var reviewersLink = "";
+		for(var k=0;k<currect_reviewers.length;k++){
+			reviewersLink = reviewersLink + "<a href='#' class='assign_me' data-reviewer='"+currect_reviewers[k].reviewerID+"' data-abstract='"+abstractID+"'>"+currect_reviewers[k].reviewerFirstName+"</a>, ";
+		}
+		$("#reviewersListData").html(reviewersLink.substring(0, reviewersLink.length-2));
+	});
 	$("#reviewersListModal").modal({
 		keyboard: true,
 		backdrop: 'static',
