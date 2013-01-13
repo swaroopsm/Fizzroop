@@ -88,22 +88,22 @@ $("#manageAbstracts").live("click", function(){
 							var reviewer2_blah = data[i].reviewers[1].reviewerFirstName;
 							var reviewer3_blah = data[i].reviewers[2].reviewerFirstName;
 							if(reviewer1_blah == ""){
-								reviewer1_actual = "<a href='#' data-row='1' data-reviewer='' data-abstract='"+data[i].abstractID+"' class='reviewer_assign_click'>Assign a Reviewer</a>";
+								reviewer1_actual = "<span id='reviewer1_"+data[i].abstractID+"'><a href='#' data-row='1' data-reviewer='' data-abstract='"+data[i].abstractID+"' class='reviewer_assign_click'>Assign a Reviewer</a><span>";
 							}
 							else{
-								reviewer1_actual = "<a href='#' data-row='1' data-reviewer='"+data[i].reviewers[0].reviewerID+"' data-abstract='"+data[i].abstractID+"' class='reviewer_assign_click'>"+data[i].reviewers[0].reviewerFirstName+"</a>";
+								reviewer1_actual = "<span id='reviewer1_"+data[i].abstractID+"'><a href='#' data-row='1' data-reviewer='"+data[i].reviewers[0].reviewerID+"' data-abstract='"+data[i].abstractID+"' class='reviewer_assign_click'>"+data[i].reviewers[0].reviewerFirstName+"</a></span>";
 							}
 							if(reviewer2_blah == ""){
-								reviewer2_actual = "<a href='#' data-row='2' data-reviewer='' data-abstract='"+data[i].abstractID+"' class='reviewer_assign_click'>Assign a Reviewer</a>";
+								reviewer2_actual = "<span id='reviewer2_"+data[i].abstractID+"'><a href='#' data-row='2' data-reviewer='' data-abstract='"+data[i].abstractID+"' class='reviewer_assign_click'>Assign a Reviewer</a><span>";
 							}
 							else{
-								reviewer2_actual = "<a href='#' data-row='2' data-reviewer='"+data[i].reviewers[1].reviewerID+"' data-abstract='"+data[i].abstractID+"' class='reviewer_assign_click'>"+data[i].reviewers[1].reviewerFirstName+"</a>";
+								reviewer2_actual = "<span id='reviewer2_"+data[i].abstractID+"'><a href='#' data-row='2' data-reviewer='"+data[i].reviewers[1].reviewerID+"' data-abstract='"+data[i].abstractID+"' class='reviewer_assign_click'>"+data[i].reviewers[1].reviewerFirstName+"</a></span>";
 							}
 							if(reviewer3_blah == ""){
-								reviewer3_actual = "<a href='#' data-row='3' data-reviewer='' data-abstract='"+data[i].abstractID+"' class='reviewer_assign_click'>Assign a Reviewer</a>";
+								reviewer3_actual = "<span id='reviewer3_"+data[i].abstractID+"'><a href='#' data-row='3' data-reviewer='' data-abstract='"+data[i].abstractID+"' class='reviewer_assign_click'>Assign a Reviewer</a></span>";
 							}
 							else{
-								reviewer3_actual = "<a href='#' data-row='3' data-reviewer='"+data[i].reviewers[2].reviewerID+"' data-abstract='"+data[i].abstractID+"' class='reviewer_assign_click'>"+data[i].reviewers[2].reviewerFirstName+"</a>";
+								reviewer3_actual = "<span id='reviewer3_"+data[i].abstractID+"'><a href='#' data-row='3' data-reviewer='"+data[i].reviewers[2].reviewerID+"' data-abstract='"+data[i].abstractID+"' class='reviewer_assign_click'>"+data[i].reviewers[2].reviewerFirstName+"</a></span>";
 							}
 							for(var j=0;j<r.length;j++){
 								ra = r[j].recommendation;
@@ -691,8 +691,12 @@ $(".assign_me").live("click", function(){
 			"reviewerID": reviewerID,
 			"reviewername": reviewername
 		},
-		function(data){
-			console.log(data);
+		function(obj){
+			var data = $.parseJSON(obj)
+			if(data.success){
+				$("#reviewersListModal").modal('toggle')
+				$("#"+reviewername+"_"+abstractID).html("<span id='"+reviewername+"_"+abstractID+"'><a href='#' data-row='"+reviewername.substring(reviewername.length-1, reviewername.length)+"' data-reviewer='"+data.reviewerID+"' data-abstract='"+abstractID+"' class='reviewer_assign_click'>"+data.reviewerFirstName+"</a></span>");
+			}
 		}
 	);
 });
