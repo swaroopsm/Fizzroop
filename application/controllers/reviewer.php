@@ -197,12 +197,22 @@
 			foreach($q->result() as $r){
 				$rid = $r->reviewerID;
 				$ares = $a->select_where(array("abstractID"), "reviewer1 = $rid OR reviewer2 = $rid OR reviewer3 = $rid", 1);
+				if($ares->num_rows() > 0){
+					$abstracts = array();
+					foreach($ares->result() as $abstractRow){
+						$abstracts[] = $abstractRow->abstractID;
+					}
+				}
+				else{
+					$abstracts = array();
+				}
 				$reviewers[] = array(
 					"reviewerID" => $rid,
 					"reviewerFirstName" => $r->reviewerFirstName,
 					"reviewerLastName" => $r->reviewerLastName,
 					"reviewerEmail" => $r->reviewerEmail,
-					"workingAbstracts" => $ares->num_rows()
+					"workingAbstracts" => $ares->num_rows(),
+					"abstracts" => $abstracts
 				);
 			}
 			echo json_encode($reviewers);
