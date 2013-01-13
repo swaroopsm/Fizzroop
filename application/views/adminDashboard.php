@@ -142,6 +142,24 @@
 	
 	<!-- End Add Reviewer Modal -->
 	
+	
+	<!-- List of Reviewers Modal -->
+	
+	<div id="reviewersListModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="reviewersListModalLabel" aria-hidden="true"  style="display: none;">
+		<div class="modal-header">
+		  <a class="close" data-dismiss="modal" aria-hidden="true" href="#">&times;</a>
+		  <h3 id="reviewersListModalLabel">Reviewers List</h3>
+		</div>
+		<div class="modal-body" id="reviewersListData">
+		  <p></p>
+		</div>
+		<div class="modal-footer">
+		  
+		</div>
+	</div>
+	
+	<!-- End List of Reviewers Modal -->
+	
 	<div class="container">
 		<div id="ajaxer">
 		</div>
