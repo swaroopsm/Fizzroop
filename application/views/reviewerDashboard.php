@@ -32,6 +32,7 @@
 		</div>
 		<div class="modal-body">
 			<div id="hidden_abstractID"></div>
+			<input type="hidden" id="hidden_reviewerID" value="<?php echo $this->session->userdata('id'); ?>"/>
 		  <div id="abstractContent"></div>
 		</div>
 		<div class="modal-footer">
