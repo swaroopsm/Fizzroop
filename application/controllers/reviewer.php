@@ -313,14 +313,14 @@
 					$c = new comment();
 					require_once(APPPATH."controllers/score.php");
 					$s = new score();
-					$cq = $c->select_where_reviewer(array("commentContent", "commentType", "reviewerID"), array("abstractID" => $abstractID, "reviewerID" => $reviewerID));
+					$cq = $c->select_where_reviewer(array("commentID","commentContent", "commentType", "reviewerID"), array("abstractID" => $abstractID, "reviewerID" => $reviewerID));
 						if(count($cq > 0)){
 							$comments = $cq;
 						}
 						else{
 							$comments = array();
 						}
-					$sq = $s->select_where(array("score", "recommendation"), array("abstractID" => $abstractID, "reviewerID" => $reviewerID));
+					$sq = $s->select_where(array("scoreID", "score", "recommendation"), array("abstractID" => $abstractID, "reviewerID" => $reviewerID));
 					if(count($sq) > 0){
 						$scores = $sq;
 					}
@@ -342,6 +342,96 @@
 				else{
 					echo json_encode(array());
 				}
+			}
+		}
+		
+		
+		/**
+			* Handles updating of comments and scores done by a Reviewer for a particular Abstract.
+		**/
+		
+		public function reviewer_abstract_submit(){
+			require_once(APPPATH."controllers/comment.php");
+			require_once(APPPATH."controllers/score.php");
+			$c = new Comment();
+			$s = new Score();
+			$abstractID = $this->input->post("abstractID");
+			$reviewerID = $this->input->post("reviewerID");
+			$comment_reviewer = $this->input->post("comment_reviewer");
+			$comment_admin = $this->input->post("comment_admin");
+			$comment_reviewer_id = $this->input->post("comment_reviewer_id");
+			$comment_admin_id = $this->input->post("comment_admin_id");
+			$score = $this->input->post("score");
+			$recommendation = $this->input->post("recommendation");
+			$scoreID = $this->input->post("scoreID");
+			if($comment_reviewer_id == ""){
+				$c->create(
+					array(
+						"commentContent" => $comment_reviewer,
+						"commentType" => 1,
+						"abstractID" => $abstractID,
+						"reviewerID" => $reviewerID
+					)
+				);
+			}
+			else{
+				$c->update(
+					array(
+						"commentContent" => $comment_reviewer,
+						"commentType" => 1,
+						"abstractID" => $abstractID,
+						"reviewerID" => $reviewerID
+					),
+					array(
+						"commentID" => $comment_reviewer_id
+					)
+				);
+			}
+			if($comment_admin_id == ""){
+				$c->create(
+					array(
+						"commentContent" => $comment_admin,
+						"commentType" => 2,
+						"abstractID" => $abstractID,
+						"reviewerID" => $reviewerID
+					)
+				);
+			}
+			else{
+				$c->update(
+					array(
+						"commentContent" => $comment_admin,
+						"commentType" => 2,
+						"abstractID" => $abstractID,
+						"reviewerID" => $reviewerID
+					),
+					array(
+						"commentID" => $comment_admin_id
+					)
+				);
+			}
+			if($scoreID == ""){
+				$s->create(
+					array(
+						"abstractID" => $abstractID,
+						"reviewerID" => $reviewerID,
+						"score" => $score,
+						"recommendation" => $recommendation
+					)
+				);
+			}
+			else{
+				$s->update(
+					array(
+						"abstractID" => $abstractID,
+						"reviewerID" => $reviewerID,
+						"score" => $score,
+						"recommendation" => $recommendation
+					),
+					array(
+						"scoreID" => $scoreID
+					)
+				);
 			}
 		}
 		
