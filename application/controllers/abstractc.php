@@ -113,6 +113,7 @@
 			 				if($rev->num_rows > 0){
 			 					foreach($rev->result() as $revs){
 			 						$reviewers[] = array(
+			 							"reviewerID" => $rids[$i],
 			 							"reviewerFirstName" => $revs->reviewerFirstName,
 			 							"reviewerLastName" => $revs->reviewerLastName
 			 						);
