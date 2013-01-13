@@ -29,26 +29,10 @@
 		 * Handles edit/update of a Comment.
 		**/
 	
-		public function update(){
-				if($_SERVER['REQUEST_METHOD'] == "POST"){
+		public function update($data, $where){
 					if($this->session->userdata("reviewerLoggedin") == true || $this->session->userdata("adminLoggedin") == true){
-						$data = array(
-						"commentContent" => $this->input->post("inputComment")
-					);
-						$where = array(
-							"commentID" => $this->input->post("inputCommentID")
-						);
 						$this->comments->update($data, $where);
-						echo json_encode(array(
-								"success" => true,
-								"commentID" => $this->input->post("inputCommentID")
-							)
-						);
 					}
-				}
-				else{
-					show_404();
-				}
 			}
 			
 		
@@ -98,6 +82,7 @@
 						$rev = $r->select_where(array("reviewerFirstName", "reviewerLastName"), array("reviewerID" => $rid));
 						$rev_res = $rev->result();
 						$result[] = array(
+							"commentID" => $comment->commentID,
 							"commentContent" => $comment->commentContent,
 							"commentType" => $comment->commentType,
 							"reviewerFirstName" => $rev_res[0]->reviewerFirstName,
