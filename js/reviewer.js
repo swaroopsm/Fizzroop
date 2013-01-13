@@ -181,7 +181,7 @@ $.getJSON("session", function(data){
 				"scoreID": scoreID
 			},
 			function(data){
-				console.log(data);
+				$("#myModal").modal('toggle');
 			}
 		);
 		return false;
