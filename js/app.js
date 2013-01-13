@@ -624,6 +624,7 @@ $("form#new_reviewer").submit(function(){
 $(".reviewer_assign_click").live("click", function(){
 	var abstractID = $(this).attr("data-abstract");
 	var reviewerID = $(this).attr("data-reviewer");
+	var reviewername = "reviewer"+$(this).attr("data-row");
 	var currect_reviewers = [];
 	$.getJSON("reviewer/view", function(data){
 		for(var i=0;i<data.length;i++){
@@ -640,7 +641,7 @@ $(".reviewer_assign_click").live("click", function(){
 		}
 		var reviewersLink = "";
 		for(var k=0;k<currect_reviewers.length;k++){
-			reviewersLink = reviewersLink + "<a href='#' class='assign_me' data-reviewer='"+currect_reviewers[k].reviewerID+"' data-abstract='"+abstractID+"'>"+currect_reviewers[k].reviewerFirstName+"</a>, ";
+			reviewersLink = reviewersLink + "<a href='#' class='assign_me' data-reviewername='"+reviewername+"' data-reviewer='"+currect_reviewers[k].reviewerID+"' data-abstract='"+abstractID+"'>"+currect_reviewers[k].reviewerFirstName+"</a>, ";
 		}
 		$("#reviewersListData").html(reviewersLink.substring(0, reviewersLink.length-2));
 	});
