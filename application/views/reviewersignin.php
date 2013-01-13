@@ -14,7 +14,7 @@
 	<body>
 		 <div class="container">
       <?php echo form_open("reviewer/login", array("class" => "form-signin")); ?>
-        <h2 class="form-signin-heading">Login</h2>
+        <h2 class="form-signin-heading">Reviewers' Login</h2>
         <hr>
         <?php if($this->session->flashdata('message')) ?>
 						<?php echo $this->session->flashdata('message'); ?>
