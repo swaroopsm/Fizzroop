@@ -35,7 +35,7 @@
 		  <div id="abstractContent"></div>
 		</div>
 		<div class="modal-footer">
-		  <button class="btn btn-primary" id="abstract_edit_submit">Save changes</button>
+		  <button class="btn btn-primary" id="reviewer_abstract_submit">Save changes</button>
 		</div>
 	</div>
 	
