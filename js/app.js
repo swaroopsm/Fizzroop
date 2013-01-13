@@ -83,6 +83,28 @@ $("#manageAbstracts").live("click", function(){
 							var r = data[i].recommendations;
 							var ratings = "";
 							var t, ra="";
+							var reviewer1_actual, reviewer2_actual, reviewer3_actual;
+							var reviewer1_blah = data[i].reviewers[0].reviewerFirstName;
+							var reviewer2_blah = data[i].reviewers[1].reviewerFirstName;
+							var reviewer3_blah = data[i].reviewers[2].reviewerFirstName;
+							if(reviewer1_blah == ""){
+								reviewer1_actual = "<a href='#' data-row='1' data-reviewer='' data-abstract='"+data[i].abstractID+"' class='reviewer_assign_click'>Assign a Reviewer</a>";
+							}
+							else{
+								reviewer1_actual = "<a href='#' data-row='1' data-reviewer='"+data[i].reviewers[0].reviewerID+"' data-abstract='"+data[i].abstractID+"' class='reviewer_assign_click'>"+data[i].reviewers[0].reviewerFirstName+"</a>";
+							}
+							if(reviewer2_blah == ""){
+								reviewer2_actual = "<a href='#' data-row='2' data-reviewer='' data-abstract='"+data[i].abstractID+"' class='reviewer_assign_click'>Assign a Reviewer</a>";
+							}
+							else{
+								reviewer2_actual = "<a href='#' data-row='2' data-reviewer='"+data[i].reviewers[1].reviewerID+"' data-abstract='"+data[i].abstractID+"' class='reviewer_assign_click'>"+data[i].reviewers[1].reviewerFirstName+"</a>";
+							}
+							if(reviewer3_blah == ""){
+								reviewer3_actual = "<a href='#' data-row='3' data-reviewer='' data-abstract='"+data[i].abstractID+"' class='reviewer_assign_click'>Assign a Reviewer</a>";
+							}
+							else{
+								reviewer3_actual = "<a href='#' data-row='3' data-reviewer='"+data[i].reviewers[2].reviewerID+"' data-abstract='"+data[i].abstractID+"' class='reviewer_assign_click'>"+data[i].reviewers[2].reviewerFirstName+"</a>";
+							}
 							for(var j=0;j<r.length;j++){
 								ra = r[j].recommendation;
 								switch(ra){
@@ -104,9 +126,9 @@ $("#manageAbstracts").live("click", function(){
 								case 0: obj.push({
 									"title": "<a href='#"+data[i].abstractID+"' class='abstract_title'>"+data[i].abstractTitle+"</a>",
 									"attendee": data[i].attendeeFirstName+" "+data[i].attendeeLastName,
-									"reviewer1": "<a href='#' data-row='1' data-reviewer='' data-abstract='"+data[i].abstractID+"' class='reviewer_assign_click'>Assign a Reviewer</a>",
-									"reviewer2": "<a href='#' data-row='2' data-reviewer='' data-abstract='"+data[i].abstractID+"' class='reviewer_assign_click'>Assign a Reviewer</a>",
-									"reviewer3": "<a href='#' data-row='3' data-reviewer='' data-abstract='"+data[i].abstractID+"' class='reviewer_assign_click'>Assign a Reviewer</a>",
+									"reviewer1": reviewer1_actual,
+									"reviewer2": reviewer2_actual,
+									"reviewer3": reviewer3_actual,
 									"ratings": ratings,
 									"score": data[i].score
 								});
@@ -115,9 +137,9 @@ $("#manageAbstracts").live("click", function(){
 								case 1: obj.push({
 									"title": "<a href='#"+data[i].abstractID+"' class='abstract_title'>"+data[i].abstractTitle+"</a>",
 									"attendee": data[i].attendeeFirstName+" "+data[i].attendeeLastName,
-									"reviewer1": "<a href='#' data-row='1' data-reviewer='"+data[i].reviewers[0].reviewerID+"' data-abstract='"+data[i].abstractID+"' class='reviewer_assign_click'>"+data[i].reviewers[0].reviewerFirstName+"</a>",
-									"reviewer2": "<a href='#' data-row='2' data-reviewer='' data-abstract='"+data[i].abstractID+"' class='reviewer_assign_click'>Assign a Reviewer</a>",
-									"reviewer3": "<a href='#' data-row='3' data-abstract='"+data[i].abstractID+"' class='reviewer_assign_click'>Assign a Reviewer</a>",
+									"reviewer1": reviewer1_actual,
+									"reviewer2": reviewer2_actual,
+									"reviewer3": reviewer3_actual,
 									"ratings": ratings,
 									"score": data[i].score
 								});
@@ -126,9 +148,9 @@ $("#manageAbstracts").live("click", function(){
 								case 2: obj.push({
 									"title": "<a href='#"+data[i].abstractID+"' class='abstract_title'>"+data[i].abstractTitle+"</a>",
 									"attendee": data[i].attendeeFirstName+" "+data[i].attendeeLastName,
-									"reviewer1": "<a href='#' data-row='1' data-reviewer='"+data[i].reviewers[0].reviewerID+"' data-abstract='"+data[i].abstractID+"' class='reviewer_assign_click'>"+data[i].reviewers[0].reviewerFirstName+"</a>",
-									"reviewer2": "<a href='#' data-row='2' data-reviewer='"+data[i].reviewers[1].reviewerID+"' data-abstract='"+data[i].abstractID+"' class='reviewer_assign_click'>"+data[i].reviewers[1].reviewerFirstName+"</a>",
-									"reviewer3": "<a href='#' data-row='3' data-abstract='"+data[i].abstractID+"' class='reviewer_assign_click'>Assign a Reviewer</a>",
+									"reviewer1": reviewer1_actual,
+									"reviewer2": reviewer2_actual,
+									"reviewer3": reviewer3_actual,
 									"ratings": ratings,
 									"score": data[i].score
 								});
@@ -137,9 +159,9 @@ $("#manageAbstracts").live("click", function(){
 								case 3: obj.push({
 									"title": "<a href='#"+data[i].abstractID+"' class='abstract_title'>"+data[i].abstractTitle+"</a>",
 									"attendee": data[i].attendeeFirstName+" "+data[i].attendeeLastName,
-									"reviewer1": "<a href='#' data-row='1' data-reviewer='"+data[i].reviewers[0].reviewerID+"' data-abstract='"+data[i].abstractID+"' class='reviewer_assign_click'>"+data[i].reviewers[0].reviewerFirstName+"</a>",
-									"reviewer2": "<a href='#' data-row='2' data-reviewer='"+data[i].reviewers[1].reviewerID+"' data-abstract='"+data[i].abstractID+"' class='reviewer_assign_click'>"+data[i].reviewers[1].reviewerFirstName+"</a>",
-									"reviewer3": "<a href='#' data-row='3' data-reviewer='"+data[i].reviewers[2].reviewerID+"'  data-abstract='"+data[i].abstractID+"' class='reviewer_assign_click'>"+data[i].reviewers[2].reviewerFirstName+"</a>",
+									"reviewer1": reviewer1_actual,
+									"reviewer2": reviewer2_actual,
+									"reviewer3": reviewer3_actual,
 									"ratings": ratings,
 									"score": data[i].score
 								});
@@ -651,4 +673,26 @@ $(".reviewer_assign_click").live("click", function(){
 		show: true
 	});
 	return false;
+});
+
+
+/**
+	*Finally Assign a Reviewer to an Abstract
+**/
+
+$(".assign_me").live("click", function(){
+	var reviewername = $.trim($(this).attr("data-reviewername"));
+	var abstractID = $.trim($(this).attr("data-abstract"));
+	var reviewerID = $.trim($(this).attr("data-reviewer"));
+	$.post(
+		"abstract/assign",
+		{
+			"abstractID": abstractID,
+			"reviewerID": reviewerID,
+			"reviewername": reviewername
+		},
+		function(data){
+			console.log(data);
+		}
+	);
 });
