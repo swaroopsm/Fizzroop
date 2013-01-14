@@ -116,6 +116,9 @@ $("#manageAbstracts").live("click", function(){
 											
 									case '3': ra = "<img src='images/reject.gif'>"; //@TODO Add icon for Reject.
 														break;
+														
+									case '0': ra = "<img src='images/reject.gif'>"; //@TODO Add icon for Reject.
+														break;
 												
 									default : ra = "-";
 														break;
