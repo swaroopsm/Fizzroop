@@ -97,7 +97,10 @@
 		
 		public function delete($data){
 				if($this->session->userdata("reviewerLoggedin") ==true || $this->session->userdata("adminLoggedin") == true){
-					$this->scores->delete($data);
+					$q = $this->scores->view_where($data);
+					if($q->num_rows() > 0){
+						$this->scores->delete($data);
+					}
 				}
 				else{
 					show_404();
