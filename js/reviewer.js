@@ -101,7 +101,7 @@ $.getJSON("session", function(data){
 						for(var j=0;j<data[0].scores.length;j++){
 							if(data[0].scores[j].score==null){
 								var score_obj="";
-								score = score+"<input type='hidden' id='score_id' value=''/><p>Conservation Score: <input type='text' id='conservation_score' value='' /></p><p>Science Score: <input type='text' id='science_score' value='' /></p>"
+								score = score+"<input type='hidden' id='score_id' value=''/><p>Conservation Score: <input type='text' id='conservation_score' value='0' /></p><p>Science Score: <input type='text' id='science_score' value='0' /></p>"
 							}
 							else{
 								var score_obj = $.parseJSON(data[0].scores[j].score);
@@ -128,7 +128,7 @@ $.getJSON("session", function(data){
 						}
 					}
 					else{
-						score = score+"<input type='hidden' id='score_id' value=''/><p>Conservation Score: <input type='text' id='conservation_score' value='' /></p><p>Science Score: <input type='text' id='science_score' value='' /></p>";
+						score = score+"<input type='hidden' id='score_id' value=''/><p>Conservation Score: <input type='text' id='conservation_score' value='0' /></p><p>Science Score: <input type='text' id='science_score' value='0' /></p>";
 						recommendation = "<input type='radio' name='recommendation' id='recommendation' value='1' />Talk <input type='radio' name='recommendation' id='recommendation' value='2'/>Poster <input type='radio' name='recommendation' id='recommendation' value='3'/>Reject";
 					}
 				}
