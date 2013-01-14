@@ -376,5 +376,16 @@ $config['proxy_ips'] = '';
 */
 $config['password_salt'] = '';
 
+
+/*
+|--------------------------------------------------------------------------
+| File Upload path
+|--------------------------------------------------------------------------
+| This is the filepath for uploaded files will be stored.
+*/
+$config['upload_path'] = '';
+$config['allowed_types'] = 'jpg|jpeg|gif|png|pdf';
+$config['max_size'] = '2000';
+
 /* End of file config.php */
 /* Location: ./application/config/config.php */
