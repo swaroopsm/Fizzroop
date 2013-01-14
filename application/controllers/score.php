@@ -45,19 +45,39 @@
 		**/
 		
 		public function view_avg($id=0){
-			if($id==0){
-				$data = array(
-					"abstractID" => $this->uri->segment(3)
-				);
-				$q = $this->scores->view_avg($data);
-				echo json_encode($q->result());
-			}
-			else{
-				$data = array(
-					"abstractID" => $id
-				);
-				$q = $this->scores->view_avg($data);
-				return $q->result();
+			if($this->session->userdata("adminLoggedin") == true){
+				if($id==0){
+					$data = array(
+						"abstractID" => $this->uri->segment(3)
+					);
+					$q = $this->scores->view_avg($data);
+				}
+				else{
+					$data = array(
+						"abstractID" => $id
+					);
+					$q = $this->scores->view_where($data);
+					if($q->num_rows() > 0){
+						$total_score = 0;
+						$result = $q->result();
+						foreach($result as $row){
+							if($row->score == NULL){
+								$score_stripped = 0;
+								$total_score = $total_score + $score_stripped;
+							}
+							else{
+								$score_arr = (json_decode($row->score, true));
+								$conservation_score = $score_arr['conservation'];
+								$science_score = $score_arr['science'];
+								$total_score = $total_score + $conservation_score + $science_score;
+							}
+						}
+						return $total_score/$q->num_rows();
+					}
+					else{
+						return 0;
+					}
+				}
 			}
 		}
 	 
