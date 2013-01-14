@@ -4,7 +4,7 @@ if(page == "reviewerDashboard"){
 	/**
 		* Check if Reviewer Logged in.
 	**/
-
+$("#ajaxer").html("<div class='loader'><img src='images/loader.gif' /></div>");
 $.getJSON("session", function(data){
 	if(data.reviewerLoggedin){
 		/**
