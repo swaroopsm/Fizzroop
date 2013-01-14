@@ -292,6 +292,42 @@ $(".abstract_title").live("click", function(){
 		else{
 			
 		}*/
+		var reviewer_and_score = "";
+		if(data[0].reviewers.length > 0){
+			reviewer_and_score += "<h3>Reviewers Assigned: </h3>";
+				for(var m=0;m<data[0].reviewers.length;m++){
+					reviewer_and_score += "<p>"+data[0].reviewers[m].reviewerFirstName+" "+data[0].reviewers[m].reviewerLastName+"</p>"
+				}
+		}
+		if(data[0].detailed_scores.length > 0){
+			reviewer_and_score += "<br><h3>Reviewers Opinions: </h3>";
+			for(var l=0;l<data[0].detailed_scores.length;l++){
+				var reviewer_recommendation = ""
+				if(data[0].detailed_scores[l].recommendation){
+					var r_rec = data[0].detailed_scores[l].recommendation;
+					switch(r_rec){
+						case '1': reviewer_recommendation = "<img src='images/talk.png' title='Talk'>";
+											break;
+											
+						case '2': reviewer_recommendation = "<img src='images/poster.png' title='Poster'>";
+											break;
+											
+						case '0': reviewer_recommendation = "<img src='images/reject.gif' title='Rejected'>";
+											break;
+											
+						case '': reviewer_recommendation = "<img src='images/reject.gif' title='Rejected'>";
+												 break;
+											
+						default: reviewer_recommendation = "<img src='images/reject.gif' title='Rejected'>";
+					}
+				}
+				if(data[0].detailed_scores[l].reviewer){
+					var score_obj = $.parseJSON(data[0].detailed_scores[l].score);
+					console.log(score_obj);
+					reviewer_and_score += "<p><b>"+data[0].detailed_scores[l].reviewer[0].reviewerFirstName+" "+data[0].detailed_scores[l].reviewer[0].reviewerLastName+"</b> says: </p><p>&#10143; Conservation Score: "+score_obj.conservation+"</p><p>&#10143; Science Score: "+score_obj.science+"</p><p>&#10143; Recommended: "+reviewer_recommendation+"</p><br>";
+				}
+			}
+		}
 		
 		if(data[0].comments.length > 0){
 			for(var k=0;k<data[0].comments.length;k++){
@@ -307,13 +343,7 @@ $(".abstract_title").live("click", function(){
 			+"<div id='modalleft'>"
 			+"<div id='abscontent' contenteditable='true'>"+data[0].abstractContent+"</div>"
 			+"<div class='reviewerclass'>"
-			+revf1+" "+revl1 // First Reviewer
-			+rec1+"<br>" // First reviewer recommendation
-			+revf2+" "+revl2 // Second Reviewer
-			+rec2+"<br>" // First reviewer recommendation
-			// Third reviewer not present breaks the json. and it does not load. if else statement necessary
-			+revf3+" "+revl3 // Third Reviewer
-			+rec3
+			+reviewer_and_score
 			+"<div id='actions'>"+""+"</div>"
 			+"</div>" // the left div
 			+"<div class='clear'></div>" // clearing floats before the comments section
