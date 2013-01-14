@@ -247,51 +247,8 @@ $(".abstract_title").live("click", function(){
 	$("#abstractBy").html('').append("<div class='loader'><img src='images/loader.gif' /></div>");
 	$("#abstractContent").html("");
 	$.getJSON("abstract/"+id, function(data){
-		console.log(data); // take this out later post completion
 		$("#hidden_abstractID").html("<input type='hidden' id='abstractID' value='"+data[0].abstractID+"'/>");
 		$("#abstractModalLabel").html(data[0].abstractTitle);
-		var revf1="", revf2="", revf3="", revl1="", revl2="", revl3="";
-		var rec1="", rec2="", rec3="";
-		/*var recs = data[0].recommendations;
-		if(recs.length == 1){
-				rec1 = recs[0].recommendation;
-		}
-		else if(recs.length == 2){
-				rec1 = recs[0].recommendation;
-				rec2 = recs[1].recommendation;
-		}
-		else if(recs.length == 3){
-				rec1 = recs[0].recommendation;
-				rec2 = recs[1].recommendation;
-				rec3 = recs[2].recommendation;
-		}
-		else{
-			
-		}*/
-		
-		var comment = "";
-		/*var revs = data[0].reviewers;
-		if(revs.length == 1){
-				revf1 = revs[0].reviewerFirstName;
-				revl1 = revs[0].reviewerLastName;
-		}
-		else if(revs.length == 2){
-				revf1 = revs[0].reviewerFirstName;
-				revl1 = revs[0].reviewerLastName;
-				revf2 = revs[1].reviewerFirstName;
-				revl2 = revs[1].reviewerLastName;
-		}
-		else if(recs.length == 3){
-				revf1 = revs[0].reviewerFirstName;
-				revl1 = revs[0].reviewerLastName;
-				revf2 = revs[1].reviewerFirstName;
-				revl2 = revs[1].reviewerLastName;
-				revf3 = revs[2].reviewerFirstName;
-				revl3 = revs[2].reviewerLastName;
-		}
-		else{
-			
-		}*/
 		var reviewer_and_score = "";
 		if(data[0].reviewers.length > 0){
 			reviewer_and_score += "<h3>Reviewers Assigned: </h3>";
@@ -299,6 +256,7 @@ $(".abstract_title").live("click", function(){
 					reviewer_and_score += "<p>"+data[0].reviewers[m].reviewerFirstName+" "+data[0].reviewers[m].reviewerLastName+"</p>"
 				}
 		}
+		comment = "";
 		if(data[0].detailed_scores.length > 0){
 			reviewer_and_score += "<br><h3>Reviewers' Opinions: </h3>";
 			for(var l=0;l<data[0].detailed_scores.length;l++){
@@ -323,7 +281,6 @@ $(".abstract_title").live("click", function(){
 				}
 				if(data[0].detailed_scores[l].reviewer){
 					var score_obj = $.parseJSON(data[0].detailed_scores[l].score);
-					console.log(score_obj);
 					reviewer_and_score += "<p><b>"+data[0].detailed_scores[l].reviewer[0].reviewerFirstName+" "+data[0].detailed_scores[l].reviewer[0].reviewerLastName+"</b> says: </p><p>&#10143; Conservation Score: "+score_obj.conservation+"</p><p>&#10143; Science Score: "+score_obj.science+"</p><p>&#10143; Recommended: "+reviewer_recommendation+"</p><br>";
 				}
 			}
