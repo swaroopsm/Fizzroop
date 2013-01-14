@@ -177,7 +177,7 @@
 			 			$rids = array($row->reviewer1, $row->reviewer2, $row->reviewer3);
 			 			$q2 = $s->view_avg($row->abstractID); # Result Set that holds avg. score of an abstract.
 			 			$q3 = $s->select_where(array("recommendation"), array("abstractID" => $aid));
-			 			$r3 = $c->select_where_reviewer(array("commentContent", "commentType", "reviewerID"), array("abstractID" => $aid));
+			 			$r3 = $c->select_where_reviewer(array("commentID", "commentContent", "commentType", "reviewerID"), array("abstractID" => $aid));
 			 			$reviewers = array();
 			 			for($i=0;$i<3;$i++){
 			 				$rev = $r->select_where(array("reviewerFirstName", "reviewerLastName"), array("reviewerID" => $rids[$i]));
@@ -297,6 +297,8 @@
 				if($this->session->userdata("adminLoggedin") == true){
 					$reviewerID = $this->input->post("inputReviewerID");
 					$abstractID = $this->input->post("inputAbstractID");
+					require_once(APPPATH."controllers/score.php");
+					$s = new Score();
 					$data2 = array(
 						"reviewer1", "reviewer2", "reviewer3"
 					);
@@ -331,6 +333,12 @@
 						}
 						if($flag == 1){
 							$this->abstracts->update($data, array("abstractID" => $abstractID));
+							$s->delete(
+								array(
+									"abstractID" => $abstractID,
+									"reviewerID" => $reviewerID
+								)
+							);
 							echo json_encode(array(
 								"success" => true
 							));
