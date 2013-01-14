@@ -178,8 +178,18 @@
 			 			$r3 = $c->select_where_reviewer(array("commentID", "commentContent", "commentType", "reviewerID"), array("abstractID" => $aid));
 			 			$detailed_score = array();
 			 			$reviewers = array();
+			 			$reviewers_list = array();
 			 			for($i=0;$i<3;$i++){
 			 				$q5 = $s->view_where(array("abstractID" => $this->uri->segment(2), "reviewerID" => $rids[$i]));
+			 				$rev2 = $r->select_where(array("reviewerFirstName", "reviewerLastName"), array("reviewerID" => $rids[$i]));
+				 				if($rev2->num_rows > 0){
+				 					foreach($rev2->result() as $revs){
+				 						$reviewers_list[] = array(
+				 							"reviewerFirstName" => $revs->reviewerFirstName,
+				 							"reviewerLastName" => $revs->reviewerLastName
+				 						);
+				 					}
+				 				}
 			 				if($q5->num_rows() > 0){
 			 					$reviewers = array();
 			 					$rev = $r->select_where(array("reviewerFirstName", "reviewerLastName"), array("reviewerID" => $rids[$i]));
@@ -209,7 +219,8 @@
 			 				"abstractImageFolder" => $row->abstractImageFolder,
 			 				"attendeeFirstName" => $row->attendeeFirstName,
 			 				"attendeeLastName" => $row->attendeeLastName,
-			 				"avg_score" => $q2,
+			 				"reviewers" => $reviewers_list,
+			 				"score" => $q2,
 			 				"comments" => $r3,
 			 				"detailed_scores" => $detailed_score
 			 			);
