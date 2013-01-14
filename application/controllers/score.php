@@ -37,7 +37,17 @@
 						$this->scores->update($data, $where);
 					}
 			}	
+	
+	
+	 	/**
+	 		* Handles view_where of Score.
+		**/
+	
+		public function view_where($data){
+			return $this->scores->view_where($data);
+		}
 		
+	
 		
 	  /**
 			* Handles viewing of Avg. Score of a particular Abstract.
