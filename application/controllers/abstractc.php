@@ -166,7 +166,6 @@
 		 		$a = $this->abstracts->view_where($this->uri->segment(2), $this->session->userdata("conferenceID"));
 		 		$n = $a->num_rows();
 		 		$aid = $this->uri->segment(2);
-		 		
 		 		if($n>0){
 		 			$q = $a->result();
 		 			$s = new Score();
@@ -176,19 +175,32 @@
 			 			$aid = $row->abstractID;
 			 			$rids = array($row->reviewer1, $row->reviewer2, $row->reviewer3);
 			 			$q2 = $s->view_avg($row->abstractID); # Result Set that holds avg. score of an abstract.
-			 			$q3 = $s->select_where(array("recommendation"), array("abstractID" => $aid));
 			 			$r3 = $c->select_where_reviewer(array("commentID", "commentContent", "commentType", "reviewerID"), array("abstractID" => $aid));
+			 			$detailed_score = array();
 			 			$reviewers = array();
 			 			for($i=0;$i<3;$i++){
-			 				$rev = $r->select_where(array("reviewerFirstName", "reviewerLastName"), array("reviewerID" => $rids[$i]));
-			 				if($rev->num_rows > 0){
-			 					foreach($rev->result() as $revs){
-			 						$reviewers[] = array(
-			 							"reviewerFirstName" => $revs->reviewerFirstName,
-			 							"reviewerLastName" => $revs->reviewerLastName
-			 						);
-			 					}
+			 				$q5 = $s->view_where(array("abstractID" => $this->uri->segment(2), "reviewerID" => $rids[$i]));
+			 				if($q5->num_rows() > 0){
+			 					$reviewers = array();
+			 					$rev = $r->select_where(array("reviewerFirstName", "reviewerLastName"), array("reviewerID" => $rids[$i]));
+				 				if($rev->num_rows > 0){
+				 					foreach($rev->result() as $revs){
+				 						$reviewers[] = array(
+				 							"reviewerFirstName" => $revs->reviewerFirstName,
+				 							"reviewerLastName" => $revs->reviewerLastName
+				 						);
+				 					}
+				 				}
+			 					$score_detail = $q5->result();
+			 					$detailed_score[] = array(
+			 						"scoreID" => $score_detail[0]->scoreID,
+			 						"reviewerID" => $score_detail[0]->reviewerID,
+			 						"score" => $score_detail[0]->score,
+			 						"recommendation" => $score_detail[0]->recommendation,
+			 						"reviewer" => $reviewers
+			 					);
 			 				}
+			 				#echo json_encode($q5->result());
 			 			}
 			 			$result[]=array(
 			 				"abstractID" => $row->abstractID,
@@ -197,10 +209,9 @@
 			 				"abstractImageFolder" => $row->abstractImageFolder,
 			 				"attendeeFirstName" => $row->attendeeFirstName,
 			 				"attendeeLastName" => $row->attendeeLastName,
-			 				"reviewers" => $reviewers,
-			 				"score" => $q2,
-			 				"recommendations" => $q3,
-			 				"comments" => $r3
+			 				"avg_score" => $q2,
+			 				"comments" => $r3,
+			 				"detailed_scores" => $detailed_score
 			 			);
 			 		}
 			 		echo json_encode($result);
