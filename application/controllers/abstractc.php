@@ -136,7 +136,7 @@
 			 				"attendeeFirstName" => $row->attendeeFirstName,
 			 				"attendeeLastName" => $row->attendeeLastName,
 			 				"reviewers" => $reviewers,
-			 				"score" => $q2[0]->score,
+			 				"score" => $q2,
 			 				"recommendations" => $q3
 			 			);
 			 		}
@@ -198,7 +198,7 @@
 			 				"attendeeFirstName" => $row->attendeeFirstName,
 			 				"attendeeLastName" => $row->attendeeLastName,
 			 				"reviewers" => $reviewers,
-			 				"score" => $q2[0]->score,
+			 				"score" => $q2,
 			 				"recommendations" => $q3,
 			 				"comments" => $r3
 			 			);
