@@ -412,7 +412,7 @@ $(".reviewer_id").live("click", function(){
 					+"</div>"
 				);
 				for(var i=0;i<data.abstracts.length;i++){
-					$("#reviewersData").append("<div id='abstract_"+data.abstracts[i].abstractID+"'>Abstract "+(i+1)+": "+data.abstracts[i].abstractTitle+" <a href='#"+data.abstracts[i].abstractID+"' class='unassign_reviewer'>Unassign</a><br></div>");
+					$("#reviewersData").append("<div id='abstract_"+data.abstracts[i].abstractID+"'>Abstract "+(i+1)+": "+data.abstracts[i].abstractTitle+" <a href='#"+data.abstracts[i].abstractID+"' data-reviewer='"+data.reviewerID+"' class='unassign_reviewer'>Unassign</a><br></div>");
 				}
 			}
 			else{
