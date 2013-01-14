@@ -300,7 +300,7 @@ $(".abstract_title").live("click", function(){
 				}
 		}
 		if(data[0].detailed_scores.length > 0){
-			reviewer_and_score += "<br><h3>Reviewers Opinions: </h3>";
+			reviewer_and_score += "<br><h3>Reviewers' Opinions: </h3>";
 			for(var l=0;l<data[0].detailed_scores.length;l++){
 				var reviewer_recommendation = ""
 				if(data[0].detailed_scores[l].recommendation){
@@ -330,10 +330,21 @@ $(".abstract_title").live("click", function(){
 		}
 		
 		if(data[0].comments.length > 0){
+			comment += "<h3>Reviewers' Comments: </h3>";
 			for(var k=0;k<data[0].comments.length;k++){
-				//@TODO @gonecase needs to fix some styling stuffs in order to display the comments neatly!!
-				console.log(data[0].comments[k].commentContent);
+				var comment_type = data[0].comments[k].commentType;
+				//@TODO Think of a way to hold the commentID to update or create a comment.
+				if(comment_type == 1){
+					comment += "<p>&#10143;"+data[0].comments[k].reviewerFirstName+" told Reviewer: <p><textarea id='comment_reviewer'>"+data[0].comments[k].commentContent+"</textarea></p></p>";
+				}
+				if(comment_type == 2){
+					comment += "<p>&#10143;"+data[0].comments[k].reviewerFirstName+" told Admin: <p><textarea id='comment_admin'>"+data[0].comments[k].commentContent+"</textarea></p></p><hr>";
+				}
 			}
+		}
+		else{
+			comment += "<p>Comment to Reviewer: <textarea id='comment_reviewer'></textarea></p>";
+			comment += "<p>Comment to Admin: <textarea id='comment_admin'></textarea></p>";
 		}
 		$("#abstractBy").html(
 			"by "+data[0].attendeeFirstName+" "+data[0].attendeeLastName+"<br>"
@@ -344,10 +355,11 @@ $(".abstract_title").live("click", function(){
 			+"<div id='abscontent' contenteditable='true'>"+data[0].abstractContent+"</div>"
 			+"<div class='reviewerclass'>"
 			+reviewer_and_score
+			+"<br><h3>Average Score: &nbsp;"+data[0].score+"</h3><br>"
 			+"<div id='actions'>"+""+"</div>"
 			+"</div>" // the left div
 			+"<div class='clear'></div>" // clearing floats before the comments section
-			+"<div id='comments'>"+"</div>"
+			+"<div id='comments'>"+comment+"</div>"
 		);
 	});
 	return false;
