@@ -252,7 +252,7 @@ $(".abstract_title").live("click", function(){
 		$("#abstractModalLabel").html(data[0].abstractTitle);
 		var revf1="", revf2="", revf3="", revl1="", revl2="", revl3="";
 		var rec1="", rec2="", rec3="";
-		var recs = data[0].recommendations;
+		/*var recs = data[0].recommendations;
 		if(recs.length == 1){
 				rec1 = recs[0].recommendation;
 		}
@@ -267,10 +267,10 @@ $(".abstract_title").live("click", function(){
 		}
 		else{
 			
-		}
+		}*/
 		
 		var comment = "";
-		var revs = data[0].reviewers;
+		/*var revs = data[0].reviewers;
 		if(revs.length == 1){
 				revf1 = revs[0].reviewerFirstName;
 				revl1 = revs[0].reviewerLastName;
@@ -291,7 +291,7 @@ $(".abstract_title").live("click", function(){
 		}
 		else{
 			
-		}
+		}*/
 		
 		if(data[0].comments.length > 0){
 			for(var k=0;k<data[0].comments.length;k++){
