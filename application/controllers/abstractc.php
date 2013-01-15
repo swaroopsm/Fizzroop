@@ -15,82 +15,44 @@
 		}
 		
 	 /**
-		 * Handles creation of an Abstract.
+		 * Handles creation of an Abstract and Uploading of File.
 		 * @TODO Need to implement Foreign Key checks.
 		**/
 		
 		public function create(){
 			if($_SERVER['REQUEST_METHOD'] == "POST"){
 				if($this->session->userdata("loggedin") == true){
-					$dir =  $this->encrypt->sha1($this->session->userdata("email").time().$this->encrypt->sha1($this->config->item("password_salt")));
-					$data = array(
-						"abstractTitle" => $this->input->post("inputAbstractTitle"),
-						"abstractContent" => $this->input->post("inputAbstractContent"),
-						"conferenceID" => $this->input->post("inputConferenceID"),
-						"attendeeID" => $this->input->post("inputAttendeeID"),
-						"abstractImageFolder" => $dir
-					);
-					$this->abstracts->insert($data);
-					mkdir($this->config->item("upload_path").$dir); 				# Creates image directory.
-					chmod($this->config->item("upload_path").$dir, 0777);		# Changes permission to 0777.
-					echo json_encode(
-						array(
-							"success" => true,
-							"abstractID" => $this->db->insert_id(),
-							"abstractImageFolder" => $this->config->item("upload_path").$dir
-						)
-					);
-				}
-			}
-			else{
-				show_404();
-			}
-		}
-		
-		
-		/**
-			* Handles uploading of a file.
-		**/
-		
-		public function upload(){
-			if($_SERVER['REQUEST_METHOD'] == "POST"){
-				if($this->session->userdata("loggedin") == true){
-					$q = $this->abstracts->select_where(
-						array(
-							"abstractImageFolder"
-						),
-						array(
-							"abstractID" => $this->input->post("inputAbstractID")
-						)
-					);
-					$dir = $q[0]->abstractImageFolder; #Holds the abstractImageFolder sha1.
-					$config['upload_path'] = $this->config->item("upload_path").$dir;
+					$abstractTitle = $this->input->post("inputAbstractTitle");
+					$abstractContent = "{'methods': '".$this->input->post("inputAbstractMethods")."', 'aim': '".$this->input->post("inputAbstractAim")."', 'results': '".$this->input->post("inputAbstractResults")."', 'conservation': '".$this->input->post("inputAbstractConservation")."'}";
+					$file = "inputAbstractImage";
+					$config['upload_path'] = $this->config->item("upload_path");
 			 	  $config['allowed_types'] = $this->config->item("allowed_types");
 					$config['max_size']	= $this->config->item("max_size");
 					$this->load->library('upload', $config);
-					$file = "myFile";
-					if ( ! $this->upload->do_upload($file))
-					{
-						$error = array('error' => $this->upload->display_errors(), "success" => false);
-						echo json_encode($error);
+					if($this->upload->do_upload($file)){
+						$a = $this->upload->data();
+						$data = array(
+						"abstractTitle" => $abstractTitle,
+						"abstractContent" => $abstractContent,
+						"conferenceID" => $this->session->userdata("conferenceID"),
+						"attendeeID" => $this->session->userdata("id"),
+						"attendeePreference" => $this->input->post("inputAbstractPreference"),
+						"abstractImageFolder" => $a['file_name']
+					);
+						$this->abstracts->insert($data);
+						echo json_encode(array("status" => true, "abstractID" => $this->db->insert_id()));
 					}
-					else
-					{
-						$success = array('upload_data' => $this->upload->data(), "success" => true);
-				
-						echo json_encode($success);
+					else{
+						echo json_encode(array("success" => true));
 					}
-				}
-				else{
-					show_404();
 				}
 			}
 			else{
 				show_404();
 			}
 		}
-	 
-	 
+		
+		
 	  /**
 	  	* Handles the BIG ABSTRACTS table.
 	  **/
