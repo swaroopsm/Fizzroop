@@ -139,7 +139,8 @@ $.getJSON("session", function(data){
 					"Content: "+data[0].abstractContent+
 					comments+
 					score+
-					recommendation
+					recommendation+
+					"<img src='"+data[0].abstractImageFolder+"' />"
 				);
 				$("#myModal").modal({
 					keyboard: true,
