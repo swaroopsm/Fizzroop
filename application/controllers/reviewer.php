@@ -331,7 +331,7 @@
 						"abstractID" => $abstractID,
 						"abstractTitle" => $aq[0]->abstractTitle,
 						"abstractContent" => $aq[0]->abstractContent,
-						"abstractImageFolder" => $aq[0]->abstractImageFolder,
+						"abstractImageFolder" => base_url().$this->config->item("upload_path").$aq[0]->abstractImageFolder,
 						"reviewerFirstName" => $reviewer[0]->reviewerFirstName,
 						"reviewerLastName" => $reviewer[0]->reviewerLastName,
 						"comments" => $comments,
