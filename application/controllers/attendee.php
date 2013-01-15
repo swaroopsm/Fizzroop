@@ -191,6 +191,32 @@
 		
 		
 		/**
+			*	Handles rendering of view for Abstract submission.
+		**/
+		
+		public function abstract_view(){
+			if($this->session->userdata("loggedin")){
+				$attendeeEmail = array(
+					"attendeeEmail" => $this->session->userdata("email")
+				);
+				$q = $this->attendees->view_where($attendeeEmail);
+				foreach($q->result() as $row){
+					$data['attendeeFirstName'] = $row->attendeeFirstName;
+					$data['attendeeLastName'] = $row->attendeeLastName;
+					$data['attendeeRegistered'] = $row->registered;
+					$data['page_title'] = "Welcome ".$row->attendeeFirstName." ".$row->attendeeLastName."!";
+				}
+				$this->load->view("abstract_view", $data);
+			}
+			else{
+				$this->session->set_flashdata("message", "<span class='span3 alert alert-danger'><center>You are not logged in!</center></span>");
+				redirect(base_url()."login");
+			}
+		}
+		
+		
+		
+		/**
 			* Handles password reset for an Attendee.
 		**/
 		
