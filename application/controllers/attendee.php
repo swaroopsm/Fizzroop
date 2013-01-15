@@ -73,9 +73,14 @@
 				);
 				
 				if($this->attendees->view_where($data)->num_rows() > 0){
+					require_once(APPPATH."controllers/conference.php");
+					$c = new Conference();
+					$q = $c->get_order_limit();
+					$conferenceID = $q[0]->conferenceID;
 					$this->session->set_userdata(array(
 						"loggedin" => true,
 						"email" => $this->input->post("inputLoginEmail"),
+						"conferenceID" => $conferenceID,
 						"id" => $this->attendees->select_where(array("attendeeID"), array("attendeeEmail" => $this->input->post("inputLoginEmail")))->row()->attendeeID
 					));
 					redirect(base_url()."attendee");
