@@ -75,7 +75,8 @@
 				if($this->attendees->view_where($data)->num_rows() > 0){
 					$this->session->set_userdata(array(
 						"loggedin" => true,
-						"email" => $this->input->post("inputLoginEmail")
+						"email" => $this->input->post("inputLoginEmail"),
+						"id" => $this->attendees->select_where(array("attendeeID"), array("attendeeEmail" => $this->input->post("inputLoginEmail")))->row()->attendeeID
 					));
 					redirect(base_url()."attendee");
 				}
@@ -149,11 +150,16 @@
 		**/
 		
 		public function view_where(){
-			$data = array(
+			if($this->session->userdata("adminLoggedin") == true || ($this->session->userdata("loggedin") == true && $this->session->userdata("id") == $this->uri->segment(2))){
+				$data = array(
 				"attendeeID" => $this->uri->segment(2)
 			);
 			$q = $this->attendees->view_where($data);
 			echo json_encode($q->result());
+			}
+			else{
+				show_404();
+			}
 		}
 		
 		
