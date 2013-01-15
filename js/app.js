@@ -250,6 +250,7 @@ $(".abstract_title").live("click", function(){
 	$("#abstractBy").html('').append("<div class='loader'><img src='images/loader.gif' /></div>");
 	$("#abstractContent").html("");
 	$.getJSON("abstract/"+id, function(data){
+		console.log(data)
 		$("#hidden_abstractID").html("<input type='hidden' id='abstractID' value='"+data[0].abstractID+"'/>");
 		$("#abstractModalLabel").html(data[0].abstractTitle);
 		var reviewer_and_score = "";
@@ -309,7 +310,7 @@ $(".abstract_title").live("click", function(){
 			"by "+data[0].attendeeFirstName+" "+data[0].attendeeLastName+"<br>"
 			);
 		$("#abstractContent").html(
-			"<div id='imagesppt'></div>" // need to add the images folder and write necessary JS
+			"<div id='imagesppt'><img src='"+data[0].abstractImageFolder+"'/></div>" // need to add the images folder and write necessary JS
 			+"<div id='modalleft'>"
 			+"<div id='abscontent' contenteditable='true'>"+data[0].abstractContent+"</div>"
 			+"<div class='reviewerclass'>"
