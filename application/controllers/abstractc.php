@@ -178,7 +178,7 @@
 			 				"abstractID" => $row->abstractID,
 			 				"abstractTitle" => $row->abstractTitle,
 			 				"abstractContent" => $row->abstractContent, // Fizz added to get abstract content
-			 				"abstractImageFolder" => $row->abstractImageFolder,
+			 				"abstractImageFolder" => base_url().$this->config->item("upload_path").$row->abstractImageFolder,
 			 				"attendeeFirstName" => $row->attendeeFirstName,
 			 				"attendeeLastName" => $row->attendeeLastName,
 			 				"reviewers" => $reviewers_list,
