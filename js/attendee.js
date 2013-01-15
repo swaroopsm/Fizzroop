@@ -63,8 +63,14 @@ jQuery.fn.asyncSubmit = function(options){
 	
 }
 
-$("form#new_abstract").submit(function(){
+$("form#new_abstract").live("submit", function(e){
+	e.preventDefault();
 	var stat = $(this).validateFormEmpty();
-	console.log(stat);
+	if(stat.success){
+		$(this).ajaxSubmit(function(data){
+		console.log(data)
+	});
+	}
 	return false;
 });
+
