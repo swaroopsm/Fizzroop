@@ -359,6 +359,28 @@
 	 	
 	 	
 	 	/**
+	 		*	Handles Updating of a Message by an Admin.
+	 	*/
+	 	
+	 	public function update_message(){
+	 		if($this->session->userdata("adminLoggedin") == true && $_SERVER['REQUEST_METHOD'] == "POST"){
+	 			$data = array(
+	 				"message" => $this->input->post("inputAbstractMessage")
+	 			);
+	 			$where = array(
+	 				"abstractID" => $this->input->post("inputAbstractID")
+	 			);
+	 			$this->abstracts->update($data, $where);
+	 			echo json_encode(array("success" => true, "message" => $this->input->post("inputAbstractMessage")));
+	 		}
+	 		else{
+	 			show_404();
+	 		}
+	 	}
+	 	
+	 	
+	 	
+	 	/**
 		 * Handles deletion of an Abstract.
 		**/
 		
