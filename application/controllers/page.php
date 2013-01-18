@@ -37,7 +37,7 @@
 	
 		
 		/**
-			*	Handles viewing of all Pages
+			*	Handles viewing of all Pages.
 		*/
 		
 		public function view(){
@@ -50,6 +50,22 @@
 			}
 		}
 		
+		
+		/**
+			*	Handles viewing of a particular Page.
+		*/
+		
+		public function view_where(){
+			if($this->session->userdata("adminLoggedin") == true){
+				$id = $this->uri->segment(2);
+				$q = $this->pages->view_where(
+					array(
+						"pageID" => $id
+					)
+				);
+				echo json_encode($q->result());
+			}
+		}
 		
 	}
 
