@@ -98,6 +98,22 @@
 		}
 		
 		
+		/**
+			*	Deletes an Image.
+		*/
+		
+		public function delete(){
+			$id = $this->input->post("inputImageID");
+			$q = $this->images->view_where(array("imageID" => $id));
+			if($q->num_rows() > 0){
+				$r = $q->result();
+				$image = $r[0]->image;
+				unlink($this->config->item("upload_path").$image);
+				$this->images->delete(array("imageID" => $id));
+				echo json_encode(array("success" => true));
+			}
+		}
+		
 	}
 
 ?>
