@@ -67,6 +67,33 @@
 			}
 		}
 		
+		
+		/**
+			*	Handles updating of a Page.
+		*/
+		
+		public function update(){
+			if($this->session->userdata("adminLoggedin") == true){
+				$data = array(
+					"pageTitle" => $this->input->post("inputPageTitle"),
+					"pageContent" => $this->input->post("inputPageContent"),
+					"conferenceID" => $this->session->userdata("conferenceID"),
+					"pageType" => $this->input->post("inputPageType")
+				);
+				$where = array(
+					"pageID" => $this->input->post("inputPageID")
+				);
+				$this->pages->update($data, $where);
+				echo json_encode(
+					array(
+						"success" => true,
+						"pageID" => $this->input->post("inputPageID")
+					)
+				);
+			}
+		}
+		
+		
 	}
 
 ?>
