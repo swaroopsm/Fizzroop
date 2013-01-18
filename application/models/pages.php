@@ -58,6 +58,15 @@
 			$this->db->update("pages", $data);
 		}
 		
+		
+		/**
+			* Removes a particular Page.
+		*/
+		
+		public function delete($data){
+			$this->db->delete("pages", $data);
+		}
+		
 	}
 
 ?>
