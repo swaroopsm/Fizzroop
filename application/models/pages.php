@@ -48,6 +48,16 @@
 			return $this->db->get_where("pages", $where);
 		}
 		
+		
+		/**
+			* Updates values of a particular Page.
+		*/
+		
+		public function update($data, $where){
+			$this->db->where($where);
+			$this->db->update("pages", $data);
+		}
+		
 	}
 
 ?>
