@@ -11,6 +11,14 @@
 		}
 		
 		
+		/**
+			* Returns all Images.
+		*/
+		
+		public function view(){
+			return $this->db->get("images");
+		}
+		
 	}
 
 ?>
