@@ -29,6 +29,16 @@
 		}
 		
 		
+		/**
+			* Updates values of a particular Image entry.
+		*/
+		
+		public function update($data, $where){
+			$this->db->where($where);
+			$this->db->update("images", $data);
+		}
+		
+		
 	}
 
 ?>
