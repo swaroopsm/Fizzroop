@@ -61,6 +61,7 @@ $route['reviewer/abstract/(:num)'] = "reviewer/abstract_view/$1";
 $route['reviewer/abstract/assigned/(:num)'] = "reviewer/reviewer_abstracts_by_id/$1";
 $route['attendee/abstract'] = "attendee/abstract_view";
 $route['page/(:num)'] = "page/view_where/$1";
+$route['image/(:num)'] = "image/view_where/$1";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
