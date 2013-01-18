@@ -39,6 +39,14 @@
 		}
 		
 		
+		/**
+			* Removes a particular Image entry(s).
+		*/
+		
+		public function delete($data){
+			$this->db->delete("images", $data);
+		}
+		
 	}
 
 ?>
