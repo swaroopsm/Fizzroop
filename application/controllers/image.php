@@ -72,6 +72,20 @@
 		}
 		
 		
+		/**
+			*	Returns all Images.
+		*/
+		
+		public function view(){
+			if($this->session->userdata("adminLoggedin") == true){
+				$q = $this->images->view();
+				echo json_encode($q->result());
+			}
+			else{
+				show_404();
+			}
+		}
+		
 	}
 
 ?>
