@@ -34,6 +34,21 @@
 				show_404();
 			}
 		}
+	
+		
+		/**
+			*	Handles viewing of all Pages
+		*/
+		
+		public function view(){
+			if($this->session->userdata("adminLoggedin") == true){
+				$q = $this->pages->view();
+				echo json_encode($q->result());
+			}
+			else{
+				show_404();
+			}
+		}
 		
 		
 	}
