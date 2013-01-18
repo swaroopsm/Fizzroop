@@ -127,10 +127,14 @@
 				$where = array(
 					"pageID" => $this->input->post("inputPageID")
 				);
+				require_once(APPPATH."controllers/image.php");
+				$img = new Image();
+				$i = $img->delete_page_images($this->input->post("inputPageID"));
 				$this->pages->delete($where);
 				echo json_encode(
 					array(
-						"success" => true
+						"success" => true,
+						"deleted_images" => $i['deleted_images']
 					)
 				);
 			}
