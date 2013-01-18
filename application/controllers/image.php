@@ -63,6 +63,15 @@
 		}
 		
 		
+		/**
+			*	Returns all images for a particular Page.
+		*/
+		
+		public function view_page_images($pageID){
+			return $this->images->view_where(array("pageID" => $pageID));
+		}
+		
+		
 	}
 
 ?>
