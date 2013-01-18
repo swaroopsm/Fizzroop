@@ -86,6 +86,18 @@
 			}
 		}
 		
+		
+		/**
+			*	Returns a specific Image.
+		*/
+		
+		public function view_where(){
+			$id = $this->uri->segment(2);
+			$q = $this->images->view_where(array("imageID" => $id));
+			echo json_encode($q->result());
+		}
+		
+		
 	}
 
 ?>
