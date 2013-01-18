@@ -13,7 +13,6 @@
 		
 		/**
 			* Returns all Pages.
-			*	TODO Also need to Return Images, instead of the pageImageIDs.
 		*/
 		
 		public function view(){
@@ -23,7 +22,6 @@
 		
 		/**
 			* Returns a specific Page subjected to a where clause. 
-			*	TODO Also need to Return Images, instead of the pageImageID.
 		*/
 		
 		public function view_where($data){
