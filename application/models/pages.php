@@ -20,6 +20,15 @@
 		}
 		
 		
+		/**
+			* Returns a specific Page subjected to a where clause. 
+		*/
+		
+		public function view_where($data){
+			return $this->db->get_where("pages", $data);
+		}
+		
+		
 	}
 
 ?>
