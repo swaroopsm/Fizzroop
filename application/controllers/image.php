@@ -103,16 +103,43 @@
 		*/
 		
 		public function delete(){
-			$id = $this->input->post("inputImageID");
-			$q = $this->images->view_where(array("imageID" => $id));
-			if($q->num_rows() > 0){
-				$r = $q->result();
-				$image = $r[0]->image;
-				unlink($this->config->item("upload_path").$image);
-				$this->images->delete(array("imageID" => $id));
-				echo json_encode(array("success" => true));
+			if($this->session->userdata("adminLoggedin") == true){
+				$id = $this->input->post("inputImageID");
+				$q = $this->images->view_where(array("imageID" => $id));
+				if($q->num_rows() > 0){
+					$r = $q->result();
+					$image = $r[0]->image;
+					unlink($this->config->item("upload_path").$image);
+					$this->images->delete(array("imageID" => $id));
+					echo json_encode(array("success" => true));
+				}
+			}
+			else{
+				show_404();
 			}
 		}
+		
+		
+		/**
+			*	Handles deletion of all images specific to a Page.
+		*/
+		
+		public function delete_page_images($pageID){
+			if($this->session->userdata("adminLoggedin") == true){
+				$q = $this->images->view_where(array("pageID" => $pageID));
+				if($q->num_rows() > 0){
+					$c = 0;
+					foreach($q->result() as $image){
+						$img = $image->image;
+						unlink($this->config->item("upload_path").$img);
+						$c++;
+					}
+					$this->images->delete(array("pageID" => $pageID));
+					return array("success" => true, "deleted_images" => $c);
+				}
+			}
+		}
+		
 		
 	}
 
