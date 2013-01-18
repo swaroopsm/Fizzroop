@@ -94,6 +94,25 @@
 		}
 		
 		
+		/**
+			*	Handles deletion of a Page.
+		*/
+		
+		public function delete(){
+			if($this->session->userdata("adminLoggedin") == true){
+				$where = array(
+					"pageID" => $this->input->post("inputPageID")
+				);
+				$this->pages->delete($where);
+				echo json_encode(
+					array(
+						"success" => true
+					)
+				);
+			}
+		}
+		
+		
 	}
 
 ?>
