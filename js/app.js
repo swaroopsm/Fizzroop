@@ -476,7 +476,7 @@ $("#manageAttendees").live("click", function(){
 															},
 															{
 																"mDataProp": "registered",
-																"sTitle": "Registered?"
+																"sTitle": "Abstract Submitted?"
 															}
 								]
 						});
