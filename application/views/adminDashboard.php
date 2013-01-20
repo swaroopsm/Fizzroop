@@ -34,7 +34,7 @@
 
 				<h2>Attendees</h2>
 				<p><?php echo $registered_attendees; ?> Registered Attendees</p>
-				<p><a href="#" id="manageAttendees">Manage Attendees</a> | <a href="#">Add Attendee</a></p>
+				<p><a href="#" id="manageAttendees">Manage Attendees</a> | <a href="#" id="newAttendee">Add Attendee</a></p>
 			</div>
 
 			<div class="col">
@@ -159,6 +159,55 @@
 	</div>
 	
 	<!-- End List of Reviewers Modal -->
+	
+	
+	<!-- Add Attendee Modal -->
+	
+	<div id="addAttendeeModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="AttendeeModalLabel" aria-hidden="true"  style="display: none;">
+		<div class="modal-header">
+		  <a class="close" data-dismiss="modal" aria-hidden="true" href="#">&times;</a>
+		  <h3>Add Attendee</h3>
+		</div>
+		<div class="modal-body">
+			<div id="js-messages"></div>
+		  <?php
+		  	 echo form_open("attendee/create", array("class" => "form form-horizontal", "id" => "new_attendee", "style" => "margin-left: 0px;"));
+		  	echo form_label("Firstname:", "inputFirstName", array("class" => "control-label")); 
+		  	echo form_input(array("name" => "inputFirstName", "id" => "inputFirstName", "class" => "", "placeholder" => "Attendee's Firstname"));
+		  	echo form_label("Lastname:", "inputLastName", array("class" => "control-label")); 
+		  	echo form_input(array("name" => "inputLastName", "id" => "inputLastName", "class" => "", "placeholder" => "Attendee's Lastname"));
+		  	echo form_label("Email:", "inputEmail", array("class" => "control-label")); 
+		  	echo form_input(array("name" => "inputEmail", "id" => "inputEmail", "class" => "", "placeholder" => "Attendee's Email"));
+		  	echo form_label("Password:", "inputPassword", array("class" => "control-label")); 
+		  	echo form_password(array("name" => "inputPassword", "id" => "inputPassword", "class" => "", "placeholder" => "Attendee' Password"));
+		  	echo form_label("Gender:", "inputGender", array("class" => "control-label")); 
+		  	echo form_input(array("name" => "inputGender", "id" => "inputGender", "class" => "", "placeholder" => "Attendee's Gender"));
+		  	echo form_label("Date of Birth:", "inputDOB", array("class" => "control-label")); 
+		  	echo form_input(array("name" => "inputDOB", "id" => "inputDOB", "class" => "", "placeholder" => "Attendee's Date of Birth"));
+		  	echo form_label("Academic Status:", "inputAcademic", array("class" => "control-label")); 
+		  	echo form_input(array("name" => "inputAcademic", "id" => "inputAcademic", "class" => "", "placeholder" => "Academic Status"));
+		  	echo form_label("Institution Affiliation:", "inputInstAffiliation", array("class" => "control-label")); 
+		  	echo form_input(array("name" => "inputInstAffiliation", "id" => "inputInstAffiliation", "class" => "", "placeholder" => "Institution Affiliation"));
+		  	echo "<br>";
+		  	echo form_label("Address:", "inputAddress", array("class" => "control-label")); 
+		  	echo form_textarea(array("name" => "inputAddress", "id" => "inputAddress", "class" => "", "placeholder" => "Attendee's Address"));
+		  	echo "<br>";
+		  	echo form_label("Phone:", "inputPhone", array("class" => "control-label")); 
+		  	echo form_input(array("name" => "inputPhone", "id" => "inputPhone", "class" => "", "placeholder" => "Attendee's Phone"));
+		  	echo form_label("Nationality:", "inputNationality", array("class" => "control-label")); 
+		  	echo form_input(array("name" => "inputNationality", "id" => "inputNationality", "class" => "", "placeholder" => "Attendee's Nationality"));
+		  	echo form_label("Passport:", "inputPassport", array("class" => "control-label")); 
+		  	echo form_input(array("name" => "inputPassport", "id" => "inputPassport", "class" => "", "placeholder" => "Attendee's Passport"));
+		  ?>
+		</div>
+		<div class="modal-footer">
+		  <input type="submit" value="Add Attendee"/>
+		</div>
+	</div>
+	
+	<!-- End Add Attendee Modal -->
+
+	
 	
 	<div class="container">
 		<div id="ajaxer">
