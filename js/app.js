@@ -702,3 +702,18 @@ $(".assign_me").live("click", function(){
 		}
 	);
 });
+
+
+/**
+	*	New Attendee click function
+**/
+
+$("#newAttendee").live("click", function(){
+	console.log(":)")
+	$("#addAttendeeModal").modal({
+		keyboard: true,
+		backdrop: 'static',
+		show: true
+	});
+	return false;
+});
