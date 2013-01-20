@@ -709,11 +709,32 @@ $(".assign_me").live("click", function(){
 **/
 
 $("#newAttendee").live("click", function(){
-	console.log(":)")
 	$("#addAttendeeModal").modal({
 		keyboard: true,
 		backdrop: 'static',
 		show: true
 	});
+	return false;
+});
+
+
+/**
+	* Add Attendee click function.
+**/
+
+$("form#new_attendee").submit(function(){
+	var stat = $(this).validateFormEmpty();
+	console.log(stat);
+	if(stat.success){
+		$(this).asyncSubmit({
+			'target': '#js-messages2',
+			'loadTarget': '#loader',
+			'loader': '<br><img src="<?php echo base_url()."images/loader.gif"; ?>">',
+			'successMsg': 'Attendee added successfully!',
+			'errorMsg': 'There was an error, please try again later!'
+		});
+	}else{
+		$("#js-messages2").html("<span class='span6 alert alert-danger'>"+stat.errorMsg+"</span>").hide().fadeIn(500);
+	}
 	return false;
 });
