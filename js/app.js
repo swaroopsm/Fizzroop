@@ -9,7 +9,7 @@
 
 jQuery.fn.validateFormEmpty = function(){
 	
-	var inputsTextList = $(this).find("input[type=text], input[type=password]");
+	var inputsTextList = $(this).find("input[type=text], input[type=password], textarea");
 	var inputsLabelList = $(this).find("label");
 	var flag = 0;
 	var errorMsg = "";
@@ -37,7 +37,7 @@ jQuery.fn.validateFormEmpty = function(){
 jQuery.fn.asyncSubmit = function(options){
 	
 	$(options.loadTarget).html(options.loader).show();
-	var inputsList = $(this).find("input[type=text], input[type=password]");
+	var inputsList = $(this).find("input[type=text], input[type=password], textarea");
 	var paramList="";
 	for(var i=0;i<inputsList.length;i++){
 		paramList = paramList+inputsList[i].name+"="+inputsList[i].value+"&";
@@ -724,7 +724,6 @@ $("#newAttendee").live("click", function(){
 
 $("form#new_attendee").submit(function(){
 	var stat = $(this).validateFormEmpty();
-	console.log(stat);
 	if(stat.success){
 		$(this).asyncSubmit({
 			'target': '#js-messages2',
