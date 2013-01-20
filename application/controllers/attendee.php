@@ -199,14 +199,35 @@
 					"attendeeID",
 					"attendeeFirstName",
 					"attendeeLastName",
-					"attendeeEmail",
-					"registered"
+					"attendeeEmail"
 				);
 				$where = array(
 					"registered" => 1
 				);
 				$q = $this->attendees->select_where($data, $where);
-				echo json_encode($q->result());
+				$attendees = array();
+				if($q->num_rows() > 0){
+					require_once(APPPATH."controllers/abstractc.php");
+					$a = new Abstractc();
+					foreach($q->result() as $row){
+						$attendeeID = $row->attendeeID;
+						$aq = $a->select_where(array("abstractID"), array("attendeeID" => $attendeeID));
+						if($aq->num_rows() > 0){
+							$registered = "1";
+						}
+						else{
+							$registered = "0";
+						}
+						$attendees[] = array(
+							"attendeeID" => $attendeeID,
+							"attendeeFirstName" => $row->attendeeFirstName,
+							"attendeeLastName" => $row->attendeeLastName,
+							"attendeeEmail" => $row->attendeeEmail,
+							"registered" => $registered //This is to determine if an Abstract submitted!
+						);
+					}
+				}
+				echo json_encode($attendees);
 			}
 			else{
 				show_404();
