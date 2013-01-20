@@ -137,6 +137,7 @@
 		</div>
 		<div class="modal-footer">
 		  <input type="submit" value="Add Reviewer"/>
+		  <?php echo form_close(); ?>
 		</div>
 	</div>
 	
@@ -169,9 +170,9 @@
 		  <h3>Add Attendee</h3>
 		</div>
 		<div class="modal-body">
-			<div id="js-messages"></div>
-		  <?php
-		  	 echo form_open("attendee/create", array("class" => "form form-horizontal", "id" => "new_attendee", "style" => "margin-left: 0px;"));
+			 <div id="js-messages2"></div>
+		   <?php
+		  	 echo form_open("attendee/create", array("class" => "form form-horizontal", "id" => "new_attendee", "style" => "margin-left: 0px;", "action" => "attendee/create"));
 		  	echo form_label("Firstname:", "inputFirstName", array("class" => "control-label")); 
 		  	echo form_input(array("name" => "inputFirstName", "id" => "inputFirstName", "class" => "", "placeholder" => "Attendee's Firstname"));
 		  	echo form_label("Lastname:", "inputLastName", array("class" => "control-label")); 
@@ -202,6 +203,7 @@
 		</div>
 		<div class="modal-footer">
 		  <input type="submit" value="Add Attendee"/>
+		  <?php echo form_close(); ?>
 		</div>
 	</div>
 	
