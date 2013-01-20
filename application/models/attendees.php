@@ -7,7 +7,7 @@
 		*/
 		
 		public function insert($data){
-			$this->db->insert("attendees", $data)
+			$this->db->insert("attendees", $data);
 		}
 		
 		
