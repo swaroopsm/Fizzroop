@@ -63,10 +63,7 @@
 					"attendeeNationality" => $this->input->post("inputNationality"),
 					"attendeePassport" => $this->input->post("inputPassport")
 				);
-				if($this->attendees->insert($data))
-					echo ":)";
-				else
-					echo ":)";
+				$this->attendees->insert($data);
 			}
 			else{
 				show_404();
