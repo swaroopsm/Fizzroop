@@ -202,7 +202,10 @@
 					"attendeeEmail",
 					"registered"
 				);
-				$q = $this->attendees->select($data);
+				$where = array(
+					"registered" => 1
+				);
+				$q = $this->attendees->select_where($data, $where);
 				echo json_encode($q->result());
 			}
 			else{
