@@ -44,11 +44,24 @@
 
 		public function create(){
 			if($_SERVER['REQUEST_METHOD'] == "POST"){
+				if($this->session->userdata("adminLoggedin") == true)
+					$registered = 1;
+				else
+					$registered = 0;
 				$data = array(
 					"attendeeFirstName" => $this->input->post("inputFirstName"),
 					"attendeeLastName" => $this->input->post("inputLastName"),
 					"attendeeEmail" => $this->input->post("inputEmail"),
-					"attendeePassword" => $this->encrypt->sha1($this->input->post("inputPassword").$this->encrypt->sha1($this->config->item("password_salt")))
+					"attendeePassword" => $this->encrypt->sha1($this->input->post("inputPassword").$this->encrypt->sha1($this->config->item("password_salt"))),
+					"registered" => $registered,
+					"attendeeGender" => $this->input->post("inputGender"),
+					"attendeeDOB" => $this->input->post("inputDOB"),
+					"attendeeAcademic" => $this->input->post("inputAcademic"),
+					"attendeeInstAffiliation" => $this->input->post("inputInstAffiliation"),
+					"attendeeAddress" => $this->input->post("inputAddress"),
+					"attendeePhone" => $this->input->post("inputPhone"),
+					"attendeeNationality" => $this->input->post("inputNationality"),
+					"attendeePassport" => $this->input->post("inputPassport")
 				);
 				if($this->attendees->insert($data))
 					echo ":)";
