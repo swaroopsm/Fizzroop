@@ -64,6 +64,17 @@
 					"attendeePassport" => $this->input->post("inputPassport")
 				);
 				$this->attendees->insert($data);
+				if($this->session->userdata("adminLoggedin") == true){
+					echo json_encode(
+						array(
+							"success" => true,
+							"attendeeID" => $this->db->insert_id()
+						)
+					);
+			 }
+			 else{
+				#@TODO Do login and redirect to Attendee Dashboard.
+			 }
 			}
 			else{
 				show_404();
