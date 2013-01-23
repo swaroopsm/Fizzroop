@@ -229,6 +229,42 @@
 	<!-- End Single Page Modal -->
 	
 	
+	<!-- Create Page Modal -->
+	
+	<div id="createPageModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="createPageModalLabel" aria-hidden="true"  style="display: none;">
+		<div class="modal-header">
+		  <a class="close" data-dismiss="modal" aria-hidden="true" href="#">&times;</a>
+		  <h3 id="createPageModalLabel">Create Page</h3>
+		</div>
+		<div class="modal-body">
+		  <?php
+		  	 echo form_open("page/create", array("class" => "form form-horizontal", "id" => "new_page", "style" => "margin-left: 0px;", "action" => "page/create"));
+		  	echo form_label("Title:", "inputPageTitle", array("class" => "control-label")); 
+		  	echo form_input(array("name" => "inputPageTitle", "id" => "inputPageTitle", "class" => "", "placeholder" => "Page Title"));
+		  ?>
+		  <br>
+		  <label>Content: </label><br>
+		  <div id="inputPageContent" name="inputPageContent" contenteditable="true"></div>
+		  <?php
+		  	echo form_label("Type:", "inputPageType", array("class" => "control-label"));
+		  	$options = array(
+		  		 ''	=> "--Select--",
+           '1'  => 'Normal Page',
+           '2'    => 'Plenary',
+           );
+        echo form_dropdown("inputPageType", $options);
+		  ?>
+		</div>
+		<div class="modal-footer">
+		  <?php
+		  	echo form_submit(array("id" => "pageSubmit", "value" => "Submit"));
+		  	echo form_close();
+		  ?>
+		</div>
+	</div>
+	
+	<!-- End Create Page Modal -->
+	
 	
 	<div class="container">
 		<div id="ajaxer">
