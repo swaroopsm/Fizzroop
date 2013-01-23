@@ -19,7 +19,7 @@
 		*/
 		
 		public function create(){
-			if($this->session->userdata("adminLoggedin") == true && $_SERVER['REQUEST_METHOD'] == "GET"){
+			if($this->session->userdata("adminLoggedin") == true && $_SERVER['REQUEST_METHOD'] == "POST"){
 				#@TODO Think of a way to handle Page Images.
 				$data = array(
 					"pageTitle" => $this->input->post("inputPageTitle"),
