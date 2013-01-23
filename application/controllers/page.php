@@ -146,7 +146,7 @@
 		*/
 		
 		public function delete(){
-			if($this->session->userdata("adminLoggedin") == true){
+			if($this->session->userdata("adminLoggedin") == true && $_SERVER['REQUEST_METHOD'] == "POST"){
 				$where = array(
 					"pageID" => $this->input->post("inputPageID")
 				);
