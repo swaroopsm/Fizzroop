@@ -737,3 +737,58 @@ $("form#new_attendee").submit(function(){
 	}
 	return false;
 });
+
+
+/**
+	*	Manage Pages click function.
+**/
+
+$("#managePages").live("click", function(){
+	var flag;
+	$.getJSON("session", function(session){
+		flag=session.adminLoggedin;
+		if(flag==true){
+			$("#ajaxer").html("<div class='loader'><img src='images/loader.gif'/></div>");
+			$.getJSON("page/view", function(data){
+				if(data.length > 0){
+					var obj = [];
+					c = 0;
+					for(var i=0;i<data.length;i++){
+						obj.push({
+							"pageID": ++c,
+							"pageTitle": "<a href='#' data-page='"+data[i].pageID+"' class='single_page'>"+data[i].pageTitle+"</a>"
+						});
+					}
+						$("#ajaxer").html("<h2 id='title'>PAGES MANAGER</h2><table id='test'></table>");
+						$("table#test").dataTable({
+								"aaData": obj,
+								"sScrollX": "100%",
+				 				"bScrollCollapse": true,
+				 				"bScrollAutoCss": false,
+				 				"iDisplayLength": 50,
+				 				"aoColumns": [
+				 												{
+				 													"mDataProp": "pageID",
+																	"sTitle": "Sl. No.",
+																	"sClass": "title"
+				 												},
+				 												{
+				 													"mDataProp": "pageTitle",
+																	"sTitle": "Title",
+																	"sClass": "title"
+				 												}
+				 				]
+						});
+				}
+				else{
+					$("#ajaxer").html("<h2 class='no-records'>\" No Abstracts have been uploaded yet! \"</h2>");
+				}
+			});
+			return false
+		}
+		else{
+			window.location = "admin";
+			return true;
+		}
+	});
+});
