@@ -802,14 +802,38 @@ $(".single_page").live("click", function(){
 	var pageID = $(this).attr("href").substring(1);
 	$("#pageData").html("<div class='loader'><img src='images/loader.gif' /></div>");
 	$.getJSON("page/"+pageID, function(data){
-		console.log(data)
 		$("#pageModalLabel").html("<h2>"+data[0].pageTitle+"</h2>");
-		$("#pageData").html("<div id='pageContent' contenteditable='true'>"+data[0].pageContent+"</div>");
+		$("#pageData").html("<div><label>Title: </label> <input id='page_title_edit' value='"+data[0].pageTitle+"'/><input id='page_id' type='hidden' value='"+data[0].pageID+"'/><input id='page_type' type='hidden' value='"+data[0].pageType+"'/></div> Content: <div id='pageContent' contenteditable='true'>"+data[0].pageContent+"</div>");
 		$("#pageModal").modal({
 			keyboard: true,
 			backdrop: 'static',
+
 			show: true
 		});
 	});
 	return false;
 })
+
+
+/**
+	*	Save Page button click function.
+**/
+
+$("button#save_page").live("click", function(){
+	var title = $("#page_title_edit").val();
+	var content = $("#pageContent").html();
+	var pageID = $("#page_id").val();
+	var pageType = $("#page_type").val();
+	console.log(content)
+	$.post(
+		"page/update", 
+		{
+			"inputPageTitle": title,
+			"inputPageContent": content, 
+			"inputPageID": pageID, 
+			"inputPageType": pageType
+		},
+	function(data){
+		console.log(data);
+	});
+});
