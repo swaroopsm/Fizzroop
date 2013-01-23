@@ -42,7 +42,7 @@
 		
 		public function view(){
 			if($this->session->userdata("adminLoggedin") == true){
-				$q = $this->pages->view();
+				$q = $this->pages->view_where(array("conferenceID" => $this->session->userdata("conferenceID")));
 				echo json_encode($q->result());
 			}
 			else{
