@@ -404,14 +404,14 @@ a.close:active{
 }
 
 
-[contenteditable="true"]:focus::before{
+/*[contenteditable="true"]:focus::before{
 	content:"Careful! You are editing this field";
 	color: red;
 	display: block;
 	text-align: right;
 	border-bottom: 1px red dotted;
 	
-}
+}*/
 
 .alert-danger{
 	color: red;
