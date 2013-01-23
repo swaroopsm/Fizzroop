@@ -222,6 +222,7 @@
 		</div>
 		<div class="modal-footer">
 		  <button id="save_page">Save Changes</button>
+		   <button id="delete_page">Delete Page</button>
 		</div>
 	</div>
 	
