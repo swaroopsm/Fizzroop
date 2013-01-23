@@ -860,3 +860,17 @@ $("button#delete_page").live("click", function(){
 	);
 	return false;	
 });
+
+
+/**
+	*	Create Page click function.
+**/
+
+$("#createPage").live("click", function(){
+	$("#createPageModal").modal({
+		keyboard: true,
+		backdrop: 'static',
+		show: true
+	});
+	return false;
+});
