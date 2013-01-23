@@ -221,7 +221,7 @@
 		  <p></p>
 		</div>
 		<div class="modal-footer">
-		  <input type="button" id="save_page" value="Save Changes"/>
+		  <button id="save_page">Save Changes</button>
 		</div>
 	</div>
 	
