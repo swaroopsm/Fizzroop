@@ -756,7 +756,7 @@ $("#managePages").live("click", function(){
 					for(var i=0;i<data.length;i++){
 						obj.push({
 							"pageID": ++c,
-							"pageTitle": "<a href='#"+data[i].pageID+"' class='single_page'>"+data[i].pageTitle+"</a>"
+							"pageTitle": "<a href='#"+data[i].pageID+"' class='single_page' id='page_"+data[i].pageID+"'>"+data[i].pageTitle+"</a>"
 						});
 					}
 						$("#ajaxer").html("<h2 id='title'>PAGES MANAGER</h2><table id='test'></table>");
@@ -781,7 +781,7 @@ $("#managePages").live("click", function(){
 						});
 				}
 				else{
-					$("#ajaxer").html("<h2 class='no-records'>\" No Abstracts have been uploaded yet! \"</h2>");
+					$("#ajaxer").html("<h2 class='no-records'>\" No Pages exist! \"</h2>");
 				}
 			});
 			return false
@@ -836,4 +836,27 @@ $("button#save_page").live("click", function(){
 	function(data){
 		console.log(data);
 	});
+});
+
+
+/**
+	*	Delet Page click function.
+**/
+
+$("button#delete_page").live("click", function(){
+	var pageID = $("#page_id").val();
+	$.post(
+		"page/delete",
+		{
+			"inputPageID": pageID
+		},
+		function(data){
+			var obj = $.parseJSON(data)
+			if(obj.success){
+				$("#pageModal").modal("toggle");
+				$("#page_"+pageID).parent().parent().fadeOut(500);
+			}
+		}
+	);
+	return false;	
 });
