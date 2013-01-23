@@ -420,3 +420,8 @@ a.close:active{
 .alert-success{
 	color: green;
 }
+
+#newPageContent{
+	border: 1px dotted gray;
+	padding: 5px;
+}
