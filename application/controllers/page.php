@@ -120,7 +120,7 @@
 		*/
 		
 		public function update(){
-			if($this->session->userdata("adminLoggedin") == true){
+			if($this->session->userdata("adminLoggedin") == true && $_SERVER['REQUEST_METHOD'] == "POST"){
 				$data = array(
 					"pageTitle" => $this->input->post("inputPageTitle"),
 					"pageContent" => $this->input->post("inputPageContent"),
