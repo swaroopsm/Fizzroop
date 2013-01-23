@@ -97,15 +97,20 @@
 		**/
 		
 		public function select_where(){
-			$data = array(
-				"pageID",
-				"pageTitle"
-			);
-			$where = array(
-				"conferenceID" => $this->session->userdata("conferenceID")
-			);
-			$q = $this->pages->select_where($data, $where);
-			echo json_encode($q->result());
+			if($this->session->userdata("adminLoggedin") == true){
+				$data = array(
+					"pageID",
+					"pageTitle"
+				);
+				$where = array(
+					"conferenceID" => $this->session->userdata("conferenceID")
+				);
+				$q = $this->pages->select_where($data, $where);
+				echo json_encode($q->result());
+			}
+			else{
+				show_404();
+			}
 		}
 		
 		
