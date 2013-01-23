@@ -756,7 +756,7 @@ $("#managePages").live("click", function(){
 					for(var i=0;i<data.length;i++){
 						obj.push({
 							"pageID": ++c,
-							"pageTitle": "<a href='#' data-page='"+data[i].pageID+"' class='single_page'>"+data[i].pageTitle+"</a>"
+							"pageTitle": "<a href='#"+data[i].pageID+"' class='single_page'>"+data[i].pageTitle+"</a>"
 						});
 					}
 						$("#ajaxer").html("<h2 id='title'>PAGES MANAGER</h2><table id='test'></table>");
@@ -792,3 +792,16 @@ $("#managePages").live("click", function(){
 		}
 	});
 });
+
+
+/**
+	*	Single Page click function.
+**/
+
+$(".single_page").live("click", function(){
+	var pageID = $(this).attr("href").substring(1);
+	$.getJSON("page/"+pageID, function(data){
+		console.log(data)
+	});
+	return false;
+})
