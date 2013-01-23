@@ -237,6 +237,7 @@
 		  <h3 id="createPageModalLabel">Create Page</h3>
 		</div>
 		<div class="modal-body">
+			<div id="js-messages3"></div>
 		  <?php
 		  	 echo form_open("page/create", array("class" => "form form-horizontal", "id" => "new_page", "style" => "margin-left: 0px;", "action" => "page/create"));
 		  	echo form_label("Title:", "inputPageTitle", array("class" => "control-label")); 
