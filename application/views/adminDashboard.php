@@ -16,7 +16,7 @@
 
 				<h2>FRONTEND PAGES</h2>
 				<p>Manage the pages and content accross the public site</p>
-				<p><a href="#">Manage Pages</a></p>
+				<p><a href="#" id="managePages">Manage Pages</a></p>
 
 				<h2>CONFERENCE ARCHIVE PAGES</h2>
 				<p>Manage the conference archive accross the public site</p>
