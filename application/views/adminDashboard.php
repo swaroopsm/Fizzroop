@@ -210,6 +210,24 @@
 	<!-- End Add Attendee Modal -->
 
 	
+	<!-- Single Page Modal -->
+	
+	<div id="pageModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="pageModalLabel" aria-hidden="true"  style="display: none;">
+		<div class="modal-header">
+		  <a class="close" data-dismiss="modal" aria-hidden="true" href="#">&times;</a>
+		  <h3 id="pageModalLabel"></h3>
+		</div>
+		<div class="modal-body" id="pageData">
+		  <p></p>
+		</div>
+		<div class="modal-footer">
+		  
+		</div>
+	</div>
+	
+	<!-- End Single Page Modal -->
+	
+	
 	
 	<div class="container">
 		<div id="ajaxer">
