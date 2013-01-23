@@ -421,7 +421,7 @@ a.close:active{
 	color: green;
 }
 
-#newPageContent{
+#inputPageContent{
 	border: 1px dotted gray;
 	padding: 5px;
 }
