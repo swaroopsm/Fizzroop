@@ -800,8 +800,16 @@ $("#managePages").live("click", function(){
 
 $(".single_page").live("click", function(){
 	var pageID = $(this).attr("href").substring(1);
+	$("#pageData").html("<div class='loader'><img src='images/loader.gif' /></div>");
 	$.getJSON("page/"+pageID, function(data){
 		console.log(data)
+		$("#pageModalLabel").html("<h2>"+data[0].pageTitle+"</h2>");
+		$("#pageData").html("<div id='pageContent' contenteditable='true'>"+data[0].pageContent+"</div>");
+		$("#pageModal").modal({
+			keyboard: true,
+			backdrop: 'static',
+			show: true
+		});
 	});
 	return false;
 })
