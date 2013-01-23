@@ -9,7 +9,7 @@
 
 jQuery.fn.validateFormEmpty = function(){
 	
-	var inputsTextList = $(this).find("input[type=text], input[type=password], textarea");
+	var inputsTextList = $(this).find("input[type=text], input[type=password], textarea, select");
 	var inputsLabelList = $(this).find("label");
 	var flag = 0;
 	var errorMsg = "";
@@ -37,7 +37,7 @@ jQuery.fn.validateFormEmpty = function(){
 jQuery.fn.asyncSubmit = function(options){
 	
 	$(options.loadTarget).html(options.loader).show();
-	var inputsList = $(this).find("input[type=text], input[type=password], textarea");
+	var inputsList = $(this).find("input[type=text], input[type=password], textarea, select");
 	var paramList="";
 	for(var i=0;i<inputsList.length;i++){
 		paramList = paramList+inputsList[i].name+"="+inputsList[i].value+"&";
@@ -871,6 +871,32 @@ $("#createPage").live("click", function(){
 		keyboard: true,
 		backdrop: 'static',
 		show: true
+	});
+	return false;
+});
+
+
+/**
+	*	Create Page form submit function.
+**/
+
+$("form#new_page").live("submit", function(){
+	var title = $("#inputPageTitle").val();
+	var content = $("#inputPageContent").html();
+	var type = $("select[name='inputPageType']").val();
+	console.log(title+" & "+content+" & "+type)
+	$.post("page/create",
+	{
+		"inputPageTitle": title,
+		"inputPageContent": content,
+		"inputPageType": type
+	},
+	function(data){
+		var obj = $.parseJSON(data);
+		if(obj.success){
+			$("#js-messages3").html("<span class='alert alert-success'>Page added!</span>");
+			$("form#new_page")[0].reset();
+		}
 	});
 	return false;
 });
