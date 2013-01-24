@@ -16,10 +16,9 @@
 				$this->load->model("attendees");
 				$this->load->model("scores");
 				$this->load->model("comments");
-				$a = $this->abstracts->select(array("abstractID"));
-				$approved = $this->abstracts->select_where_plain(array("abstractID"), array("approved" => 1));
+				$a = $this->abstracts->select_where(array("abstractID"), array("conferenceID" => $this->session->userdata("conferenceID")));
+				$approved = $this->abstracts->select_where_plain(array("abstractID"), array("approved" => 1, "conferenceID" => $this->session->userdata("conferenceID")));
 				$r = $this->reviewers->select(array("reviewerID"));
-				$at = $this->attendees->select_where_plain(array("attendeeID"), array("registered" => 1));
 				$s = $this->scores->select(array("scoreID"))->num_rows() - $this->scores->view_where(array("recommendation" => NULL))->num_rows();
 				$c = $this->comments->view_where(array());
 				$ca = ($this->comments->abs_with_comments_count());
@@ -27,7 +26,7 @@
 				$data['total_abstracts'] = $a->num_rows;
 				$data['approved_abstracts'] = $approved->num_rows();
 				$data['total_reviewers'] = $r->num_rows();
-				$data['registered_attendees'] = $at->num_rows();
+				$data['registered_attendees'] = "";//@TODO Need to pull data from doAttend.
 				$data['recommendations'] = $s;
 				$data['abstract_comments_count'] = $ca->num_rows();
 				$this->load->view("adminDashboard", $data);
