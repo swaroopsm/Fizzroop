@@ -40,8 +40,7 @@
 			<div class="col">
 				<h2>Archived Conferences</h2>
 				<p>3 archived Conferences</p>
-				<p>Manage:<a href="#">2012</a> | <a href="#">2011</a> | <a href="#">2010</a></p>
-
+				<p><?php echo $archived_conferences; ?></p>
 				<h2>Create New Conference</h2>
 				<p><a href="#">Create new conference</a></p>
 				<p>This will wipe certain records in the database. <br>Proceed with caution.</p>
