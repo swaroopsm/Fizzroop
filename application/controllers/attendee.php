@@ -211,7 +211,7 @@
 					$a = new Abstractc();
 					foreach($q->result() as $row){
 						$attendeeID = $row->attendeeID;
-						$aq = $a->select_where(array("abstractID"), array("attendeeID" => $attendeeID));
+						$aq = $a->select_where(array("abstractID"), array("attendeeID" => $attendeeID, "conferenceID" => $this->session->userdata("conferenceID")));
 						if($aq->num_rows() > 0){
 							$registered = "1";
 						}
