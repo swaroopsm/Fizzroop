@@ -16,6 +16,15 @@
 				$this->load->model("attendees");
 				$this->load->model("scores");
 				$this->load->model("comments");
+				require_once(APPPATH."controllers/conference.php");
+				$conf = new Conference();
+				$conf_last = $conf->get_order_limit(array("conferenceID","year"), "conferenceID", "DESC", "4");
+				$conference_archive = "<p>Manage: ";
+				foreach($conf_last as $conf_arch){
+					if($conf_arch->conferenceID!=$this->session->userdata("conferenceID")){
+						$conference_archive .= "<a href='".base_url()."admin/conference/".$conf_arch->conferenceID."'>".$conf_arch->year."</a> | ";
+					}
+				}
 				$a = $this->abstracts->select_where(array("abstractID"), array("conferenceID" => $this->session->userdata("conferenceID")));
 				$approved = $this->abstracts->select_where_plain(array("abstractID"), array("approved" => 1, "conferenceID" => $this->session->userdata("conferenceID")));
 				$r = $this->reviewers->select(array("reviewerID"));
@@ -29,6 +38,7 @@
 				$data['registered_attendees'] = "";//@TODO Need to pull data from doAttend.
 				$data['recommendations'] = $s;
 				$data['abstract_comments_count'] = $ca->num_rows();
+				$data['archived_conferences'] = $conference_archive;
 				$this->load->view("adminDashboard", $data);
 			}
 			else{
@@ -98,14 +108,8 @@
 	 
 	 public function change_conference(){
 	 	if($this->session->userdata("adminLoggedin") == true){
-	 		$conferenceYear = $this->uri->segment(3);
-	 		require_once(APPPATH."controllers/conference.php");
-	 		$c = new Conference();
-	 		$q = $c->select_where(array("conferenceID"), array("year" => $conferenceYear));
-	 		if($q->num_rows() > 0){
-	 			$r = $q->result();
-	 			$this->session->set_userdata(array("conferenceID" => $r[0]->conferenceID));
-	 		}
+	 		$conferenceID = $this->uri->segment(3);
+	 		$this->session->set_userdata(array("conferenceID" => $conferenceID));
 	 		redirect(base_url()."admin");
 	 	}
 	 	else{
