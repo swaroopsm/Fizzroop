@@ -245,7 +245,7 @@
 		  ?>
 		  <br>
 		  <label>Content: </label><br>
-		  <div id="inputPageContent" name="inputPageContent" contenteditable="true"></div>
+		  <div id="inputPageContent" name="inputPageContent" contenteditable="true" class="pageContent"></div>
 		  <?php
 		  	echo form_label("Type:", "inputPageType", array("class" => "control-label"));
 		  	$options = array(
