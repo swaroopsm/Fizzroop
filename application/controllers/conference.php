@@ -94,6 +94,11 @@
 			return $this->conferences->select_where($data, $where);
 		}	
 		
+		public function get_current_conf(){
+			return $this->conferences->get_order_limit(array("conferenceID"), "conferenceID", "DESC", "1");
+		}
+		
+		
 	}
 	
 ?>
