@@ -18,13 +18,16 @@
 				$this->load->model("comments");
 				require_once(APPPATH."controllers/conference.php");
 				$conf = new Conference();
-				$conf_last = $conf->get_order_limit(array("conferenceID","year"), "conferenceID", "DESC", "4");
+				$cur_conf_q = $conf->get_current_conf();
+				$cur_conf = $cur_conf_q[0]->conferenceID;
+				$conf_last = $conf->get_order_limit(array("conferenceID","year"), "conferenceID", "DESC", "3");
 				$conference_archive = "<p>Manage: ";
 				foreach($conf_last as $conf_arch){
-					if($conf_arch->conferenceID!=$this->session->userdata("conferenceID")){
+					if($conf_arch->conferenceID!=$cur_conf){
 						$conference_archive .= "<a href='".base_url()."admin/conference/".$conf_arch->conferenceID."'>".$conf_arch->year."</a> | ";
 					}
 				}
+				$conference_archive = substr($conference_archive, 0, strlen($conference_archive) - 2);
 				$a = $this->abstracts->select_where(array("abstractID"), array("conferenceID" => $this->session->userdata("conferenceID")));
 				$approved = $this->abstracts->select_where_plain(array("abstractID"), array("approved" => 1, "conferenceID" => $this->session->userdata("conferenceID")));
 				$r = $this->reviewers->select(array("reviewerID"));
