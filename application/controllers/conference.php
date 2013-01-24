@@ -93,6 +93,11 @@
 			return $this->conferences->get_order_limit($data, $order, $ordering, $limit);
 		}
 		
+		
+		public function select_where($data, $where){
+			return $this->conferences->select_where($data, $where);
+		}	
+		
 	}
 	
 ?>
