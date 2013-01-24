@@ -92,6 +92,28 @@
 				}
 			}
 	 
+	 /**
+	 	*	Handles changing of a conference.
+	 **/
+	 
+	 public function change_conference(){
+	 	if($this->session->userdata("adminLoggedin") == true){
+	 		$conferenceYear = $this->uri->segment(3);
+	 		require_once(APPPATH."controllers/conference.php");
+	 		$c = new Conference();
+	 		$q = $c->select_where(array("conferenceID"), array("year" => $conferenceYear));
+	 		if($q->num_rows() > 0){
+	 			$r = $q->result();
+	 			$this->session->set_userdata(array("conferenceID" => $r[0]->conferenceID));
+	 		}
+	 		redirect(base_url()."admin");
+	 	}
+	 	else{
+	 		show_404();
+	 	}
+	 }
+	 
+	 
 	 public function view_where(){
 	 		if($this->session->userdata("adminLoggedin") == true){
 	 			$data = array(
