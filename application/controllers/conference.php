@@ -85,11 +85,7 @@
 			echo json_encode($q->result());
 		}
 		
-		public function get_order_limit(){
-			$data = array("conferenceID");
-			$order = "conferenceID";
-			$ordering = "DESC";
-			$limit = "1";
+		public function get_order_limit($data, $order, $ordering,$limit){
 			return $this->conferences->get_order_limit($data, $order, $ordering, $limit);
 		}
 		
