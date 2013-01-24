@@ -252,6 +252,8 @@
 		  		 ''	=> "--Select--",
            '1'  => 'Normal Page',
            '2'    => 'Plenary',
+           '3' => 'Workshop',
+           '4' => 'Special Talks'
            );
         echo form_dropdown("inputPageType", $options);
 		  ?>
