@@ -43,6 +43,7 @@ $route['404_override'] = '';
 $route['conference/(:num)'] = "conference/view_where/$1";
 $route['attendee/(:num)'] = "attendee/view_where/$1";
 $route['admin/(:num)'] = "admin/view_where/$1";
+$route['admin/conference/(:num)'] = "admin/change_conference/$1";
 $route['reviewer/(:num)'] = "reviewer/view_where/$1";
 $route['comment/(:num)'] = "comment/view_where/$1";
 $route['score/abstract/(:num)'] = "score/view_avg/$1";
