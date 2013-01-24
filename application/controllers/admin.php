@@ -42,6 +42,7 @@
 				$data['recommendations'] = $s;
 				$data['abstract_comments_count'] = $ca->num_rows();
 				$data['archived_conferences'] = $conference_archive;
+				$data['current_conf'] = $cur_conf;
 				$this->load->view("adminDashboard", $data);
 			}
 			else{
