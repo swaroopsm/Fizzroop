@@ -40,7 +40,7 @@
 						"abstractImageFolder" => $a['file_name']
 					);
 						$this->abstracts->insert($data);
-						echo json_encode(array("status" => true, "abstractID" => $this->db->insert_id()));
+						echo json_encode(array("success" => true, "abstractID" => $this->db->insert_id()));
 					}
 					else{
 						echo json_encode(array("success" => true));
