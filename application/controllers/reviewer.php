@@ -351,6 +351,7 @@
 		**/
 		
 		public function reviewer_abstract_submit(){
+		if($this->session->userdata("reviewerLoggedin") == true && $_SERVER['REQUEST_METHOD'] == "POST"){
 			require_once(APPPATH."controllers/comment.php");
 			require_once(APPPATH."controllers/score.php");
 			$c = new Comment();
@@ -434,6 +435,10 @@
 				);
 			}
 		}
+		else{
+			show_404();
+		}
+	}
 		
 		
 		
