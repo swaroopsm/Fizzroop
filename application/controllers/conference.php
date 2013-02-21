@@ -19,7 +19,7 @@
 					"endDate" => trim($_POST['inputEndDate'])
 				);
 				if($this->conferences->insert($data))
-					echo json_encode(array("success" => true));
+					echo json_encode(array("success" => true, "conferenceID" => $this->db->insert_id()));
 				else
 					echo json_encode(array("success" => false));
 			}
