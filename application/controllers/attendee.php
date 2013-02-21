@@ -199,7 +199,16 @@
 					"attendeeID",
 					"attendeeFirstName",
 					"attendeeLastName",
-					"attendeeEmail"
+					"attendeeEmail",
+					"registered",
+					"attendeeGender",
+					"attendeeDOB",
+					"attendeeAcademic",
+					"attendeeInstAffiliation",
+					"attendeeAddress",
+					"attendeePhone",
+					"attendeeNationality",
+					"attendeePassport"
 				);
 				$where = array(
 					"registered" => 1
@@ -223,7 +232,15 @@
 							"attendeeFirstName" => $row->attendeeFirstName,
 							"attendeeLastName" => $row->attendeeLastName,
 							"attendeeEmail" => $row->attendeeEmail,
-							"registered" => $registered //This is to determine if an Abstract submitted!
+							"registered" => $registered, //This is to determine if an Abstract submitted!
+							"attendeeGender" => $row->attendeeGender,
+							"attendeeDOB" => $row->attendeeDOB,
+							"attendeeAcademic" => $row->attendeeAcademic,
+							"attendeeInstAffiliation" => $row->attendeeInstAffiliation,
+							"attendeeAddress" => $row->attendeeAddress,
+							"attendeePhone" => $row->attendeePhone,
+							"attendeeNationality" => $row->attendeeNationality,
+							"attendeePassport" => $row->attendeePassport
 						);
 					}
 				}
