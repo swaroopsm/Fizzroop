@@ -85,7 +85,7 @@
 				if($this->reviewers->view_where($data)->num_rows() > 0){
 					require_once(APPPATH."controllers/conference.php");
 					$c = new Conference();
-					$q = $c->get_order_limit();
+					$q = $c->get_order_limit(array("conferenceID"), "conferenceID", "DESC", "1");
 					$conferenceID = $q[0]->conferenceID;
 					$this->session->set_userdata(array(
 						"reviewerLoggedin" => true,
