@@ -43,7 +43,7 @@
 						echo json_encode(array("success" => true, "abstractID" => $this->db->insert_id()));
 					}
 					else{
-						echo json_encode(array("success" => true));
+						echo json_encode(array("success" => false));
 					}
 				}
 			}
