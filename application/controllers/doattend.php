@@ -11,6 +11,7 @@
 			$this->load->library("session");
 			$this->load->library("encrypt");
 			$this->load->model("doattends");
+			$this->load->model("attendees");
 			$this->load->library("uri");
 		}
 		
@@ -40,32 +41,47 @@
 					$ticket = $p['Ticket_Number'];
 					if($ticket == $my_ticket){
 						$flag = 1;
+						$email = $p['Email'];
 						break;
 					}
 				}
+				//echo $email;
 				if($flag>0){
 					require_once(APPPATH."controllers/attendee.php");
 					$a = new Attendee();
-					$res = $a->attendee_data(array("attendeeID", "registered"), array("attendeeID" => $this->session->userdata("id")));
+					$res = $a->attendee_data(array("attendeeID", "registered", "attendeeEmail"), array("attendeeID" => $this->session->userdata("id")));
 					if($res->num_rows() > 0){
 						$row = $res->result();
 						if($row[0]->registered == 1){
-							echo json_encode(array("verified" => true, "responseMsg" => "User already registered"));
+							echo json_encode(array("verified" => false, "responseMsg" => "User already registered"));
 						}
 						else{
-							$this->doattends->insert(
-								array(
-									"conferenceID" => $this->session->userdata('conferenceID'),
-									"doAttendUID" => 	$this->session->userdata('id'),
-									"doAttendRegID" => $my_ticket
-								)
-							);
-							echo json_encode(array("verified" => true, "responseMsg" => "User registered"));
+							if($row[0]->attendeeEmail == $email){
+								$this->doattends->insert(
+									array(
+										"conferenceID" => $this->session->userdata('conferenceID'),
+										"doAttendUID" => 	$this->session->userdata('id'),
+										"doAttendRegID" => $my_ticket
+									)
+								);
+								$this->attendees->update(
+									array(
+										"registered" => 1
+									),
+									array(
+										"attendeeID" => $this->session->userdata("id")
+									)
+								);
+								echo json_encode(array("verified" => true, "responseMsg" => "User registered"));
+							}
+							else{
+								echo json_encode(array("verified" => false, "responseMsg" => "Your email does not match with doAttend"));
+							}
 						}
 					}
 				}
 				else{
-					echo json_encode(array("verified" => true, "responseMsg" => "Ticket Number is invalid"));
+					echo json_encode(array("verified" => false, "responseMsg" => "Ticket Number is invalid"));
 				}
 			}
 			else{
