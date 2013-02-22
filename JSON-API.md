@@ -56,6 +56,11 @@
 1. [View particular Image](#view-a-particular-image)
 2. [View all Images](#view-all-images)
 3. [Delete Image](#remove-a-particular-image)
+
+
+#### DoAttend.
+1. [Verify DoAttend Ticket]
+
    
 ### New Attendee
     PATH /attendee/new
@@ -420,7 +425,7 @@
               "pageType" : "pageType"
             }
 
-### View a particulat Page.
+### View a particular Page.
     PATH /page/<pageID>
     GET
     RESPONSE{
@@ -472,3 +477,11 @@
     RESPONSE{
               "success" : true
             }
+            
+### Check DoAttend Ticket Number.
+  	PATH /doattend/verify/<ticket>
+  	GET
+  	RESPONSE{
+  						"success" : true|false,
+  						"responseMsg" : responseMsg
+  					}
