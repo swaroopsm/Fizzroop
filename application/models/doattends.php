@@ -38,6 +38,26 @@
 			return $this->db->get("doAttend");
 		}
 		
+		
+		/**
+			* Returns specific column fields subjected to a where clause.
+		*/
+		
+		public function select_where($data, $where){
+			$this->db->select($data);
+			return $this->db->get_where("conferences", $where);
+		}
+		
+		
+		/**
+			* Updates values of a particular doAttend entry.
+		*/
+		
+		public function update($data, $where){
+			$this->db->where($where);
+			$this->db->update("doAttend", $data);
+		}
+		
 	}
 
 ?>
