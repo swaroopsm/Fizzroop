@@ -58,6 +58,15 @@
 			$this->db->update("doAttend", $data);
 		}
 		
+		
+		/**
+			* Removes a particular doAttend entry.
+		*/
+		
+		public function delete($data){
+			$this->db->delete("doAttend", $data);
+		}
+		
 	}
 
 ?>
