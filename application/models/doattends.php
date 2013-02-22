@@ -12,10 +12,29 @@
 		
 		
 		/**
-			* Returns all Abstracts needed for the BIG ABSTRACTS table.
+			* Returns all doAttend entries needed for the BIG ABSTRACTS table.
 		*/
 		
 		public function view(){
+			return $this->db->get("doAttend");
+		}
+		
+		
+		/**
+			* Returns a specific doAttend entry subjected to a where clause. 
+		*/
+		
+		public function view_where($data){
+			return $this->db->get_where("doAttend", $data);
+		}
+		
+		
+		/**
+			* Returns specific column fields of all doAttend entries.
+		*/
+		
+		public function select($data){
+			$this->db->select($data);
 			return $this->db->get("doAttend");
 		}
 		
