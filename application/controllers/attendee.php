@@ -340,6 +340,15 @@
 		
 		
 		/**
+			*	Get certain data from attendee.
+		**/
+		
+		public function attendee_data($data, $where){
+			return $this->attendees->select_where($data, $where);
+		}
+		
+		
+		/**
 			* Handles deletion of an Attendee.
 		**/
 		
