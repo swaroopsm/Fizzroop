@@ -40,6 +40,13 @@
 			if($this->session->userdata("adminLoggedin") == true && $_SERVER['REQUEST_METHOD'] == "POST"){
 				$pageId = $this->input->post("inputPageID");
 				$file = "inputPageImage";
+				$images = $this->images->view_where(array("pageID" => $pageId));
+				if($images->num_rows > 0){
+					foreach($images->result() as $imgs){
+						$this->images->delete(array("imageID" => $imgs->imageID));
+						unlink($this->config->item("upload_path").$imgs->image);
+					}
+				}
 				$img = $this->image_upload($file);
 				if($img['success']){
 					$filename = $img['data']['file_name'];
