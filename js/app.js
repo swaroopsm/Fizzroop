@@ -253,6 +253,8 @@ $(".abstract_title").live("click", function(){
 		console.log(data)
 		$("#hidden_abstractID").html("<input type='hidden' id='abstractID' value='"+data[0].abstractID+"'/>");
 		$("#abstractModalLabel").html(data[0].abstractTitle);
+		var abstractcontent = $.parseJSON(data[0].abstractContent);
+		console.log(abstractcontent);
 		var reviewer_and_score = "";
 		if(data[0].reviewers.length > 0){
 			reviewer_and_score += "<h3>Reviewers Assigned: </h3>";
@@ -312,7 +314,16 @@ $(".abstract_title").live("click", function(){
 		$("#abstractContent").html(
 			"<div id='imagesppt'><img src='"+data[0].abstractImageFolder+"'/></div>" // need to add the images folder and write necessary JS
 			+"<div id='modalleft'>"
-			+"<div id='abscontent' contenteditable='true'>"+data[0].abstractContent+"</div>"
+			+"<div id='abscontent'>"
+			+"<h3>Methods</h3>"
+			+"<div class='editable' contenteditable='true'>"+abstractcontent.methods+"</div>"
+			+"<h3>Aim</h3>"
+			+"<div class='editable' contenteditable='true'>"+abstractcontent.aim+"</div>"
+			+"<h3>Conservation</h3>"
+			+"<div class='editable' contenteditable='true'>"+abstractcontent.conservation+"</div>"
+			+"<h3>Results</h3>"
+			+"<div class='editable' contenteditable='true'>"+abstractcontent.results+"</div>"
+			+"</div>"
 			+"<div class='reviewerclass'>"
 			+reviewer_and_score
 			+"<br><h3>Average Score: &nbsp;"+data[0].score+"</h3><br>"
