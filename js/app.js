@@ -911,3 +911,20 @@ $("form#new_page").live("submit", function(){
 	});
 	return false;
 });
+
+/**
+	* Approve Abstract.
+**/
+
+$("#abstract_approve_btn").live("click", function(){
+	var abstractID = $("#abstractID").val()
+	console.log(abstractID);
+	$.post("abstract/approve",
+	{
+		"abstractID": abstractID
+	},
+	function(data){
+		console.log(data);
+	}
+	);
+});
