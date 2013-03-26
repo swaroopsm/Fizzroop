@@ -422,6 +422,69 @@
 	 	
 	 	
 	 	/**
+	 		*	Email Attendees who's Abstracts have been selected.
+	 	**/
+	 	
+	 	public function alert_selected_attendees(){
+	 		if($this->session->userdata("adminLoggedin") == true && $_SERVER['REQUEST_METHOD'] == "POST"){
+	 			$this->load->library('email');
+	 			$sel_attendees = $this->abstracts->select_where(array("attendeeID"), array("active" => 1));
+	 			if($sel_attendees->num_rows() > 0){
+	 				require_once(APPPATH."controllers/attendee.php");
+	 				$abs = new Attendee();
+	 				$list = array();
+	 				foreach($sel_attendees->result() as $a){
+	 					$aEmail = $abs->attendee_data(array("attendeeEmail"), array("attendeeID" => $a->attendeeID));
+	 					$res = $aEmail->result();
+	 					array_push($list, $res[0]->attendeeEmail);
+	 				}
+	 				$this->email->set_mailtype("html");
+          $this->email->from($this->config->item('service_email'), 'SCCS Alert');
+	 				$this->email->to($list);
+	 				$this->email->subject($this->input->post("inputEmailSubject"));
+	 				$this->email->message($this->input->post("inputEmailMessage"));
+	 				$this->email->send();
+	 				echo json_encode(array("success" => true, "message" => "Email has been sent"));
+	 			}
+	 		}
+	 		else{
+	 			show_404();
+	 		}
+	 	}
+	 	
+	 	
+	 	/**
+	 		*	Email Attendees who's Abstracts have been rejected.
+	 	**/
+	 	
+	 	public function alert_rejected_attendees(){
+	 		if($this->session->userdata("adminLoggedin") == true && $_SERVER['REQUEST_METHOD'] == "POST"){
+	 			$this->load->library('email');
+	 			$sel_attendees = $this->abstracts->select_where(array("attendeeID"), array("approved" => NULL));
+	 			if($sel_attendees->num_rows() > 0){
+	 				require_once(APPPATH."controllers/attendee.php");
+	 				$abs = new Attendee();
+	 				$list = array();
+	 				foreach($sel_attendees->result() as $a){
+	 					$aEmail = $abs->attendee_data(array("attendeeEmail"), array("attendeeID" => $a->attendeeID));
+	 					$res = $aEmail->result();
+	 					array_push($list, $res[0]->attendeeEmail);
+	 				}
+	 				$this->email->set_mailtype("html");
+          $this->email->from($this->config->item('service_email'), 'SCCS Alert');
+	 				$this->email->to($list);
+	 				$this->email->subject($this->input->post("inputEmailSubject"));
+	 				$this->email->message($this->input->post("inputEmailMessage"));
+	 				$this->email->send();
+	 				echo json_encode(array("success" => true, "message" => $this->input->post()));
+	 			}
+	 		}
+	 		else{
+	 			show_404();
+	 		}
+	 	}
+	 	
+	 	/**
 		 * Handles deletion of an Abstract.
 		**/
 		

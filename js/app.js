@@ -966,7 +966,7 @@ $("#publish_abstracts").live("click", function(){
 		backdrop: 'static',
 		show: true
 	});
-	return false
+	return false;
 });
 
 
@@ -982,3 +982,84 @@ $("#publish_abstracts_btn").live("click", function(){
 	);
 	return false;
 });
+
+
+/**
+	*	Send Email to selected Attendees Modal.
+**/
+
+$("#email_sel_att").live("click", function(){
+	$("#emailSelAttModal").modal({
+		keyboard: true,
+		backdrop: 'static',
+		show: true
+	});
+	return false;
+});
+
+
+/**
+	*	Send Email to selected Attendees click function.
+**/
+
+$("#send_sel_att_btn").live("click", function(){
+	$.post("abstract/alert_selected_attendees",
+		{
+			inputEmailSubject: $.trim($("#inputEmailSubject").val()),
+			inputEmailMessage: $.trim($("#inputEmailMessage").val())
+		},
+		function(data){
+			var obj = $.parseJSON(data);
+			console.log(obj);
+			if(obj.success){
+				$("#inputEmailSubject").val('');
+				$("#inputEmailMessage").val('');
+			}
+			else{
+				
+			}
+		}
+	);
+	return false;
+});
+
+
+/**
+	*	Send Email to rejected Attendees Modal.
+**/
+
+$("#email_rej_att").live("click", function(){
+	$("#emailRejAttModal").modal({
+		keyboard: true,
+		backdrop: 'static',
+		show: true
+	});
+	return false;
+});
+
+
+/**
+	*	Send Email to selected Attendees click function.
+**/
+
+$("#send_rej_att_btn").live("click", function(){
+	$.post("abstract/alert_rejected_attendees",
+		{
+			inputEmailSubject: $.trim($("#inputEmailRejSubject").val()),
+			inputEmailMessage: $.trim($("#inputEmailRejMessage").val())
+		},
+		function(data){
+			var obj = $.parseJSON(data);
+			console.log(obj);
+			if(obj.success){
+				$("#inputEmailRejSubject").val('');
+				$("#inputEmailRejMessage").val('');
+			}
+			else{
+				
+			}
+		}
+	);
+	return false;
+});
+

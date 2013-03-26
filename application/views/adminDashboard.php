@@ -288,6 +288,64 @@
 	
 	<!-- End Publish Abstracts Modal -->
 	
+	
+	<!-- Send Email to Attendees whose Abstracts have been approved Modal -->
+	
+	
+	<div id="emailSelAttModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="emailSelAttModalLabel" aria-hidden="true"  style="display: none;">
+		<div class="modal-header">
+		  <a class="close" data-dismiss="modal" aria-hidden="true" href="#">&times;</a>
+		  <h3 id="emailSelAttModalLabel">Alert Attendees</h3>
+		</div>
+		<div class="modal-body" id="emailSelAttData">
+		  <p>This will alert all attendees whose abstracts have been selected.</p>
+		  <p>
+		  	<?php
+		  		echo form_label("Subject:", "inputEmailSubject", array("class" => "control-label")); 
+			  	echo form_input(array("name" => "inputEmailSubject", "id" => "inputEmailSubject", "class" => "", "placeholder" => "Email Subject"));
+			  	echo form_label("Message:", "inputEmailMessage", array("class" => "control-label"));
+		  		echo form_textarea(array("name" => "inputEmailMessage", "id" => "inputEmailMessage", "class" => "", "placeholder" => "Email Body"));
+		  	?>
+		  	
+		  </p>
+		</div>
+		<div class="modal-footer">
+		  <button id="send_sel_att_btn">Send Email</button>
+		</div>
+	</div>
+	
+	
+	<!-- End Send Email to Attendees whose Abstracts have been approved Modal -->
+	
+	
+	<!-- Send Email to Attendees whose Abstracts have been rejected Modal -->
+	
+	
+	<div id="emailRejAttModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="emailRejAttModalLabel" aria-hidden="true"  style="display: none;">
+		<div class="modal-header">
+		  <a class="close" data-dismiss="modal" aria-hidden="true" href="#">&times;</a>
+		  <h3 id="emailRejAttModalLabel">Alert Attendees</h3>
+		</div>
+		<div class="modal-body" id="emailRejAttModalData">
+		  <p>This will alert all attendees whose abstracts have been rejected.</p>
+		  <p>
+		  	<?php
+		  		echo form_label("Subject:", "inputEmailRejSubject", array("class" => "control-label")); 
+			  	echo form_input(array("name" => "inputEmailRejSubject", "id" => "inputEmailRejSubject", "class" => "", "placeholder" => "Email Subject"));
+			  	echo form_label("Message:", "inputEmailRejMessage", array("class" => "control-label"));
+		  		echo form_textarea(array("name" => "inputEmailRejMessage", "id" => "inputEmailRejMessage", "class" => "", "placeholder" => "Email Body"));
+		  	?>
+		  	
+		  </p>
+		</div>
+		<div class="modal-footer">
+		  <button id="send_rej_att_btn">Send Email</button>
+		</div>
+	</div>
+	
+	
+	<!-- End Send Email to Attendees whose Abstracts have been rejected Modal -->
+	
 	<div class="container">
 		<div id="ajaxer">
 		</div>
