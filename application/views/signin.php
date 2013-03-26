@@ -2,7 +2,8 @@
 <html>
 	<head>
 		<title><?php echo $page_title; ?></title>
-    <link href='http://fonts.googleapis.com/css?family=Averia+Serif+Libre:300|Titillium+Web:300,400italic' rel='stylesheet' type='text/css'>
+    <!-- <link href='http://fonts.googleapis.com/css?family=Averia+Serif+Libre:300|Titillium+Web:300,400italic' rel='stylesheet' type='text/css'> -->
+    <link href='http://fonts.googleapis.com/css?family=Vollkorn|Titillium+Web:300,400italic' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url().'css/login.css'; ?>">
 		<style type="text/css">
 			 body {
