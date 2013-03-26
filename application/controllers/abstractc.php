@@ -379,6 +379,26 @@
 	 	}
 	 	
 	 	
+	 	/**
+	 		*	Approve an Abstract.
+	 	**/
+	 	
+	 	public function approve(){
+	 		if($this->session->userdata("adminLoggedin") == true && $_SERVER['REQUEST_METHOD'] == "POST"){
+	 			$data = array(
+	 				"approved" => 1
+	 			);
+	 			$where = array(
+	 				"abstractID" => $this->input->post("abstractID")
+	 			);
+	 			$this->abstracts->update($data, $where);
+	 			echo json_encode(array("success" => true, "message" => "Abstract approved"));
+	 		}
+	 		else{
+	 			show_404();
+	 		}
+	 	}
+	 	
 	 	
 	 	/**
 		 * Handles deletion of an Abstract.
