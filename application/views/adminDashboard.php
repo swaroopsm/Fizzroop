@@ -10,7 +10,7 @@
 	<div id="slider">
 		<div class="container">
 			<div class="col">
-				<h2>Current Conference</h2>
+				<h2>Conference</h2>
 				<p>400 Registered | 10 Reviewers | 12 JUN - 15 JUN | 2012</p>
 				<p><a href="#">Manage this conference</a></p>
 
@@ -38,12 +38,12 @@
 			</div>
 
 			<div class="col">
-				<h2>Archived Conferences</h2>
+				<h2>Conferences</h2>
 				<p>3 archived Conferences</p>
 				<p><?php echo $archived_conferences; ?> | <a href="<?php echo base_url().'admin/conference/'.$current_conf; ?>">Current Conference</a></p>
-				<h2>Create New Conference</h2>
+				<!-- <h2>Create New Conference</h2>
 				<p><a href="#">Create new conference</a></p>
-				<p>This will wipe certain records in the database. <br>Proceed with caution.</p>
+				<p>This will wipe certain records in the database. <br>Proceed with caution.</p> -->
 			</div>
 			<div class="clear"></div>
 
