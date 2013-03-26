@@ -444,7 +444,7 @@
 	 				$this->email->subject($this->input->post("inputEmailSubject"));
 	 				$this->email->message($this->input->post("inputEmailMessage"));
 	 				$this->email->send();
-	 				echo json_encode(array("success" => true, "message" => $this->input->post()));
+	 				echo json_encode(array("success" => true, "message" => "Email has been sent"));
 	 			}
 	 		}
 	 		else{
