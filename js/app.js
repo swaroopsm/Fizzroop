@@ -1013,3 +1013,30 @@ $("#email_rej_att").live("click", function(){
 	});
 	return false;
 });
+
+
+/**
+	*	Send Email to selected Attendees click function.
+**/
+
+$("#send_rej_att_btn").live("click", function(){
+	$.post("abstract/alert_rejected_attendees",
+		{
+			inputEmailSubject: $.trim($("#inputEmailRejSubject").val()),
+			inputEmailMessage: $.trim($("#inputEmailRejMessage").val())
+		},
+		function(data){
+			var obj = $.parseJSON(data);
+			console.log(obj);
+			if(obj.success){
+				$("#inputEmailRejSubject").val('');
+				$("#inputEmailRejMessage").val('');
+			}
+			else{
+				
+			}
+		}
+	);
+	return false;
+});
+
