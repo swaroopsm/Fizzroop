@@ -317,7 +317,8 @@ $(".abstract_title").live("click", function(){
 			}
 		}
 		else{
-			comment += "<p>Comment to Reviewer: <textarea id='comment_reviewer'></textarea></p>";
+			// comment += "<p>Comment to Reviewer: <textarea id='comment_reviewer'></textarea></p>";
+			comment += "";
 		}
 		$("#abstractBy").html(
 			"by "+data[0].attendeeFirstName+" "+data[0].attendeeLastName+"<br>"
