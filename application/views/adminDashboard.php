@@ -12,7 +12,7 @@
 			<div class="col">
 				<h2>Current Conference</h2>
 				<p>400 Registered | 10 Reviewers | 12 JUN - 15 JUN | 2012</p>
-				<p><a href="#">Manage this conference</a></p>
+				<p><a href="#" id="manageCurConf">Manage this conference</a></p>
 
 				<h2>FRONTEND PAGES</h2>
 				<p>Manage the pages and content accross the public site</p>
