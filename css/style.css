@@ -437,7 +437,21 @@ a.close:active{
 
 .avgscore {
 	font-size: 500%;
-	margin-top: -20px;
+	line-height: 1;
+	display: inline-block;
+	width: 21%;
+	padding: 1%;
+}
+
+.smallertitle {
+	font-size: 23%;
+	font-family: 'Oswald',sans-serif;
+	font-weight: 300;
+}
+
+
+.reviewerandscore {
+	border-bottom: 1px solid gray;
 }
 
 
@@ -449,6 +463,18 @@ a.close:active{
 	border-bottom: 1px red dotted;
 	
 }*/
+
+
+.editable {
+	border: 1px solid gray;
+	padding: 5px;
+	height: 100px;
+	overflow-y: scroll;
+}
+
+.editable:focus {
+	border: 1px solid red;
+}
 
 .alert-danger{
 	color: red;
