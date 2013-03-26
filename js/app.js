@@ -945,3 +945,17 @@ $("#publish_abstracts").live("click", function(){
 	});
 	return false
 });
+
+
+/**
+	*	Publish Abstracts Button.
+**/
+
+$("#publish_abstracts_btn").live("click", function(){
+	$.get("abstract/publish",
+		function(data){
+			console.log(data)
+		}
+	);
+	return false;
+});
