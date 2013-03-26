@@ -825,8 +825,9 @@ $(".single_page").live("click", function(){
 	var pageID = $(this).attr("href").substring(1);
 	$("#pageData").html("<div class='loader'><img src='images/loader.gif' /></div>");
 	$.getJSON("page/"+pageID, function(data){
+		console.log(data)
 		$("#pageModalLabel").html("<h2>"+data[0].pageTitle+"</h2>");
-		$("#pageData").html("<div><label>Title: </label> <input id='page_title_edit' value='"+data[0].pageTitle+"'/><input id='page_id' type='hidden' value='"+data[0].pageID+"'/><input id='page_type' type='hidden' value='"+data[0].pageType+"'/></div> Content: <div id='pageContent' class='pageContent' contenteditable='true'>"+data[0].pageContent+"</div> <form action='image/create' method='POST' id='page_image_form'><input type='hidden' id='inputPageID' name='inputPageID' value='"+data[0].pageID+"'/>Upload Image: <input type='file' id='inputPageImage' name='inputPageImage'/></form");
+		$("#pageData").html("<div><label>Title: </label> <input id='page_title_edit' value='"+data[0].pageTitle+"'/><input id='page_id' type='hidden' value='"+data[0].pageID+"'/><input id='page_type' type='hidden' value='"+data[0].pageType+"'/></div> Content: <div id='pageContent' class='pageContent' contenteditable='true'>"+data[0].pageContent+"</div> <form action='image/create' method='POST' id='page_image_form'><input type='hidden' id='inputPageID' name='inputPageID' value='"+data[0].pageID+"'/>Upload Image: <input type='file' id='inputPageImage' name='inputPageImage'/></form><p>Uploaded Image: <img src='"+data[0].images[0].image+"' id='cur_img'/></p>");
 		$("#pageModal").modal({
 			keyboard: true,
 			backdrop: 'static',
@@ -1111,6 +1112,7 @@ $("#inputPageImage").live("change", function(e){
 		var obj = $.parseJSON(data);
 		if(obj.success){
 			$("#image_upload_msg").html("Image uploaded!");
+			$("#cur_img").attr("src", obj.image);
 		}
 		else{
 			
