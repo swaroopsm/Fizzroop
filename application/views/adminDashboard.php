@@ -299,6 +299,15 @@
 		</div>
 		<div class="modal-body" id="emailSelAttData">
 		  <p>This will alert all attendees whose abstracts have been selected.</p>
+		  <p>
+		  	<?php
+		  		echo form_label("Subject:", "inputEmailSubject", array("class" => "control-label")); 
+			  	echo form_input(array("name" => "inputEmailSubject", "id" => "inputEmailSubject", "class" => "", "placeholder" => "Email Subject"));
+			  	echo form_label("Message:", "inputEmailMessage", array("class" => "control-label"));
+		  		echo form_textarea(array("name" => "inputEmailMessage", "id" => "inputEmailMessage", "class" => "", "placeholder" => "Email Body"));
+		  	?>
+		  	
+		  </p>
 		</div>
 		<div class="modal-footer">
 		  <button id="send_sel_att_btn">Send Email</button>
