@@ -340,6 +340,34 @@
 		
 		
 		/**
+	 		*	Email all Attendees.
+	 	**/
+	 	
+	 	public function alert_all_attendees(){
+	 		if($this->session->userdata("adminLoggedin") == true && $_SERVER['REQUEST_METHOD'] == "POST"){
+	 			$this->load->library('email');
+	 			$sel_attendees = $this->attendees->select(array("attendeeEmail"));
+	 			if($sel_attendees->num_rows() > 0){
+	 				$list = array();
+	 				foreach($sel_attendees->result() as $a){
+	 					array_push($list, $a->attendeeEmail);
+	 				}
+	 				$this->email->set_mailtype("html");
+          $this->email->from($this->config->item('service_email'), 'SCCS Alert');
+	 				$this->email->to($list);
+	 				$this->email->subject($this->input->post("inputEmailSubject"));
+	 				$this->email->message($this->input->post("inputEmailMessage"));
+	 				$this->email->send();
+	 				echo json_encode(array("success" => true, "message" => $this->input->post()));
+	 			}
+	 		}
+	 		else{
+	 			show_404();
+	 		}
+	 	}
+		
+		
+		/**
 			*	Get certain data from attendee.
 		**/
 		
