@@ -60,6 +60,13 @@
 	<script src="<?php echo base_url().'js/jquery.js'; ?>"></script>
 	<script src="<?php echo base_url().'js/vendor.js'; ?>"></script>
 	<script src="<?php echo base_url().'js/jquery.dataTables.min.js'; ?>"></script>
+	<script>
+		jQuery.ajaxSetup({
+			data: {
+				 <?php echo $this->security->get_csrf_token_name(); ?>: '<?php echo $this->security->get_csrf_hash(); ?>'
+			}
+		});
+	</script>
 	<script src="<?php echo base_url().'js/reviewer.js'; ?>"></script>
 </body>
 </html>
