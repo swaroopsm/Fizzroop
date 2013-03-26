@@ -943,7 +943,7 @@ $("#publish_abstracts").live("click", function(){
 		backdrop: 'static',
 		show: true
 	});
-	return false
+	return false;
 });
 
 
@@ -957,5 +957,19 @@ $("#publish_abstracts_btn").live("click", function(){
 			console.log(data)
 		}
 	);
+	return false;
+});
+
+
+/**
+	*	Send Email to selected Attendees Modal.
+**/
+
+$("#email_sel_att").live("click", function(){
+	$("#emailSelAttModal").modal({
+		keyboard: true,
+		backdrop: 'static',
+		show: true
+	});
 	return false;
 });
