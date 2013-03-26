@@ -257,14 +257,16 @@ $(".abstract_title").live("click", function(){
 		console.log(abstractcontent);
 		var reviewer_and_score = "";
 		if(data[0].reviewers.length > 0){
-			reviewer_and_score += "<h3>Reviewers Assigned: </h3>";
+			reviewer_and_score += "<div class='assignedreviewers'><h3>Reviewers Assigned: </h3>";
 				for(var m=0;m<data[0].reviewers.length;m++){
 					reviewer_and_score += "<p>"+data[0].reviewers[m].reviewerFirstName+" "+data[0].reviewers[m].reviewerLastName+"</p>"
 				}
+			reviewer_and_score += "</div>"
 		}
 		comment = "";
 		if(data[0].detailed_scores.length > 0){
-			reviewer_and_score += "<br><h3>Reviewers' Opinions: </h3>";
+			//reviewer_and_score += "";
+			reviewer_and_score += "<div class='reviewerandscore'><div class='singlereviewer'><div class='avgscore'>"+data[0].score+"/10</div></div>";
 			for(var l=0;l<data[0].detailed_scores.length;l++){
 				var reviewer_recommendation = ""
 				if(data[0].detailed_scores[l].recommendation){
@@ -287,9 +289,10 @@ $(".abstract_title").live("click", function(){
 				}
 				if(data[0].detailed_scores[l].reviewer){
 					var score_obj = $.parseJSON(data[0].detailed_scores[l].score);
-					reviewer_and_score += "<p><b>"+data[0].detailed_scores[l].reviewer[0].reviewerFirstName+" "+data[0].detailed_scores[l].reviewer[0].reviewerLastName+"</b> says: </p><p>&#10143; Conservation Score: "+score_obj.conservation+"</p><p>&#10143; Science Score: "+score_obj.science+"</p><p>&#10143; Recommended: "+reviewer_recommendation+"</p><br>";
+					reviewer_and_score += "<div class='singlereviewer'><h3>"+data[0].detailed_scores[l].reviewer[0].reviewerFirstName+" "+data[0].detailed_scores[l].reviewer[0].reviewerLastName+"</h3><p>&#10143; Conservation Score: "+score_obj.conservation+"</p><p>&#10143; Science Score: "+score_obj.science+"</p><p>&#10143; Recommended: "+reviewer_recommendation+"</p></div>";
 				}
 			}
+			reviewer_and_score += "</div>";
 		}
 		
 		if(data[0].comments.length > 0){
@@ -315,18 +318,17 @@ $(".abstract_title").live("click", function(){
 			"<div id='imagesppt'><img src='"+data[0].abstractImageFolder+"'/></div>" // need to add the images folder and write necessary JS
 			+"<div id='modalleft'>"
 			+"<div id='abscontent'>"
-			+"<h3>Methods</h3>"
-			+"<div class='editable' contenteditable='true'>"+abstractcontent.methods+"</div>"
-			+"<h3>Aim</h3>"
-			+"<div class='editable' contenteditable='true'>"+abstractcontent.aim+"</div>"
-			+"<h3>Conservation</h3>"
-			+"<div class='editable' contenteditable='true'>"+abstractcontent.conservation+"</div>"
-			+"<h3>Results</h3>"
-			+"<div class='editable' contenteditable='true'>"+abstractcontent.results+"</div>"
+			+"<div class='abscontentdiv'><h3>Methods</h3>"
+			+"<div class='editable' contenteditable='true'>"+abstractcontent.methods+"</div></div>"
+			+"<div class='abscontentdiv'><h3>Aim</h3>"
+			+"<div class='editable' contenteditable='true'>"+abstractcontent.aim+"</div></div>"
+			+"<div class='abscontentdiv'><h3>Conservation</h3>"
+			+"<div class='editable' contenteditable='true'>"+abstractcontent.conservation+"</div></div>"
+			+"<div class='abscontentdiv'><h3>Results</h3>"
+			+"<div class='editable' contenteditable='true'>"+abstractcontent.results+"</div></div>"
 			+"</div>"
 			+"<div class='reviewerclass'>"
 			+reviewer_and_score
-			+"<br><h3>Average Score: &nbsp;"+data[0].score+"</h3><br>"
 			+"<div id='actions'>"+""+"</div>"
 			+"</div>" // the left div
 			+"<div class='clear'></div>" // clearing floats before the comments section
