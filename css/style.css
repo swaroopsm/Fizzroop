@@ -383,12 +383,16 @@ a.close:active{
 }
 
 #imagesppt {
-	width: 1024px;
-	max-width: 75%;
-	min-height: 500px;
+	max-width: 100%;
+	max-height: 500px;
 	background-color: black;
-	float: left;
 	margin-right: 10px;
+	overflow: hidden;
+}
+
+#imagesppt img {
+	max-width: 100%;
+	max-height: 100%;
 }
 
 #modalleft {
@@ -401,6 +405,10 @@ a.close:active{
 	padding-bottom: 10px;
 	margin-bottom: 9px;
 	border-bottom: 1px grey solid;
+}
+
+#abscontent h3 {
+	font-size: 200%;
 }
 
 
