@@ -3,6 +3,8 @@
 */
 
 
+console.log(base_url);
+
 /**
 	* Validate form for emptyness
 */
@@ -266,7 +268,7 @@ $(".abstract_title").live("click", function(){
 		comment = "";
 		if(data[0].detailed_scores.length > 0){
 			//reviewer_and_score += "";
-			reviewer_and_score += "<div class='reviewerandscore'><div class='singlereviewer'><div class='avgscore'>"+data[0].score+"/10</div></div>";
+			reviewer_and_score += "<div class='reviewerandscore'><div class='avgscore'><div class='smallertitle'>AVERAGE SCORE BY REVIEWERS</div>"+data[0].score+"/10</div>";
 			for(var l=0;l<data[0].detailed_scores.length;l++){
 				var reviewer_recommendation = ""
 				if(data[0].detailed_scores[l].recommendation){
