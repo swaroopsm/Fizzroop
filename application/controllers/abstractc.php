@@ -23,7 +23,7 @@
 			if($_SERVER['REQUEST_METHOD'] == "POST"){
 				if($this->session->userdata("loggedin") == true){
 					$abstractTitle = $this->input->post("inputAbstractTitle");
-					$abstractContent = "{'methods': '".$this->input->post("inputAbstractMethods")."', 'aim': '".$this->input->post("inputAbstractAim")."', 'results': '".$this->input->post("inputAbstractResults")."', 'conservation': '".$this->input->post("inputAbstractConservation")."'}";
+					$abstractContent = '{"methods": "'.$this->input->post('inputAbstractMethods').'", "aim": "'.$this->input->post('inputAbstractAim').'", "results": "'.$this->input->post('inputAbstractResults').'", "conservation": "'.$this->input->post('inputAbstractConservation').'"}';
 					$file = "inputAbstractImage";
 					$config['upload_path'] = $this->config->item("upload_path");
 			 	  $config['allowed_types'] = $this->config->item("allowed_types");
