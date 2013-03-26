@@ -931,3 +931,17 @@ $("#manageCurConf").live("click", function(){
 										 <a href='#' id='email_all_att'>Email alerts to Attendees</a>");
 	return false;
 });
+
+
+/**
+	*	Publish Abstracts Modal.
+**/
+
+$("#publish_abstracts").live("click", function(){
+	$("#publishAbstractsModal").modal({
+		keyboard: true,
+		backdrop: 'static',
+		show: true
+	});
+	return false
+});
