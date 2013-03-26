@@ -12,7 +12,7 @@
 			<div class="col">
 				<h2>Conference</h2>
 				<p>400 Registered | 10 Reviewers | 12 JUN - 15 JUN | 2012</p>
-				<p><a href="#">Manage this conference</a></p>
+				<p><a href="#" id="manageCurConf">Manage this conference</a></p>
 
 				<h2>FRONTEND PAGES</h2>
 				<p>Manage the pages and content accross the public site</p>
@@ -268,6 +268,25 @@
 	
 	<!-- End Create Page Modal -->
 	
+	
+	<!-- Publish Abstracts Modal -->
+	
+	
+	<div id="publishAbstractsModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="publishAbstractsModalLabel" aria-hidden="true"  style="display: none;">
+		<div class="modal-header">
+		  <a class="close" data-dismiss="modal" aria-hidden="true" href="#">&times;</a>
+		  <h3 id="publishAbstractsModalLabel">Publish Approved Abstracts</h3>
+		</div>
+		<div class="modal-body" id="publishAbstractsData">
+		  <p>This will publish all the Abstracts that are being approved.</p>
+		</div>
+		<div class="modal-footer">
+		  <button id="publish_abstracts_btn">Publish All</button>
+		</div>
+	</div>
+	
+	
+	<!-- End Publish Abstracts Modal -->
 	
 	<div class="container">
 		<div id="ajaxer">

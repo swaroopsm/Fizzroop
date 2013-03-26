@@ -401,6 +401,27 @@
 	 	
 	 	
 	 	/**
+	 		*	Publish Abstracts that are approved.
+	 	**/
+	 	
+	 	public function publish(){
+	 		if($this->session->userdata("adminLoggedin") == true){
+	 			$data = array(
+	 				"active" => 1
+	 			);
+	 			$where = array(
+	 				"approved" => 1
+	 			);
+	 			$this->abstracts->update($data, $where);
+	 			echo json_encode(array("success" => true, "message" => "Approved abstracts have been published"));
+	 		}
+	 		else{
+	 			show_404();
+	 		}
+	 	}
+	 	
+	 	
+	 	/**
 		 * Handles deletion of an Abstract.
 		**/
 		
