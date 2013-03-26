@@ -1063,3 +1063,17 @@ $("#send_rej_att_btn").live("click", function(){
 	return false;
 });
 
+
+/**
+	*	Send Email to All Attendees Modal.
+**/
+
+$("#email_all_att").live("click", function(){
+	$("#emailAllModal").modal({
+		keyboard: true,
+		backdrop: 'static',
+		show: true
+	});
+	return false;
+});
+
