@@ -58,6 +58,7 @@ $route['abstract/delete_abstractImage'] = "abstractc/delete_abstractImage";
 $route['abstract/delete_allAbstractImage'] = "abstractc/delete_allAbstractImage";
 $route['abstract/assign'] = "abstractc/assign";
 $route['abstract/unassign'] = "abstractc/unassign";
+$route['abstract/approve'] = "abstractc/approve";
 $route['reviewer/abstract/(:num)'] = "reviewer/abstract_view/$1";
 $route['reviewer/abstract/assigned/(:num)'] = "reviewer/reviewer_abstracts_by_id/$1";
 $route['attendee/abstract'] = "attendee/abstract_view";
