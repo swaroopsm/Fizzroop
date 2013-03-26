@@ -901,6 +901,7 @@ $("form#new_page").live("submit", function(){
 	return false;
 });
 
+
 /**
 	* Approve Abstract.
 **/
@@ -916,4 +917,17 @@ $("#abstract_approve_btn").live("click", function(){
 		console.log(data);
 	}
 	);
+});
+
+
+/**
+	* Manage this conference click function.
+**/
+
+$("#manageCurConf").live("click", function(){
+	$("#ajaxer").html("<a href='#' id='publish_abstracts'>Publish Abstracts</a> &nbsp; \
+										 <a href='#' id='email_sel_att'>Email selected Attendees</a> &nbsp; \
+										 <a href='#' id='email_rej_att'>Email rejected Attendees</a> &nbsp;\
+										 <a href='#' id='email_all_att'>Email alerts to Attendees</a>");
+	return false;
 });
