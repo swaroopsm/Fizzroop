@@ -413,7 +413,7 @@
 	 				"approved" => 1
 	 			);
 	 			$this->abstracts->update($data, $where);
-	 			echo json_encode(array("success" => true, "message" => "Approve abstracts have been published"));
+	 			echo json_encode(array("success" => true, "message" => "Approved abstracts have been published"));
 	 		}
 	 		else{
 	 			show_404();
