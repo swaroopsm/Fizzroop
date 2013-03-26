@@ -60,6 +60,7 @@ $route['abstract/assign'] = "abstractc/assign";
 $route['abstract/unassign'] = "abstractc/unassign";
 $route['abstract/approve'] = "abstractc/approve";
 $route['abstract/publish'] = "abstractc/publish";
+$route['abstract/alert_selected_attendees'] = "abstractc/alert_selected_attendees";
 $route['reviewer/abstract/(:num)'] = "reviewer/abstract_view/$1";
 $route['reviewer/abstract/assigned/(:num)'] = "reviewer/reviewer_abstracts_by_id/$1";
 $route['attendee/abstract'] = "attendee/abstract_view";
