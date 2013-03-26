@@ -255,6 +255,12 @@ $(".abstract_title").live("click", function(){
 		console.log(data)
 		$("#hidden_abstractID").html("<input type='hidden' id='abstractID' value='"+data[0].abstractID+"'/>");
 		$("#abstractModalLabel").html(data[0].abstractTitle);
+		var abstractimageurl = "";
+		if (data[0].abstractImageFolder == base_url+"uploads/") {
+			abstractimageurl += "";
+		} else {
+			abstractimageurl += "<div id='imagesppt'><img src='"+data[0].abstractImageFolder+"'/></div>"
+		}
 		var abstractcontent = $.parseJSON(data[0].abstractContent);
 		console.log(abstractcontent);
 		var reviewer_and_score = "";
@@ -317,7 +323,8 @@ $(".abstract_title").live("click", function(){
 			"by "+data[0].attendeeFirstName+" "+data[0].attendeeLastName+"<br>"
 			);
 		$("#abstractContent").html(
-			"<div id='imagesppt'><img src='"+data[0].abstractImageFolder+"'/></div>" // need to add the images folder and write necessary JS
+			abstractimageurl
+			//"<div id='imagesppt'><img src='"+data[0].abstractImageFolder+"'/></div>" // need to add the images folder and write necessary JS
 			+"<div id='modalleft'>"
 			+"<div id='abscontent'>"
 			+"<div class='abscontentdiv'><h3>Methods</h3>"
