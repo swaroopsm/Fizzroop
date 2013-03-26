@@ -826,7 +826,7 @@ $(".single_page").live("click", function(){
 	$("#pageData").html("<div class='loader'><img src='images/loader.gif' /></div>");
 	$.getJSON("page/"+pageID, function(data){
 		$("#pageModalLabel").html("<h2>"+data[0].pageTitle+"</h2>");
-		$("#pageData").html("<div><label>Title: </label> <input id='page_title_edit' value='"+data[0].pageTitle+"'/><input id='page_id' type='hidden' value='"+data[0].pageID+"'/><input id='page_type' type='hidden' value='"+data[0].pageType+"'/></div> Content: <div id='pageContent' class='pageContent' contenteditable='true'>"+data[0].pageContent+"</div> Upload Image: <input type='file' id='inputPageImage' />");
+		$("#pageData").html("<div><label>Title: </label> <input id='page_title_edit' value='"+data[0].pageTitle+"'/><input id='page_id' type='hidden' value='"+data[0].pageID+"'/><input id='page_type' type='hidden' value='"+data[0].pageType+"'/></div> Content: <div id='pageContent' class='pageContent' contenteditable='true'>"+data[0].pageContent+"</div> <form action='image/create' method='POST' id='page_image_form'><input type='hidden' id='inputPageID' name='inputPageID' value='"+data[0].pageID+"'/>Upload Image: <input type='file' id='inputPageImage' name='inputPageImage'/></form");
 		$("#pageModal").modal({
 			keyboard: true,
 			backdrop: 'static',
@@ -1101,4 +1101,19 @@ $("#send_all_att_btn").live("click", function(){
 		}
 	);
 	return false;
+});
+
+$("#inputPageImage").live("change", function(e){
+	e.preventDefault();
+	$("#page_image_form").after("<p id='image_upload_msg'>Please wait, your image is being uploaded...</p>")
+	$("form#page_image_form").ajaxSubmit(function(data){
+		console.log(data);
+		var obj = $.parseJSON(data);
+		if(obj.success){
+			$("#image_upload_msg").html("Image uploaded!");
+		}
+		else{
+			
+		}
+	});
 });
