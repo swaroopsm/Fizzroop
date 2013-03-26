@@ -346,6 +346,35 @@
 	
 	<!-- End Send Email to Attendees whose Abstracts have been rejected Modal -->
 	
+	
+	<!-- Send Email Alerts to all Attendees Modal -->
+	
+	
+	<div id="emailAllModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="emailAllModalLabel" aria-hidden="true"  style="display: none;">
+		<div class="modal-header">
+		  <a class="close" data-dismiss="modal" aria-hidden="true" href="#">&times;</a>
+		  <h3 id="emailAllModalLabel">Alert Attendees</h3>
+		</div>
+		<div class="modal-body" id="emailAllModalData">
+		  <p>This will alert all attendees with an Email.</p>
+		  <p>
+		  	<?php
+		  		echo form_label("Subject:", "inputEmailAllSubject", array("class" => "control-label")); 
+			  	echo form_input(array("name" => "inputEmailAllSubject", "id" => "inputEmailAllSubject", "class" => "", "placeholder" => "Email Subject"));
+			  	echo form_label("Message:", "inputEmailAllMessage", array("class" => "control-label"));
+		  		echo form_textarea(array("name" => "inputEmailAllMessage", "id" => "inputEmailAllMessage", "class" => "", "placeholder" => "Email Body"));
+		  	?>
+		  	
+		  </p>
+		</div>
+		<div class="modal-footer">
+		  <button id="send_all_att_btn">Send Email</button>
+		</div>
+	</div>
+	
+	
+	<!-- End Send Email Alerts to all Attendees Modal -->
+	
 	<div class="container">
 		<div id="ajaxer">
 		</div>

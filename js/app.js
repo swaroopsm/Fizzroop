@@ -1063,3 +1063,42 @@ $("#send_rej_att_btn").live("click", function(){
 	return false;
 });
 
+
+/**
+	*	Send Email to All Attendees Modal.
+**/
+
+$("#email_all_att").live("click", function(){
+	$("#emailAllModal").modal({
+		keyboard: true,
+		backdrop: 'static',
+		show: true
+	});
+	return false;
+});
+
+
+/**
+	*	Send Email alerts to all Attendees click function.
+**/
+
+$("#send_all_att_btn").live("click", function(){
+	$.post("attendee/alert_all_attendees",
+		{
+			inputEmailSubject: $.trim($("#inputEmailAllSubject").val()),
+			inputEmailMessage: $.trim($("#inputEmailAllMessage").val())
+		},
+		function(data){
+			var obj = $.parseJSON(data);
+			console.log(obj);
+			/*if(obj.success){
+				$("#inputEmailAllSubject").val('');
+				$("#inputEmailAllMessage").val('');
+			}
+			else{
+				
+			}*/
+		}
+	);
+	return false;
+});
