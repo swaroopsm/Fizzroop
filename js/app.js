@@ -999,3 +999,17 @@ $("#send_sel_att_btn").live("click", function(){
 	);
 	return false;
 });
+
+
+/**
+	*	Send Email to rejected Attendees Modal.
+**/
+
+$("#email_rej_att").live("click", function(){
+	$("#emailRejAttModal").modal({
+		keyboard: true,
+		backdrop: 'static',
+		show: true
+	});
+	return false;
+});
