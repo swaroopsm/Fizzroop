@@ -973,3 +973,29 @@ $("#email_sel_att").live("click", function(){
 	});
 	return false;
 });
+
+
+/**
+	*	Send Email to selected Attendees click function.
+**/
+
+$("#send_sel_att_btn").live("click", function(){
+	$.post("abstract/alert_selected_attendees",
+		{
+			inputEmailSubject: $.trim($("#inputEmailSubject").val()),
+			inputEmailMessage: $.trim($("#inputEmailMessage").val())
+		},
+		function(data){
+			var obj = $.parseJSON(data);
+			console.log(obj);
+			if(obj.success){
+				$("#inputEmailSubject").val('');
+				$("#inputEmailMessage").val('');
+			}
+			else{
+				
+			}
+		}
+	);
+	return false;
+});
