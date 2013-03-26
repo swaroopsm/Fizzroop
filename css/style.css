@@ -383,24 +383,75 @@ a.close:active{
 }
 
 #imagesppt {
-	width: 1024px;
-	max-width: 75%;
-	min-height: 500px;
+	max-width: 100%;
+	max-height: 500px;
 	background-color: black;
-	float: left;
 	margin-right: 10px;
+	overflow: hidden;
+}
+
+#imagesppt img {
+	max-width: 100%;
+	max-height: 100%;
 }
 
 #modalleft {
-	float: left;
-	width: 23%;
 	margin-bottom: 10px;
 }
 
 #abscontent {
 	padding-bottom: 10px;
 	margin-bottom: 9px;
+	margin-top: 30px;
 	border-bottom: 1px grey solid;
+}
+
+#abscontent h3 {
+	font-size: 200%;
+	font-weight: 300;
+	text-transform: uppercase;
+}
+
+.abscontentdiv {
+	width: 21%;
+	padding: 1%;
+	display: inline-block;
+}
+
+.assignedreviewers {
+	display: none;
+}
+
+.singlereviewer {
+	display: inline-block;
+	width: 21%;
+	padding: 1%;
+	height: 100px;
+}
+
+.singlereviewer h3 {
+	font-size: 150%;
+	font-weight: 300;
+	text-transform: uppercase;
+}
+
+.avgscore {
+	font-size: 500%;
+	line-height: 1;
+	display: inline-block;
+	width: 21%;
+	padding: 1%;
+}
+
+.smallertitle {
+	font-size: 23%;
+	font-family: 'Oswald',sans-serif;
+	font-weight: 300;
+}
+
+
+.reviewerandscore {
+	border-bottom: 1px solid gray;
 }
 
 
@@ -412,6 +463,18 @@ a.close:active{
 	border-bottom: 1px red dotted;
 	
 }*/
+
+
+.editable {
+	border: 1px solid gray;
+	padding: 5px;
+	height: 100px;
+	overflow-y: scroll;
+}
+
+.editable:focus {
+	border: 1px solid red;
+}
 
 .alert-danger{
 	color: red;
