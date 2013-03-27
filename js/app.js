@@ -261,7 +261,7 @@ $(".abstract_title").live("click", function(){
 		if (data[0].abstractImageFolder == base_url+"uploads/") {
 			abstractimageurl += "";
 		} else {
-			abstractimageurl += "<div id='imagesppt'><img src='"+data[0].abstractImageFolder+"'/></div>"
+			abstractimageurl += "<div id='imagesppt'><img src='"+data[0].abstractImageFolder+"'/></div><div class='imagelink'>"+"<a href='"+data[0].abstractImageFolder+"' target='_blank'>See the Image Full size(It will open in a new window).</a></div>"
 		}
 		var abstractcontent = $.parseJSON(data[0].abstractContent);
 		console.log(abstractcontent);
