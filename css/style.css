@@ -387,6 +387,11 @@ a.close:active{
 	color: gray;
 }
 
+#myModal {
+	width: 1024px;
+	margin: 0 auto;
+}
+
 #imagesppt {
 	max-width: 100%;
 	max-height: 500px;
@@ -500,16 +505,16 @@ a.close:active{
 	margin: 0 auto;
 }
 
-#addAttendeeModal {
+#addAttendeeModal , #attendeeModal {
 	width: 600px;
 	margin: 0 auto;
 }
 
-#addAttendeeModal input {
+#addAttendeeModal input, #attendeeModal input, #reviewersModal input {
 	width: 45%;
 }
 
-#addAttendeeModal label {
+#addAttendeeModal label, #attendeeModal label, #reviewersModal label {
 	width: 150px;
 	display: inline-block;
 	text-align: right;
@@ -520,4 +525,14 @@ a.close:active{
 	width: 90%;
 	line-height: 2;
 	display: block;
+}
+
+.larger {
+	font-size: 150%;
+	font-weight: 300;
+	padding-top: 20px;
+	margin-top: 20px;
+	border-top: 1px solid #DDCECE;
+	font-family: 'Oswald';
+	margin-bottom: 10px;
 }
