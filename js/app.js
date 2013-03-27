@@ -311,10 +311,12 @@ $(".abstract_title").live("click", function(){
 				var comment_type = data[0].comments[k].commentType;
 				//@TODO Think of a way to hold the commentID to update or create a comment.
 				if(comment_type == 1){
-					comment += "<p>&#10143;"+data[0].comments[k].reviewerFirstName+" told Reviewer: <p><textarea id='comment_reviewer'>"+data[0].comments[k].commentContent+"</textarea></p></p>";
+					var comment1_id=data[0].comments[k].commentID;
+					comment += "<p>&#10143;"+data[0].comments[k].reviewerFirstName+" told Reviewer: <p><textarea id='comment_reviewer_"+data[0].comments[k].commentID+"'>"+data[0].comments[k].commentContent+"</textarea></p></p>";
 				}
 				if(comment_type == 2){
-					comment += "<p>&#10143;"+data[0].comments[k].reviewerFirstName+" told Admin: <p><textarea id='comment_admin'>"+data[0].comments[k].commentContent+"</textarea></p></p><hr>";
+					var comment2_id=data[0].comments[k].commentID;
+					comment += "<p>&#10143;"+data[0].comments[k].reviewerFirstName+" told Admin: <p><textarea id='comment_admin_"+data[0].comments[k].commentID+"'>"+data[0].comments[k].commentContent+"</textarea></p></p><button data-comment1='"+comment1_id+"' data-comment2='"+comment2_id+"' class='update_comments_btn'>Update Comment</button><hr>";
 				}
 			}
 		}
