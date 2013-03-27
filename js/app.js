@@ -433,17 +433,18 @@ $(".reviewer_id").live("click", function(){
 				$("#reviewersData").html("");
 				$("#reviewersData").append(
 					"<div id='editReviewerForm'>"
-					+"Firstname: <input id='inputFirstName' value='"+data.reviewerFirstName+"'<br><br>"
-					+"Lastname: <input id='inputLastName' value='"+data.reviewerLastName+"'<br><br>"
-					+"Email: <input id='inputEmail' value='"+data.reviewerEmail+"'"
+					+"<label for='inputFirstName'>Firstname</label> <input id='inputFirstName' value='"+data.reviewerFirstName+"'<br><br>"
+					+"<label for='inputLastName'>Lastname</label> <input id='inputLastName' value='"+data.reviewerLastName+"'<br><br>"
+					+"<label for='inputEmail'>Email</label> <input id='inputEmail' value='"+data.reviewerEmail+"'"
 					+"</div>"
 				);
+				$("#reviewersData").append("<div class='larger'>Abstracts Assigned</div> ");
 				for(var i=0;i<data.abstracts.length;i++){
-					$("#reviewersData").append("<div id='abstract_"+data.abstracts[i].abstractID+"'>Abstract "+(i+1)+": "+data.abstracts[i].abstractTitle+" <a href='#"+data.abstracts[i].abstractID+"' data-reviewer='"+data.reviewerID+"' class='unassign_reviewer'>Unassign</a><br></div>");
+					$("#reviewersData").append("<div id='abstract_"+data.abstracts[i].abstractID+"'>"+data.abstracts[i].abstractTitle+" <a href='#"+data.abstracts[i].abstractID+"' data-reviewer='"+data.reviewerID+"' class='unassign_reviewer'>Unassign</a><br></div>");
 				}
 			}
 			else{
-				$("#reviewersData").html("Working on no abstracts...");
+				$("#reviewersData").html("This reviewer has not been assigned any abstracts to review.");
 			}	
 		}
 	});
@@ -541,9 +542,9 @@ $(".attendee_id").live("click", function(){
 		$("#attendeesData").html("");
 		$("#attendeesData").append(
 			"<div id='editAttendeeForm'>"
-					+"Firstname: <input id='inputAttendeeFirstName' value='"+data[0].attendeeFirstName+"'<br><br>"
-					+"Lastname: <input id='inputAttendeeLastName' value='"+data[0].attendeeLastName+"'<br><br>"
-					+"Email: <input id='inputAttendeeEmail' value='"+data[0].attendeeEmail+"'"
+					+"<label for='inputAttendeeFirstName'>Firstname</label> <input id='inputAttendeeFirstName' value='"+data[0].attendeeFirstName+"'<br><br>"
+					+"<label for='inputAttendeeLastName'>Lastname</label> <input id='inputAttendeeLastName' value='"+data[0].attendeeLastName+"'<br><br>"
+					+"<label for='inputAttendeeEmail'>Email</label> <input id='inputAttendeeEmail' value='"+data[0].attendeeEmail+"'"
 					+"</div>"
 		);
 		var reg = data[0].registered;
