@@ -311,10 +311,12 @@ $(".abstract_title").live("click", function(){
 				var comment_type = data[0].comments[k].commentType;
 				//@TODO Think of a way to hold the commentID to update or create a comment.
 				if(comment_type == 1){
-					comment += "<p>&#10143;"+data[0].comments[k].reviewerFirstName+" told Reviewer: <p><textarea id='comment_reviewer'>"+data[0].comments[k].commentContent+"</textarea></p></p>";
+					var comment1_id=data[0].comments[k].commentID;
+					comment += "<p>&#10143;"+data[0].comments[k].reviewerFirstName+" told Reviewer: <p><textarea id='comment_reviewer_"+data[0].comments[k].commentID+"'>"+data[0].comments[k].commentContent+"</textarea></p></p>";
 				}
 				if(comment_type == 2){
-					comment += "<p>&#10143;"+data[0].comments[k].reviewerFirstName+" told Admin: <p><textarea id='comment_admin'>"+data[0].comments[k].commentContent+"</textarea></p></p><hr>";
+					var comment2_id=data[0].comments[k].commentID;
+					comment += "<p>&#10143;"+data[0].comments[k].reviewerFirstName+" told Admin: <p><textarea id='comment_admin_"+data[0].comments[k].commentID+"'>"+data[0].comments[k].commentContent+"</textarea></p></p><button data-comment1='"+comment1_id+"' data-comment2='"+comment2_id+"' class='update_comments_btn'>Update Comment</button><hr>";
 				}
 			}
 		}
@@ -331,13 +333,15 @@ $(".abstract_title").live("click", function(){
 			+"<div id='modalleft'>"
 			+"<div id='abscontent'>"
 			+"<div class='abscontentdiv'><h3>Methods</h3>"
-			+"<div class='editable' contenteditable='true'>"+abstractcontent.methods+"</div></div>"
+			+"<div class='editable' contenteditable='true' id='edit_abstract_methods'>"+abstractcontent.methods+"</div></div>"
 			+"<div class='abscontentdiv'><h3>Aim</h3>"
-			+"<div class='editable' contenteditable='true'>"+abstractcontent.aim+"</div></div>"
+			+"<div class='editable' contenteditable='true' id='edit_abstract_aim'>"+abstractcontent.aim+"</div></div>"
 			+"<div class='abscontentdiv'><h3>Conservation</h3>"
-			+"<div class='editable' contenteditable='true'>"+abstractcontent.conservation+"</div></div>"
+			+"<div class='editable' contenteditable='true' id='edit_abstract_conservation'>"+abstractcontent.conservation+"</div></div>"
 			+"<div class='abscontentdiv'><h3>Results</h3>"
-			+"<div class='editable' contenteditable='true'>"+abstractcontent.results+"</div></div>"
+			+"<div class='editable' contenteditable='true' id='edit_abstract_results'>"+abstractcontent.results+"</div>"
+			+"</div>"
+			+"<br><button class='btn btn-primary' id='abstract_edit_submit'>Save changes</button>"
 			+"</div>"
 			+"<div class='reviewerclass'>"
 			+reviewer_and_score
@@ -565,11 +569,23 @@ $(".attendee_id").live("click", function(){
 
 $("#abstract_edit_submit").live("click", function(){
 	var id = $("#abstractID").val();
-	var title = $("#abstractModalLabel").html().replace(/&nbsp;/gi, "");
-	var content = $("#abscontent").html().replace(/&nbsp;/gi, "");
-	var title_strip_html = title.replace(/(<([^>]+)>)/ig,"");
-	var content_strip_html = content.replace(/(<([^>]+)>)/ig,"");
-	$.post("abstract/update", {inputAbstractID: id, inputAbstractTitle: title, inputAbstractContent: content},
+	var title = $("#abstractModalLabel").html().replace(/&nbsp;/gi, "").replace(/(<([^>]+)>)/ig,"");
+	//var content = $("#abscontent").html().replace(/&nbsp;/gi, "");
+	//var title_strip_html = title.replace(/(<([^>]+)>)/ig,"");
+	//var content_strip_html = content.replace(/(<([^>]+)>)/ig,"");
+	var methods_content = $("#edit_abstract_methods").html().replace(/&nbsp;/gi, "").replace(/(<([^>]+)>)/ig,"");
+	var aim_content = $("#edit_abstract_aim").html().replace(/&nbsp;/gi, "").replace(/(<([^>]+)>)/ig,"");
+	var conservation_content = $("#edit_abstract_conservation").html().replace(/&nbsp;/gi, "").replace(/(<([^>]+)>)/ig,"");
+	var results_content = $("#edit_abstract_results").html().replace(/&nbsp;/gi, "").replace(/(<([^>]+)>)/ig,"");
+	$.post("abstract/update", 
+	{
+		inputAbstractID: id, 
+		inputAbstractTitle: title, 
+		inputAbstractMethods: methods_content,
+		inputAbstractAim: aim_content,
+		inputAbstractConservation: conservation_content,
+		inputAbstractResults: results_content
+	},
 	function(data){
 		console.log(data);
 	});
@@ -1113,6 +1129,10 @@ $("#send_all_att_btn").live("click", function(){
 	return false;
 });
 
+
+/**
+	*	Upload page image on change function.
+**/
 $("#inputPageImage").live("change", function(e){
 	e.preventDefault();
 	$("#page_image_form").after("<p id='image_upload_msg'>Please wait, your image is being uploaded...</p>")
@@ -1127,4 +1147,25 @@ $("#inputPageImage").live("change", function(e){
 			
 		}
 	});
+});
+
+
+/**
+	*	Update comment button click function.
+**/
+
+$(".update_comments_btn").live("click", function(){
+	var comment1_id = $(this).attr("data-comment1");
+	var comment2_id = $(this).attr("data-comment2");
+	$.post("comment/comment_update",
+		{
+			comment1_id: comment1_id,
+			comment2_id: comment2_id,
+			comment1_content: $("#comment_reviewer_"+comment1_id).val(),
+			comment2_content: $("#comment_admin_"+comment2_id).val()
+		},
+		function(data){
+			console.log(data);
+		}
+	);
 });

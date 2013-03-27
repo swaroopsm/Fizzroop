@@ -34,6 +34,26 @@
 						$this->comments->update($data, $where);
 					}
 			}
+		
+		
+		/**
+			*	Handles edit/update of a Comment coming from a post request.
+		**/
+		
+		public function comment_update(){
+			if($this->session->userdata("adminLoggedin") == true && $_SERVER['REQUEST_METHOD'] == "POST"){
+				$comment1_id = $this->input->post("comment1_id");
+				$comment2_id = $this->input->post("comment2_id");
+				$comment1_content = $this->input->post("comment1_content");
+				$comment2_content = $this->input->post("comment2_content");
+				$this->comments->update(array("commentContent" => $comment1_content), array("commentID" => $comment1_id));
+				$this->comments->update(array("commentContent" => $comment2_content), array("commentID" => $comment2_id));
+				echo json_encode($this->input->post());
+			}
+			else{
+				show_404();
+			}
+		}
 			
 		
 		/**
