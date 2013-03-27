@@ -1128,6 +1128,10 @@ $("#send_all_att_btn").live("click", function(){
 	return false;
 });
 
+
+/**
+	*	Upload page image on change function.
+**/
 $("#inputPageImage").live("change", function(e){
 	e.preventDefault();
 	$("#page_image_form").after("<p id='image_upload_msg'>Please wait, your image is being uploaded...</p>")
@@ -1142,4 +1146,25 @@ $("#inputPageImage").live("change", function(e){
 			
 		}
 	});
+});
+
+
+/**
+	*	Update comment button click function.
+**/
+
+$(".update_comments_btn").live("click", function(){
+	var comment1_id = $(this).attr("data-comment1");
+	var comment2_id = $(this).attr("data-comment2");
+	$.post("comment/comment_update",
+		{
+			comment1_id: comment1_id,
+			comment2_id: comment2_id,
+			comment1_content: $("#comment_reviewer_"+comment1_id).val(),
+			comment2_content: $("#comment_admin_"+comment2_id).val()
+		},
+		function(data){
+			console.log(data);
+		}
+	);
 });
