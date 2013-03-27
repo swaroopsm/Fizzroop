@@ -331,13 +331,13 @@ $(".abstract_title").live("click", function(){
 			+"<div id='modalleft'>"
 			+"<div id='abscontent'>"
 			+"<div class='abscontentdiv'><h3>Methods</h3>"
-			+"<div class='editable' contenteditable='true'>"+abstractcontent.methods+"</div></div>"
+			+"<div class='editable' contenteditable='true' id='edit_abstract_methods'>"+abstractcontent.methods+"</div></div>"
 			+"<div class='abscontentdiv'><h3>Aim</h3>"
-			+"<div class='editable' contenteditable='true'>"+abstractcontent.aim+"</div></div>"
+			+"<div class='editable' contenteditable='true' id='edit_abstract_aim'>"+abstractcontent.aim+"</div></div>"
 			+"<div class='abscontentdiv'><h3>Conservation</h3>"
-			+"<div class='editable' contenteditable='true'>"+abstractcontent.conservation+"</div></div>"
+			+"<div class='editable' contenteditable='true' id='edit_abstract_conservation'>"+abstractcontent.conservation+"</div></div>"
 			+"<div class='abscontentdiv'><h3>Results</h3>"
-			+"<div class='editable' contenteditable='true'>"+abstractcontent.results+"</div></div>"
+			+"<div class='editable' contenteditable='true' id='edit_abstract_results'>"+abstractcontent.results+"</div></div>"
 			+"</div>"
 			+"<div class='reviewerclass'>"
 			+reviewer_and_score
@@ -564,11 +564,23 @@ $(".attendee_id").live("click", function(){
 
 $("#abstract_edit_submit").live("click", function(){
 	var id = $("#abstractID").val();
-	var title = $("#abstractModalLabel").html().replace(/&nbsp;/gi, "");
-	var content = $("#abscontent").html().replace(/&nbsp;/gi, "");
-	var title_strip_html = title.replace(/(<([^>]+)>)/ig,"");
-	var content_strip_html = content.replace(/(<([^>]+)>)/ig,"");
-	$.post("abstract/update", {inputAbstractID: id, inputAbstractTitle: title, inputAbstractContent: content},
+	var title = $("#abstractModalLabel").html().replace(/&nbsp;/gi, "").replace(/(<([^>]+)>)/ig,"");
+	//var content = $("#abscontent").html().replace(/&nbsp;/gi, "");
+	//var title_strip_html = title.replace(/(<([^>]+)>)/ig,"");
+	//var content_strip_html = content.replace(/(<([^>]+)>)/ig,"");
+	var methods_content = $("#edit_abstract_methods").html().replace(/&nbsp;/gi, "").replace(/(<([^>]+)>)/ig,"");
+	var aim_content = $("#edit_abstract_aim").html().replace(/&nbsp;/gi, "").replace(/(<([^>]+)>)/ig,"");
+	var conservation_content = $("#edit_abstract_conservation").html().replace(/&nbsp;/gi, "").replace(/(<([^>]+)>)/ig,"");
+	var results_content = $("#edit_abstract_results").html().replace(/&nbsp;/gi, "").replace(/(<([^>]+)>)/ig,"");
+	$.post("abstract/update", 
+	{
+		inputAbstractID: id, 
+		inputAbstractTitle: title, 
+		inputAbstractMethods: methods_content,
+		inputAbstractAim: aim_content,
+		inputAbstractConservation: conservation_content,
+		inputAbstractResults: results_content
+	},
 	function(data){
 		console.log(data);
 	});
