@@ -337,7 +337,9 @@ $(".abstract_title").live("click", function(){
 			+"<div class='abscontentdiv'><h3>Conservation</h3>"
 			+"<div class='editable' contenteditable='true' id='edit_abstract_conservation'>"+abstractcontent.conservation+"</div></div>"
 			+"<div class='abscontentdiv'><h3>Results</h3>"
-			+"<div class='editable' contenteditable='true' id='edit_abstract_results'>"+abstractcontent.results+"</div></div>"
+			+"<div class='editable' contenteditable='true' id='edit_abstract_results'>"+abstractcontent.results+"</div>"
+			+"</div>"
+			+"<br><button class='btn btn-primary' id='abstract_edit_submit'>Save changes</button>"
 			+"</div>"
 			+"<div class='reviewerclass'>"
 			+reviewer_and_score
