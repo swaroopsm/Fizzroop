@@ -389,11 +389,10 @@
 		<p>Colloquy</p>
 	</div>
 	<script src="<?php echo base_url().'js/jquery.js'; ?>"></script>
-	<script src="<?php echo base_url().'js/vendor.js'; ?>"></script>
-	<script src="<?php echo base_url().'js/jquery.form.js'; ?>"></script>
 	<script>
 
 	base_url = "<?php echo base_url(); ?>";
+	token =['<?php echo $this->security->get_csrf_token_name(); ?>', '<?php echo $this->security->get_csrf_hash(); ?>']
 
 
 		jQuery.ajaxSetup({
@@ -402,6 +401,8 @@
 			}
 		});
 	</script>
+	<script src="<?php echo base_url().'js/vendor.js'; ?>"></script>
+	<script src="<?php echo base_url().'js/jquery.form.js'; ?>"></script>
 	<script src="<?php echo base_url().'js/app.js'; ?>"></script>
 	<script src="<?php echo base_url().'js/jquery.dataTables.min.js'; ?>"></script>
 </body>
