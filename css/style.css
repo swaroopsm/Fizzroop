@@ -360,8 +360,13 @@ table tr:hover {
   margin-left: 0;
 }
 
-h3#abstractModalLabel {
+/*h3#abstractModalLabel {
 	font-size: 21px;
+	font-weight: 300;
+}*/
+
+.modal-header h3 {
+	font-size: 250%;
 	font-weight: 300;
 }
 
@@ -487,4 +492,32 @@ a.close:active{
 .pageContent{
 	border: 1px dotted gray;
 	padding: 5px;
+}
+
+
+#reviewersListModal, #reviewersModal, #addReviewerModal,  #createPageModal {
+	width: 420px;
+	margin: 0 auto;
+}
+
+#addAttendeeModal {
+	width: 600px;
+	margin: 0 auto;
+}
+
+#addAttendeeModal input {
+	width: 45%;
+}
+
+#addAttendeeModal label {
+	width: 150px;
+	display: inline-block;
+	text-align: right;
+	margin-right: 10px;
+}
+
+#addReviewerModal input, #createPageModal input {
+	width: 90%;
+	line-height: 2;
+	display: block;
 }
