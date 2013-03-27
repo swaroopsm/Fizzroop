@@ -1,0 +1,461 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+body {
+	font-family: 'Titillium Web', sans-serif;
+}
+
+a {
+	text-decoration: none;
+}
+
+h1 {
+	font-family: 'Averia Serif Libre', serif;
+	font-size: 26px;
+	margin: 10px 0px;
+}
+
+img {
+	max-width: 100%;
+}
+
+#header {
+	text-align: center;
+	background-image: url('../images/backbanner.gif');
+	background-position: top;
+	background-attachment: fixed;
+	padding-top: 40px;
+	margin-top: 40px;
+}
+
+#header h2 {
+	padding-bottom: 30px;
+}
+
+.shadow {
+	padding-top: 30px;
+}
+
+.shadow img {
+	max-width: 100%;
+}
+
+#content {
+	/*-webkit-box-shadow: 0px -8px 6px 2px #e0e0e0;
+	box-shadow: 0px -10px 6px 2px #ccc;*/
+	/*background-color: white;*/
+	line-height: 1.6;
+	text-align: center;
+}
+
+#mainmenu {
+	position: fixed;
+	width: 100%;
+	top: 0px;
+	margin: 0 auto;
+	text-align: center;
+	z-index: 10;
+	background-color: black;
+	font-size: 90%;
+}
+
+ul#nav_main {
+	text-align: center;
+	display: inline-block;
+}
+
+ul#nav_main li {
+	display: inline-block;
+	margin-left: 30px;
+	padding: 10px;
+}
+
+ul#nav_main li:first-child {
+	margin-left: 0px;
+}
+
+ul#nav_main li:hover {
+	background-color: #FED434
+}
+
+ul#nav_main li a {
+	color: white;
+}
+
+.timer1 {
+	display: inline-block;
+	padding: 10px;
+}
+
+.wrap {
+	max-width: 980px;
+	margin: 0 auto;
+	background-color: white;
+}
+
+.wrap p {
+	max-width: 500px;
+	margin: 0 auto;
+	text-align: justify;
+	margin-top: 20px;
+	text-indent: 20px;
+}
+
+.full {
+	height: 300px;
+	width: 100%;
+}
+
+#gals {
+	border-top: 2px white solid;
+	border-bottom: 15px solid black;
+}
+
+#gallery {
+	background-color: white;
+	width: 60%;
+	height: 350px;
+	overflow: hidden;
+	margin: 0 auto;
+	float: left;
+}
+
+#wshopgall {
+	background-color: white;
+	width: 40%;
+	height: 350px;
+	overflow: hidden;
+	margin: 0 auto;
+	display: inline-block;
+	float: left;
+}
+
+.galwrap1 {
+	width: 400%;
+}
+
+.galwrap2 {
+	width: 400%;
+}
+
+.slide {
+	width: 25%;
+	height: 100%;
+	float: left;
+	text-align: left;
+}
+
+.workslide {
+	width: 25%;
+	height: 100%;
+	float: left;
+	text-align: left;
+}
+
+.plenary {
+	margin-top: 10px;
+	padding: 3px 10px;
+	display: inline-block;
+	font-size: 90%;
+}
+
+.slide_overlay {
+	width: 100%;
+	height: 100%;
+}
+
+.slide_content {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	top: -100%;
+}
+
+.plen {
+	/*background-color: rgba(254, 212, 54, 0.3);*/
+	background-color: rgba(0, 100, 155, 0.3);
+}
+
+.work {
+	/*background-color: rgba(254, 212, 54, 0.3);*/
+	background-color: rgba(196, 154, 108, 0.3);
+}
+
+.speaker {
+	padding: 3px 10px;
+	display: inline-block;
+}
+
+.plenary_title{
+	max-width: 50%;
+	padding: 10px;
+	font-size: 130%;
+	font-family: "Averia Serif Libre";
+	margin-top: 10px;
+	background-color: rgba(0, 0, 0, 0.8);
+	color: white;
+	display: inline-block;
+}
+
+/*.roundwrap {
+	width: 100px;
+	height: 80px;
+	display: inline-block;
+	text-align: center;
+	margin: 30px;
+}
+
+.round {
+	width: 80px;
+	height: 80px;
+	margin: 0 auto;
+	overflow: hidden;
+	background-color: black;
+	color:white;
+	border-radius: 40px;
+	text-align: center;
+	display: table;
+}
+
+.round p{
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 200%;
+}
+
+
+
+.hex:before {
+    content: " ";
+    width: 0; height: 0;
+    border-bottom: 30px solid #6C6;
+    border-left: 52px solid transparent;
+    border-right: 52px solid transparent;
+    position: absolute;
+    top: -30px;
+}
+
+.hex {
+    margin-top: 30px;
+    width: 104px;
+    height: 60px;
+    background-color: #6C6;
+    position: relative;
+}
+
+.hex:after {
+    content: "";
+    width: 0;
+    position: absolute;
+    bottom: -30px;
+    border-top: 30px solid #6C6;
+    border-left: 52px solid transparent;
+    border-right: 52px solid transparent;
+}*/
+
+.greenback {
+	background-color: #39B54A;
+}
+
+.green {
+	color: #39B54A;
+}
+
+.orangeback {
+	background-color: #F15A24;
+}
+
+.orange {
+	color: #F15A24;
+}
+
+.yellowback {
+	background-color: #FED434;
+}
+
+.blueback {
+	background-color: #73D7FC;
+}
+
+.blackback {
+	background-color: black;
+	color: #FED434;
+}
+
+.yellow {
+	color: #FED434;
+}
+
+.counter {
+	width: 200px;
+	display: inline-block;
+	text-align: center;
+	color: black;
+}
+
+.counter a {
+	color: red;
+}
+
+.hexnumcount {
+	background-image: url('images/hex.png');
+	width: 100px;
+	height: 100px;
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 40px;
+}
+
+
+
+span.small {
+	font-size: 80%;
+	padding-top: -10px;
+	line-height: .6;
+	text-transform: uppercase;
+}
+
+.averiainside {
+	padding-top: 18px;
+	font-size: 250%;
+	line-height: 1.2;
+	font-family: 'Averia Serif Libre', serif;
+}
+
+.clear {
+	clear: both;
+}
+
+
+#sponsorsandpartners {
+	width: 100%;
+	margin-bottom: 60px;
+}
+
+#organisingcomittee {
+	width: 100%;
+}
+
+#sponsors {
+	margin-bottom: 50px;
+}
+
+#sponsorsandpartners h2 {
+	font-size: 150%;
+	font-family: 'Averia Serif Libre', serif;
+	padding-bottom: 20px;
+}
+
+
+.s {
+	width: 120px;
+	display: inline-block;
+}
+
+.l {
+	width: 290px;
+	display: inline-block;
+}
+
+.s img {
+	max-width: 100%;
+}
+
+
+#footer {
+	text-align: center;
+	margin-top: 50px;
+}
+
+ul.footerlinks {
+	width: 290px;
+	display: inline-block;
+	vertical-align: top;
+	text-align: left;
+	margin-right: 20px;
+}
+
+ul.footerlinks li {
+	padding: 5 0;
+	border-bottom: 1px solid #e0e0e0;
+	text-align: center;
+}
+
+ul.footerlinks li:last-child {
+	padding: 5 0;
+	border-bottom: none;
+}
+
+ul.footerlinks li a {
+	color: #999;
+}
+
+ul.footerlinks li a:hover {
+	color: #73D7FC;
+}
+
+.item {
+	min-height: 300px;
+	padding: 30px;
+	background-position: center;
+}
+
+.item h1 {
+	background-color: white;
+	display: inline-block;
+	padding: 5px;
+}
+
+.item p.whenandwhere {
+	background-color: black;
+	color: white;
+	display: inline-block;
+	padding: 5px;
+}
