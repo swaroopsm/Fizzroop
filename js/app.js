@@ -472,8 +472,8 @@ $("#manageAttendees").live("click", function(){
 							var reg="NO";
 						}
 						obj.push({
-							"attendeeFirstName": "<a href='#"+data[i].attendeeID+"' class='attendee_id'>"+data[i].attendeeFirstName+"</a>",
-							"attendeeLastName": "<a href='#"+data[i].attendeeID+"' class='attendee_id'>"+data[i].attendeeLastName+"</a>",
+							"attendeeFirstName": "<a href='#"+data[i].attendeeID+"' class='attendee_id'>"+data[i].attendeeFirstName+" "+data[i].attendeeLastName+"</a>",
+							//"attendeeLastName": "<a href='#"+data[i].attendeeID+"' class='attendee_id'>"+data[i].attendeeLastName+"</a>",
 							"attendeeEmail": data[i].attendeeEmail,
 							"registered": reg
 						});
@@ -489,12 +489,12 @@ $("#manageAttendees").live("click", function(){
 															
 															{
 																"mDataProp": "attendeeFirstName",
-																"sTitle": "Firstname"
+																"sTitle": "Name"
 															},
-															{
-																"mDataProp": "attendeeLastName",
-																"sTitle": "Lastname"
-															},
+															// {
+															// 	"mDataProp": "attendeeLastName",
+															// 	"sTitle": "Lastname"
+															// },
 															{
 																"mDataProp": "attendeeEmail",
 																"sTitle": "Email"
