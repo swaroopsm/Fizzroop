@@ -45,6 +45,8 @@ jQuery.fn.asyncSubmit = function(options){
 		paramList = paramList+inputsList[i].name+"="+inputsList[i].value+"&";
 	}
 	paramList = paramList.substring(0,paramList.length-1);
+	paramList += "&"+token[0]+"="+token[1];
+	console.log(paramList);
 	var url = $(this).attr("action");
 	var method = $(this).attr("method");
 	var formID = "#"+$(this).attr("id");
