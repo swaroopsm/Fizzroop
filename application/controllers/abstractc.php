@@ -388,8 +388,11 @@
 	 	
 	 	public function approve(){
 	 		if($this->session->userdata("adminLoggedin") == true && $_SERVER['REQUEST_METHOD'] == "POST"){
+	 			$recommendation_admin = $this->input->post("recommendation_admin");
+	 			if($recommendation_admin == 3)
+	 				$recommendation_admin = NULL;
 	 			$data = array(
-	 				"approved" => 1
+	 				"approved" => $recommendation_admin
 	 			);
 	 			$where = array(
 	 				"abstractID" => $this->input->post("abstractID")
