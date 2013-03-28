@@ -104,6 +104,10 @@
     				data: $(this).serialize(),
     				success: function(data){
     					console.log(data);
+    					var obj = $.parseJSON(data);
+    					if(obj.success){
+    						$("#ajaxer").html("<div style='background: #fff;padding: 20px;text-align: center;'><h2>Congratulations you are registered.. <br> <a href='"+base_url+"login'>Login here</a></h2></div>")
+    					}
     				}
     			});
     			return false;
