@@ -458,6 +458,44 @@
 		
 		
 		/**
+			*	 Handles checking of doAttend ticket number.
+		**/
+		
+		public function check_ticket(){
+			if($_SERVER['REQUEST_METHOD'] == "POST"){
+				$this->sync();
+				$ticket = $this->uri->segment(3);
+				$email = $this->input->post("inputEmail");
+				$q = $this->attendees->view_where(array("attendeeTicket" => $ticket, "attendeeEmail" => $email));
+				if($q->num_rows > 0){
+					$r = $q->result();
+					if($r[0]->attendeePassword != NULL){
+						echo json_encode(array("success" => true, "flag" => 1));
+					}
+					else{
+						foreach($r as $a){
+							$attendee = array(
+								"attendeeFirstName" => $a->attendeeFirstName,
+								"attendeeLastName" => $a->attendeeLastName,
+								"attendeeNationality" => $a->attendeeNationality,
+								"attendeeEmail" => $a->attendeeEmail,
+								"attendeeTicket" => $a->attendeeTicket
+							);
+						}
+						echo json_encode(array("success" => true, "flag" => 2, "attendee" => $attendee));
+					}
+				}
+				else{
+					echo json_encode(array("success" => false, "flag" => 0));
+				}
+			}
+			else{
+				show_404();
+			}
+		}
+		
+		
+		/**
 			* Handles deletion of an Attendee.
 		**/
 		
