@@ -152,14 +152,19 @@
 				$rid = $qres[0]->reviewerID;
 				require_once(APPPATH."controllers/abstractc.php");
 				$a = new Abstractc();
-				$ares = $a->select_where(array("abstractID", "abstractTitle", "abstractImageFolder"), "reviewer1 = $rid OR reviewer2 = $rid OR reviewer3 = $rid", 1);
+				$ares = $a->select_where(array("abstractID", "abstractTitle", "abstractImageFolder", "attendeeID"), "reviewer1 = $rid OR reviewer2 = $rid OR reviewer3 = $rid", 1);
 				if($ares->num_rows() > 0){
 					foreach($ares->result() as $abstract){
-						$abstracts[] = array(
-							"abstractID" => $abstract->abstractID,
-							"abstractTitle" => $abstract->abstractTitle,
-							"abstractImageFolder" => $abstract->abstractImageFolder
-						);
+						if($abstract->attendeeID == NULL){
+							$abstracts = array();
+						}
+						else{
+							$abstracts[] = array(
+								"abstractID" => $abstract->abstractID,
+								"abstractTitle" => $abstract->abstractTitle,
+								"abstractImageFolder" => $abstract->abstractImageFolder
+							);
+						}
 					}
 				}
 				else{
