@@ -151,7 +151,6 @@
 		
 		public function register(){
 			if($_SERVER['REQUEST_METHOD'] == "POST"){
-				echo json_encode($this->input->post());
 				if($this->input->post("inputPassport")){
 					$passport = $this->input->post("inputPassport");
 				}
@@ -166,6 +165,18 @@
 					"attendeeID" => $this->input->post("inputAttendeeID")
 				);
 				$this->attendees->update($data, $where);
+				
+				// Email Attendee saying he/she has completed registration.
+				$q = $this->attendees->select_where(array("attendeeFirstName", "attendeeLastName", "attendeeEmail"), array("attendeeID" => $this->input->post("inputAttendeeID")));
+				$r = $q->result();
+				$this->load->library('email');
+	 			$this->email->set_mailtype("html");
+        $this->email->from($this->config->item('service_email'), 'SCCS Registration is complete!');
+	 			$this->email->to($r[0]->attendeeEmail);
+	 			$this->email->subject("SCCS Registration is complete!");
+	 			$this->email->message("Hello ".$r[0]->attendeeFirstName." ".$r[0]->attendeeLastName." <br><br> Your Registration process with SCCS is complete now. You can login to ypur account, and start submitting an Abstract.");
+	 			$this->email->send();
+	 			
 				echo json_encode(array(
 						"success" => true,
 						"attendeeID" => $this->input->post("inputAttendeeID")
