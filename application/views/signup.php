@@ -25,6 +25,9 @@
          echo form_submit(array("class" => "btn btn-large btn-primary", "value" => "Signup"));
         ?>
       <?php echo form_close(); ?>
+      
+       <div id="ajaxer"></div>
+       
     </div>
     <script src="<?php echo base_url().'js/jquery.js'; ?>"></script>
     <script>
@@ -51,7 +54,37 @@
     					inputEmail: email
     				},
     				function(data){
-    					$("#js-messages").html(data);
+    					var obj = $.parseJSON(data);
+    					console.log(obj);
+    					if(obj.success){
+    						if(obj.flag == 1){
+    							$("#js-messages").html("You are already registered. Please Login!");
+    						}
+    						if(obj.flag == 2){
+    							$("#signupForm").hide();
+    							if($.trim(obj.attendee.attendeeNationality).toLowerCase() != "indian"){
+    								var passport_req="<p><input type='text' id='inputPassport' name='inputPassport' placeholder='Your Passport'></p>";
+    							}
+    							else{
+    								var passport_req="";
+    							}
+    							$("#ajaxer").html(
+    								"<form class='form-signin' id='step2_reg_form'>"
+    								+"<h2 class='form-signin-heading'>Change Password</h2>"
+					        	+"<hr>"
+        						+"<div id='js-messages'></div>"
+        						+"<p>Hey, "+obj.attendee.attendeeFirstName
+        						+" "+obj.attendee.attendeeLastName+"</p>"
+        						+passport_req
+        						+"<p><input type='password' id='inputPassword' name='inputPassword' placeholder='Your Password'></p>"
+        						+"<p><button class='btn btn-primary' type='submit'>Update</button></p>"
+    								+"</form>"
+    							);
+    						}
+    					}
+    					else{
+    						$("#js-messages").html("Your Ticket or Email does not match our records!");
+    					}
     				}
     			);
     			return false;
