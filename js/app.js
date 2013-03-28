@@ -973,11 +973,14 @@ $("form#new_page").live("submit", function(){
 **/
 
 $("#abstract_approve_btn").live("click", function(){
-	var abstractID = $("#abstractID").val()
-	console.log(abstractID);
+	var abstractID = $("#abstractID").val();
+	var recommendation_admin = $.trim($('[name=recommendation_admin]:checked').val());
+	console.log(recommendation_admin);
+	//console.log(abstractID);
 	$.post("abstract/approve",
 	{
-		"abstractID": abstractID
+		"abstractID": abstractID,
+		"recommendation_admin": recommendation_admin
 	},
 	function(data){
 		console.log(data);
