@@ -63,21 +63,23 @@
     						if(obj.flag == 2){
     							$("#signupForm").hide();
     							if($.trim(obj.attendee.attendeeNationality).toLowerCase() != "indian"){
-    								var passport_req="<p><input type='text' id='inputPassport' name='inputPassport' placeholder='Your Passport'></p>";
+    								var passport_req="<p><input type='text' id='inputPassport' name='inputPassport' placeholder='Your Passport ID'></p>";
     							}
     							else{
     								var passport_req="";
     							}
     							$("#ajaxer").html(
     								"<form class='form-signin' id='step2_reg_form'>"
-    								+"<h2 class='form-signin-heading'>Change Password</h2>"
+    								+"<h2 class='form-signin-heading'>You are almost there!</h2>"
 					        	+"<hr>"
         						+"<div id='js-messages'></div>"
         						+"<p>Hey, "+obj.attendee.attendeeFirstName
         						+" "+obj.attendee.attendeeLastName+"</p>"
         						+passport_req
         						+"<p><input type='password' id='inputPassword' name='inputPassword' placeholder='Your Password'></p>"
-        						+"<p><button class='btn btn-primary' type='submit'>Update</button></p>"
+        						+"<input type='hidden' name='inputAttendeeID' id='inputAttendeeID' value='"+obj.attendee.attendeeID+"'>"
+        						+"<input type='hidden' name='"+token[0]+"' id='"+token[0]+"' value='"+token[1]+"'>"
+        						+"<p><button class='btn btn-primary btn-large' type='submit'>Update</button></p>"
     								+"</form>"
     							);
     						}
@@ -89,6 +91,24 @@
     			);
     			return false;
     		});
+    		
+    		
+    		/**
+    			*	Step 2 form submit. 
+    		**/
+    		
+    		$("#step2_reg_form").live("submit", function(){
+    			$.ajax({
+    				url: base_url+"attendee/register",
+    				type: "POST",
+    				data: $(this).serialize(),
+    				success: function(data){
+    					console.log(data);
+    				}
+    			});
+    			return false;
+    		});
+    		
     	});
     </script> 
 	</body>
