@@ -129,6 +129,17 @@ $("#manageAbstracts").live("click", function(){
 								}
 								ratings = ratings + ra + " ";
 							}
+							var status;
+							switch(data[i].approved){
+									case '1': status = "<img src='images/talk.png' title='Talk'>"; //@TODO Add icon for Talk.
+														break;
+												
+									case '2': status = "<img src='images/poster.png' title='Poster'>"; //@TODO Add icon for Poster.
+														break;
+											
+									default: status = "<img src='images/reject.gif' title='Rejected'>"
+												
+							}
 							switch(l){
 								case 0: obj.push({
 									"title": "<a href='#"+data[i].abstractID+"' class='abstract_title'>"+data[i].abstractTitle+"</a>",
@@ -137,7 +148,8 @@ $("#manageAbstracts").live("click", function(){
 									"reviewer2": reviewer2_actual,
 									"reviewer3": reviewer3_actual,
 									"ratings": ratings,
-									"score": data[i].score
+									"score": data[i].score,
+									"status": status
 								});
 								break;
 				
@@ -148,7 +160,8 @@ $("#manageAbstracts").live("click", function(){
 									"reviewer2": reviewer2_actual,
 									"reviewer3": reviewer3_actual,
 									"ratings": ratings,
-									"score": data[i].score
+									"score": data[i].score,
+									"status": status
 								});
 								break;
 				
@@ -159,7 +172,8 @@ $("#manageAbstracts").live("click", function(){
 									"reviewer2": reviewer2_actual,
 									"reviewer3": reviewer3_actual,
 									"ratings": ratings,
-									"score": data[i].score
+									"score": data[i].score,
+									"status": status
 								});
 								break;
 				
@@ -170,7 +184,8 @@ $("#manageAbstracts").live("click", function(){
 									"reviewer2": reviewer2_actual,
 									"reviewer3": reviewer3_actual,
 									"ratings": ratings,
-									"score": data[i].score
+									"score": data[i].score,
+									"status": status
 								});
 								break;
 				
@@ -218,6 +233,11 @@ $("#manageAbstracts").live("click", function(){
 											"mDataProp": "score",
 											"sTitle": "Score",
 											"sClass": "score"
+										},
+										{
+											"mDataProp": "status",
+											"sTitle": "Status",
+											"sClass": "status"
 										}
 								]
 					});		
