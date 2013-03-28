@@ -143,44 +143,49 @@
 		**/
 		
 		public function view_where(){
-			$data = array(
-				"reviewerID" => $this->uri->segment(2)
-			);
-			$q = $this->reviewers->view_where($data);
-			if($q->num_rows > 0){
-					$qres = $q->result();
-				$rid = $qres[0]->reviewerID;
-				require_once(APPPATH."controllers/abstractc.php");
-				$a = new Abstractc();
-				$ares = $a->select_where(array("abstractID", "abstractTitle", "abstractImageFolder", "attendeeID"), "reviewer1 = $rid OR reviewer2 = $rid OR reviewer3 = $rid", 1);
-				if($ares->num_rows() > 0){
-					foreach($ares->result() as $abstract){
-						if($abstract->attendeeID == NULL){
-							$abstracts = array();
-						}
-						else{
-							$abstracts[] = array(
-								"abstractID" => $abstract->abstractID,
-								"abstractTitle" => $abstract->abstractTitle,
-								"abstractImageFolder" => $abstract->abstractImageFolder
-							);
+			if($this->session->userdata("adminLoggedin") == true || $this->uri->segment(2) == $this->session->userdata("id")){
+				$data = array(
+					"reviewerID" => $this->uri->segment(2)
+				);
+				$q = $this->reviewers->view_where($data);
+				if($q->num_rows > 0){
+						$qres = $q->result();
+					$rid = $qres[0]->reviewerID;
+					require_once(APPPATH."controllers/abstractc.php");
+					$a = new Abstractc();
+					$ares = $a->select_where(array("abstractID", "abstractTitle", "abstractImageFolder", "attendeeID"), "reviewer1 = $rid OR reviewer2 = $rid OR reviewer3 = $rid", 1);
+					if($ares->num_rows() > 0){
+						foreach($ares->result() as $abstract){
+							if($abstract->attendeeID == NULL){
+								$abstracts = array();
+							}
+							else{
+								$abstracts[] = array(
+									"abstractID" => $abstract->abstractID,
+									"abstractTitle" => $abstract->abstractTitle,
+									"abstractImageFolder" => $abstract->abstractImageFolder
+								);
+							}
 						}
 					}
+					else{
+						$abstracts = array();
+					}
+					$reviewer = array(
+						"reviewerID" => $rid,
+						"reviewerFirstName" => $qres[0]->reviewerFirstName,
+						"reviewerLastName" => $qres[0]->reviewerLastName,
+						"reviewerEmail" => $qres[0]->reviewerEmail,
+						"abstracts" => $abstracts
+					);
+					echo json_encode($reviewer);
 				}
 				else{
-					$abstracts = array();
+					echo json_encode(array());
 				}
-				$reviewer = array(
-					"reviewerID" => $rid,
-					"reviewerFirstName" => $qres[0]->reviewerFirstName,
-					"reviewerLastName" => $qres[0]->reviewerLastName,
-					"reviewerEmail" => $qres[0]->reviewerEmail,
-					"abstracts" => $abstracts
-				);
-				echo json_encode($reviewer);
 			}
 			else{
-				echo json_encode(array());
+				show_404();
 			}
 		}
 		
