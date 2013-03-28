@@ -350,6 +350,23 @@ $(".abstract_title").live("click", function(){
 			+"<div class='clear'></div>" // clearing floats before the comments section
 			+"<div id='comments'>"+comment+"</div>"
 		);
+		
+		if(data[0].approved){
+								var rec = data[0].approved;
+								switch(rec){
+									case '1': recommendation = "<input type='radio' name='recommendation_admin' id='recommendation_admin' value='1' checked='checked'/>Talk <input type='radio' name='recommendation_admin' id='recommendation_admin' value='2'/>Poster <input type='radio' name='recommendation_admin' id='recommendation_admin' value='3'/>Reject";
+														break;
+														
+									case '2': recommendation = "<input type='radio' name='recommendation_admin' id='recommendation_admin' value='1'/>Talk <input type='radio' name='recommendation_admin' id='recommendation_admin' value='2' checked='checked'/>Poster <input type='radio' name='recommendation_admin' id='recommendation_admin' value='3'/>Reject";
+														break;
+														
+									default: recommendation = "<input type='radio' name='recommendation_admin' id='recommendation_admin' value='1' />Talk <input type='radio' name='recommendation_admin' id='recommendation_admin' value='2'/>Poster <input type='radio' name='recommendation_admin' id='recommendation_admin' value='3' checked='checked'/>Reject";
+								}
+							}
+							else{
+								recommendation = "<input type='radio' name='recommendation_admin' id='recommendation_admin' value='1' />Talk <input type='radio' name='recommendation_admin' id='recommendation_admin' value='2'/>Poster <input type='radio' name='recommendation_admin' id='recommendation_admin' value='3' checked='checked'/>Reject";
+							}
+			$("#recommendation_span").html(recommendation);				
 	});
 	return false;
 });
