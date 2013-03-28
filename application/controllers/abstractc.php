@@ -99,7 +99,8 @@
 			 				"attendeeLastName" => $row->attendeeLastName,
 			 				"reviewers" => $reviewers,
 			 				"score" => $q2,
-			 				"recommendations" => $q3
+			 				"recommendations" => $q3,
+			 				"approved" => $row->approved
 			 			);
 			 		}
 			 		echo json_encode($result);
