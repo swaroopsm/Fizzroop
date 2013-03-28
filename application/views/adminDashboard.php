@@ -70,6 +70,7 @@
 		  <div id="abstractContent"></div>
 		</div>
 		<div class="modal-footer">
+			<span id="recommendation_span"></span>
 			<button class="btn btn-primary" id="abstract_approve_btn">Approve Abstract</button>
 		</div>
 	</div>
