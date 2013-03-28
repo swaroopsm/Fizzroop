@@ -377,6 +377,15 @@
 		
 		
 		/**
+			*	Get last Attendee.
+		**/
+		
+		public function latest_ticket(){
+			return $this->attendees->get_order_limit(array("attendeeTicket"), "attendeeTicket", "DESC", "1");
+		}
+		
+		
+		/**
 			* Handles deletion of an Attendee.
 		**/
 		
