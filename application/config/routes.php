@@ -68,6 +68,7 @@ $route['attendee/abstract'] = "attendee/abstract_view";
 $route['page/(:num)'] = "page/view_where/$1";
 $route['page/view'] = "page/select_where";
 $route['image/(:num)'] = "image/view_where/$1";
+$route['doattend/verify/(:num)'] = "attendee/check_ticket/$1";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
