@@ -88,10 +88,22 @@
 		public function get_order_limit($data, $order, $ordering, $limit){
 			$this->db->select($data);
 			$this->db->from("attendees");
+			$this->db->where("attendeeTicket IS NOT NULL");
 			$this->db->order_by($order, $ordering);
 			$this->db->limit($limit);
 			$q = $this->db->get();
-			return $q;
+			return $q->result();
+		}
+		
+		
+		/**
+			*	Count all Attendees registered via doAttend.
+		**/
+		
+		public function get_doattend_count(){
+			#$this->db->from("attendees");
+			$this->db->where("attendeeTicket IS NOT NULL");
+			return $this->db->count_all_results("attendees");
 		}
 		
 	}
