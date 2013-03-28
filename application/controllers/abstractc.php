@@ -184,7 +184,8 @@
 			 				"reviewers" => $reviewers_list,
 			 				"score" => $q2,
 			 				"comments" => $r3,
-			 				"detailed_scores" => $detailed_score
+			 				"detailed_scores" => $detailed_score,
+			 				"approved" => $row->approved
 			 			);
 			 		}
 			 		echo json_encode($result);
