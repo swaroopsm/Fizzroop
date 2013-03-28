@@ -261,7 +261,7 @@ $(".abstract_title").live("click", function(){
 		if (data[0].abstractImageFolder == base_url+"uploads/") {
 			abstractimageurl += "";
 		} else {
-			abstractimageurl += "<div id='imagesppt'><img src='"+data[0].abstractImageFolder+"'/></div>"
+			abstractimageurl += "<div id='imagesppt'><img src='"+data[0].abstractImageFolder+"'/></div><div class='imagelink'>"+"<a href='"+data[0].abstractImageFolder+"' target='_blank'>See the Image Full size(It will open in a new window).</a></div>"
 		}
 		var abstractcontent = $.parseJSON(data[0].abstractContent);
 		console.log(abstractcontent);
@@ -369,8 +369,8 @@ $("#manageReviewers").live("click", function(){
 					var obj = [];
 					for(var j=0;j<data.length;j++){
 						obj.push({
-							"reviewerFirstName": "<a href='#"+data[j].reviewerID+"' class='reviewer_id'>"+data[j].reviewerFirstName+"</a>",
-							"reviewerLastName": "<a href='#"+data[j].reviewerID+"' class='reviewer_id'>"+data[j].reviewerLastName+"</a>",
+							"reviewerFirstName": "<a href='#"+data[j].reviewerID+"' class='reviewer_id'>"+data[j].reviewerFirstName+" "+data[j].reviewerLastName+"</a>",
+							//"reviewerLastName": "<a href='#"+data[j].reviewerID+"' class='reviewer_id'>"+data[j].reviewerLastName+"</a>",
 							"reviewerEmail": data[j].reviewerEmail,
 							"workingAbstracts": data[j].workingAbstracts
 						});
@@ -385,12 +385,12 @@ $("#manageReviewers").live("click", function(){
 								"aoColumns": [
 															{
 																"mDataProp": "reviewerFirstName",
-																"sTitle": "Firstname"
+																"sTitle": "Name"
 															},
-															{
-																"mDataProp": "reviewerLastName",
-																"sTitle": "Lastname"
-															},
+															// {
+															// 	"mDataProp": "reviewerLastName",
+															// 	"sTitle": "Lastname"
+															// },
 															{
 																"mDataProp": "reviewerEmail",
 																"sTitle": "Email"
@@ -437,17 +437,18 @@ $(".reviewer_id").live("click", function(){
 				$("#reviewersData").html("");
 				$("#reviewersData").append(
 					"<div id='editReviewerForm'>"
-					+"Firstname: <input id='inputFirstName' value='"+data.reviewerFirstName+"'<br><br>"
-					+"Lastname: <input id='inputLastName' value='"+data.reviewerLastName+"'<br><br>"
-					+"Email: <input id='inputEmail' value='"+data.reviewerEmail+"'"
+					+"<label for='inputFirstName'>Firstname</label> <input id='inputFirstName' value='"+data.reviewerFirstName+"'<br><br>"
+					+"<label for='inputLastName'>Lastname</label> <input id='inputLastName' value='"+data.reviewerLastName+"'<br><br>"
+					+"<label for='inputEmail'>Email</label> <input id='inputEmail' value='"+data.reviewerEmail+"'"
 					+"</div>"
 				);
+				$("#reviewersData").append("<div class='larger'>Abstracts Assigned</div> ");
 				for(var i=0;i<data.abstracts.length;i++){
-					$("#reviewersData").append("<div id='abstract_"+data.abstracts[i].abstractID+"'>Abstract "+(i+1)+": "+data.abstracts[i].abstractTitle+" <a href='#"+data.abstracts[i].abstractID+"' data-reviewer='"+data.reviewerID+"' class='unassign_reviewer'>Unassign</a><br></div>");
+					$("#reviewersData").append("<div id='abstract_"+data.abstracts[i].abstractID+"'>"+data.abstracts[i].abstractTitle+" <a href='#"+data.abstracts[i].abstractID+"' data-reviewer='"+data.reviewerID+"' class='unassign_reviewer'>Unassign</a><br></div>");
 				}
 			}
 			else{
-				$("#reviewersData").html("Working on no abstracts...");
+				$("#reviewersData").html("This reviewer has not been assigned any abstracts to review.");
 			}	
 		}
 	});
@@ -476,8 +477,8 @@ $("#manageAttendees").live("click", function(){
 							var reg="NO";
 						}
 						obj.push({
-							"attendeeFirstName": "<a href='#"+data[i].attendeeID+"' class='attendee_id'>"+data[i].attendeeFirstName+"</a>",
-							"attendeeLastName": "<a href='#"+data[i].attendeeID+"' class='attendee_id'>"+data[i].attendeeLastName+"</a>",
+							"attendeeFirstName": "<a href='#"+data[i].attendeeID+"' class='attendee_id'>"+data[i].attendeeFirstName+" "+data[i].attendeeLastName+"</a>",
+							//"attendeeLastName": "<a href='#"+data[i].attendeeID+"' class='attendee_id'>"+data[i].attendeeLastName+"</a>",
 							"attendeeEmail": data[i].attendeeEmail,
 							"registered": reg
 						});
@@ -493,12 +494,12 @@ $("#manageAttendees").live("click", function(){
 															
 															{
 																"mDataProp": "attendeeFirstName",
-																"sTitle": "Firstname"
+																"sTitle": "Name"
 															},
-															{
-																"mDataProp": "attendeeLastName",
-																"sTitle": "Lastname"
-															},
+															// {
+															// 	"mDataProp": "attendeeLastName",
+															// 	"sTitle": "Lastname"
+															// },
 															{
 																"mDataProp": "attendeeEmail",
 																"sTitle": "Email"
@@ -545,9 +546,9 @@ $(".attendee_id").live("click", function(){
 		$("#attendeesData").html("");
 		$("#attendeesData").append(
 			"<div id='editAttendeeForm'>"
-					+"Firstname: <input id='inputAttendeeFirstName' value='"+data[0].attendeeFirstName+"'<br><br>"
-					+"Lastname: <input id='inputAttendeeLastName' value='"+data[0].attendeeLastName+"'<br><br>"
-					+"Email: <input id='inputAttendeeEmail' value='"+data[0].attendeeEmail+"'"
+					+"<label for='inputAttendeeFirstName'>Firstname</label> <input id='inputAttendeeFirstName' value='"+data[0].attendeeFirstName+"'<br><br>"
+					+"<label for='inputAttendeeLastName'>Lastname</label> <input id='inputAttendeeLastName' value='"+data[0].attendeeLastName+"'<br><br>"
+					+"<label for='inputAttendeeEmail'>Email</label> <input id='inputAttendeeEmail' value='"+data[0].attendeeEmail+"'"
 					+"</div>"
 		);
 		var reg = data[0].registered;
