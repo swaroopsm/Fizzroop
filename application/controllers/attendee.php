@@ -146,29 +146,35 @@
 		
 		
 		/**
-			*	Handles registration of an Attendee
+			*	Handles registration of an Attendee that changes the password.
 		**/
 		
 		public function register(){
 			if($_SERVER['REQUEST_METHOD'] == "POST"){
-				if($this->session->userdata("loggedin") ==true || $this->session->userdata("adminLoggedin") == true){
-						$data = array(
-							"registered" => 1
-						);
-						$where = array(
-							"attendeeID" => $this->input->post("inputAttendeeID")
-						);
-						$this->attendees->update($data, $where);
-						echo json_encode(array(
-								"success" => true,
-								"attendeeID" => $this->input->post("inputAttendeeID")
-							)
-						);
-					}
+				echo json_encode($this->input->post());
+				if($this->input->post("inputPassport")){
+					$passport = $this->input->post("inputPassport");
 				}
 				else{
-					show_404();
+					$passport = "";
 				}
+				$data = array(
+					"attendeePassword" => $this->encrypt->sha1($this->input->post("inputPassword").$this->encrypt->sha1($this->config->item("password_salt"))),
+					"attendeePassport" => $passport
+				);
+				$where = array(
+					"attendeeID" => $this->input->post("inputAttendeeID")
+				);
+				$this->attendees->update($data, $where);
+				echo json_encode(array(
+						"success" => true,
+						"attendeeID" => $this->input->post("inputAttendeeID")
+					)
+				);
+			}
+			else{
+				show_404();
+			}
 		}
 		
 		/**
@@ -475,6 +481,7 @@
 					else{
 						foreach($r as $a){
 							$attendee = array(
+								"attendeeID" => $a->attendeeID,
 								"attendeeFirstName" => $a->attendeeFirstName,
 								"attendeeLastName" => $a->attendeeLastName,
 								"attendeeNationality" => $a->attendeeNationality,
