@@ -80,6 +80,20 @@
 			$this->db->delete("attendees", $data);
 		}
 		
+		
+		/**
+			* Retrieve latest attendee.
+		**/
+		
+		public function get_order_limit($data, $order, $ordering, $limit){
+			$this->db->select($data);
+			$this->db->from("attendees");
+			$this->db->order_by($order, $ordering);
+			$this->db->limit($limit);
+			$q = $this->db->get();
+			return $q;
+		}
+		
 	}
 
 ?>
