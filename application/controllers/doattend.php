@@ -27,66 +27,75 @@
 		
 		
 		/**
-			*	Handles checking for a doAttend ticket.
+			*	Handles Sync of Attendees from doAttend API.
 		**/
 		
-		public function check_ticket(){
-			if($this->session->userdata("loggedin") == true){
-				$my_ticket = $this->uri->segment(3);
+		public function sync(){
+				//$my_ticket = $this->uri->segment(3);
 				$flag = 0;
 				$url = "http://doattend.com/api/events/".$this->config->item('doAttend_event')."/participants_list.json?api_key=".$this->config->item('doAttend_key');
 				$jsonObject = json_decode(file_get_contents($url), true);
 				$participants = $jsonObject['participants'];
-				foreach($participants as $p){
-					$ticket = $p['Ticket_Number'];
-					if($ticket == $my_ticket){
-						$flag = 1;
-						$email = $p['Email'];
-						break;
-					}
-				}
-				//echo $email;
-				if($flag>0){
-					require_once(APPPATH."controllers/attendee.php");
-					$a = new Attendee();
-					$res = $a->attendee_data(array("attendeeID", "registered", "attendeeEmail"), array("attendeeID" => $this->session->userdata("id")));
-					if($res->num_rows() > 0){
-						$row = $res->result();
-						if($row[0]->registered == 1){
-							echo json_encode(array("verified" => false, "responseMsg" => "User already registered"));
-						}
-						else{
-							if($row[0]->attendeeEmail == $email){
-								$this->doattends->insert(
-									array(
-										"conferenceID" => $this->session->userdata('conferenceID'),
-										"doAttendUID" => 	$this->session->userdata('id'),
-										"doAttendRegID" => $my_ticket
-									)
-								);
-								$this->attendees->update(
-									array(
-										"registered" => 1
-									),
-									array(
-										"attendeeID" => $this->session->userdata("id")
-									)
-								);
-								echo json_encode(array("verified" => true, "responseMsg" => "User registered"));
-							}
-							else{
-								echo json_encode(array("verified" => false, "responseMsg" => "Your email does not match with doAttend"));
-							}
-						}
+				$c = $this->attendees->get_doattend_count();
+				if($c < 1){
+					foreach($participants as $p){
+						$dob = $p['participant_information'][3]['info'];
+						$parse_dob = date_parse_from_format("M-d-Y", $dob);
+						//print_r($parse_dob);
+						$dob = $parse_dob['year']."-".$parse_dob['month']."-".$parse_dob['day'];
+						//echo $dob;
+						$data = array(
+							"attendeeFirstName" => $p['participant_information'][0]['info'],
+							"attendeeLastName" => $p['participant_information'][1]['info'],
+							"attendeeEmail" => $p["Email"],
+							"registered" => 1,
+							"attendeeGender" => $p['participant_information'][2]['info'],
+							"attendeeDOB" => $dob,
+							"attendeeAcademic" => $p['participant_information'][4]['info'],
+							"attendeeInstAffiliation" => $p['participant_information'][5]['info'],
+							"attendeeAddress" => "", //@TODO Get Address key from the doAttend json.
+							"attendeePhone" => $p['participant_information'][6]['info'],
+							"attendeeNationality" => $p['participant_information'][7]['info'],
+							"attendeePassport" => "",
+							"attendeeTicket" => $p["Ticket_Number"]
+						);
+						//echo json_encode($data);
+						$this->attendees->insert($data);
 					}
 				}
 				else{
-					echo json_encode(array("verified" => false, "responseMsg" => "Ticket Number is invalid"));
+					require_once(APPPATH."controllers/attendee.php");
+					$a = new Attendee();
+					$res = $a->latest_ticket();
+					$last_ticket = $res[0]->attendeeTicket;
+					foreach($participants as $p){
+						$ticket = $p["Ticket_Number"];
+						if($ticket > $last_ticket){
+							$dob = $p['participant_information'][3]['info'];
+							$parse_dob = date_parse_from_format("M-d-Y", $dob);
+							//print_r($parse_dob);
+							$dob = $parse_dob['year']."-".$parse_dob['month']."-".$parse_dob['day'];
+							//echo $dob;
+							$data = array(
+								"attendeeFirstName" => $p['participant_information'][0]['info'],
+								"attendeeLastName" => $p['participant_information'][1]['info'],
+								"attendeeEmail" => $p["Email"],
+								"registered" => 1,
+								"attendeeGender" => $p['participant_information'][2]['info'],
+								"attendeeDOB" => $dob,
+								"attendeeAcademic" => $p['participant_information'][4]['info'],
+								"attendeeInstAffiliation" => $p['participant_information'][5]['info'],
+								"attendeeAddress" => "", //@TODO Get Address key from the doAttend json.
+								"attendeePhone" => $p['participant_information'][6]['info'],
+								"attendeeNationality" => $p['participant_information'][7]['info'],
+								"attendeePassport" => "",
+								"attendeeTicket" => $p["Ticket_Number"]
+							);
+							//echo json_encode($data);
+							$this->attendees->insert($data);
+						}
+					}
 				}
-			}
-			else{
-				show_404();
-			}
 		}
 		
 	}
