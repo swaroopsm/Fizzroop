@@ -28,7 +28,7 @@
 					}
 				}
 				$conference_archive = substr($conference_archive, 0, strlen($conference_archive) - 2);
-				$a = $this->abstracts->select_where(array("abstractID"), array("conferenceID" => $this->session->userdata("conferenceID")));
+				$a = $this->abstracts->select_where_not_null(array("abstractID"), array("conferenceID" => $this->session->userdata("conferenceID")));
 				$approved = $this->abstracts->select_where_plain(array("abstractID"), array("approved" => 1, "conferenceID" => $this->session->userdata("conferenceID")));
 				$r = $this->reviewers->select(array("reviewerID"));
 				$s = $this->scores->select(array("scoreID"))->num_rows() - $this->scores->view_where(array("recommendation" => NULL))->num_rows();
