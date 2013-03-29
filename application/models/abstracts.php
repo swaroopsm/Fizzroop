@@ -55,6 +55,18 @@
 			return $q;
 		}
 		
+		
+		/**
+			*	Handles select_where of an Abstract and AttendeeID is NOT NULL.
+		**/
+		
+		public function select_where_not_null($data, $where){
+			$this->db->select($data);
+			$this->db->where("attendeeID IS NOT NULL");
+			$q = $this->db->get_where("abstracts", $where);
+			return $q;
+		}
+		
 	 
 	 /**
 	 	 * Select using where. This is straight-forward!!
