@@ -106,6 +106,31 @@
 			return $this->db->count_all_results("attendees");
 		}
 		
+		
+		/**
+			*	Return some rows for CSV export.
+		**/
+		
+		public function export_csv($where){
+			$this->db->select(array(
+				"attendeeTicket AS Ticket",
+				"attendeeFirstName AS FirstName",
+				"attendeeLastName AS LastName",
+				"attendeeEmail AS Email",
+				"attendeeGender AS Gender",
+				"attendeeDOB AS DateOfBirth",
+				"attendeeAcademic AS AcademicStatus",
+				"attendeeInstAffiliation AS InstitutionAffiliated",
+				"attendeeAddress AS Address",
+				"attendeePhone AS Phone",
+				"attendeeNationality AS Nationality",
+				"attendeePassport AS Passport"
+			));
+			$this->db->from("attendees");
+			$this->db->where($where);
+			return $this->db->get();
+		}
+		
 	}
 
 ?>
