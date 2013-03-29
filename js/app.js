@@ -520,7 +520,7 @@ $("#manageAttendees").live("click", function(){
 							"registered": reg
 						});
 					}
-					$("#ajaxer").html("<h2 id='title'>ATTENDEES MANAGER</h2><table id='test'></table>");
+					$("#ajaxer").html("<h2 id='title'>ATTENDEES MANAGER</h2><button class='csv-btn' id='attendees_csv_btn'>Export as CSV &#11015;</button><table id='test'></table>");
 					$('table#test').dataTable({
 								"aaData": obj,
 								"sScrollX": "100%",
