@@ -228,7 +228,8 @@
 					"attendeePassport"
 				);
 				$where = array(
-					"registered" => 1
+					"registered" => 1,
+					"conferenceID" => $this->session->userdata("conferenceID")
 				);
 				$q = $this->attendees->select_where($data, $where);
 				$attendees = array();
