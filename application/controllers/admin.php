@@ -31,7 +31,21 @@
 				$a = $this->abstracts->select_where_not_null(array("abstractID"), array("conferenceID" => $this->session->userdata("conferenceID")));
 				$approved = $this->abstracts->select_where_not_null(array("abstractID"), array("approved >" => 0, "conferenceID" => $this->session->userdata("conferenceID")));
 				$r = $this->reviewers->select(array("reviewerID"));
-				$s = $this->scores->select(array("scoreID"))->num_rows() - $this->scores->view_where(array("recommendation" => NULL))->num_rows();
+				//$s = $this->scores->select(array("scoreID"))->num_rows() - $this->scores->view_where(array("recommendation" => NULL))->num_rows();
+				$s = $this->scores->select(array("abstractID"));
+				$r_approved = 0;
+				if($s->num_rows > 0){
+					foreach($s->result() as $sapp){
+						$sc_abs_id = $sapp->abstractID;
+						$cur_abs_q = $this->abstracts->select_where_not_null(array("conferenceID"), array("abstractID" => $sc_abs_id));
+						if($cur_abs_q->num_rows > 0){
+							$cur_abs_r = $cur_abs_q->result();
+							if($cur_abs_r[0]->conferenceID == $this->session->userdata("conferenceID")){
+								$r_approved++;
+							}
+						}
+					}
+				}
 				$c = $this->comments->view_where(array());
 				$ca = ($this->comments->abs_with_comments_count());
 				$com_count_for_cur_conf = 0;
@@ -52,7 +66,7 @@
 				$data['approved_abstracts'] = $approved->num_rows();
 				$data['total_reviewers'] = $r->num_rows();
 				$data['registered_attendees'] = "";//@TODO Need to pull data from doAttend.
-				$data['recommendations'] = $s;
+				$data['recommendations'] = $r_approved;
 				$data['abstract_comments_count'] = $com_count_for_cur_conf;
 				$data['archived_conferences'] = $conference_archive;
 				$data['current_conf'] = $cur_conf;
