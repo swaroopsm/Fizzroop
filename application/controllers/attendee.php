@@ -415,6 +415,10 @@
 				$participants = $jsonObject['participants'];
 				$c = $this->attendees->get_doattend_count();
 				if($c < 1){
+					require_once(APPPATH."controllers/conference.php");
+					$c = new Conference();
+					$q = $c->get_order_limit(array("conferenceID"), "conferenceID", "DESC", "1");
+					$conferenceID = $q[0]->conferenceID;
 					foreach($participants as $p){
 						$dob = $p['participant_information'][3]['info'];
 						$parse_dob = date_parse_from_format("M-d-Y", $dob);
@@ -434,7 +438,8 @@
 							"attendeePhone" => $p['participant_information'][6]['info'],
 							"attendeeNationality" => $p['participant_information'][7]['info'],
 							"attendeePassport" => "",
-							"attendeeTicket" => $p["Ticket_Number"]
+							"attendeeTicket" => $p["Ticket_Number"],
+							"conferenceID" => $conferenceID
 						);
 						//echo json_encode($data);
 						$this->attendees->insert($data);
