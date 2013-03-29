@@ -29,18 +29,31 @@
 				}
 				$conference_archive = substr($conference_archive, 0, strlen($conference_archive) - 2);
 				$a = $this->abstracts->select_where_not_null(array("abstractID"), array("conferenceID" => $this->session->userdata("conferenceID")));
-				$approved = $this->abstracts->select_where_plain(array("abstractID"), array("approved" => 1, "conferenceID" => $this->session->userdata("conferenceID")));
+				$approved = $this->abstracts->select_where_plain(array("abstractID"), array("approved >" => 0, "conferenceID" => $this->session->userdata("conferenceID")));
 				$r = $this->reviewers->select(array("reviewerID"));
 				$s = $this->scores->select(array("scoreID"))->num_rows() - $this->scores->view_where(array("recommendation" => NULL))->num_rows();
 				$c = $this->comments->view_where(array());
 				$ca = ($this->comments->abs_with_comments_count());
+				$com_count_for_cur_conf = 0;
+				if($ca->num_rows > 0){
+					foreach($ca->result() as $cur_conf_com){
+						$abs_id = $cur_conf_com->abstractID;
+						$cur_abs_q = $this->abstracts->select_where_not_null(array("conferenceID"), array("abstractID" => $abs_id));
+						if($cur_abs_q->num_rows > 0){
+							$cur_abs_r = $cur_abs_q->result();
+							if($cur_abs_r[0]->conferenceID == $this->session->userdata("conferenceID")){
+								$com_count_for_cur_conf++;
+							}
+						}
+					}
+				}
 				$data['page_title'] = "Welcome Admin!";
 				$data['total_abstracts'] = $a->num_rows;
 				$data['approved_abstracts'] = $approved->num_rows();
 				$data['total_reviewers'] = $r->num_rows();
 				$data['registered_attendees'] = "";//@TODO Need to pull data from doAttend.
 				$data['recommendations'] = $s;
-				$data['abstract_comments_count'] = $ca->num_rows();
+				$data['abstract_comments_count'] = $com_count_for_cur_conf;
 				$data['archived_conferences'] = $conference_archive;
 				$data['current_conf'] = $cur_conf;
 				$this->load->view("adminDashboard", $data);
