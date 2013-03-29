@@ -536,3 +536,7 @@ a.close:active{
 	font-family: 'Oswald';
 	margin-bottom: 10px;
 }
+
+.csv-btn{
+	float: right;
+}
