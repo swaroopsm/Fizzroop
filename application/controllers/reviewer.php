@@ -206,7 +206,7 @@
 			$q = $this->reviewers->select($data);
 			foreach($q->result() as $r){
 				$rid = $r->reviewerID;
-				$ares = $a->select_where(array("abstractID"), "(reviewer1 = $rid OR reviewer2 = $rid OR reviewer3 = $rid) AND (conferenceID = ".$this->session->userdata("conferenceID").")", 1);
+				$ares = $a->select_where(array("abstractID"), "(reviewer1 = $rid OR reviewer2 = $rid OR reviewer3 = $rid) AND (conferenceID = ".$this->session->userdata("conferenceID").") AND (attendeeID IS NOT NULL)", 1);
 				if($ares->num_rows() > 0){
 					$abstracts = array();
 					foreach($ares->result() as $abstractRow){
