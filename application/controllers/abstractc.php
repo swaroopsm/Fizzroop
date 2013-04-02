@@ -453,6 +453,9 @@
 	 				$this->email->send();
 	 				echo json_encode(array("success" => true, "message" => "Email has been sent"));
 	 			}
+	 			else{
+	 				echo json_encode(array("success" => false, "message" => "No Attendees have been selected for a talk/poster yet."));
+	 			}
 	 		}
 	 		else{
 	 			show_404();
