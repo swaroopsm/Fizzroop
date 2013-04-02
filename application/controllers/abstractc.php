@@ -442,8 +442,8 @@
 	 				$list = array();
 	 				foreach($sel_attendees->result() as $a){
 	 					$aEmail = $abs->attendee_data(array("attendeeEmail"), array("attendeeID" => $a->attendeeID));
-	 					$res = $aEmail->result();
-	 					array_push($list, $res[0]->attendeeEmail);
+	 					foreach($aEmail->result() as $sel_att)
+		 					array_push($list, $sel_att->attendeeEmail);
 	 				}
 	 				$this->email->set_mailtype("html");
           $this->email->from($this->config->item('service_email'), 'SCCS Alert');
@@ -477,8 +477,8 @@
 	 				$list = array();
 	 				foreach($sel_attendees->result() as $a){
 	 					$aEmail = $abs->attendee_data(array("attendeeEmail"), array("attendeeID" => $a->attendeeID));
-	 					foreach($aEmail->result() as $sel_att)
-		 					array_push($list, $sel_att->attendeeEmail);
+	 					foreach($aEmail->result() as $rej_att)
+		 					array_push($list, $rej_att->attendeeEmail);
 	 				}
 	 				$this->email->set_mailtype("html");
           $this->email->from($this->config->item('service_email'), 'SCCS Alert');
@@ -486,7 +486,10 @@
 	 				$this->email->subject($this->input->post("inputEmailSubject"));
 	 				$this->email->message($this->input->post("inputEmailMessage"));
 	 				$this->email->send();
-	 				echo json_encode(array("success" => true, "message" => $this->input->post()));
+	 				echo json_encode(array("success" => true, "message" => "Email has been sent"));
+	 			}
+	 			else{
+	 				echo json_encode(array("success" => false, "message" => "Either there are no abstracts submitted or all the abstracts have been approved."));
 	 			}
 	 		}
 	 		else{
