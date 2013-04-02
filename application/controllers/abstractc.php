@@ -435,7 +435,7 @@
 	 	public function alert_selected_attendees(){
 	 		if($this->session->userdata("adminLoggedin") == true && $_SERVER['REQUEST_METHOD'] == "POST"){
 	 			$this->load->library('email');
-	 			$sel_attendees = $this->abstracts->select_where(array("attendeeID"), array("approved >" => 0));
+	 			$sel_attendees = $this->abstracts->select_where(array("attendeeID"), array("approved >" => 0, "conferenceID" => $this->session->userdata("cur_conference")));
 	 			if($sel_attendees->num_rows() > 0){
 	 				require_once(APPPATH."controllers/attendee.php");
 	 				$abs = new Attendee();
@@ -470,7 +470,7 @@
 	 	public function alert_rejected_attendees(){
 	 		if($this->session->userdata("adminLoggedin") == true && $_SERVER['REQUEST_METHOD'] == "POST"){
 	 			$this->load->library('email');
-	 			$sel_attendees = $this->abstracts->select_where(array("attendeeID"), array("approved" => NULL));
+	 			$sel_attendees = $this->abstracts->select_where(array("attendeeID"), array("approved" => NULL, "conferenceID" => $this->session->userdata("cur_conference")));
 	 			if($sel_attendees->num_rows() > 0){
 	 				require_once(APPPATH."controllers/attendee.php");
 	 				$abs = new Attendee();
