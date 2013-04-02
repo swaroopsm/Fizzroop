@@ -435,7 +435,7 @@
 	 	public function alert_selected_attendees(){
 	 		if($this->session->userdata("adminLoggedin") == true && $_SERVER['REQUEST_METHOD'] == "POST"){
 	 			$this->load->library('email');
-	 			$sel_attendees = $this->abstracts->select_where(array("attendeeID"), array("active" => 1));
+	 			$sel_attendees = $this->abstracts->select_where(array("attendeeID"), array("approved >" => 0));
 	 			if($sel_attendees->num_rows() > 0){
 	 				require_once(APPPATH."controllers/attendee.php");
 	 				$abs = new Attendee();
@@ -477,8 +477,8 @@
 	 				$list = array();
 	 				foreach($sel_attendees->result() as $a){
 	 					$aEmail = $abs->attendee_data(array("attendeeEmail"), array("attendeeID" => $a->attendeeID));
-	 					$res = $aEmail->result();
-	 					array_push($list, $res[0]->attendeeEmail);
+	 					foreach($aEmail->result() as $sel_att)
+		 					array_push($list, $sel_att->attendeeEmail);
 	 				}
 	 				$this->email->set_mailtype("html");
           $this->email->from($this->config->item('service_email'), 'SCCS Alert');
