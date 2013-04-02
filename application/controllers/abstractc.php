@@ -417,7 +417,8 @@
 	 				"active" => 1
 	 			);
 	 			$where = array(
-	 				"approved" => 1
+	 				"approved >" => 0,
+	 				"conferenceID" => $this->session->userdata("cur_conference")
 	 			);
 	 			$this->abstracts->update($data, $where);
 	 			echo json_encode(array("success" => true, "message" => "Approved abstracts have been published"));
