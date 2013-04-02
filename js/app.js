@@ -1069,7 +1069,7 @@ $("#email_sel_att").live("click", function(){
 **/
 
 $("#send_sel_att_btn").live("click", function(){
-	$.post("abstract/alert_selected_attendees",
+	$.post(base_url+"abstract/alert_selected_attendees",
 		{
 			inputEmailSubject: $.trim($("#inputEmailSubject").val()),
 			inputEmailMessage: $.trim($("#inputEmailMessage").val())
