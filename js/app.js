@@ -916,6 +916,7 @@ $("button#save_page").live("click", function(){
 	var content = $("#pageContent").html();
 	var pageID = $("#page_id").val();
 	var pageType = $("#page_type").val();
+	var seats = $("#page_seats_edit").val();
 	console.log(content)
 	$.post(
 		"page/update", 
@@ -923,7 +924,8 @@ $("button#save_page").live("click", function(){
 			"inputPageTitle": title,
 			"inputPageContent": content, 
 			"inputPageID": pageID, 
-			"inputPageType": pageType
+			"inputPageType": pageType,
+			"inputSeats": seats
 		},
 	function(data){
 		console.log(data);
