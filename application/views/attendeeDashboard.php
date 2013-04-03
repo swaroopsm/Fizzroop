@@ -47,6 +47,7 @@
 		<script src="<?php echo base_url().'js/jquery.js'; ?>"></script>
 		<script src="<?php echo base_url().'js/jquery.form.js'; ?>"></script>
 		<script>
+		var name = '<?php echo $attendeeFirstName." ".$attendeeLastName; ?>';
 		base_url = "<?php echo base_url(); ?>";
 		token =['<?php echo $this->security->get_csrf_token_name(); ?>', '<?php echo $this->security->get_csrf_hash(); ?>']
 
