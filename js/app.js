@@ -889,7 +889,7 @@ $(".single_page").live("click", function(){
 			var page_img = "";
 		}
 		if(data[0].pageType == 3){
-			var seats = "<div>Seats Taken: "+data[0].seats_taken+" / <input type='text' id='page_seats_edit' value='"+data[0].seats+"'/></div>"
+			var seats = "<div><input type='hidden' id='seats_taken_count' value='"+data[0].seats_taken+"'/>Seats Taken: "+data[0].seats_taken+" / <input type='text' id='page_seats_edit' value='"+data[0].seats+"'/></div>"
 		}
 		else{
 			var seats = "";
@@ -917,6 +917,7 @@ $("button#save_page").live("click", function(){
 	var pageID = $("#page_id").val();
 	var pageType = $("#page_type").val();
 	var seats = $("#page_seats_edit").val();
+	var seats_taken_count = $("#seats_taken_count").val();
 	console.log(content)
 	$.post(
 		"page/update", 
@@ -925,7 +926,8 @@ $("button#save_page").live("click", function(){
 			"inputPageContent": content, 
 			"inputPageID": pageID, 
 			"inputPageType": pageType,
-			"inputSeats": seats
+			"inputSeats": seats,
+			"inputSeatsTaken": seats_taken_count
 		},
 	function(data){
 		console.log(data);
