@@ -174,7 +174,8 @@
 						"pageContent" => $r[0]->pageContent,
 						"conferenceID" => $r[0]->conferenceID,
 						"pageType" => $r[0]->pageType,
-						"images" => $images
+						"images" => $images,
+						"seats" => $r[0]->seats
 					);
 				}
 				echo json_encode($page_info);
