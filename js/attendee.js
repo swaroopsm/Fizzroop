@@ -97,5 +97,16 @@ $("form#new_abstract").live("submit", function(e){
 $("a.abview").click(function(){
 	$.getJSON("abstract/"+absid, function(data){
 		console.log(data);
+		var messagediv = $('.message');
+		messagediv.html('');
+		messagediv.append("<h2>"+data[0].abstractTitle+"</h2><img src='"+data[0].abstractImageFolder+"'>");
+		var abscontent = data[0].abstractContent;
+		abscontent = $.parseJSON(abscontent);
+		messagediv.append("<h3>Methods</h3><p>"+abscontent.methods+"</p>");
+		messagediv.append("<h3>Aim</h3><p>"+abscontent.aim+"</p>");
+		messagediv.append("<h3>Results</h3><p>"+abscontent.results+"</p>");
+		messagediv.append("<h3>Conservation</h3><p>"+abscontent.conservation+"</p>");
+		console.log(abscontent);
+		
 	});
 });
