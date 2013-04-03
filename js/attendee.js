@@ -109,4 +109,6 @@ $("a.abview").click(function(){
 		console.log(abscontent);
 		
 	});
+	$('.guidelines').css({display:'none'});
+	$('.message').css({display: 'block'});
 });
