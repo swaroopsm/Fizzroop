@@ -125,7 +125,8 @@
 					"pageTitle" => $this->input->post("inputPageTitle"),
 					"pageContent" => $this->input->post("inputPageContent"),
 					"conferenceID" => $this->session->userdata("conferenceID"),
-					"pageType" => $this->input->post("inputPageType")
+					"pageType" => $this->input->post("inputPageType"),
+					"seats" => $this->input->post("inputSeats")
 				);
 				$where = array(
 					"pageID" => $this->input->post("inputPageID")
