@@ -567,7 +567,7 @@ ul.dropdown-menu li {
 	line-height: 60px;
 }
 
-.attcontainer {
+.attcontainer , .guidelines {
 	max-width: 800px;
 	padding: 20px;
 	margin: 0 auto;
@@ -577,6 +577,10 @@ ul.dropdown-menu li {
 }
 
 .attcontainer p {
+	margin-top: 20px;
+}
+
+.guidelines p {
 	margin-top: 20px;
 }
 
@@ -618,8 +622,12 @@ ul.dropdown-menu li {
 
 .submitabstractform input.subButton {
 	width: auto;
-	padding: 10px;
+	padding: 15px;
 	margin-top: 20px;
 	background-color: green;
 	border: none;
+	color: white;
+	font-size: 13px;
+	font-weight: 300;
+	text-transform: uppercase;
 }
