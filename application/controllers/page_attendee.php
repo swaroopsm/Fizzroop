@@ -58,7 +58,7 @@
 					else{
 						show_404();
 					}
-					if($flag == 1){
+					if($flag == 1 && $pr[0]->seats_taken <= $pr[0]->seats){
 						$this->pages->update(
 							array(
 								"seats_taken" => ($pr[0]->seats_taken + 1)
@@ -115,7 +115,7 @@
 							show_404();
 						}
 						
-						if($flag = 1){
+						if($flag = 1 && $pr[0]->seats_taken > 0){
 							$this->pages->update(
 								array(
 									"seats_taken" => ($pr[0]->seats_taken - 1)
@@ -124,9 +124,12 @@
 									"pageID" => $this->input->post("inputPageID")
 								)
 							);
-							echo json_encode(array("success" => true));
+							$seats_taken_now = $pr[0]->seats_taken - 1;
 						}
-						
+						else{
+							$seats_taken_now = $pr[0]->seats_taken;
+						}
+						echo json_encode(array("success" => true, "seats_taken" => $seats_taken_now));
 					}
 					else{
 						show_404();
