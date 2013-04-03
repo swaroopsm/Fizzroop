@@ -154,32 +154,34 @@
 						"pageType" => $page_type
 					)
 				);
-				$page_info = array();
 				if($q->num_rows() > 0){
 					$r = $q->result();
-					require_once(APPPATH."controllers/image.php");
-					$img = new Image();
-					$i = $img->view_page_images($r[0]->pageID);
-					$images = array();
-					if($i->num_rows() > 0){
-						foreach($i->result() as $page_image){
-							$images[] = array(
-								"imageID" => $page_image->imageID,
-								"image" => $this->config->item("upload_path").$page_image->image
-							);
+					$result = array();
+					foreach($r as $pp){
+						require_once(APPPATH."controllers/image.php");
+						$img = new Image();
+						$i = $img->view_page_images($pp->pageID);
+						$images = array();
+						if($i->num_rows() > 0){
+							foreach($i->result() as $page_image){
+								$images[] = array(
+									"imageID" => $page_image->imageID,
+									"image" => $this->config->item("upload_path").$page_image->image
+								);
+							}
 						}
+						$result[] = array(
+							"pageID" => $pp->pageID,
+							"pageTitle" => $pp->pageTitle,
+							"pageContent" => $pp->pageContent,
+							"conferenceID" => $pp->conferenceID,
+							"pageType" => $pp->pageType,
+							"images" => $images,
+							"seats" => $pp->seats
+						);
 					}
-					$page_info[] = array(
-						"pageID" => $r[0]->pageID,
-						"pageTitle" => $r[0]->pageTitle,
-						"pageContent" => $r[0]->pageContent,
-						"conferenceID" => $r[0]->conferenceID,
-						"pageType" => $r[0]->pageType,
-						"images" => $images,
-						"seats" => $r[0]->seats
-					);
 				}
-				echo json_encode($page_info);
+				echo json_encode($result);
 		}
 		
 		/**
