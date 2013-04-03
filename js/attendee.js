@@ -63,6 +63,26 @@ jQuery.fn.asyncSubmit = function(options){
 	
 }
 
+// Setup links for loading into modals and divs.
+
+// Load abstract form
+$("a.absubmit").click(function(){
+	// clear the holding div first
+	$('.submitabstractform').css({display:'block'});
+	$('.message').css({display: 'none'});
+	$('.guidelines').css({display: 'none'});
+	return false;
+});
+
+$("a.absguide").click(function(){
+	// clear the holding div first
+	$('.guidelines').css({display:'block'});
+	$('.message').css({display: 'none'});
+	$('.submitabstractform').css({display:'none'});
+	return false;
+});
+
+
 $("form#new_abstract").live("submit", function(e){
 	e.preventDefault();
 	var stat = $(this).validateFormEmpty();
