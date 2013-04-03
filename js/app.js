@@ -889,7 +889,7 @@ $(".single_page").live("click", function(){
 			var page_img = "";
 		}
 		if(data[0].pageType == 3){
-			var seats = "<div>Seats Left: <input type='text' id='page_seats_edit' /></div>"
+			var seats = "<div>Seats Left: <input type='text' id='page_seats_edit' value='"+data[0].seats+"'/></div>"
 		}
 		else{
 			var seats = "";
