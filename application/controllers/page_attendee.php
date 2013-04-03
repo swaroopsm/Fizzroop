@@ -81,21 +81,43 @@
 		
 		public function delete(){
 			if($_SERVER['REQUEST_METHOD'] == "POST"){
-					if($this->session->userdata("adminLoggedin") == true && $this->page_attendees->select_where(array("page_attendeesID"), array("attendeeID" => $this->input->post("inputAttendeeID"), "pageID" => $this->input->post("inputPageID")))->num_rows()>0){
-						$this->page_attendees->delete(
-							array(
-								"pageID" => $this->input->post("inputPageID"),
-								"attendeeID" => $this->input->post("inputAttendeeID")
-							)
-						);
-					}
-					elseif($this->session->userdata("loggedin") == true && $this->page_attendees->select_where(array("page_attendeesID"), array("attendeeID" => $this->session->userdata("id"), "pageID" => $this->input->post("inputPageID")))->num_rows()>0){
-						$this->page_attendees->delete(
-							array(
-								"pageID" => $this->input->post("inputPageID"),
-								"attendeeID" => $this->session->userdata("id")
-							)
-						);
+					$pq = $this->pages->select_where(array("pageType", "seats"), array("pageID" => $this->input->post("inputPageID")));
+					$pr = $pq->result();
+					$flag = 0;
+					if($pr[0]->pageType == "3"){
+						if($this->session->userdata("adminLoggedin") == true && $this->page_attendees->select_where(array("page_attendeesID"), array("attendeeID" => $this->input->post("inputAttendeeID"), "pageID" => $this->input->post("inputPageID")))->num_rows()>0){
+							$this->page_attendees->delete(
+								array(
+									"pageID" => $this->input->post("inputPageID"),
+									"attendeeID" => $this->input->post("inputAttendeeID")
+								)
+							);
+							$flag = 1;
+						}
+						elseif($this->session->userdata("loggedin") == true && $this->page_attendees->select_where(array("page_attendeesID"), array("attendeeID" => $this->session->userdata("id"), "pageID" => $this->input->post("inputPageID")))->num_rows()>0){
+							$this->page_attendees->delete(
+								array(
+									"pageID" => $this->input->post("inputPageID"),
+									"attendeeID" => $this->session->userdata("id")
+								)
+							);
+							$flag = 1;
+						}
+						else{
+							show_404();
+						}
+						
+						if($flag = 1){
+							$this->pages->update(
+								array(
+									"seats" => ($pr[0]->seats + 1)
+								),
+								array(
+									"pageID" => $this->input->post("inputPageID")
+								)
+							);
+						}
+						
 					}
 					else{
 						show_404();
