@@ -123,23 +123,28 @@
 		
 		public function update(){
 			if($this->session->userdata("adminLoggedin") == true && $_SERVER['REQUEST_METHOD'] == "POST"){
-				$data = array(
-					"pageTitle" => $this->input->post("inputPageTitle"),
-					"pageContent" => $this->input->post("inputPageContent"),
-					"conferenceID" => $this->session->userdata("conferenceID"),
-					"pageType" => $this->input->post("inputPageType"),
-					"seats" => $this->input->post("inputSeats")
-				);
-				$where = array(
-					"pageID" => $this->input->post("inputPageID")
-				);
-				$this->pages->update($data, $where);
-				echo json_encode(
-					array(
-						"success" => true,
+				if($this->input->post("inputSeats") < $this->input->post("inputSeatsTaken")){
+					echo json_encode(array("success" => false, "message" => "Total seats cannot be less than the number of seats that are taken already."));
+				}
+				else{
+					$data = array(
+						"pageTitle" => $this->input->post("inputPageTitle"),
+						"pageContent" => $this->input->post("inputPageContent"),
+						"conferenceID" => $this->session->userdata("conferenceID"),
+						"pageType" => $this->input->post("inputPageType"),
+						"seats" => $this->input->post("inputSeats")
+					);
+					$where = array(
 						"pageID" => $this->input->post("inputPageID")
-					)
-				);
+					);
+					$this->pages->update($data, $where);
+					echo json_encode(
+						array(
+							"success" => true,
+							"pageID" => $this->input->post("inputPageID")
+						)
+					);
+				}
 			}
 		}
 		
