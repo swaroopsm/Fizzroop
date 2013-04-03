@@ -63,7 +63,7 @@
 						"pageID" => $id
 					)
 				);
-				//$page_info = array();
+				$page_info = array();
 				$attendees = array();
 				if($q->num_rows() > 0){
 					$r = $q->result();
@@ -98,7 +98,7 @@
 									}
 								}
 							}
-							$page_info = array(
+							$page_info[] = array(
 								"pageID" => $r[0]->pageID,
 								"pageTitle" => $r[0]->pageTitle,
 								"pageContent" => $r[0]->pageContent,
@@ -112,7 +112,7 @@
 							echo json_encode($page_info);
 						}
 						else{
-							$page_info = array(
+							$page_info[] = array(
 										"pageID" => $r[0]->pageID,
 										"pageTitle" => $r[0]->pageTitle,
 										"pageContent" => $r[0]->pageContent,
