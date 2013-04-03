@@ -23,25 +23,25 @@
 				<h2>Submit Abstract</h2>
 				<p>Be sure you <a href="#" class="absguide">read the abstract submission guidelines</a> first!</p>
 				<?php
-					echo form_open("abstract/create", array("class" => "form form-horizontal", "id" => "new_reviewer", "style" => "margin-left: 0px;"));
-					echo form_label("Abstract Title:", "abstractTitle", array("class" => "control-label")); 
-					echo form_input(array("name" => "abstractTitle", "id" => "abstractTitle", "class" => "", "placeholder" => "Your Abstract's Title goes here"));
+					echo form_open("abstract/create", array("class" => "form form-horizontal", "id" => "new_abstract", "style" => "margin-left: 0px;"));
+					echo form_label("Abstract Title:", "inputAbstractTitle", array("class" => "control-label")); 
+					echo form_input(array("name" => "inputAbstractTitle", "id" => "inputAbstractTitle", "class" => "", "placeholder" => "Your Abstract's Title goes here"));
 				?>
 				
 				<?php
-					echo form_label("Methods:", "abstractMethods", array("class" => "control-label")); 
-					echo form_textarea(array("name" => "abstractMethods", "id" => "abstractMethods", "class" => "", "placeholder" => "What methods did you use for your abstract?"));
-					echo form_label("Aim:", "abstractAim", array("class" => "control-label")); 
-					echo form_textarea(array("name" => "abstractAim", "id" => "abstractAim", "class" => "", "placeholder" => "What aims have you set up?"));
-					echo form_label("Conservation:", "abstractConservation", array("class" => "control-label")); 
-					echo form_textarea(array("name" => "abstractConservation", "id" => "abstractConservation", "class" => "", "placeholder" => "What methods did you use for your abstract?"));
-					echo form_label("Results:", "abstractResults", array("class" => "control-label")); 
-					echo form_textarea(array("name" => "abstractResults", "id" => "abstractResults", "class" => "", "placeholder" => "What aims have you set up?"));
+					echo form_label("Methods:", "inputAbstractMethods", array("class" => "control-label")); 
+					echo form_textarea(array("name" => "inputAbstractMethods", "id" => "inputAbstractMethods", "class" => "", "placeholder" => "What methods did you use for your abstract?"));
+					echo form_label("Aim:", "inputAbstractAim", array("class" => "control-label")); 
+					echo form_textarea(array("name" => "inputAbstractAim", "id" => "inputAbstractAim", "class" => "", "placeholder" => "What aims have you set up?"));
+					echo form_label("Conservation:", "inputAbstractConservation", array("class" => "control-label")); 
+					echo form_textarea(array("name" => "inputAbstractConservation", "id" => "inputAbstractConservation", "class" => "", "placeholder" => "What methods did you use for your abstract?"));
+					echo form_label("Results:", "inputAbstractResults", array("class" => "control-label")); 
+					echo form_textarea(array("name" => "inputAbstractResults", "id" => "inputAbstractResults", "class" => "", "placeholder" => "What aims have you set up?"));
 				?>
 				
 				<p>Upload your graphical abstract. <em>Your image must be of this specified size and this thing.</em></p>
 				<?php
-					echo form_upload('uploadGraphic');
+					echo form_upload(array("name" => "inputAbstractImage"));
 				?>
 				<p>Choose your preference.</p>
 				<?php echo form_radio(array('name'=>'pref', 'id'=>'talk', 'value'=>'1', 'class'=>'radio')); ?>Talk
@@ -59,7 +59,9 @@
 			<p>Please remember that the purpose of the graphical abstract is to highlight the data that you plan to present and  clearly convey your main findings. Therefore graphical abstracts will only be judged according to the clarity of the message conveyed and not by their visual appeal.</p>
 			<p>SUBMISSION OF BOTH GRAPHICAL AND TEXT ABSTRACTS IS COMPULSORY.  The graphical and textual abstracts, in combination, should clearly communicate the following to the reviewers i. the time period over which the study was conducted; ii. types of data that were collected and iii. the sample size (N). The reviewers will be using these as key parameters while evaluating the abstracts for selection for a talk or a poster to be presented in SCCS-Bangalore 2013.</p>
 		</div>
+		<br><br><br><br><br><br><br><br><br>
 		<script src="<?php echo base_url().'js/jquery.js'; ?>"></script>
+		<script src="<?php echo base_url().'js/jquery.form.js'; ?>"></script>
 		<script>
 		base_url = "<?php echo base_url(); ?>";
 		token =['<?php echo $this->security->get_csrf_token_name(); ?>', '<?php echo $this->security->get_csrf_hash(); ?>']
@@ -72,6 +74,6 @@
 			});
 		</script>
 		<script src="<?php echo base_url().'js/vendor.js'; ?>"></script>
-		<script src="<?php echo base_url().'js/att.js'; ?>"></script>
+		<script src="<?php echo base_url().'js/attendee.js'; ?>"></script>
 	</body>
 </html>
