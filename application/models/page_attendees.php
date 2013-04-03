@@ -21,6 +21,15 @@
 			return $q;
 		}
 		
+		
+		/**
+			* Removes a particular page_attendee entry.
+		*/
+		
+		public function delete($data){
+			$this->db->delete("page_attendees", $data);
+		}
+		
 	}
 
 ?>
