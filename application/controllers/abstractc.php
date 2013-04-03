@@ -417,7 +417,8 @@
 	 				"active" => 1
 	 			);
 	 			$where = array(
-	 				"approved" => 1
+	 				"approved >" => 0,
+	 				"conferenceID" => $this->session->userdata("cur_conference")
 	 			);
 	 			$this->abstracts->update($data, $where);
 	 			echo json_encode(array("success" => true, "message" => "Approved abstracts have been published"));
@@ -435,15 +436,15 @@
 	 	public function alert_selected_attendees(){
 	 		if($this->session->userdata("adminLoggedin") == true && $_SERVER['REQUEST_METHOD'] == "POST"){
 	 			$this->load->library('email');
-	 			$sel_attendees = $this->abstracts->select_where(array("attendeeID"), array("active" => 1));
+	 			$sel_attendees = $this->abstracts->select_where(array("attendeeID"), array("approved >" => 0, "conferenceID" => $this->session->userdata("cur_conference")));
 	 			if($sel_attendees->num_rows() > 0){
 	 				require_once(APPPATH."controllers/attendee.php");
 	 				$abs = new Attendee();
 	 				$list = array();
 	 				foreach($sel_attendees->result() as $a){
 	 					$aEmail = $abs->attendee_data(array("attendeeEmail"), array("attendeeID" => $a->attendeeID));
-	 					$res = $aEmail->result();
-	 					array_push($list, $res[0]->attendeeEmail);
+	 					foreach($aEmail->result() as $sel_att)
+		 					array_push($list, $sel_att->attendeeEmail);
 	 				}
 	 				$this->email->set_mailtype("html");
           $this->email->from($this->config->item('service_email'), 'SCCS Alert');
@@ -452,6 +453,9 @@
 	 				$this->email->message($this->input->post("inputEmailMessage"));
 	 				$this->email->send();
 	 				echo json_encode(array("success" => true, "message" => "Email has been sent"));
+	 			}
+	 			else{
+	 				echo json_encode(array("success" => false, "message" => "No Attendees have been selected for a talk/poster yet."));
 	 			}
 	 		}
 	 		else{
@@ -467,15 +471,15 @@
 	 	public function alert_rejected_attendees(){
 	 		if($this->session->userdata("adminLoggedin") == true && $_SERVER['REQUEST_METHOD'] == "POST"){
 	 			$this->load->library('email');
-	 			$sel_attendees = $this->abstracts->select_where(array("attendeeID"), array("approved" => NULL));
+	 			$sel_attendees = $this->abstracts->select_where(array("attendeeID"), array("approved" => NULL, "conferenceID" => $this->session->userdata("cur_conference")));
 	 			if($sel_attendees->num_rows() > 0){
 	 				require_once(APPPATH."controllers/attendee.php");
 	 				$abs = new Attendee();
 	 				$list = array();
 	 				foreach($sel_attendees->result() as $a){
 	 					$aEmail = $abs->attendee_data(array("attendeeEmail"), array("attendeeID" => $a->attendeeID));
-	 					$res = $aEmail->result();
-	 					array_push($list, $res[0]->attendeeEmail);
+	 					foreach($aEmail->result() as $rej_att)
+		 					array_push($list, $rej_att->attendeeEmail);
 	 				}
 	 				$this->email->set_mailtype("html");
           $this->email->from($this->config->item('service_email'), 'SCCS Alert');
@@ -483,7 +487,10 @@
 	 				$this->email->subject($this->input->post("inputEmailSubject"));
 	 				$this->email->message($this->input->post("inputEmailMessage"));
 	 				$this->email->send();
-	 				echo json_encode(array("success" => true, "message" => $this->input->post()));
+	 				echo json_encode(array("success" => true, "message" => "Email has been sent"));
+	 			}
+	 			else{
+	 				echo json_encode(array("success" => false, "message" => "Either there are no abstracts submitted or all the abstracts have been approved."));
 	 			}
 	 		}
 	 		else{

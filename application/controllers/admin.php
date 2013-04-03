@@ -93,7 +93,8 @@
 					$this->session->set_userdata(array(
 						"adminLoggedin" => true,
 						"email" => $this->input->post("inputLoginEmail"),
-						"conferenceID" => $conferenceID
+						"conferenceID" => $conferenceID,
+						"cur_conference" => $conferenceID
 					));
 					redirect(base_url()."admin");
 				}

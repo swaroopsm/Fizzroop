@@ -540,3 +540,7 @@ a.close:active{
 .csv-btn{
 	float: right;
 }
+
+.csv-btn a{
+	color: #000;
+}
