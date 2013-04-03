@@ -274,7 +274,7 @@ $(".abstract_title").live("click", function(){
 	$("#abstractBy").html('').append("<div class='loader'><img src='images/loader.gif' /></div>");
 	$("#abstractContent").html("");
 	$.getJSON("abstract/"+id, function(data){
-		console.log(data)
+		console.log(data);
 		$("#hidden_abstractID").html("<input type='hidden' id='abstractID' value='"+data[0].abstractID+"'/>");
 		$("#abstractModalLabel").html(data[0].abstractTitle);
 		var abstractimageurl = "";
