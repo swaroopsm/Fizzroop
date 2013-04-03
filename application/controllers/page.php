@@ -210,6 +210,13 @@
 								);
 							}
 						}
+						$aq = $this->page_attendees->select_where(array("attendeeID"), array("pageID" => $pp->pageID));
+						$attendees = array();
+						if($aq->num_rows() > 0){
+							foreach($aq->result() as $ar){
+								array_push($attendees, $ar->attendeeID);
+							}
+						}
 						$result[] = array(
 							"pageID" => $pp->pageID,
 							"pageTitle" => $pp->pageTitle,
@@ -218,7 +225,8 @@
 							"pageType" => $pp->pageType,
 							"images" => $images,
 							"seats" => $pp->seats,
-							"seats_taken" => $pp->seats_taken
+							"seats_taken" => $pp->seats_taken,
+							"attendees" => $attendees
 						);
 					}
 				}
