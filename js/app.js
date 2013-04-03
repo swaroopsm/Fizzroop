@@ -889,10 +889,10 @@ $(".single_page").live("click", function(){
 			var page_img = "";
 		}
 		if(data[0].pageType == 3){
-			var seats = "<div><input type='hidden' id='seats_taken_count' value='"+data[0].seats_taken+"'/>Seats Taken: "+data[0].seats_taken+" / <input type='text' id='page_seats_edit' value='"+data[0].seats+"'/></div>"
+			var seats = "<div><input type='hidden' id='seats_taken_count' value='"+data[0].seats_taken+"'/>Seats Taken: <span id='seats_taken_dynamic'>"+data[0].seats_taken+"</span> / <input type='text' id='page_seats_edit' value='"+data[0].seats+"'/></div>"
 			var attendees_list = "";
 			for(var a in data[0].attendees){
-				attendees_list += "<div>"+data[0].attendees[a].attendeeFirstName+" "+data[0].attendees[a].attendeeLastName+" - "+data[0].attendees[a].attendeeEmail+" <a href='#' class='delete_attendee_workshop' data-attendee='"+data[0].attendees[a].attendeeID+"'>Unassign</a></div>"
+				attendees_list += "<div id='workshop_attendee_"+data[0].attendees[a].attendeeID+"'>"+data[0].attendees[a].attendeeFirstName+" "+data[0].attendees[a].attendeeLastName+" - "+data[0].attendees[a].attendeeEmail+" <a href='#' class='delete_attendee_workshop' id='delete_attendee_workshop_"+data[0].attendees[a].attendeeID+"' data-attendee='"+data[0].attendees[a].attendeeID+"'>Unassign</a></div>"
 			}
 			var attendees_workshop = "<div id='workshop_attendees' class='workshop_attendees'>"+attendees_list+"</div>";
 		}
@@ -1224,4 +1224,29 @@ $(".update_comments_btn").live("click", function(){
 			console.log(data);
 		}
 	);
+});
+
+
+/**
+	*	Unassign an attendee from a workshop.
+**/
+
+$(".delete_attendee_workshop").live("click", function(){
+	var page_id = $("#inputPageID").val();
+	var attendee_id = $(this).attr("data-attendee");
+	$("#delete_attendee_workshop_"+attendee_id).html("&nbsp;<span class='loader'><img src='images/loader.gif'/></span>")
+	$.post(base_url+"page_attendee/delete",
+		{
+			inputPageID: page_id,
+			inputAttendeeID: attendee_id
+		},
+		function(data){
+			var obj = $.parseJSON(data);
+			if(obj.success){
+				$("#workshop_attendee_"+attendee_id).fadeOut(300);
+				$("#seats_taken_dynamic").html(obj.seats_taken);
+			}
+		}
+	);
+	return false;
 });
