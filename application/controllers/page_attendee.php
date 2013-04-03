@@ -28,7 +28,7 @@
 						$this->page_attendees->insert(
 						array(
 							"pageID" => $this->input->post("inputPageID"),
-							"attendeeID" => $this->input->post("attendeeID")
+							"attendeeID" => $this->input->post("inputAttendeeID")
 						)
 					);
 					echo json_encode(array("success" => true));
@@ -60,7 +60,36 @@
 				show_404();
 			}
 		}
-			
+		
+		
+		/**
+			*	Handles deletion of an entry.
+		**/
+		
+		public function delete(){
+			if($_SERVER['REQUEST_METHOD'] == "POST"){
+					if($this->session->userdata("adminLoggedin") == true && $this->page_attendees->select_where(array("page_attendeesID"), array("attendeeID" => $this->input->post("inputAttendeeID"), "pageID" => $this->input->post("inputPageID")))->num_rows()>0){
+						$this->page_attendees->delete(
+							array(
+								"pageID" => $this->input->post("inputPageID"),
+								"attendeeID" => $this->input->post("inputAttendeeID")
+							)
+						);
+					}
+					elseif($this->session->userdata("loggedin") == true && $this->page_attendees->select_where(array("page_attendeesID"), array("attendeeID" => $this->session->userdata("id"), "pageID" => $this->input->post("inputPageID")))->num_rows()>0){
+						$this->page_attendees->delete(
+							array(
+								"pageID" => $this->input->post("inputPageID"),
+								"attendeeID" => $this->session->userdata("id")
+							)
+						);
+					}
+					else{
+						show_404();
+					}
+				}
+		}
+		
 	}
 
 ?>
