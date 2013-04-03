@@ -85,7 +85,8 @@
 						"conferenceID" => $r[0]->conferenceID,
 						"pageType" => $r[0]->pageType,
 						"images" => $images,
-						"seats" => $r[0]->seats
+						"seats" => $r[0]->seats,
+						"seats_taken" => $r[0]->seats_taken
 					);
 				}
 				echo json_encode($page_info);
@@ -177,7 +178,8 @@
 							"conferenceID" => $pp->conferenceID,
 							"pageType" => $pp->pageType,
 							"images" => $images,
-							"seats" => $pp->seats
+							"seats" => $pp->seats,
+							"seats_taken" => $pp->seats_taken
 						);
 					}
 				}
