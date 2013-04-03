@@ -584,6 +584,10 @@ ul.dropdown-menu li {
 	margin-top: 20px;
 }
 
+.guidelines {
+	display: none;
+}
+
 .submitabstractform {
 	display: none;
 	margin-top: 20px;
