@@ -94,3 +94,8 @@ $("form#new_abstract").live("submit", function(e){
 	return false;
 });
 
+$("a.abview").click(function(){
+	$.getJSON("abstract/"+absid, function(data){
+		console.log(data);
+	});
+});
