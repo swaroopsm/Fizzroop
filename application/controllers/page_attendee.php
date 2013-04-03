@@ -21,7 +21,7 @@
 		
 		public function create(){
 			if($_SERVER['REQUEST_METHOD'] == "POST"){
-				$pq = $this->pages->select_where(array("pageType", "seats"), array("pageID" => $this->input->post("inputPageID")));
+				$pq = $this->pages->select_where(array("pageType", "seats", "seats_taken"), array("pageID" => $this->input->post("inputPageID")));
 				$pr = $pq->result();
 				if($pr[0]->pageType == "3"){
 					$flag = 0;
@@ -61,7 +61,7 @@
 					if($flag == 1){
 						$this->pages->update(
 							array(
-								"seats" => ($pr[0]->seats - 1)
+								"seats_taken" => ($pr[0]->seats_taken + 1)
 							),
 							array(
 								"pageID" => $this->input->post("inputPageID")
@@ -89,7 +89,7 @@
 		
 		public function delete(){
 			if($_SERVER['REQUEST_METHOD'] == "POST"){
-					$pq = $this->pages->select_where(array("pageType", "seats"), array("pageID" => $this->input->post("inputPageID")));
+					$pq = $this->pages->select_where(array("pageType", "seats", "seats_taken"), array("pageID" => $this->input->post("inputPageID")));
 					$pr = $pq->result();
 					$flag = 0;
 					if($pr[0]->pageType == "3"){
@@ -118,7 +118,7 @@
 						if($flag = 1){
 							$this->pages->update(
 								array(
-									"seats" => ($pr[0]->seats + 1)
+									"seats_taken" => ($pr[0]->seats_taken - 1)
 								),
 								array(
 									"pageID" => $this->input->post("inputPageID")
