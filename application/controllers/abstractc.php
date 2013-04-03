@@ -184,7 +184,7 @@
 			 			$result[]=array(
 			 				"abstractID" => $row->abstractID,
 			 				"abstractTitle" => $row->abstractTitle,
-			 				"abstractContent" => $row->abstractContent, // Fizz added to get abstract content
+			 				"abstractContent" => $row->abstractContent,
 			 				"abstractImageFolder" => base_url().$this->config->item("upload_path").$row->abstractImageFolder,
 			 				"attendeeFirstName" => $row->attendeeFirstName,
 			 				"attendeeLastName" => $row->attendeeLastName,
@@ -202,7 +202,28 @@
 		 		}
 	 		}
 	 		else{
-	 			show_404();
+	 			$a = $this->abstracts->view_where($this->uri->segment(2), $this->session->userdata("conferenceID"));
+		 		$n = $a->num_rows();
+		 		$aid = $this->uri->segment(2);
+		 		if($n>0){
+		 			$q = $a->result();
+			 		foreach($q as $row){
+			 			$result[]=array(
+			 				"abstractID" => $row->abstractID,
+			 				"abstractTitle" => $row->abstractTitle,
+			 				"abstractContent" => $row->abstractContent,
+			 				"abstractImageFolder" => base_url().$this->config->item("upload_path").$row->abstractImageFolder,
+			 				"attendeeFirstName" => $row->attendeeFirstName,
+			 				"attendeeLastName" => $row->attendeeLastName,
+			 				"approved" => $row->approved
+			 			);
+			 		}
+			 		echo json_encode($result);
+		 		}
+		 		else{
+		 			echo json_encode(array());
+		 		}
+	 			// show_404();
 	 		}
 		}
 		
