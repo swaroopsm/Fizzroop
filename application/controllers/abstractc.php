@@ -31,7 +31,7 @@
 						$abstractContent = '{"methods": "'.$this->input->post('inputAbstractMethods').'", "aim": "'.$this->input->post('inputAbstractAim').'", "results": "'.$this->input->post('inputAbstractResults').'", "conservation": "'.$this->input->post('inputAbstractConservation').'"}';
 						$file = "inputAbstractImage";
 						$config['upload_path'] = $this->config->item("upload_path");
-				 	  $config['allowed_types'] = $this->config->item("allowed_types");
+				 		$config['allowed_types'] = $this->config->item("allowed_types");
 						$config['max_size']	= $this->config->item("max_size");
 						$this->load->library('upload', $config);
 						if($this->upload->do_upload($file)){
