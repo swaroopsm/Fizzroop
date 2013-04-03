@@ -57,7 +57,6 @@
 		*/
 		
 		public function view_where(){
-			if($this->session->userdata("adminLoggedin") == true){
 				$id = $this->uri->segment(2);
 				$q = $this->pages->view_where(
 					array(
@@ -80,38 +79,52 @@
 							);
 						}
 					}
-					$pq = $this->page_attendees->select_where(array("attendeeID"), array("pageID" => $id));
-					if($pq->num_rows() > 0){
-						foreach($pq->result() as $pr){
-							require_once(APPPATH."controllers/attendee.php");
-							$a = new Attendee();
-							$aq = $a->attendee_data(array("attendeeFirstName", "attendeeLastName", "attendeeEmail"), array("attendeeID" => $pr->attendeeID));
-							if($aq->num_rows > 0){
-								foreach($aq->result() as $ar){
-									$attendees[] = array(
-										"attendeeID" => $pr->attendeeID,
-										"attendeeFirstName" => $ar->attendeeFirstName,
-										"attendeeLastName" => $ar->attendeeLastName,
-										"attendeeEmail" => $ar->attendeeEmail
-									);
+					if($this->session->userdata("adminLoggedin") == true){
+						$pq = $this->page_attendees->select_where(array("attendeeID"), array("pageID" => $id));
+						if($pq->num_rows() > 0){
+								foreach($pq->result() as $pr){
+									require_once(APPPATH."controllers/attendee.php");
+									$a = new Attendee();
+									$aq = $a->attendee_data(array("attendeeFirstName", "attendeeLastName", "attendeeEmail"), array("attendeeID" => $pr->attendeeID));
+									if($aq->num_rows > 0){
+										foreach($aq->result() as $ar){
+											$attendees[] = array(
+												"attendeeID" => $pr->attendeeID,
+												"attendeeFirstName" => $ar->attendeeFirstName,
+												"attendeeLastName" => $ar->attendeeLastName,
+												"attendeeEmail" => $ar->attendeeEmail
+											);
+										}
+									}
 								}
 							}
+							$page_info = array(
+								"pageID" => $r[0]->pageID,
+								"pageTitle" => $r[0]->pageTitle,
+								"pageContent" => $r[0]->pageContent,
+								"conferenceID" => $r[0]->conferenceID,
+								"pageType" => $r[0]->pageType,
+								"images" => $images,
+								"seats" => $r[0]->seats,
+								"seats_taken" => $r[0]->seats_taken,
+								"attendees" => $attendees
+							);
+							echo json_encode($page_info);
+						}
+						else{
+							$page_info = array(
+										"pageID" => $r[0]->pageID,
+										"pageTitle" => $r[0]->pageTitle,
+										"pageContent" => $r[0]->pageContent,
+										"conferenceID" => $r[0]->conferenceID,
+										"pageType" => $r[0]->pageType,
+										"images" => $images,
+										"seats" => $r[0]->seats,
+										"seats_taken" => $r[0]->seats_taken
+									);
+									echo json_encode($page_info);
 						}
 					}
-					$page_info = array(
-						"pageID" => $r[0]->pageID,
-						"pageTitle" => $r[0]->pageTitle,
-						"pageContent" => $r[0]->pageContent,
-						"conferenceID" => $r[0]->conferenceID,
-						"pageType" => $r[0]->pageType,
-						"images" => $images,
-						"seats" => $r[0]->seats,
-						"seats_taken" => $r[0]->seats_taken,
-						"attendees" => $attendees
-					);
-				}
-				echo json_encode($page_info);
-			}
 		}
 		
 		
