@@ -79,6 +79,7 @@ h1, h2, h3, h4, h5 {
 	font-family: 'Oswald', sans-serif;
 	color: #808080;
 	margin-bottom: 5px;
+	text-transform: uppercase;
 }
 
 h1 {
@@ -104,11 +105,6 @@ a {
 a:hover {
 	color: black;
 }
-
-a:visited {
-	color: #F7931E;
-}
-
 
 .clear {
 	clear: both;
@@ -395,7 +391,7 @@ a.close:active{
 #imagesppt {
 	max-width: 100%;
 	max-height: 500px;
-	background-color: black;
+	background-color: white;
 	margin-right: 10px;
 	overflow: hidden;
 }
@@ -543,4 +539,114 @@ a.close:active{
 
 .csv-btn a{
 	color: #000;
+}
+
+ul.dropdown-menu li {
+	display: inline-block;
+}
+
+.menu-top {
+	position: fixed;
+	top: 0;
+	font-size: 12px;
+	background-color: black;
+	width: 100%;
+	height: 60px;
+	color: white;
+}
+
+.menu-top a {
+	margin-left: 20px;
+}
+
+.menu-top a:hover {
+	color: white;
+}
+
+.attlinks {
+	float: left;
+	line-height: 60px;
+}
+
+.attcontainer , .guidelines, .workshop {
+	max-width: 800px;
+	padding: 20px;
+	margin: 0 auto;
+	margin-top: 100px;
+	background-color: white;
+	font-size: 12px;
+}
+
+.attcontainer p {
+	margin-top: 20px;
+}
+
+.guidelines p {
+	margin-top: 20px;
+}
+
+.guidelines, .workshop {
+	display: none;
+}
+
+.submitabstractform {
+	display: none;
+	margin-top: 20px;
+}
+
+.submitabstractform label {
+	width: 80%;
+	display: block;
+	margin-top: 20px;
+}
+
+.submitabstractform input {
+	width: 90%;
+	display: block;
+	padding: 10px;
+}
+
+.submitabstractform hr {
+	width: 80%;
+	border:none;
+	height: 20px;
+	text-align: left;
+}
+
+.submitabstractform input.radio {
+	width: 10px;
+	display: inline-block;
+	padding: 10px;
+}
+
+.submitabstractform textarea {
+	width: 90%;
+	display: block;
+	padding: 10px;
+}
+
+.submitabstractform input.subButton {
+	width: auto;
+	padding: 15px;
+	margin-top: 20px;
+	background-color: green;
+	border: none;
+	color: white;
+	font-size: 13px;
+	font-weight: 300;
+	text-transform: uppercase;
+}
+
+.message img {
+	max-width: 100%;
+}
+
+.message h3 {
+	font-size: 16px;
+	margin-top: 30px;
+	margin-bottom: -10px;
+}
+
+.message br:before {
+	content: "<br>";
 }

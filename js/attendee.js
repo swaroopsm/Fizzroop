@@ -63,14 +63,72 @@ jQuery.fn.asyncSubmit = function(options){
 	
 }
 
+// Setup links for loading into modals and divs.
+
+// Load abstract form
+$("a.absubmit").click(function(){
+	// clear the holding div first
+	$('.submitabstractform').css({display:'block'});
+	$('.message').css({display: 'none'});
+	$('.guidelines').css({display: 'none'});
+	$('.attcontainer').css({display: 'none'});
+	return false;
+});
+
+$("a.absguide").click(function(){
+	// clear the holding div first
+	$('.guidelines').css({display:'block'});
+	$('.message').css({display: 'none'});
+	$('.attcontainer').css({display: 'none'});
+	$('.submitabstractform').css({display:'none'});
+	return false;
+});
+
+
 $("form#new_abstract").live("submit", function(e){
 	e.preventDefault();
 	var stat = $(this).validateFormEmpty();
 	if(stat.success){
 		$(this).ajaxSubmit(function(data){
-		console.log(data)
+		var success = $.parseJSON(data);
+		console.log(success);
+		// if(success.success == true) {
+		// 	console.log(success.success);
+		// } else {
+		// 	console.log('fail');
+		// }
+		// reload the page
+		window.location="attendee";
 	});
 	}
 	return false;
 });
 
+$("a.abview").click(function(){
+	$.getJSON("abstract/"+absid, function(data){
+		console.log(data);
+		var messagediv = $('.message');
+		messagediv.html('');
+		messagediv.append("<h2>"+data[0].abstractTitle+"</h2><p class='name'>"+name+"</p><img src='"+data[0].abstractImageFolder+"'>");
+		var abscontent = data[0].abstractContent;
+		abscontent = $.parseJSON(abscontent);
+		messagediv.append("<h3>Methods</h3><p>"+abscontent.methods+"</p>");
+		messagediv.append("<h3>Aim</h3><p>"+abscontent.aim+"</p>");
+		messagediv.append("<h3>Results</h3><p>"+abscontent.results+"</p>");
+		messagediv.append("<h3>Conservation</h3><p>"+abscontent.conservation+"</p>");
+		console.log(abscontent);
+		
+	});
+	$('.guidelines').css({display:'none'});
+	$('.message').css({display: 'block'});
+});
+
+
+$("a.workshops").click(function(){
+	$('.submitabstractform').css({display:'none'});
+	$('.message').css({display: 'none'});
+	$('.guidelines').css({display: 'none'});
+	$('.attcontainer').css({display: 'none'});
+	$('.workshop').css({display: 'block'});
+
+});

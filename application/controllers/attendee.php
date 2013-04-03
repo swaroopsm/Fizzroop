@@ -40,6 +40,8 @@
 					$data['page_title'] = "Welcome ".$row->attendeeFirstName." ".$row->attendeeLastName."!";
 				}
 				$data['submitted'] = $submitted;
+				$data['a'] = $a->result_array();
+
 				$this->load->view("attendeeDashboard", $data);
 			}
 			else{

@@ -31,11 +31,13 @@
 						$abstractContent = '{"methods": "'.$this->input->post('inputAbstractMethods').'", "aim": "'.$this->input->post('inputAbstractAim').'", "results": "'.$this->input->post('inputAbstractResults').'", "conservation": "'.$this->input->post('inputAbstractConservation').'"}';
 						$file = "inputAbstractImage";
 						$config['upload_path'] = $this->config->item("upload_path");
-				 	  $config['allowed_types'] = $this->config->item("allowed_types");
+				 		$config['allowed_types'] = $this->config->item("allowed_types");
 						$config['max_size']	= $this->config->item("max_size");
 						$this->load->library('upload', $config);
 						if($this->upload->do_upload($file)){
 							$a = $this->upload->data();
+							$abstractContent = str_replace("\n\n", "<br><br>", $abstractContent);
+							$abstractContent = str_replace("\n", "", $abstractContent);
 							$data = array(
 							"abstractTitle" => $abstractTitle,
 							"abstractContent" => $abstractContent,
@@ -184,7 +186,7 @@
 			 			$result[]=array(
 			 				"abstractID" => $row->abstractID,
 			 				"abstractTitle" => $row->abstractTitle,
-			 				"abstractContent" => $row->abstractContent, // Fizz added to get abstract content
+			 				"abstractContent" => $row->abstractContent,
 			 				"abstractImageFolder" => base_url().$this->config->item("upload_path").$row->abstractImageFolder,
 			 				"attendeeFirstName" => $row->attendeeFirstName,
 			 				"attendeeLastName" => $row->attendeeLastName,
@@ -202,7 +204,28 @@
 		 		}
 	 		}
 	 		else{
-	 			show_404();
+	 			$a = $this->abstracts->view_where($this->uri->segment(2), $this->session->userdata("conferenceID"));
+		 		$n = $a->num_rows();
+		 		$aid = $this->uri->segment(2);
+		 		if($n>0){
+		 			$q = $a->result();
+			 		foreach($q as $row){
+			 			$result[]=array(
+			 				"abstractID" => $row->abstractID,
+			 				"abstractTitle" => $row->abstractTitle,
+			 				"abstractContent" => $row->abstractContent,
+			 				"abstractImageFolder" => base_url().$this->config->item("upload_path").$row->abstractImageFolder,
+			 				"attendeeFirstName" => $row->attendeeFirstName,
+			 				"attendeeLastName" => $row->attendeeLastName,
+			 				"approved" => $row->approved
+			 			);
+			 		}
+			 		echo json_encode($result);
+		 		}
+		 		else{
+		 			echo json_encode(array());
+		 		}
+	 			// show_404();
 	 		}
 		}
 		

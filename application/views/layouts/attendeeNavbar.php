@@ -1,26 +1,33 @@
-<div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner" style="min-height: 45px;">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="/">Fizzroop</a>
-          <div class="nav-collapse collapse">
-          </div><!--/.nav-collapse -->
-          <ul class="nav pull-right">
-             <li class="divider-vertical"></li>
-             <li class="dropdown">
-          	  <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size: 13px;"><?php echo $attendeeFirstName." ".$attendeeLastName; ?>&nbsp;<b class="caret"></b></a>
-              <ul class="dropdown-menu" style="font-size: 13px;">
-              	<li><a href="<?php echo base_url().'attendee'; ?>">Home</a></li>
-                <li><a href="#">Account</a></li>
-                <li class="divider"></li>
-                <li><a href="<?php echo base_url().'logout' ?>">Log out!</a></li>
-              </ul>
-             </li>
-          </ul>
-        </div>
-</div>
-</div>
+<div class="message"><p>Hi <?php echo $attendeeFirstName." ".$attendeeLastName; ?>!</p>
+        <p>This page is where you can <a href="#" class="absubmit"> submit your abstract</a> and sign up for <a href="#" class="workshops">workshops</a> for SCCS. Make sure you <a href="#" class="absguide">read the abstract submission guidelines</a> before you submit. Once submitted, you cannot change your abstract, so please be sure of it.</p></div>
+      <div class="submitabstractform">
+        <h2>Submit Abstract</h2>
+        <p>Be sure you <a href="#" class="absguide">read the abstract submission guidelines</a> first!</p>
+        <?php
+          echo form_open("abstract/create", array("class" => "form form-horizontal", "id" => "new_abstract", "style" => "margin-left: 0px;"));
+          echo form_label("Abstract Title:", "inputAbstractTitle", array("class" => "control-label")); 
+          echo form_input(array("name" => "inputAbstractTitle", "id" => "inputAbstractTitle", "class" => "", "placeholder" => "Your Abstract's Title goes here"));
+        ?>
+        
+        <?php
+          echo form_label("Methods:", "inputAbstractMethods", array("class" => "control-label")); 
+          echo form_textarea(array("name" => "inputAbstractMethods", "id" => "inputAbstractMethods", "class" => "", "placeholder" => "What methods did you use for your abstract?"));
+          echo form_label("Aim:", "inputAbstractAim", array("class" => "control-label")); 
+          echo form_textarea(array("name" => "inputAbstractAim", "id" => "inputAbstractAim", "class" => "", "placeholder" => "What aims have you set up?"));
+          echo form_label("Conservation:", "inputAbstractConservation", array("class" => "control-label")); 
+          echo form_textarea(array("name" => "inputAbstractConservation", "id" => "inputAbstractConservation", "class" => "", "placeholder" => "What methods did you use for your abstract?"));
+          echo form_label("Results:", "inputAbstractResults", array("class" => "control-label")); 
+          echo form_textarea(array("name" => "inputAbstractResults", "id" => "inputAbstractResults", "class" => "", "placeholder" => "What aims have you set up?"));
+        ?>
+        
+        <p>Upload your graphical abstract. <em>Your image must be of this specified size and this thing.</em></p>
+        <?php
+          echo form_upload(array("name" => "inputAbstractImage"));
+        ?>
+        <p>Choose your preference.</p>
+        <?php echo form_radio(array('name'=>'pref', 'id'=>'talk', 'value'=>'1', 'class'=>'radio')); ?>Talk
+        <?php echo form_radio(array('name'=>'pref', 'id'=>'poster', 'value'=>'2','class'=>'radio')); ?>Poster
+        <?php echo form_radio(array('name'=>'pref', 'id'=>'noPref', 'value'=>'3','class'=>'radio')); ?>No Preference
+        <input class="subButton" type="submit" value="Submit Abstract"/>
+        <?php echo form_close(); ?>
+      </div>
