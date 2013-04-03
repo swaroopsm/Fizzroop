@@ -36,6 +36,8 @@
 						$this->load->library('upload', $config);
 						if($this->upload->do_upload($file)){
 							$a = $this->upload->data();
+							$abstractContent = str_replace("\n\n", "<br />", $abstractContent);
+							$abstractContent = str_replace("\n", "", $abstractContent);
 							$data = array(
 							"abstractTitle" => $abstractTitle,
 							"abstractContent" => $abstractContent,
