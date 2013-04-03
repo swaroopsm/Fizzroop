@@ -125,7 +125,8 @@
 					"pageTitle" => $this->input->post("inputPageTitle"),
 					"pageContent" => $this->input->post("inputPageContent"),
 					"conferenceID" => $this->session->userdata("conferenceID"),
-					"pageType" => $this->input->post("inputPageType")
+					"pageType" => $this->input->post("inputPageType"),
+					"seats" => $this->input->post("inputSeats")
 				);
 				$where = array(
 					"pageID" => $this->input->post("inputPageID")
@@ -140,6 +141,45 @@
 			}
 		}
 		
+		
+		/**
+			*	Handles Page type view.
+		**/
+		
+		public function view_page_type(){
+			$page_type = $this->uri->segment(3);
+			$q = $this->pages->view_where(
+					array(
+						"pageType" => $page_type
+					)
+				);
+				$page_info = array();
+				if($q->num_rows() > 0){
+					$r = $q->result();
+					require_once(APPPATH."controllers/image.php");
+					$img = new Image();
+					$i = $img->view_page_images($r[0]->pageID);
+					$images = array();
+					if($i->num_rows() > 0){
+						foreach($i->result() as $page_image){
+							$images[] = array(
+								"imageID" => $page_image->imageID,
+								"image" => $this->config->item("upload_path").$page_image->image
+							);
+						}
+					}
+					$page_info[] = array(
+						"pageID" => $r[0]->pageID,
+						"pageTitle" => $r[0]->pageTitle,
+						"pageContent" => $r[0]->pageContent,
+						"conferenceID" => $r[0]->conferenceID,
+						"pageType" => $r[0]->pageType,
+						"images" => $images,
+						"seats" => $r[0]->seats
+					);
+				}
+				echo json_encode($page_info);
+		}
 		
 		/**
 			*	Handles deletion of a Page.
