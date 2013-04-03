@@ -43,6 +43,13 @@
 			<p>Please remember that the purpose of the graphical abstract is to highlight the data that you plan to present and  clearly convey your main findings. Therefore graphical abstracts will only be judged according to the clarity of the message conveyed and not by their visual appeal.</p>
 			<p>SUBMISSION OF BOTH GRAPHICAL AND TEXT ABSTRACTS IS COMPULSORY.  The graphical and textual abstracts, in combination, should clearly communicate the following to the reviewers i. the time period over which the study was conducted; ii. types of data that were collected and iii. the sample size (N). The reviewers will be using these as key parameters while evaluating the abstracts for selection for a talk or a poster to be presented in SCCS-Bangalore 2013.</p>
 		</div>
+
+		<div class="workshop">
+			<h2>Workshops</h2>
+			<p>No workshops have been finalised yet. Come back later and check it out.</p>
+		</div>
+
+
 		<br><br><br><br><br><br><br><br><br>
 		<script src="<?php echo base_url().'js/jquery.js'; ?>"></script>
 		<script src="<?php echo base_url().'js/jquery.form.js'; ?>"></script>
