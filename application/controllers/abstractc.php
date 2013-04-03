@@ -22,28 +22,34 @@
 		public function create(){
 			if($_SERVER['REQUEST_METHOD'] == "POST"){
 				if($this->session->userdata("loggedin") == true){
-					$abstractTitle = $this->input->post("inputAbstractTitle");
-					$abstractContent = '{"methods": "'.$this->input->post('inputAbstractMethods').'", "aim": "'.$this->input->post('inputAbstractAim').'", "results": "'.$this->input->post('inputAbstractResults').'", "conservation": "'.$this->input->post('inputAbstractConservation').'"}';
-					$file = "inputAbstractImage";
-					$config['upload_path'] = $this->config->item("upload_path");
-			 	  $config['allowed_types'] = $this->config->item("allowed_types");
-					$config['max_size']	= $this->config->item("max_size");
-					$this->load->library('upload', $config);
-					if($this->upload->do_upload($file)){
-						$a = $this->upload->data();
-						$data = array(
-						"abstractTitle" => $abstractTitle,
-						"abstractContent" => $abstractContent,
-						"conferenceID" => $this->session->userdata("conferenceID"),
-						"attendeeID" => $this->session->userdata("id"),
-						"attendeePreference" => $this->input->post("inputAbstractPreference"),
-						"abstractImageFolder" => $a['file_name']
-					);
-						$this->abstracts->insert($data);
-						echo json_encode(array("success" => true, "abstractID" => $this->db->insert_id()));
+					$exists = $this->abstracts->select_where(array("abstractID"), array("attendeeID" => $this->session->userdata("id"), "conferenceID" => $this->session->userdata("conferenceID")));
+					if($exists->num_rows()){
+						echo json_encode(array("success" => false, "message" => "You have already submitted an Abstract for this Conference"));
 					}
 					else{
-						echo json_encode(array("success" => false));
+						$abstractTitle = $this->input->post("inputAbstractTitle");
+						$abstractContent = '{"methods": "'.$this->input->post('inputAbstractMethods').'", "aim": "'.$this->input->post('inputAbstractAim').'", "results": "'.$this->input->post('inputAbstractResults').'", "conservation": "'.$this->input->post('inputAbstractConservation').'"}';
+						$file = "inputAbstractImage";
+						$config['upload_path'] = $this->config->item("upload_path");
+				 	  $config['allowed_types'] = $this->config->item("allowed_types");
+						$config['max_size']	= $this->config->item("max_size");
+						$this->load->library('upload', $config);
+						if($this->upload->do_upload($file)){
+							$a = $this->upload->data();
+							$data = array(
+							"abstractTitle" => $abstractTitle,
+							"abstractContent" => $abstractContent,
+							"conferenceID" => $this->session->userdata("conferenceID"),
+							"attendeeID" => $this->session->userdata("id"),
+							"attendeePreference" => $this->input->post("inputAbstractPreference"),
+							"abstractImageFolder" => $a['file_name']
+						);
+							$this->abstracts->insert($data);
+							echo json_encode(array("success" => true, "abstractID" => $this->db->insert_id()));
+						}
+						else{
+							echo json_encode(array("success" => false));
+						}
 					}
 				}
 			}
