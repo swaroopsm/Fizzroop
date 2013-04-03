@@ -124,6 +124,7 @@
 									"pageID" => $this->input->post("inputPageID")
 								)
 							);
+							echo json_encode(array("success" => true));
 						}
 						
 					}
