@@ -24,12 +24,22 @@
 					"attendeeEmail" => $this->session->userdata("email")
 				);
 				$q = $this->attendees->view_where($attendeeEmail);
+				require_once(APPPATH."controllers/abstractc.php");
+				$abs = new Abstractc();
+				$a = $abs->select_where(array("abstractID"),array("attendeeID" => $this->session->userdata("id")));
+				if($a->num_rows > 0){
+					$submitted = 1; //Abstract already submitted.
+				}
+				else{
+					$submitted = 0; //Abstract not submitted yet.
+				}
 				foreach($q->result() as $row){
 					$data['attendeeFirstName'] = $row->attendeeFirstName;
 					$data['attendeeLastName'] = $row->attendeeLastName;
 					$data['attendeeRegistered'] = $row->registered;
 					$data['page_title'] = "Welcome ".$row->attendeeFirstName." ".$row->attendeeLastName."!";
 				}
+				$data['submitted'] = $submitted;
 				$this->load->view("attendeeDashboard", $data);
 			}
 			else{
