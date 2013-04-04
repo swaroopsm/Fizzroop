@@ -889,13 +889,19 @@ $(".single_page").live("click", function(){
 			var page_img = "";
 		}
 		if(data[0].pageType == 3){
-			var seats = "<div>Seats Left: <input type='text' id='page_seats_edit' value='"+data[0].seats+"'/></div>"
+			var seats = "<div><input type='hidden' id='seats_taken_count' value='"+data[0].seats_taken+"'/>Seats Taken: <span id='seats_taken_dynamic'>"+data[0].seats_taken+"</span> / <input type='text' id='page_seats_edit' value='"+data[0].seats+"'/></div>"
+			var attendees_list = "";
+			for(var a in data[0].attendees){
+				attendees_list += "<div id='workshop_attendee_"+data[0].attendees[a].attendeeID+"'>"+data[0].attendees[a].attendeeFirstName+" "+data[0].attendees[a].attendeeLastName+" - "+data[0].attendees[a].attendeeEmail+" <a href='#' class='delete_attendee_workshop' id='delete_attendee_workshop_"+data[0].attendees[a].attendeeID+"' data-attendee='"+data[0].attendees[a].attendeeID+"'>Unassign</a></div>"
+			}
+			var attendees_workshop = "<div id='workshop_attendees' class='workshop_attendees'>"+attendees_list+"</div>";
 		}
 		else{
 			var seats = "";
+			var attendees_workshop = "";
 		}
 		$("#pageModalLabel").html("<h2>"+data[0].pageTitle+"</h2>");
-		$("#pageData").html("<div><label>Title: </label> <input id='page_title_edit' value='"+data[0].pageTitle+"'/><input id='page_id' type='hidden' value='"+data[0].pageID+"'/><input id='page_type' type='hidden' value='"+data[0].pageType+"'/></div> Content: <div id='pageContent' class='pageContent' contenteditable='true'>"+data[0].pageContent+"</div>"+seats+" <form action='image/create' method='POST' id='page_image_form'><input type='hidden' id='inputPageID' name='inputPageID' value='"+data[0].pageID+"'/><input type='hidden' name='"+token[0]+"' value='"+token[1]+"'/>Upload Image: <input type='file' id='inputPageImage' name='inputPageImage'/></form><p>Uploaded Image: <img src='"+page_img+"' id='cur_img'/></p>");
+		$("#pageData").html("<div><label>Title: </label> <input id='page_title_edit' value='"+data[0].pageTitle+"'/><input id='page_id' type='hidden' value='"+data[0].pageID+"'/><input id='page_type' type='hidden' value='"+data[0].pageType+"'/></div> Content: <div id='pageContent' class='pageContent' contenteditable='true'>"+data[0].pageContent+"</div>"+seats+" <form action='image/create' method='POST' id='page_image_form'><input type='hidden' id='inputPageID' name='inputPageID' value='"+data[0].pageID+"'/><input type='hidden' name='"+token[0]+"' value='"+token[1]+"'/>Upload Image: <input type='file' id='inputPageImage' name='inputPageImage'/></form><p>Uploaded Image: <img src='"+page_img+"' id='cur_img'/></p><p><h2>Attended By: </h2>"+attendees_workshop+"</p>");
 		$("#pageModal").modal({
 			keyboard: true,
 			backdrop: 'static',
@@ -917,6 +923,7 @@ $("button#save_page").live("click", function(){
 	var pageID = $("#page_id").val();
 	var pageType = $("#page_type").val();
 	var seats = $("#page_seats_edit").val();
+	var seats_taken_count = $("#seats_taken_count").val();
 	console.log(content)
 	$.post(
 		"page/update", 
@@ -925,7 +932,8 @@ $("button#save_page").live("click", function(){
 			"inputPageContent": content, 
 			"inputPageID": pageID, 
 			"inputPageType": pageType,
-			"inputSeats": seats
+			"inputSeats": seats,
+			"inputSeatsTaken": seats_taken_count
 		},
 	function(data){
 		console.log(data);
@@ -1216,4 +1224,29 @@ $(".update_comments_btn").live("click", function(){
 			console.log(data);
 		}
 	);
+});
+
+
+/**
+	*	Unassign an attendee from a workshop.
+**/
+
+$(".delete_attendee_workshop").live("click", function(){
+	var page_id = $("#inputPageID").val();
+	var attendee_id = $(this).attr("data-attendee");
+	$("#delete_attendee_workshop_"+attendee_id).html("&nbsp;<span class='loader'><img src='images/loader.gif'/></span>")
+	$.post(base_url+"page_attendee/delete",
+		{
+			inputPageID: page_id,
+			inputAttendeeID: attendee_id
+		},
+		function(data){
+			var obj = $.parseJSON(data);
+			if(obj.success){
+				$("#workshop_attendee_"+attendee_id).fadeOut(300);
+				$("#seats_taken_dynamic").html(obj.seats_taken);
+			}
+		}
+	);
+	return false;
 });

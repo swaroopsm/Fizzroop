@@ -10,6 +10,7 @@
 			parent::__construct();
 			$this->load->library("session");
 			$this->load->model("pages");
+			$this->load->model("page_attendees");
 			$this->load->library("uri");
 		}
 		
@@ -56,7 +57,6 @@
 		*/
 		
 		public function view_where(){
-			if($this->session->userdata("adminLoggedin") == true){
 				$id = $this->uri->segment(2);
 				$q = $this->pages->view_where(
 					array(
@@ -64,6 +64,7 @@
 					)
 				);
 				$page_info = array();
+				$attendees = array();
 				if($q->num_rows() > 0){
 					$r = $q->result();
 					require_once(APPPATH."controllers/image.php");
@@ -78,18 +79,52 @@
 							);
 						}
 					}
-					$page_info[] = array(
-						"pageID" => $r[0]->pageID,
-						"pageTitle" => $r[0]->pageTitle,
-						"pageContent" => $r[0]->pageContent,
-						"conferenceID" => $r[0]->conferenceID,
-						"pageType" => $r[0]->pageType,
-						"images" => $images,
-						"seats" => $r[0]->seats
-					);
-				}
-				echo json_encode($page_info);
-			}
+					if($this->session->userdata("adminLoggedin") == true){
+						$pq = $this->page_attendees->select_where(array("attendeeID"), array("pageID" => $id));
+						if($pq->num_rows() > 0){
+								foreach($pq->result() as $pr){
+									require_once(APPPATH."controllers/attendee.php");
+									$a = new Attendee();
+									$aq = $a->attendee_data(array("attendeeFirstName", "attendeeLastName", "attendeeEmail"), array("attendeeID" => $pr->attendeeID));
+									if($aq->num_rows > 0){
+										foreach($aq->result() as $ar){
+											$attendees[] = array(
+												"attendeeID" => $pr->attendeeID,
+												"attendeeFirstName" => $ar->attendeeFirstName,
+												"attendeeLastName" => $ar->attendeeLastName,
+												"attendeeEmail" => $ar->attendeeEmail
+											);
+										}
+									}
+								}
+							}
+							$page_info[] = array(
+								"pageID" => $r[0]->pageID,
+								"pageTitle" => $r[0]->pageTitle,
+								"pageContent" => $r[0]->pageContent,
+								"conferenceID" => $r[0]->conferenceID,
+								"pageType" => $r[0]->pageType,
+								"images" => $images,
+								"seats" => $r[0]->seats,
+								"seats_taken" => $r[0]->seats_taken,
+								"attendees" => $attendees
+							);
+							echo json_encode($page_info);
+						}
+						else{
+							$page_info[] = array(
+										"pageID" => $r[0]->pageID,
+										"pageTitle" => $r[0]->pageTitle,
+										"pageContent" => $r[0]->pageContent,
+										"conferenceID" => $r[0]->conferenceID,
+										"pageType" => $r[0]->pageType,
+										"images" => $images,
+										"seats" => $r[0]->seats,
+										"seats_taken" => $r[0]->seats_taken
+									);
+									echo json_encode($page_info);
+						}
+					}
 		}
 		
 		
@@ -122,23 +157,28 @@
 		
 		public function update(){
 			if($this->session->userdata("adminLoggedin") == true && $_SERVER['REQUEST_METHOD'] == "POST"){
-				$data = array(
-					"pageTitle" => $this->input->post("inputPageTitle"),
-					"pageContent" => $this->input->post("inputPageContent"),
-					"conferenceID" => $this->session->userdata("conferenceID"),
-					"pageType" => $this->input->post("inputPageType"),
-					"seats" => $this->input->post("inputSeats")
-				);
-				$where = array(
-					"pageID" => $this->input->post("inputPageID")
-				);
-				$this->pages->update($data, $where);
-				echo json_encode(
-					array(
-						"success" => true,
+				if($this->input->post("inputSeats") < $this->input->post("inputSeatsTaken")){
+					echo json_encode(array("success" => false, "message" => "Total seats cannot be less than the number of seats that are taken already."));
+				}
+				else{
+					$data = array(
+						"pageTitle" => $this->input->post("inputPageTitle"),
+						"pageContent" => $this->input->post("inputPageContent"),
+						"conferenceID" => $this->session->userdata("conferenceID"),
+						"pageType" => $this->input->post("inputPageType"),
+						"seats" => $this->input->post("inputSeats")
+					);
+					$where = array(
 						"pageID" => $this->input->post("inputPageID")
-					)
-				);
+					);
+					$this->pages->update($data, $where);
+					echo json_encode(
+						array(
+							"success" => true,
+							"pageID" => $this->input->post("inputPageID")
+						)
+					);
+				}
 			}
 		}
 		
@@ -170,6 +210,13 @@
 								);
 							}
 						}
+						$aq = $this->page_attendees->select_where(array("attendeeID"), array("pageID" => $pp->pageID));
+						$attendees = array();
+						if($aq->num_rows() > 0){
+							foreach($aq->result() as $ar){
+								array_push($attendees, $ar->attendeeID);
+							}
+						}
 						$result[] = array(
 							"pageID" => $pp->pageID,
 							"pageTitle" => $pp->pageTitle,
@@ -177,7 +224,9 @@
 							"conferenceID" => $pp->conferenceID,
 							"pageType" => $pp->pageType,
 							"images" => $images,
-							"seats" => $pp->seats
+							"seats" => $pp->seats,
+							"seats_taken" => $pp->seats_taken,
+							"attendees" => $attendees
 						);
 					}
 				}

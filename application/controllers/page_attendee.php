@@ -21,7 +21,7 @@
 		
 		public function create(){
 			if($_SERVER['REQUEST_METHOD'] == "POST"){
-				$pq = $this->pages->select_where(array("pageType", "seats"), array("pageID" => $this->input->post("inputPageID")));
+				$pq = $this->pages->select_where(array("pageType", "seats", "seats_taken"), array("pageID" => $this->input->post("inputPageID")));
 				$pr = $pq->result();
 				if($pr[0]->pageType == "3"){
 					$flag = 0;
@@ -58,10 +58,10 @@
 					else{
 						show_404();
 					}
-					if($flag == 1){
+					if($flag == 1 && $pr[0]->seats_taken <= $pr[0]->seats){
 						$this->pages->update(
 							array(
-								"seats" => ($pr[0]->seats - 1)
+								"seats_taken" => ($pr[0]->seats_taken + 1)
 							),
 							array(
 								"pageID" => $this->input->post("inputPageID")
@@ -89,7 +89,7 @@
 		
 		public function delete(){
 			if($_SERVER['REQUEST_METHOD'] == "POST"){
-					$pq = $this->pages->select_where(array("pageType", "seats"), array("pageID" => $this->input->post("inputPageID")));
+					$pq = $this->pages->select_where(array("pageType", "seats", "seats_taken"), array("pageID" => $this->input->post("inputPageID")));
 					$pr = $pq->result();
 					$flag = 0;
 					if($pr[0]->pageType == "3"){
@@ -115,17 +115,21 @@
 							show_404();
 						}
 						
-						if($flag = 1){
+						if($flag = 1 && $pr[0]->seats_taken > 0){
 							$this->pages->update(
 								array(
-									"seats" => ($pr[0]->seats + 1)
+									"seats_taken" => ($pr[0]->seats_taken - 1)
 								),
 								array(
 									"pageID" => $this->input->post("inputPageID")
 								)
 							);
+							$seats_taken_now = $pr[0]->seats_taken - 1;
 						}
-						
+						else{
+							$seats_taken_now = $pr[0]->seats_taken;
+						}
+						echo json_encode(array("success" => true, "seats_taken" => $seats_taken_now));
 					}
 					else{
 						show_404();
