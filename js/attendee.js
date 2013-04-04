@@ -63,15 +63,33 @@ jQuery.fn.asyncSubmit = function(options){
 	
 }
 
+// read image for previews
+function readURL(input) {
+if (input.files && input.files[0]) {
+	var reader = new FileReader();
+
+	reader.onload = function (e) {
+		$('#img_prev')
+		.attr('src', e.target.result)
+		//.width(150)
+		//.height(200)
+		;
+	};
+
+	reader.readAsDataURL(input.files[0]);
+	}
+}
+
 // Setup links for loading into modals and divs.
 
 // Load abstract form
 $("a.absubmit").click(function(){
 	// clear the holding div first
+	$('.attcontainer').css({display: 'block'});
 	$('.submitabstractform').css({display:'block'});
 	$('.message').css({display: 'none'});
 	$('.guidelines').css({display: 'none'});
-	$('.attcontainer').css({display: 'none'});
+	$('.workshop').css({display: 'none'});
 	return false;
 });
 
@@ -81,6 +99,7 @@ $("a.absguide").click(function(){
 	$('.message').css({display: 'none'});
 	$('.attcontainer').css({display: 'none'});
 	$('.submitabstractform').css({display:'none'});
+	$('.workshop').css({display: 'none'});
 	return false;
 });
 
@@ -106,7 +125,7 @@ $("form#new_abstract").live("submit", function(e){
 
 $("a.abview").click(function(){
 	$.getJSON("abstract/"+absid, function(data){
-		console.log(data);
+		// console.log(data);
 		var messagediv = $('.message');
 		messagediv.html('');
 		messagediv.append("<h2>"+data[0].abstractTitle+"</h2><p class='name'>"+name+"</p><img src='"+data[0].abstractImageFolder+"'>");
@@ -120,6 +139,8 @@ $("a.abview").click(function(){
 		
 	});
 	$('.guidelines').css({display:'none'});
+	$('.workshop').css({display: 'none'});
+	$('.attcontainer').css({display: 'block'});
 	$('.message').css({display: 'block'});
 });
 
@@ -130,5 +151,17 @@ $("a.workshops").click(function(){
 	$('.guidelines').css({display: 'none'});
 	$('.attcontainer').css({display: 'none'});
 	$('.workshop').css({display: 'block'});
+
+	$.getJSON("page/view_page_type/3", function(data) {
+		console.log(data);
+		var wdiv = $('.workshop');
+		wdiv.html('');
+		wdiv.append("<h2>Workshops</h2>");
+		for(i=0;i<data.length;i++){
+			wdiv.append("<h3>"+data[i].pageTitle+"</h3>");
+			wdiv.append("<p>"+data[i].pageContent+"</p><div class='workshopactions'>I want to attend. I don't want to attend</div>");
+		}
+		
+	});
 
 });
