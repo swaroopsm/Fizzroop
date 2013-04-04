@@ -1,4 +1,5 @@
-<div class="message"><p>Hi <?php echo $attendeeFirstName." ".$attendeeLastName; ?>!</p>
+<div class="message">
+  <p>Hi <?php echo $attendeeFirstName." ".$attendeeLastName; ?>!</p>
         <p>This page is where you can <a href="#" class="absubmit"> submit your abstract</a> and sign up for <a href="#" class="workshops">workshops</a> for SCCS. Make sure you <a href="#" class="absguide">read the abstract submission guidelines</a> before you submit. Once submitted, you cannot change your abstract, so please be sure of it.</p></div>
       <div class="submitabstractform">
         <h2>Submit Abstract</h2>
@@ -22,12 +23,20 @@
         
         <p>Upload your graphical abstract. <em>Your image must be of this specified size and this thing.</em></p>
         <?php
-          echo form_upload(array("name" => "inputAbstractImage"));
+          echo form_upload(array("name" => "inputAbstractImage", "onchange"=>"readURL(this);"));
         ?>
         <p>Choose your preference.</p>
         <?php echo form_radio(array('name'=>'pref', 'id'=>'talk', 'value'=>'1', 'class'=>'radio')); ?>Talk
         <?php echo form_radio(array('name'=>'pref', 'id'=>'poster', 'value'=>'2','class'=>'radio')); ?>Poster
         <?php echo form_radio(array('name'=>'pref', 'id'=>'noPref', 'value'=>'3','class'=>'radio')); ?>No Preference
-        <input class="subButton" type="submit" value="Submit Abstract"/>
+        <br>
+        <br>
+        <input class="subButton" type="submit" value="Submit Abstract"/> <div class="preview">PREVIEW ABSTRACT</div>
         <?php echo form_close(); ?>
+      </div>
+
+      <div class="previewspace">
+        <div class="title">You are previewing: </div>
+        <div class="close">x</div>
+        <img id="img_prev" src="#" alt="your image" />
       </div>
