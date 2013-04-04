@@ -65,6 +65,7 @@
 				);
 				$page_info = array();
 				$attendees = array();
+				$attendees_public = array();
 				if($q->num_rows() > 0){
 					$r = $q->result();
 					require_once(APPPATH."controllers/image.php");
@@ -79,7 +80,6 @@
 							);
 						}
 					}
-					if($this->session->userdata("adminLoggedin") == true){
 						$pq = $this->page_attendees->select_where(array("attendeeID"), array("pageID" => $id));
 						if($pq->num_rows() > 0){
 								foreach($pq->result() as $pr){
@@ -94,22 +94,29 @@
 												"attendeeLastName" => $ar->attendeeLastName,
 												"attendeeEmail" => $ar->attendeeEmail
 											);
+											
+											$attendees_public[] = array(
+												"attendeeID" => $pr->attendeeID,
+												"attendeeFirstName" => $ar->attendeeFirstName,
+												"attendeeLastName" => $ar->attendeeLastName
+											);
 										}
 									}
 								}
 							}
-							$page_info[] = array(
-								"pageID" => $r[0]->pageID,
-								"pageTitle" => $r[0]->pageTitle,
-								"pageContent" => $r[0]->pageContent,
-								"conferenceID" => $r[0]->conferenceID,
-								"pageType" => $r[0]->pageType,
-								"images" => $images,
-								"seats" => $r[0]->seats,
-								"seats_taken" => $r[0]->seats_taken,
-								"attendees" => $attendees
-							);
-							echo json_encode($page_info);
+							if($this->session->userdata("adminLoggedin") == true){
+								$page_info[] = array(
+									"pageID" => $r[0]->pageID,
+									"pageTitle" => $r[0]->pageTitle,
+									"pageContent" => $r[0]->pageContent,
+									"conferenceID" => $r[0]->conferenceID,
+									"pageType" => $r[0]->pageType,
+									"images" => $images,
+									"seats" => $r[0]->seats,
+									"seats_taken" => $r[0]->seats_taken,
+									"attendees" => $attendees
+								);
+								echo json_encode($page_info);
 						}
 						else{
 							$page_info[] = array(
@@ -120,7 +127,8 @@
 										"pageType" => $r[0]->pageType,
 										"images" => $images,
 										"seats" => $r[0]->seats,
-										"seats_taken" => $r[0]->seats_taken
+										"seats_taken" => $r[0]->seats_taken,
+										"attendees" => $attendees_public
 									);
 									echo json_encode($page_info);
 						}
