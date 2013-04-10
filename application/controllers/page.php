@@ -144,7 +144,8 @@
 			if($this->session->userdata("adminLoggedin") == true){
 				$data = array(
 					"pageID",
-					"pageTitle"
+					"pageTitle",
+					"pageType"
 				);
 				$where = array(
 					"conferenceID" => $this->session->userdata("conferenceID")
@@ -202,6 +203,7 @@
 						"pageType" => $page_type
 					)
 				);
+				$result = array();
 				if($q->num_rows() > 0){
 					$r = $q->result();
 					$result = array();
