@@ -64,6 +64,36 @@
 					 <?php echo $this->security->get_csrf_token_name(); ?>: '<?php echo $this->security->get_csrf_hash(); ?>'
 				}
 			});
+
+		(function($) {
+    $.fn.extend( {
+        limiter: function(limit, elem) {
+            $(this).on("keyup focus", function() {
+                setCount(this, elem);
+            });
+            function setCount(src, elem) {
+                var chars = src.value.length;
+                if (chars > limit) {
+                    src.value = src.value.substr(0, limit);
+                    chars = limit;
+                }
+                elem.html(limit - chars );
+            }
+            setCount($(this)[0], elem);
+        }
+    });
+})(jQuery);
+
+		var elem1 = $("#chartitle");
+		var elem2 = $("#charmeth");
+		var elem3 = $("#charaim");
+		var elem4 = $("#charcons");
+		var elem5 = $("#charres");
+		$("#inputAbstractTitle").limiter(120, elem1);
+		$("#inputAbstractMethods").limiter(400, elem2);
+		$("#inputAbstractAim").limiter(400, elem3);
+		$("#inputAbstractConservation").limiter(400, elem4);
+		$("#inputAbstractResults").limiter(400, elem5);
 		</script>
 		<script src="<?php echo base_url().'js/vendor.js'; ?>"></script>
 		<script src="<?php echo base_url().'js/attendee.js'; ?>"></script>
