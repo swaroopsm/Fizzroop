@@ -152,18 +152,22 @@ $("a.workshops").click(function(){
 	$('.attcontainer').css({display: 'none'});
 	$('.workshop').css({display: 'block'});
 
-	$.getJSON("page/view_page_type/3", function(data) {
-		console.log(data);
-		var wdiv = $('.workshop');
-		wdiv.html('');
-		wdiv.append("<h2>Workshops</h2>");
-		for(i=0;i<data.length;i++){
-			wdiv.append("<div class='attsinglewshop'><h3>"+data[i].pageTitle+"</h3>");
-			wdiv.append("<p>Seats Taken: "+data[i].seats_taken+" Total Seats: "+data[i].seats+"</p>");
-			wdiv.append("<p>"+data[i].pageContent+"</p><div class='workshopactions'>I want to attend. I don't want to attend</div>");
-			wdiv.append("</div>")
-		}
+	// $.getJSON("page/view_page_type/3", function(data) {
+	// 	console.log(data);
+	// 	var wdiv = $('.workshop');
+	// 	wdiv.html('');
+	// 	wdiv.append("<h2>Workshops</h2>");
+	// 	for(i=0;i<data.length;i++){
+	// 		wdiv.append("<div class='attsinglewshop'><h3>"+data[i].pageTitle+"</h3>");
+	// 		wdiv.append("<p>Seats Taken: "+data[i].seats_taken+" Total Seats: "+data[i].seats+"</p>");
+	// 		wdiv.append("<p>"+data[i].pageContent+"</p><div class='workshopactions'>I want to attend. I don't want to attend</div>");
+	// 		wdiv.append("</div>")
+	// 	}
 		
-	});
+	// });
+
+	var wdiv = $('.workshop');
+	wdiv.html('');
+	wdiv.append("<h2>Workshops</h2><p>Workshop registrations will open in August. Please check the website for updates</p>");
 
 });
