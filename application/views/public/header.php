@@ -26,5 +26,5 @@
 		<li><a href="#">Workshops</a></li>
 		<li><a href="#">Special Sessions</a></li>
 	</ul>
-	<div class="timer1 yellowback"><a href="<?php echo base_url(); ?>login">Login</a> | Register</div>
+	<div class="timer1 yellowback"><a href="<?php echo base_url(); ?>login">Login</a> | <a href="http://copyof-shortwing2.doattend.com/">Register</a></div>
 </div>

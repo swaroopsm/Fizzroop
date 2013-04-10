@@ -75,6 +75,20 @@ body {
 	margin-right: auto;
 }
 
+strong {
+	font-weight: bold;
+}
+
+em {
+	font-style: italic;
+}
+
+ol li {
+	list-style-type: decimal-leading-zero;
+	list-style-position: inside;
+	padding: 3px;
+}
+
 h1, h2, h3, h4, h5 {
 	font-family: 'Oswald', sans-serif;
 	color: #808080;
@@ -678,4 +692,20 @@ ul.dropdown-menu li {
 
 .message br:before {
 	content: "<br>";
+}
+
+.counters {
+	color: gray;
+	font-size: 90%;
+}
+
+.counters:before {
+	content: "Characters Left:";
+}
+
+.sample {
+	padding: 20px;
+	border: 1px #F0F0F0 solid;
+	background-color: #F0F0F0;
+	margin-top: 10px;
 }

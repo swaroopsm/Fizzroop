@@ -8,17 +8,22 @@
           echo form_open("abstract/create", array("class" => "form form-horizontal", "id" => "new_abstract", "style" => "margin-left: 0px;"));
           echo form_label("Abstract Title:", "inputAbstractTitle", array("class" => "control-label")); 
           echo form_input(array("name" => "inputAbstractTitle", "id" => "inputAbstractTitle", "class" => "", "placeholder" => "Your Abstract's Title goes here"));
+          echo "<div class='counters' id='chartitle'></div>";
         ?>
         
         <?php
           echo form_label("Methods:", "inputAbstractMethods", array("class" => "control-label")); 
           echo form_textarea(array("name" => "inputAbstractMethods", "id" => "inputAbstractMethods", "class" => "", "placeholder" => "What methods did you use for your abstract?"));
+          echo "<div class='counters' id='charmeth'></div>";
           echo form_label("Aim:", "inputAbstractAim", array("class" => "control-label")); 
           echo form_textarea(array("name" => "inputAbstractAim", "id" => "inputAbstractAim", "class" => "", "placeholder" => "What aims have you set up?"));
+          echo "<div class='counters' id='charaim'></div>";
           echo form_label("Conservation:", "inputAbstractConservation", array("class" => "control-label")); 
           echo form_textarea(array("name" => "inputAbstractConservation", "id" => "inputAbstractConservation", "class" => "", "placeholder" => "What methods did you use for your abstract?"));
+          echo "<div class='counters' id='charcons'></div>";
           echo form_label("Results:", "inputAbstractResults", array("class" => "control-label")); 
           echo form_textarea(array("name" => "inputAbstractResults", "id" => "inputAbstractResults", "class" => "", "placeholder" => "What aims have you set up?"));
+          echo "<div class='counters' id='charres'></div>";
         ?>
         
         <p>Upload your graphical abstract. <em>Your image must be of this specified size and this thing.</em></p>
