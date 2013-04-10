@@ -1327,20 +1327,16 @@ $("#set_timer_link").live("click", function(){
 	*	Set Timer button click function.
 **/
 
-$("#set_timer_btn").live("click", function(){
-	$.post(base_url+"conference/set_timer",
-	{
-		inputTimer1: $("#inputTimer1").val(),
-		inputTimer2: $("#inputTimer2").val(),
-		inputTimer3: $("#inputTimer3").val(),
-		inputTimer4: $("#inputTimer4").val()
-	},
-	function(data){
-		var obj = $.parseJSON(data);
-		if(obj.success){
-			for(var i=1;i<=4;i++){
-				$("#inputTimer"+i).val('');
-			}
+$("form#set_timer_form").submit(function(){
+	$.ajax({
+		url: base_url+"conference/set_timer",
+		type: "POST",
+		data: $(this).serialize(),
+		success: function(data){
+			console.log(data);
+		},
+		error: function(data){
+			console.log(data)
 		}
 	});
 	return false;
