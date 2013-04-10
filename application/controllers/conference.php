@@ -7,6 +7,7 @@
 			parent::__construct();
 			$this->load->model("conferences");
 			$this->load->library("uri");
+			$this->load->library("session");
 		}
 		
 		public function create(){
@@ -46,6 +47,25 @@
 						"conferenceID" => $this->input->post("inputConferenceID")
 					)
 				);
+			}
+			else{
+				show_404();
+			}
+		}
+		
+		
+		public function set_timer(){
+			if($_SERVER['REQUEST_METHOD'] == "POST" && $this->session->userdata("adminLoggedin") == true){
+				$timer = '{"timer1": "'.str_replace('"',"'",$this->input->post('inputTimer1')).'", "timer2": "'.str_replace('"',"'",$this->input->post('inputTimer2')).'", "timer3": "'.str_replace('"',"'",$this->input->post('inputTimer3')).'", "timer4": "'.str_replace('"',"'",$this->input->post('inputTimer4')).'"}';
+				$this->conferences->update(
+					array(
+						"timer" => $timer
+					),
+					array(
+						"conferenceID" => $this->session->userdata("cur_conference")
+					)
+				);
+				echo json_encode(array("success" => true, "message" => "Timers set."));
 			}
 			else{
 				show_404();
