@@ -41,6 +41,7 @@
 				<h2>Conferences</h2>
 				<p>3 archived Conferences</p>
 				<p><?php echo $archived_conferences; ?> | <a href="<?php echo base_url().'admin/conference/'.$current_conf; ?>">Current Conference</a></p>
+				<input type='hidden' id='current_conf' value="<?php echo $current_conf; ?>">
 				<!-- <h2>Create New Conference</h2>
 				<p><a href="#">Create new conference</a></p>
 				<p>This will wipe certain records in the database. <br>Proceed with caution.</p> -->
@@ -401,7 +402,7 @@
 			  	echo "YYYY-MM-DD";
 			  	echo "<br><hr>";
 			  	echo form_label("Timer 3:", "inputTimer3", array("class" => "control-label")); 
-			  	echo form_input(array("name" => "inputTimer3", "id" => "inputTimer1", "class" => "", "placeholder" => "Title"));
+			  	echo form_input(array("name" => "inputTimer3", "id" => "inputTimer3", "class" => "", "placeholder" => "Title"));
 			  	echo form_label("Date:", "inputTimerDate3", array("class" => "control-label"));
 			  	echo form_input(array("name" => "inputTimerDate3", "id" => "inputTimerDate3", "class" => "", "placeholder" => "Date"));
 			  	echo "YYYY-MM-DD";
