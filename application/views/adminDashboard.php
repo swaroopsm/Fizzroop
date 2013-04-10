@@ -41,6 +41,7 @@
 				<h2>Conferences</h2>
 				<p>3 archived Conferences</p>
 				<p><?php echo $archived_conferences; ?> | <a href="<?php echo base_url().'admin/conference/'.$current_conf; ?>">Current Conference</a></p>
+				<input type='hidden' id='current_conf' value="<?php echo $current_conf; ?>">
 				<!-- <h2>Create New Conference</h2>
 				<p><a href="#">Create new conference</a></p>
 				<p>This will wipe certain records in the database. <br>Proceed with caution.</p> -->
@@ -246,6 +247,8 @@
 		  <br>
 		  <label>Content: </label><br>
 		  <div id="inputPageContent" name="inputPageContent" contenteditable="true" class="pageContent"></div>
+		  <label>Extra Info:</label>
+		  <div id="inputPageSubHeading" name="inputPageSubHeading" contenteditable="true" class="pageContent"></div>
 		  <?php
 		  	echo form_label("Type:", "inputPageType", array("class" => "control-label"));
 		  	$options = array(
@@ -387,20 +390,37 @@
 		<div class="modal-body" id="setTimerModalData">
 		  <p>
 		  	<?php
+		  		echo form_open(base_url()+"conference/set_timer", array("class" => "form form-horizontal", "id" => "set_timer_form"));
 		  		echo form_label("Timer 1:", "inputTimer1", array("class" => "control-label")); 
-			  	echo form_input(array("name" => "inputTimer1", "id" => "inputTimer1", "class" => "", "placeholder" => "Timer 1"));
+			  	echo form_input(array("name" => "inputTimer1", "id" => "inputTimer1", "class" => "", "placeholder" => "Title"));
+			  	echo form_label("Date:", "inputTimerDate1", array("class" => "control-label"));
+			  	echo form_input(array("name" => "inputTimerDate1", "id" => "inputTimerDate1", "class" => "", "placeholder" => "Date"));
+			  	echo "YYYY-MM-DD";
+			  	echo "<br><hr>";
 			  	echo form_label("Timer 2:", "inputTimer2", array("class" => "control-label")); 
-			  	echo form_input(array("name" => "inputTimer2", "id" => "inputTimer2", "class" => "", "placeholder" => "Timer 2"));
+			  	echo form_input(array("name" => "inputTimer2", "id" => "inputTimer2", "class" => "", "placeholder" => "Title"));
+			  	echo form_label("Date:", "inputTimerDate2", array("class" => "control-label"));
+			  	echo form_input(array("name" => "inputTimerDate2", "id" => "inputTimerDate2", "class" => "", "placeholder" => "Date"));
+			  	echo "YYYY-MM-DD";
+			  	echo "<br><hr>";
 			  	echo form_label("Timer 3:", "inputTimer3", array("class" => "control-label")); 
-			  	echo form_input(array("name" => "inputTimer3", "id" => "inputTimer3", "class" => "", "placeholder" => "Timer 3"));
+			  	echo form_input(array("name" => "inputTimer3", "id" => "inputTimer3", "class" => "", "placeholder" => "Title"));
+			  	echo form_label("Date:", "inputTimerDate3", array("class" => "control-label"));
+			  	echo form_input(array("name" => "inputTimerDate3", "id" => "inputTimerDate3", "class" => "", "placeholder" => "Date"));
+			  	echo "YYYY-MM-DD";
+			  	echo "<br><hr>";
 			  	echo form_label("Timer 4:", "inputTimer4", array("class" => "control-label")); 
-			  	echo form_input(array("name" => "inputTimer4", "id" => "inputTimer4", "class" => "", "placeholder" => "Timer 4"));
+			  	echo form_input(array("name" => "inputTimer4", "id" => "inputTimer4", "class" => "", "placeholder" => "Title"));
+			  	echo form_label("Date:", "inputTimerDate4", array("class" => "control-label"));
+			  	echo form_input(array("name" => "inputTimerDate4", "id" => "inputTimerDate4", "class" => "", "placeholder" => "Date"));
+			  	echo "YYYY-MM-DD";
 		  	?>
 		  	
 		  </p>
 		</div>
 		<div class="modal-footer">
-		  <button id="set_timer_btn">Set Timer</button>
+		  <input type="submit" value="Set Timer"/>
+		  <?php echo form_close(); ?>
 		</div>
 	</div>
 	

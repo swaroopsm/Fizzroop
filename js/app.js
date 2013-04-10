@@ -957,7 +957,7 @@ $(".single_page").live("click", function(){
 			var attended_by_label = "";
 		}
 		$("#pageModalLabel").html("<h2>"+data[0].pageTitle+"</h2>");
-		$("#pageData").html("<div><label>Title: </label> <input id='page_title_edit' value='"+data[0].pageTitle+"'/><input id='page_id' type='hidden' value='"+data[0].pageID+"'/><input id='page_type' type='hidden' value='"+data[0].pageType+"'/></div> Content: <div id='pageContent' class='pageContent' contenteditable='true'>"+data[0].pageContent+"</div>"+seats+" <form action='image/create' method='POST' id='page_image_form'><input type='hidden' id='inputPageID' name='inputPageID' value='"+data[0].pageID+"'/><input type='hidden' name='"+token[0]+"' value='"+token[1]+"'/>Upload Image: <input type='file' id='inputPageImage' name='inputPageImage'/></form><p>Uploaded Image: <img src='"+page_img+"' id='cur_img'/></p>"+attended_by_label);
+		$("#pageData").html("<div><label>Title: </label> <input id='page_title_edit' value='"+data[0].pageTitle+"'/><input id='page_id' type='hidden' value='"+data[0].pageID+"'/><input id='page_type' type='hidden' value='"+data[0].pageType+"'/></div> Content: <div id='pageContent' class='pageContent' contenteditable='true'>"+data[0].pageContent+"</div> Extra Info: <div id='pageSubHeading' class='pageContent' contenteditable='true'>"+data[0].pageSubHeading+"</div>"+seats+" <form action='image/create' method='POST' id='page_image_form'><input type='hidden' id='inputPageID' name='inputPageID' value='"+data[0].pageID+"'/><input type='hidden' name='"+token[0]+"' value='"+token[1]+"'/>Upload Image: <input type='file' id='inputPageImage' name='inputPageImage'/></form><p>Uploaded Image: <img src='"+page_img+"' id='cur_img'/></p>"+attended_by_label);
 		$("#pageModal").modal({
 			keyboard: true,
 			backdrop: 'static',
@@ -980,12 +980,14 @@ $("button#save_page").live("click", function(){
 	var pageType = $("#page_type").val();
 	var seats = $("#page_seats_edit").val();
 	var seats_taken_count = $("#seats_taken_count").val();
+	var pageSubHeading = $("#pageSubHeading").html()
 	console.log(content)
 	$.post(
 		"page/update", 
 		{
 			"inputPageTitle": title,
-			"inputPageContent": content, 
+			"inputPageContent": content,
+			"inputPageSubHeading": pageSubHeading,
 			"inputPageID": pageID, 
 			"inputPageType": pageType,
 			"inputSeats": seats,
@@ -1041,12 +1043,14 @@ $("#createPage").live("click", function(){
 $("form#new_page").live("submit", function(){
 	var title = $("#inputPageTitle").val();
 	var content = $("#inputPageContent").html();
+	var subheading = $("#inputPageSubHeading").html();
 	var type = $("select[name='inputPageType']").val();
 	console.log(title+" & "+content+" & "+type)
 	$.post("page/create",
 	{
 		"inputPageTitle": title,
 		"inputPageContent": content,
+		"inputPageSubHeading": subheading,
 		"inputPageType": type
 	},
 	function(data){
@@ -1054,6 +1058,8 @@ $("form#new_page").live("submit", function(){
 		if(obj.success){
 			$("#js-messages3").html("<span class='alert alert-success'>Page added!</span>");
 			$("form#new_page")[0].reset();
+			$("#inputPageContent").html('');
+			$("#inputPageSubHeading").html('');
 		}
 	});
 	return false;
@@ -1314,10 +1320,23 @@ $(".delete_attendee_workshop").live("click", function(){
 **/
 
 $("#set_timer_link").live("click", function(){
-	$("#setTimerModal").modal({
-		keyboard: true,
-		backdrop: 'static',
-		show: true
+	$.getJSON(base_url+"conference/"+$("#current_conf").val(), function(data){
+		if(data[0].timer != null || data[0].timer != ""){
+			var obj = $.parseJSON(data[0].timer);
+			$("#inputTimer1").val(obj.timerTitle1);
+			$("#inputTimer2").val(obj.timerTitle2);
+			$("#inputTimer3").val(obj.timerTitle3);
+			$("#inputTimer4").val(obj.timerTitle4);
+			$("#inputTimerDate1").val(obj.timerDate1);
+			$("#inputTimerDate2").val(obj.timerDate2);
+			$("#inputTimerDate3").val(obj.timerDate3);
+			$("#inputTimerDate4").val(obj.timerDate4);
+		}
+		$("#setTimerModal").modal({
+			keyboard: true,
+			backdrop: 'static',
+			show: true
+		});
 	});
 	return false;
 });
@@ -1327,20 +1346,16 @@ $("#set_timer_link").live("click", function(){
 	*	Set Timer button click function.
 **/
 
-$("#set_timer_btn").live("click", function(){
-	$.post(base_url+"conference/set_timer",
-	{
-		inputTimer1: $("#inputTimer1").val(),
-		inputTimer2: $("#inputTimer2").val(),
-		inputTimer3: $("#inputTimer3").val(),
-		inputTimer4: $("#inputTimer4").val()
-	},
-	function(data){
-		var obj = $.parseJSON(data);
-		if(obj.success){
-			for(var i=1;i<=4;i++){
-				$("#inputTimer"+i).val('');
-			}
+$("form#set_timer_form").submit(function(){
+	$.ajax({
+		url: base_url+"conference/set_timer",
+		type: "POST",
+		data: $(this).serialize(),
+		success: function(data){
+			console.log(data);
+		},
+		error: function(data){
+			console.log(data)
 		}
 	});
 	return false;

@@ -25,6 +25,7 @@
 				$data = array(
 					"pageTitle" => $this->input->post("inputPageTitle"),
 					"pageContent" => $this->input->post("inputPageContent"),
+					"pageSubHeading" => $this->input->post("inputPageSubHeading"),
 					"pageType" => $this->input->post("inputPageType"),
 					"conferenceID" => $this->session->userdata("conferenceID")
 				);
@@ -109,6 +110,7 @@
 									"pageID" => $r[0]->pageID,
 									"pageTitle" => $r[0]->pageTitle,
 									"pageContent" => $r[0]->pageContent,
+									"pageSubHeading" => $r[0]->pageSubHeading,
 									"conferenceID" => $r[0]->conferenceID,
 									"pageType" => $r[0]->pageType,
 									"images" => $images,
@@ -173,6 +175,7 @@
 					$data = array(
 						"pageTitle" => $this->input->post("inputPageTitle"),
 						"pageContent" => $this->input->post("inputPageContent"),
+						"pageSubHeading" => $this->input->post("inputPageSubHeading"),
 						"conferenceID" => $this->session->userdata("conferenceID"),
 						"pageType" => $this->input->post("inputPageType"),
 						"seats" => $this->input->post("inputSeats")
