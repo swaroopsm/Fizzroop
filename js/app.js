@@ -864,9 +864,24 @@ $("#managePages").live("click", function(){
 					var obj = [];
 					c = 0;
 					for(var i=0;i<data.length;i++){
+						var pageType="";
+						switch(data[i].pageType){
+							case "1": pageType = "Normal Page";
+												break;
+											
+							case "2": pageType = "Plenary";
+												break;
+											
+							case "3": pageType = "Workshop";
+												break;
+											
+							case "4": pageType = "Special Talks";
+												break;
+						}
 						obj.push({
 							"pageID": ++c,
-							"pageTitle": "<a href='#"+data[i].pageID+"' class='single_page' id='page_"+data[i].pageID+"'>"+data[i].pageTitle+"</a>"
+							"pageTitle": "<a href='#"+data[i].pageID+"' class='single_page' id='page_"+data[i].pageID+"'>"+data[i].pageTitle+"</a>",
+							"pageType": pageType
 						});
 					}
 						$("#ajaxer").html("<h2 id='title'>PAGES MANAGER</h2><table id='test'></table>");
@@ -886,6 +901,11 @@ $("#managePages").live("click", function(){
 				 													"mDataProp": "pageTitle",
 																	"sTitle": "Title",
 																	"sClass": "title"
+				 												},
+				 												{
+				 													"mDataProp": "pageType",
+																	"sTitle": "Type",
+																	"sClass": "pageType"
 				 												}
 				 				]
 						});
