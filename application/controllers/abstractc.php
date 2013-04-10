@@ -470,6 +470,30 @@
 	 	
 	 	
 	 	/**
+	 		*	Schedule an Abstract.
+	 	**/
+	 	
+	 	public function schedule(){
+	 		if($this->session->userdata("adminLoggedin") == true && $_SERVER['REQUEST_METHOD'] == "POST"){
+	 			$abstractID = $this->uri->segment(3);
+	 			$schedule = $this->input->post("inputScheduled");
+	 			$this->abstracts->update(
+	 				array(
+	 					"scheduled" => $schedule
+	 				),
+	 				array(
+	 					"abstractID" => $abstractID
+	 				)
+	 			);
+	 			echo json_encode(array("success" => true));
+	 		}
+	 		else{
+	 			show_404();
+	 		}
+	 	}
+	 	
+	 	
+	 	/**
 	 		*	Publish Abstracts that are approved.
 	 	**/
 	 	

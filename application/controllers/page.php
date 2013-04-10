@@ -246,6 +246,31 @@
 				echo json_encode($result);
 		}
 		
+		
+		/**
+	 		*	Schedule a Page.
+	 	**/
+	 	
+	 	public function schedule(){
+	 		if($this->session->userdata("adminLoggedin") == true){
+	 			$pageID = $this->uri->segment(3);
+	 			$schedule = $this->input->post("inputScheduled");
+	 			$this->pages->update(
+	 				array(
+	 					"scheduled" => $schedule
+	 				),
+	 				array(
+	 					"pageID" => $pageID
+	 				)
+	 			);
+	 			echo json_encode(array("success" => true));
+	 		}
+	 		else{
+	 			show_404();
+	 		}
+	 	}
+		
+		
 		/**
 			*	Handles deletion of a Page.
 		*/
