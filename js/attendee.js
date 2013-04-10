@@ -178,14 +178,19 @@ $("a.workshops").click(function(){
 **/
 
 $("#submit_bursary").click(function(){
-	$.post(base_url+"abstract/add_bursary",
-	{
-		inputAbstractID: $("#inputAbstractID").val(),
-		inputBursary_For: $("#bursary_for").val(),
-		inputBursary_Why: $("#bursary_why").val()
-	},
-	function(data){
-		console.log(data);
-	});
+	if($("#inputAbstractID").val() == ""){
+		console.log("No abstract submitted!");
+	}
+	else{
+		$.post(base_url+"abstract/add_bursary",
+		{
+			inputAbstractID: $("#inputAbstractID").val(),
+			inputBursary_For: $("#bursary_for").val(),
+			inputBursary_Why: $("#bursary_why").val()
+		},
+		function(data){
+			console.log(data);
+		});
+	}
 	return false;
 })
