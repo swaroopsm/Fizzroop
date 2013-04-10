@@ -76,6 +76,7 @@ $route['viewpage/(:num)'] ="colloquy/viewpage/$1";
 $route['workshops'] ="colloquy/viewtype/3";
 $route['plenaries'] ="colloquy/viewtype/2";
 $route['specialsessions'] ="colloquy/viewtype/4";
+$route['viewabstracts'] = "colloquy/viewabstracts";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
