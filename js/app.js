@@ -517,6 +517,9 @@ $("#manageAttendees").live("click", function(){
 							"attendeeFirstName": "<a href='#"+data[i].attendeeID+"' class='attendee_id'>"+data[i].attendeeFirstName+" "+data[i].attendeeLastName+"</a>",
 							//"attendeeLastName": "<a href='#"+data[i].attendeeID+"' class='attendee_id'>"+data[i].attendeeLastName+"</a>",
 							"attendeeEmail": data[i].attendeeEmail,
+							"attendeeInstAffiliation": data[i].attendeeInstAffiliation,
+							"attendeeNationality": data[i].attendeeNationality,
+							"attendeePhone": data[i].attendeePhone,
 							"registered": reg
 						});
 					}
@@ -540,6 +543,18 @@ $("#manageAttendees").live("click", function(){
 															{
 																"mDataProp": "attendeeEmail",
 																"sTitle": "Email"
+															},
+															{
+																"mDataProp": "attendeeInstAffiliation",
+																"sTitle": "Institution Affiliated"
+															},
+															{
+																"mDataProp": "attendeeNationality",
+																"sTitle": "Country"
+															},
+															{
+																"mDataProp": "attendeePhone",
+																"sTitle": "Phone"
 															},
 															{
 																"mDataProp": "registered",
