@@ -1041,12 +1041,14 @@ $("#createPage").live("click", function(){
 $("form#new_page").live("submit", function(){
 	var title = $("#inputPageTitle").val();
 	var content = $("#inputPageContent").html();
+	var subheading = $("#inputPageSubHeading").html();
 	var type = $("select[name='inputPageType']").val();
 	console.log(title+" & "+content+" & "+type)
 	$.post("page/create",
 	{
 		"inputPageTitle": title,
 		"inputPageContent": content,
+		"inputPageSubHeading": subheading,
 		"inputPageType": type
 	},
 	function(data){
@@ -1054,6 +1056,8 @@ $("form#new_page").live("submit", function(){
 		if(obj.success){
 			$("#js-messages3").html("<span class='alert alert-success'>Page added!</span>");
 			$("form#new_page")[0].reset();
+			$("#inputPageContent").html('');
+			$("#inputPageSubHeading").html('');
 		}
 	});
 	return false;
