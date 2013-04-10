@@ -236,7 +236,7 @@
 	
 		public function update(){
 				if($_SERVER['REQUEST_METHOD'] == "POST"){
-					if($this->session->userdata("loggedin") == true || $this->session->userdata("adminLoggedin") == true){
+					if($this->session->userdata("adminLoggedin") == true){
 						$abstractTitle = $this->input->post("inputAbstractTitle");
 						$abstractContent = '{"methods": "'.$this->input->post('inputAbstractMethods').'", "aim": "'.$this->input->post('inputAbstractAim').'", "results": "'.$this->input->post('inputAbstractResults').'", "conservation": "'.$this->input->post('inputAbstractConservation').'"}';
 						$data = array(
