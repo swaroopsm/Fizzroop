@@ -600,7 +600,15 @@ $(".attendee_id").live("click", function(){
 			"<div id='editAttendeeForm'>"
 					+"<label for='inputAttendeeFirstName'>Firstname</label> <input id='inputAttendeeFirstName' value='"+data[0].attendeeFirstName+"'<br><br>"
 					+"<label for='inputAttendeeLastName'>Lastname</label> <input id='inputAttendeeLastName' value='"+data[0].attendeeLastName+"'<br><br>"
-					+"<label for='inputAttendeeEmail'>Email</label> <input id='inputAttendeeEmail' value='"+data[0].attendeeEmail+"'"
+					+"<label for='inputAttendeeEmail'>Email</label> <input id='inputAttendeeEmail' value='"+data[0].attendeeEmail+"'<br><br>"
+					+"<label for='inputAttendeeGender'>Gender</label> <input id='inputAttendeeGender' value='"+data[0].attendeeGender+"'<br><br>"
+					+"<label for='inputAttendeeDOB'>Date Of Birth</label> <input id='inputAttendeeDOB' value='"+data[0].attendeeDOB+"'> YYYY-MM-DD<br><br>"
+					+"<label for='inputAttendeeAcademic'>Academic Status</label> <input id='inputAttendeeAcademic' value='"+data[0].attendeeAcademic+"'<br><br>"
+					+"<label for='inputAttendeeInstAffiliation'>Institution Affiliated</label> <input id='inputAttendeeInstAffiliation' value='"+data[0].attendeeInstAffiliation+"'<br><br>"
+					+"<label for='inputAttendeeAddress'>Address</label> <textarea id='inputAttendeeAddress' rows='4' cols='30'>"+data[0].attendeeAddress+"</textarea><br><br>"
+					+"<label for='inputAttendeePhone'>Phone</label> <input id='inputAttendeePhone' value='"+data[0].attendeePhone+"'<br><br>"
+					+"<label for='inputAttendeeNationality'>Country</label> <input id='inputAttendeeNationality' value='"+data[0].attendeeNationality+"'<br><br>"
+					+"<label for='inputAttendeePassport'>Passport</label> <input id='inputAttendeePassport' value='"+data[0].attendeePassport+"'<br><br>"
 					+"</div>"
 		);
 		var reg = data[0].registered;
@@ -692,7 +700,15 @@ $("#attendee_edit_submit").live("click", function(){
 		inputAttendeeID: $("#inputAttendeeID").val(),
 		inputFirstName: $.trim($("#inputAttendeeFirstName").val()),
 		inputLastName: $.trim($("#inputAttendeeLastName").val()),
-		inputEmail: $.trim($("#inputAttendeeEmail").val())
+		inputEmail: $.trim($("#inputAttendeeEmail").val()),
+		inputGender: $.trim($("#inputAttendeeGender").val()),
+		inputDOB: $.trim($("#inputAttendeeDOB").val()),
+		inputAcademic: $.trim($("#inputAttendeeAcademic").val()),
+		inputInstAffiliation: $.trim($("#inputAttendeeInstAffiliation").val()),
+		inputAddress: $.trim($("#inputAttendeeAddress").val()),
+		inputPhone: $.trim($("#inputAttendeePhone").val()),
+		inputNationality: $.trim($("#inputAttendeeNationality").val()),
+		inputPassport: $.trim($("#inputAttendeePassport").val())
 	},
 	function(data){
 		console.log(data);
