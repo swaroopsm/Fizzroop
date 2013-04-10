@@ -25,6 +25,7 @@
 				$data = array(
 					"pageTitle" => $this->input->post("inputPageTitle"),
 					"pageContent" => $this->input->post("inputPageContent"),
+					"pageSubHeading" => $this->input->post("inputPageSubHeading"),
 					"pageType" => $this->input->post("inputPageType"),
 					"conferenceID" => $this->session->userdata("conferenceID")
 				);
