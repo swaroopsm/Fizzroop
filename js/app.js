@@ -1314,10 +1314,23 @@ $(".delete_attendee_workshop").live("click", function(){
 **/
 
 $("#set_timer_link").live("click", function(){
-	$("#setTimerModal").modal({
-		keyboard: true,
-		backdrop: 'static',
-		show: true
+	$.getJSON(base_url+"conference/"+$("#current_conf").val(), function(data){
+		if(data[0].timer != null || data[0].timer != ""){
+			var obj = $.parseJSON(data[0].timer);
+			$("#inputTimer1").val(obj.timerTitle1);
+			$("#inputTimer2").val(obj.timerTitle2);
+			$("#inputTimer3").val(obj.timerTitle3);
+			$("#inputTimer4").val(obj.timerTitle4);
+			$("#inputTimerDate1").val(obj.timerDate1);
+			$("#inputTimerDate2").val(obj.timerDate2);
+			$("#inputTimerDate3").val(obj.timerDate3);
+			$("#inputTimerDate4").val(obj.timerDate4);
+		}
+		$("#setTimerModal").modal({
+			keyboard: true,
+			backdrop: 'static',
+			show: true
+		});
 	});
 	return false;
 });
