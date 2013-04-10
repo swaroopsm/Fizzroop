@@ -945,14 +945,19 @@ $(".single_page").live("click", function(){
 			for(var a in data[0].attendees){
 				attendees_list += "<div id='workshop_attendee_"+data[0].attendees[a].attendeeID+"'>"+data[0].attendees[a].attendeeFirstName+" "+data[0].attendees[a].attendeeLastName+" - "+data[0].attendees[a].attendeeEmail+" <a href='#' class='delete_attendee_workshop' id='delete_attendee_workshop_"+data[0].attendees[a].attendeeID+"' data-attendee='"+data[0].attendees[a].attendeeID+"'>Unassign</a></div>"
 			}
-			var attendees_workshop = "<div id='workshop_attendees' class='workshop_attendees'>"+attendees_list+"</div>";
+			if(attendees_list == "")
+				var attendees_workshop = "No Attendees are registered for this workshop yet.";
+			else
+				var attendees_workshop = "<div id='workshop_attendees' class='workshop_attendees'>"+attendees_list+"</div>";
+			var attended_by_label = "<p><h2>Attended By: </h2>"+attendees_workshop+"</p>";
 		}
 		else{
 			var seats = "";
 			var attendees_workshop = "";
+			var attended_by_label = "";
 		}
 		$("#pageModalLabel").html("<h2>"+data[0].pageTitle+"</h2>");
-		$("#pageData").html("<div><label>Title: </label> <input id='page_title_edit' value='"+data[0].pageTitle+"'/><input id='page_id' type='hidden' value='"+data[0].pageID+"'/><input id='page_type' type='hidden' value='"+data[0].pageType+"'/></div> Content: <div id='pageContent' class='pageContent' contenteditable='true'>"+data[0].pageContent+"</div>"+seats+" <form action='image/create' method='POST' id='page_image_form'><input type='hidden' id='inputPageID' name='inputPageID' value='"+data[0].pageID+"'/><input type='hidden' name='"+token[0]+"' value='"+token[1]+"'/>Upload Image: <input type='file' id='inputPageImage' name='inputPageImage'/></form><p>Uploaded Image: <img src='"+page_img+"' id='cur_img'/></p><p><h2>Attended By: </h2>"+attendees_workshop+"</p>");
+		$("#pageData").html("<div><label>Title: </label> <input id='page_title_edit' value='"+data[0].pageTitle+"'/><input id='page_id' type='hidden' value='"+data[0].pageID+"'/><input id='page_type' type='hidden' value='"+data[0].pageType+"'/></div> Content: <div id='pageContent' class='pageContent' contenteditable='true'>"+data[0].pageContent+"</div>"+seats+" <form action='image/create' method='POST' id='page_image_form'><input type='hidden' id='inputPageID' name='inputPageID' value='"+data[0].pageID+"'/><input type='hidden' name='"+token[0]+"' value='"+token[1]+"'/>Upload Image: <input type='file' id='inputPageImage' name='inputPageImage'/></form><p>Uploaded Image: <img src='"+page_img+"' id='cur_img'/></p>"+attended_by_label);
 		$("#pageModal").modal({
 			keyboard: true,
 			backdrop: 'static',
