@@ -69,6 +69,7 @@ $route['reviewer/abstract/assigned/(:num)'] = "reviewer/reviewer_abstracts_by_id
 $route['attendee/abstract'] = "attendee/abstract_view";
 $route['page/(:num)'] = "page/view_where/$1";
 $route['page/view'] = "page/select_where";
+$route['page/schedule/(:num)'] = "page/schedule/$1";
 $route['image/(:num)'] = "image/view_where/$1";
 $route['doattend/verify/(:num)'] = "attendee/check_ticket/$1";
 $route['export/(:any)'] = "csv/generator/$1";
