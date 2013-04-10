@@ -679,3 +679,12 @@ ul.dropdown-menu li {
 .message br:before {
 	content: "<br>";
 }
+
+.counters {
+	color: gray;
+	font-size: 90%;
+}
+
+.counters:before {
+	content: "Characters Left:";
+}
