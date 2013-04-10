@@ -957,7 +957,7 @@ $(".single_page").live("click", function(){
 			var attended_by_label = "";
 		}
 		$("#pageModalLabel").html("<h2>"+data[0].pageTitle+"</h2>");
-		$("#pageData").html("<div><label>Title: </label> <input id='page_title_edit' value='"+data[0].pageTitle+"'/><input id='page_id' type='hidden' value='"+data[0].pageID+"'/><input id='page_type' type='hidden' value='"+data[0].pageType+"'/></div> Content: <div id='pageContent' class='pageContent' contenteditable='true'>"+data[0].pageContent+"</div>"+seats+" <form action='image/create' method='POST' id='page_image_form'><input type='hidden' id='inputPageID' name='inputPageID' value='"+data[0].pageID+"'/><input type='hidden' name='"+token[0]+"' value='"+token[1]+"'/>Upload Image: <input type='file' id='inputPageImage' name='inputPageImage'/></form><p>Uploaded Image: <img src='"+page_img+"' id='cur_img'/></p>"+attended_by_label);
+		$("#pageData").html("<div><label>Title: </label> <input id='page_title_edit' value='"+data[0].pageTitle+"'/><input id='page_id' type='hidden' value='"+data[0].pageID+"'/><input id='page_type' type='hidden' value='"+data[0].pageType+"'/></div> Content: <div id='pageContent' class='pageContent' contenteditable='true'>"+data[0].pageContent+"</div> Extra Info: <div id='pageSubHeading' class='pageContent' contenteditable='true'>"+data[0].pageSubHeading+"</div>"+seats+" <form action='image/create' method='POST' id='page_image_form'><input type='hidden' id='inputPageID' name='inputPageID' value='"+data[0].pageID+"'/><input type='hidden' name='"+token[0]+"' value='"+token[1]+"'/>Upload Image: <input type='file' id='inputPageImage' name='inputPageImage'/></form><p>Uploaded Image: <img src='"+page_img+"' id='cur_img'/></p>"+attended_by_label);
 		$("#pageModal").modal({
 			keyboard: true,
 			backdrop: 'static',
@@ -980,12 +980,14 @@ $("button#save_page").live("click", function(){
 	var pageType = $("#page_type").val();
 	var seats = $("#page_seats_edit").val();
 	var seats_taken_count = $("#seats_taken_count").val();
+	var pageSubHeading = $("#pageSubHeading").html()
 	console.log(content)
 	$.post(
 		"page/update", 
 		{
 			"inputPageTitle": title,
-			"inputPageContent": content, 
+			"inputPageContent": content,
+			"inputPageSubHeading": pageSubHeading,
 			"inputPageID": pageID, 
 			"inputPageType": pageType,
 			"inputSeats": seats,
