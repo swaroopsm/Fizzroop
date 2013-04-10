@@ -27,6 +27,23 @@
 				<div class="clear"></div>
 		</div>
 		<div class="attcontainer">
+			<?php
+				if(count($a) > 0){
+			?>
+				<input id="inputAbstractID" value="<?php echo $a[0]['abstractID']; ?>" type="hidden">
+			<?php
+				}
+				else{
+					echo "<input type='' value=''>";
+				}
+			?>
+			
+			<!-- This is the bursary section. Put this code wherever necessary. Assigned to @gonecase -->
+			<input id="bursary_for" placeholder="bursary for"/>
+			<input id="bursary_why" placeholder="bursar why">
+			<button id="submit_bursary">Submit Bursary</button>
+			<!-- -->
+			
 			<?php 
 				if ($submitted == 1) {
 					$this->load->view("submitted");
