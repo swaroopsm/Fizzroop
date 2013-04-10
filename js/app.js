@@ -517,6 +517,9 @@ $("#manageAttendees").live("click", function(){
 							"attendeeFirstName": "<a href='#"+data[i].attendeeID+"' class='attendee_id'>"+data[i].attendeeFirstName+" "+data[i].attendeeLastName+"</a>",
 							//"attendeeLastName": "<a href='#"+data[i].attendeeID+"' class='attendee_id'>"+data[i].attendeeLastName+"</a>",
 							"attendeeEmail": data[i].attendeeEmail,
+							"attendeeInstAffiliation": data[i].attendeeInstAffiliation,
+							"attendeeNationality": data[i].attendeeNationality,
+							"attendeePhone": data[i].attendeePhone,
 							"registered": reg
 						});
 					}
@@ -540,6 +543,18 @@ $("#manageAttendees").live("click", function(){
 															{
 																"mDataProp": "attendeeEmail",
 																"sTitle": "Email"
+															},
+															{
+																"mDataProp": "attendeeInstAffiliation",
+																"sTitle": "Institution Affiliated"
+															},
+															{
+																"mDataProp": "attendeeNationality",
+																"sTitle": "Country"
+															},
+															{
+																"mDataProp": "attendeePhone",
+																"sTitle": "Phone"
 															},
 															{
 																"mDataProp": "registered",
@@ -585,7 +600,15 @@ $(".attendee_id").live("click", function(){
 			"<div id='editAttendeeForm'>"
 					+"<label for='inputAttendeeFirstName'>Firstname</label> <input id='inputAttendeeFirstName' value='"+data[0].attendeeFirstName+"'<br><br>"
 					+"<label for='inputAttendeeLastName'>Lastname</label> <input id='inputAttendeeLastName' value='"+data[0].attendeeLastName+"'<br><br>"
-					+"<label for='inputAttendeeEmail'>Email</label> <input id='inputAttendeeEmail' value='"+data[0].attendeeEmail+"'"
+					+"<label for='inputAttendeeEmail'>Email</label> <input id='inputAttendeeEmail' value='"+data[0].attendeeEmail+"'<br><br>"
+					+"<label for='inputAttendeeGender'>Gender</label> <input id='inputAttendeeGender' value='"+data[0].attendeeGender+"'<br><br>"
+					+"<label for='inputAttendeeDOB'>Date Of Birth</label> <input id='inputAttendeeDOB' value='"+data[0].attendeeDOB+"'> YYYY-MM-DD<br><br>"
+					+"<label for='inputAttendeeAcademic'>Academic Status</label> <input id='inputAttendeeAcademic' value='"+data[0].attendeeAcademic+"'<br><br>"
+					+"<label for='inputAttendeeInstAffiliation'>Institution Affiliated</label> <input id='inputAttendeeInstAffiliation' value='"+data[0].attendeeInstAffiliation+"'<br><br>"
+					+"<label for='inputAttendeeAddress'>Address</label> <textarea id='inputAttendeeAddress' rows='4' cols='30'>"+data[0].attendeeAddress+"</textarea><br><br>"
+					+"<label for='inputAttendeePhone'>Phone</label> <input id='inputAttendeePhone' value='"+data[0].attendeePhone+"'<br><br>"
+					+"<label for='inputAttendeeNationality'>Country</label> <input id='inputAttendeeNationality' value='"+data[0].attendeeNationality+"'<br><br>"
+					+"<label for='inputAttendeePassport'>Passport</label> <input id='inputAttendeePassport' value='"+data[0].attendeePassport+"'<br><br>"
 					+"</div>"
 		);
 		var reg = data[0].registered;
@@ -677,7 +700,15 @@ $("#attendee_edit_submit").live("click", function(){
 		inputAttendeeID: $("#inputAttendeeID").val(),
 		inputFirstName: $.trim($("#inputAttendeeFirstName").val()),
 		inputLastName: $.trim($("#inputAttendeeLastName").val()),
-		inputEmail: $.trim($("#inputAttendeeEmail").val())
+		inputEmail: $.trim($("#inputAttendeeEmail").val()),
+		inputGender: $.trim($("#inputAttendeeGender").val()),
+		inputDOB: $.trim($("#inputAttendeeDOB").val()),
+		inputAcademic: $.trim($("#inputAttendeeAcademic").val()),
+		inputInstAffiliation: $.trim($("#inputAttendeeInstAffiliation").val()),
+		inputAddress: $.trim($("#inputAttendeeAddress").val()),
+		inputPhone: $.trim($("#inputAttendeePhone").val()),
+		inputNationality: $.trim($("#inputAttendeeNationality").val()),
+		inputPassport: $.trim($("#inputAttendeePassport").val())
 	},
 	function(data){
 		console.log(data);
@@ -1033,7 +1064,8 @@ $("#manageCurConf").live("click", function(){
 	$("#ajaxer").html("<a href='#' id='publish_abstracts'>Publish Abstracts</a> &nbsp; \
 										 <a href='#' id='email_sel_att'>Email selected Attendees</a> &nbsp; \
 										 <a href='#' id='email_rej_att'>Email rejected Attendees</a> &nbsp;\
-										 <a href='#' id='email_all_att'>Email alerts to Attendees</a>");
+										 <a href='#' id='email_all_att'>Email alerts to Attendees</a> &nbsp; \
+										 <a href='#' id='set_timer_link'>Set Timers</a>");
 	return false;
 });
 
@@ -1248,5 +1280,43 @@ $(".delete_attendee_workshop").live("click", function(){
 			}
 		}
 	);
+	return false;
+});
+
+
+/**
+	*	Set Timer link click function.
+**/
+
+$("#set_timer_link").live("click", function(){
+	$("#setTimerModal").modal({
+		keyboard: true,
+		backdrop: 'static',
+		show: true
+	});
+	return false;
+});
+
+
+/**
+	*	Set Timer button click function.
+**/
+
+$("#set_timer_btn").live("click", function(){
+	$.post(base_url+"conference/set_timer",
+	{
+		inputTimer1: $("#inputTimer1").val(),
+		inputTimer2: $("#inputTimer2").val(),
+		inputTimer3: $("#inputTimer3").val(),
+		inputTimer4: $("#inputTimer4").val()
+	},
+	function(data){
+		var obj = $.parseJSON(data);
+		if(obj.success){
+			for(var i=1;i<=4;i++){
+				$("#inputTimer"+i).val('');
+			}
+		}
+	});
 	return false;
 });

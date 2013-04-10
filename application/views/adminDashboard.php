@@ -375,6 +375,38 @@
 	
 	<!-- End Send Email Alerts to all Attendees Modal -->
 	
+	
+	<!-- Set Timers Modal -->
+	
+	
+	<div id="setTimerModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="setTimerModalLabel" aria-hidden="true"  style="display: none;">
+		<div class="modal-header">
+		  <a class="close" data-dismiss="modal" aria-hidden="true" href="#">&times;</a>
+		  <h3 id="setTimerModalLabel">Set Timers</h3>
+		</div>
+		<div class="modal-body" id="setTimerModalData">
+		  <p>
+		  	<?php
+		  		echo form_label("Timer 1:", "inputTimer1", array("class" => "control-label")); 
+			  	echo form_input(array("name" => "inputTimer1", "id" => "inputTimer1", "class" => "", "placeholder" => "Timer 1"));
+			  	echo form_label("Timer 2:", "inputTimer2", array("class" => "control-label")); 
+			  	echo form_input(array("name" => "inputTimer2", "id" => "inputTimer2", "class" => "", "placeholder" => "Timer 2"));
+			  	echo form_label("Timer 3:", "inputTimer3", array("class" => "control-label")); 
+			  	echo form_input(array("name" => "inputTimer3", "id" => "inputTimer3", "class" => "", "placeholder" => "Timer 3"));
+			  	echo form_label("Timer 4:", "inputTimer4", array("class" => "control-label")); 
+			  	echo form_input(array("name" => "inputTimer4", "id" => "inputTimer4", "class" => "", "placeholder" => "Timer 4"));
+		  	?>
+		  	
+		  </p>
+		</div>
+		<div class="modal-footer">
+		  <button id="set_timer_btn">Set Timer</button>
+		</div>
+	</div>
+	
+	
+	<!-- End Set Timers Modal -->
+	
 	<div class="container">
 		<div id="ajaxer">
 		</div>

@@ -138,7 +138,15 @@
 						$data = array(
 						"attendeeFirstName" => $this->input->post("inputFirstName"),
 						"attendeeLastName" => $this->input->post("inputLastName"),
-						"attendeeEmail" => $this->input->post("inputEmail")
+						"attendeeEmail" => $this->input->post("inputEmail"),
+						"attendeeGender" => $this->input->post("inputGender"),
+						"attendeeDOB" => $this->input->post("inputDOB"),
+						"attendeeAcademic" => $this->input->post("inputAcademic"),
+						"attendeeInstAffiliation" => $this->input->post("inputInstAffiliation"),
+						"attendeeAddress" => $this->input->post("inputAddress"),
+						"attendeePhone" => $this->input->post("inputPhone"),
+						"attendeeNationality" => $this->input->post("inputNationality"),
+						"attendeePassport" => $this->input->post("inputPassport")
 					);
 						$where = array(
 							"attendeeID" => $this->input->post("inputAttendeeID")
