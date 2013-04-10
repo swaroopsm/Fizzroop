@@ -10,7 +10,7 @@
 <body>
 
 <div id="header">
-	<img src="<?php echo base_url(); ?>images/logo.png" alt="">
+	<a href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>images/logo.png" alt=""></a>
 	<h1>STUDENTS&#8217; CONFERENCE ON<br>CONSERVATION SCIENCE</h1>
 	<h2>25 - 28 SEPTEMBER, 2013, BANGALORE</h2>
 	<p class="desc">100 Presentations | 300 of Asia's brightest conservation researchers</p>
@@ -21,10 +21,10 @@
 
 <div id="mainmenu">
 	<ul id="nav_main">
-		<li><a href="#">Plenaries</a></li>
-		<li><a href="#">Talks/Posters</a></li>
-		<li><a href="#">Workshops</a></li>
-		<li><a href="#">Special Sessions</a></li>
+		<li><a href="<?php echo base_url()."plenaries/"; ?>">Plenaries</a></li>
+		<li><a href="<?php echo base_url()."viewabstracts/"; ?>">Talks/Posters</a></li>
+		<li><a href="<?php echo base_url()."workshops/"; ?>">Workshops</a></li>
+		<li><a href="<?php echo base_url()."specialsessions/"; ?>">Special Sessions</a></li>
 	</ul>
 	<div class="timer1 yellowback"><a href="<?php echo base_url(); ?>login">Login</a> | <a href="http://copyof-shortwing2.doattend.com/">Register</a></div>
 </div>
