@@ -56,7 +56,7 @@
 		
 		public function set_timer(){
 			if($_SERVER['REQUEST_METHOD'] == "POST" && $this->session->userdata("adminLoggedin") == true){
-				$timer = '{"timer1": "'.str_replace('"',"'",$this->input->post('inputTimer1')).'", "timer2": "'.str_replace('"',"'",$this->input->post('inputTimer2')).'", "timer3": "'.str_replace('"',"'",$this->input->post('inputTimer3')).'", "timer4": "'.str_replace('"',"'",$this->input->post('inputTimer4')).'"}';
+				$timer = '{"timerTitle1": "'.str_replace('"',"'",$this->input->post('inputTimer1')).'", "timerDate1": "'.str_replace('"',"'",$this->input->post('inputTimerDate1')).'", "timerTitle2": "'.str_replace('"',"'",$this->input->post('inputTimer2')).'", "timerDate2": "'.str_replace('"',"'",$this->input->post('inputTimerDate2')).'", "timerTitle3": "'.str_replace('"',"'",$this->input->post('inputTimer3')).'", "timerDate3": "'.str_replace('"',"'",$this->input->post('inputTimerDate3')).'", "timerTitle4": "'.str_replace('"',"'",$this->input->post('inputTimer4')).'", "timerDate4": "'.str_replace('"',"'",$this->input->post('inputTimerDate4')).'"}';
 				$this->conferences->update(
 					array(
 						"timer" => $timer
