@@ -171,3 +171,26 @@ $("a.workshops").click(function(){
 	wdiv.append("<h2>Workshops</h2><p>Workshop registrations will open in August. Please check the website for updates</p>");
 
 });
+
+
+/**
+	*	Bursary Submission.
+**/
+
+$("#submit_bursary").click(function(){
+	if($("#inputAbstractID").val() == ""){
+		console.log("No abstract submitted!");
+	}
+	else{
+		$.post(base_url+"abstract/add_bursary",
+		{
+			inputAbstractID: $("#inputAbstractID").val(),
+			inputBursary_For: $("#bursary_for").val(),
+			inputBursary_Why: $("#bursary_why").val()
+		},
+		function(data){
+			console.log(data);
+		});
+	}
+	return false;
+})

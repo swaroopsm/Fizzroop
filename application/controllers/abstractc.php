@@ -236,7 +236,7 @@
 	
 		public function update(){
 				if($_SERVER['REQUEST_METHOD'] == "POST"){
-					if($this->session->userdata("loggedin") == true || $this->session->userdata("adminLoggedin") == true){
+					if($this->session->userdata("adminLoggedin") == true){
 						$abstractTitle = $this->input->post("inputAbstractTitle");
 						$abstractContent = '{"methods": "'.$this->input->post('inputAbstractMethods').'", "aim": "'.$this->input->post('inputAbstractAim').'", "results": "'.$this->input->post('inputAbstractResults').'", "conservation": "'.$this->input->post('inputAbstractConservation').'"}';
 						$data = array(
@@ -261,6 +261,39 @@
 					show_404();
 				}
 			}
+	 	
+	 	
+	 	/**
+	 		*	Handles addition of Bursary.
+	 	**/
+	 	
+	 	public function add_bursary(){
+	 		if($this->session->userdata("loggedin") == true){
+	 			$abstractID = $this->input->post("inputAbstractID");
+	 			$q = $this->abstracts->select_where(array("attendeeID", "bursary"), array("abstractID" => $abstractID));
+	 			if($q->num_rows > 0){
+	 				$r = $q->result();
+	 				if($r[0]->attendeeID == $this->session->userdata("id")){
+	 					if($r[0]->bursary == null || $r[0]->bursary == ""){
+		 					$data = array(
+				 				"bursary" => '{"bursary_for": "'.$this->input->post("inputBursary_For").'", "bursary_why": "'.$this->input->post("inputBursary_Why").'"}'
+				 			);
+				 			$where = array(
+				 				"abstractID" => $abstractID
+				 			);
+				 			$this->abstracts->update($data, $where);
+				 			echo json_encode(array("success" => true));
+		 				}
+		 				else{
+		 					echo json_encode(array("success" => false, "message" => "Bursary information has already been submitted."));
+		 				}
+	 				}
+	 				else{
+	 					show_404();
+	 				}
+	 			}
+	 		}
+	 	}
 	 	
 	 	
 	 	/**
