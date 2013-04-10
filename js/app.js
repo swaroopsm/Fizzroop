@@ -1064,7 +1064,8 @@ $("#manageCurConf").live("click", function(){
 	$("#ajaxer").html("<a href='#' id='publish_abstracts'>Publish Abstracts</a> &nbsp; \
 										 <a href='#' id='email_sel_att'>Email selected Attendees</a> &nbsp; \
 										 <a href='#' id='email_rej_att'>Email rejected Attendees</a> &nbsp;\
-										 <a href='#' id='email_all_att'>Email alerts to Attendees</a>");
+										 <a href='#' id='email_all_att'>Email alerts to Attendees</a> &nbsp; \
+										 <a href='#' id='set_timer_link'>Set Timers</a>");
 	return false;
 });
 
@@ -1279,5 +1280,19 @@ $(".delete_attendee_workshop").live("click", function(){
 			}
 		}
 	);
+	return false;
+});
+
+
+/**
+	*	Set Timer link click function.
+**/
+
+$("#set_timer_link").live("click", function(){
+	$("#setTimerModal").modal({
+		keyboard: true,
+		backdrop: 'static',
+		show: true
+	});
 	return false;
 });
