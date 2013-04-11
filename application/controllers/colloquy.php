@@ -16,6 +16,9 @@ class Colloquy extends CI_Controller {
 	{
 		// need to pass the following data:
 		// plenaries and workshops from the latest year
+
+		$confstuff = $this->colloquy_model->get_timers(26);
+		$data['timers'] = $confstuff['timer'];
 		$workshops = $this->colloquy_model->get_four_page_by_type(3);
 		$plens = $this->colloquy_model->get_four_page_by_type(2);
 
