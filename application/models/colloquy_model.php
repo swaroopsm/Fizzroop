@@ -50,6 +50,11 @@ class Colloquy_model extends CI_Model {
 		return $query->result_array();
 	}
 
+	public function get_timers(){
+		$q = $this->db->get('conferences');
+		return $q->row_array();
+	}
+
 }
 
 /* End of file colloquy.php */
