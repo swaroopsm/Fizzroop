@@ -62,7 +62,7 @@
     						}
     						if(obj.flag == 2){
     							$("#signupForm").hide();
-    							if($.trim(obj.attendee.attendeeNationality).toLowerCase() != "indian"){
+    							if($.trim(obj.attendee.attendeeNationality).toLowerCase() != "india"){
     								var passport_req="<p><input type='text' id='inputPassport' name='inputPassport' placeholder='Your Passport ID'></p>";
     							}
     							else{
