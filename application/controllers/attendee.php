@@ -379,6 +379,36 @@
 		
 		
 		/**
+			* Handles change password view when link sent email is clicked.
+		**/
+	
+		public function reset_view(){
+			if($_SERVER['REQUEST_METHOD'] == "GET"){
+				$segment_array = $this->uri->segment_array(); 
+				$attendeeID = $segment_array[2];
+				$forgot_hash = $segment_array[3];
+				$q = $this->attendees->view_where(
+					array(
+						"attendeeID" => $attendeeID,
+						"forgot_hash" => $forgot_hash
+					)
+				);
+				if($q->num_rows() > 0){
+					$data['page_title'] = "Reset your password";
+					$data['attendeeID'] = $attendeeID;
+					$data['forgot_hash'] = $forgot_hash;
+					$this->load->view("reset_view", $data);
+				}
+				else{
+					show_404();
+				}
+			}
+			else{
+				show_404();
+			}
+		}
+		
+		/**
 			* Handles password reset for an Attendee.
 		**/
 		
