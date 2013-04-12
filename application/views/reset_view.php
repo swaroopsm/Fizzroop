@@ -19,6 +19,7 @@
       </div>
 		 <div class="container">
       <?php echo form_open("attendee/reset", array("class" => "form-signin")); ?>
+      	<div class='alert alert-error' style='padding: 0px;border: 0;margin-bottom: 0px;'><?php echo validation_errors("<div>","</div>"); ?></div>
         <?php if($this->session->flashdata('message')) ?>
 						<?php echo $this->session->flashdata('message'); ?>
         <input type="hidden" value="<?php echo $attendeeID; ?>" name="inputAttendeeID">
