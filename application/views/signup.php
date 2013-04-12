@@ -88,7 +88,7 @@
     						$("#js-messages").html("Your Ticket or Email does not match our records!");
     					}
     				}
-    			);
+    			});
     			return false;
     		});
     		
