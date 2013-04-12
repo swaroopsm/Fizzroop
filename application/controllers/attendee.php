@@ -460,7 +460,39 @@
 						);
 					}
 				}
-				
+				else{
+					// Rest password from public view after forgot action has been taken place.
+					$this->load->library('form_validation');
+					$this->form_validation->set_rules('inputPassword', 'Password', 'trim|required|min_length[8]');
+					$this->form_validation->set_rules('inputPasswordConfirm', 'Password Confirmation', 'trim|required|matches[inputPassword]|min_length[8]');
+					$this->form_validation->set_message('required', '%s is required.');
+					$this->form_validation->set_message('matches', 'Passwords do not match.');
+					$this->form_validation->set_message('min_length', '%s must be of at least 8 characters.');
+					if($this->form_validation->run() == FALSE){
+						$loaded_data['page_title'] = "Reset your password";
+						$loaded_data['attendeeID'] = $this->input->post("inputAttendeeID");
+						$loaded_data['forgot_hash'] = $this->input->post("inputForgotHash");
+						$this->load->view("reset_view", $loaded_data);
+					}
+					else{
+						$q = $this->attendees->view_where(array("attendeeID" => $this->input->post("inputAttendeeID"), "forgot_hash" => $this->input->post("inputForgotHash")));
+						if($q->num_rows() > 0){
+							$data = array(
+								"forgot_hash" => NULL,
+								"attendeePassword" => $this->encrypt->sha1($this->input->post("inputPassword").$this->encrypt->sha1($this->config->item("password_salt")))
+							);
+							$where = array(
+								"attendeeID" => $this->input->post("inputAttendeeID")
+							);
+							$this->attendees->update($data, $where);
+							$this->session->set_flashdata("message", "<span class='span3 alert alert-success' style='margin-left: 0px;font-size: 14px;'>Login with your new password</span>");
+				       redirect(base_url()."login");
+						}
+						else{
+							show_404();
+						}
+					}
+				}
 			}
 			else{
 				show_404();
