@@ -709,3 +709,7 @@ ul.dropdown-menu li {
 	background-color: #F0F0F0;
 	margin-top: 10px;
 }
+
+.bursaries {
+	display: none;
+}
