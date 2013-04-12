@@ -79,6 +79,7 @@ $route['workshops'] ="colloquy/viewtype/3";
 $route['plenaries'] ="colloquy/viewtype/2";
 $route['specialsessions'] ="colloquy/viewtype/4";
 $route['viewabstracts'] = "colloquy/viewabstracts";
+$route['forgot'] = "colloquy/forgot";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
