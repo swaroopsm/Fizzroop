@@ -451,6 +451,19 @@
 						);
 					}
 					}
+					elseif($this->session->userdata("adminLoggedin") == true){
+						$newPwd = $this->encrypt->sha1($this->input->post("inputNewPassword").$this->encrypt->sha1($this->config->item("password_salt")));
+						$data = array(
+							"attendeePassword" => $newPwd
+						);
+						$this->attendees->update($data, $where);
+						echo json_encode(array(
+								"success" => true,
+								"attendeeID" => $this->input->post("inputAttendeeID"),
+								"responseMsg" => "Passwords updated successfully!"
+							)
+						);
+					}
 					else{
 						echo json_encode(array(
 								"success" => false,
