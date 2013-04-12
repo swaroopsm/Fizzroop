@@ -80,6 +80,7 @@ $route['plenaries'] ="colloquy/viewtype/2";
 $route['specialsessions'] ="colloquy/viewtype/4";
 $route['viewabstracts'] = "colloquy/viewabstracts";
 $route['forgot'] = "colloquy/forgot";
+$route['reset/(:num)/(:any)'] = "attendee/reset_view/$1/$2";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
