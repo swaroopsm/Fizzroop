@@ -62,9 +62,6 @@
     						}
     						if(obj.flag == 2){
     							$("#signupForm").hide();
-    							if($.trim(obj.attendee.attendeeNationality).toLowerCase() != "indian"){
-    								// var passport_req="<p><input type='text' id='inputPassport' name='inputPassport' placeholder='Your Passport ID'></p>";
-                                    var passport_req="";
     							if($.trim(obj.attendee.attendeeNationality).toLowerCase() != "india"){
     								var passport_req="<p><input type='text' id='inputPassport' name='inputPassport' placeholder='Your Passport ID'></p>";
     							}
@@ -80,7 +77,6 @@
         						+" "+obj.attendee.attendeeLastName+"</p>"
         						+passport_req
         						+"<p><input type='password' id='inputPassword' name='inputPassword' placeholder='Your Password'></p>"
-                                +"<p><input type='password' id='inputPasswordCheck' name='inputPasswordCheck' placeholder='Confirm Password'></p>"
         						+"<input type='hidden' name='inputAttendeeID' id='inputAttendeeID' value='"+obj.attendee.attendeeID+"'>"
         						+"<input type='hidden' name='"+token[0]+"' id='"+token[0]+"' value='"+token[1]+"'>"
         						+"<p><button class='btn btn-primary btn-large' type='submit'>Update</button></p>"
@@ -102,25 +98,18 @@
     		**/
     		
     		$("#step2_reg_form").live("submit", function(){
-                if ($('#inputPassword').val() != $('#inputPasswordCheck').val()) {
-                    $("#js-messages").html("Your Ticket or Email does not match our records!");
-                    console.log("blah!");
-                    return false;
-                } else {
-                    console.log('Passwords match.');
-                    $.ajax({
-                        url: base_url+"attendee/register",
-                        type: "POST",
-                        data: $(this).serialize(),
-                        success: function(data){
-                            console.log(data);
-                            var obj = $.parseJSON(data);
-                            if(obj.success){
-                                $("#ajaxer").html("<div style='background: #fff;padding: 20px;text-align: center;'><h2>Congratulations you are registered.. <br> <a href='"+base_url+"login'>Login here</a></h2></div>")
-                            }
-                        }
-                    });
-                }
+    			$.ajax({
+    				url: base_url+"attendee/register",
+    				type: "POST",
+    				data: $(this).serialize(),
+    				success: function(data){
+    					console.log(data);
+    					var obj = $.parseJSON(data);
+    					if(obj.success){
+    						$("#ajaxer").html("<div style='background: #fff;padding: 20px;text-align: center;'><h2>Congratulations you are registered.. <br> <a href='"+base_url+"login'>Login here</a></h2></div>")
+    					}
+    				}
+    			});
     			return false;
     		});
     		
