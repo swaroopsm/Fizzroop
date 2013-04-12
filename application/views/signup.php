@@ -65,6 +65,8 @@
     							if($.trim(obj.attendee.attendeeNationality).toLowerCase() != "indian"){
     								// var passport_req="<p><input type='text' id='inputPassport' name='inputPassport' placeholder='Your Passport ID'></p>";
                                     var passport_req="";
+    							if($.trim(obj.attendee.attendeeNationality).toLowerCase() != "india"){
+    								var passport_req="<p><input type='text' id='inputPassport' name='inputPassport' placeholder='Your Passport ID'></p>";
     							}
     							else{
     								var passport_req="";

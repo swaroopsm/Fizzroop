@@ -315,6 +315,98 @@
 		}
 		
 		
+		/**
+			*	Handles creation of a forgot_hash and sends email instructions to the attendee's email if it exists.
+		**/
+		
+		public function forgot(){
+			$to = $this->input->post("inputEmail");
+			$q = $this->attendees->select_where(
+				array(
+					"attendeeID",
+					"attendeeFirstName",
+					"attendeeLastName",
+					"registered"
+				),
+				array(
+					"attendeeEmail" => $to
+				)
+			);
+			if($q->num_rows() > 0){
+				$r = $q->result();
+				if($r[0]->registered){
+					$forgot_hash = $this->encrypt->sha1($to.$this->encrypt->sha1($this->config->item("password_salt")).$this->encrypt->sha1(time()));
+					$this->attendees->update(
+						array(
+							"forgot_hash" => $forgot_hash
+						),
+						array(
+							"attendeeID" => $r[0]->attendeeID
+						)
+					);
+					$this->load->library('email');
+					$this->email->set_mailtype("html");
+					$this->email->from($this->config->item('service_email'), 'Password Reset for your SCCS account.');
+					$this->email->to($to); 
+					#$this->email->cc('another@another-example.com'); 
+					$this->email->subject('Password Reset Instructions for your SCCS account.');
+					$this->email->message(
+						"Hello ".$r[0]->attendeeFirstName." ".$r[0].attendeeLastName.", 
+						<p>
+							Please click the below link for instructions on reseting your password. <br>
+							<a href='".base_url()."reset/".$r[0]->attendeeID."/".$forgot_hash."'>Reset your password.</a>
+						</p>
+						<p>
+							Thank You!
+						</p>"
+					);	
+
+					$this->email->send();
+					
+					$this->session->set_flashdata("message", "<span class='span3 alert alert-success'><center>Password reset instructions are sent to your email.</center></span>");
+					redirect(base_url()."forgot");
+				}
+				else{
+					$this->session->set_flashdata("message", "<span class='span3 alert alert-danger'><center>You are not regiseterd yet.</center></span>");
+					redirect(base_url()."forgot");
+				}
+			}
+			else{
+				$this->session->set_flashdata("message", "<span class='span3 alert alert-danger'><center>We couldn't find that e-mail. Please <a href='".base_url()."participate'>Signup</a></center></span>");
+				redirect(base_url()."forgot");
+			}
+		}
+		
+		
+		/**
+			* Handles change password view when link sent email is clicked.
+		**/
+	
+		public function reset_view(){
+			if($_SERVER['REQUEST_METHOD'] == "GET"){
+				$segment_array = $this->uri->segment_array(); 
+				$attendeeID = $segment_array[2];
+				$forgot_hash = $segment_array[3];
+				$q = $this->attendees->view_where(
+					array(
+						"attendeeID" => $attendeeID,
+						"forgot_hash" => $forgot_hash
+					)
+				);
+				if($q->num_rows() > 0){
+					$data['page_title'] = "Reset your password";
+					$data['attendeeID'] = $attendeeID;
+					$data['forgot_hash'] = $forgot_hash;
+					$this->load->view("reset_view", $data);
+				}
+				else{
+					show_404();
+				}
+			}
+			else{
+				show_404();
+			}
+		}
 		
 		/**
 			* Handles password reset for an Attendee.
@@ -448,16 +540,16 @@
 						//echo $dob;
 						$data = array(
 							"attendeeFirstName" => $p['participant_information'][0]['info'],
-							"attendeeLastName" => $p['participant_information'][1]['info'],
+							"attendeeLastName" => $p['participant_information'][2]['info'],
 							"attendeeEmail" => $p["Email"],
 							"registered" => 1,
-							"attendeeGender" => $p['participant_information'][2]['info'],
+							"attendeeGender" => $p['participant_information'][1]['info'],
 							"attendeeDOB" => $dob,
 							"attendeeAcademic" => $p['participant_information'][4]['info'],
 							"attendeeInstAffiliation" => $p['participant_information'][5]['info'],
-							"attendeeAddress" => "", //@TODO Get Address key from the doAttend json.
+							"attendeeAddress" => $p['participant_information'][7]['info'],
 							"attendeePhone" => $p['participant_information'][6]['info'],
-							"attendeeNationality" => $p['participant_information'][7]['info'],
+							"attendeeNationality" => $p['participant_information'][8]['info'],
 							"attendeePassport" => "",
 							"attendeeTicket" => $p["Ticket_Number"],
 							"conferenceID" => $conferenceID
@@ -479,16 +571,16 @@
 							//echo $dob;
 							$data = array(
 								"attendeeFirstName" => $p['participant_information'][0]['info'],
-								"attendeeLastName" => $p['participant_information'][1]['info'],
+								"attendeeLastName" => $p['participant_information'][2]['info'],
 								"attendeeEmail" => $p["Email"],
 								"registered" => 1,
-								"attendeeGender" => $p['participant_information'][2]['info'],
+								"attendeeGender" => $p['participant_information'][1]['info'],
 								"attendeeDOB" => $dob,
 								"attendeeAcademic" => $p['participant_information'][4]['info'],
 								"attendeeInstAffiliation" => $p['participant_information'][5]['info'],
-								"attendeeAddress" => "", //@TODO Get Address key from the doAttend json.
+								"attendeeAddress" => $p['participant_information'][7]['info'],
 								"attendeePhone" => $p['participant_information'][6]['info'],
-								"attendeeNationality" => $p['participant_information'][7]['info'],
+								"attendeeNationality" => $p['participant_information'][8]['info'],
 								"attendeePassport" => "",
 								"attendeeTicket" => $p["Ticket_Number"],
 								"conferenceID" => $conferenceID

@@ -88,6 +88,15 @@ class Colloquy extends CI_Controller {
 			$this->load->view('public/abstracts');
 			$this->load->view('public/footer');
 	}
+	
+	
+	// Forgot Password View.
+	
+	public function forgot(){
+		$data['page_title'] = "Forgot Password";
+		$data['message'] = $this->session->flashdata('message');
+		$this->load->view("forgot", $data);
+	}
 
 
 }
