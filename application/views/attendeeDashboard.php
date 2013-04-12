@@ -34,7 +34,7 @@
 			<?php
 				}
 				else{
-					echo "<input type='' value=''>";
+					echo "<input type='hidden' value=''>";
 				}
 			?>
 			
