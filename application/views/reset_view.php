@@ -21,7 +21,10 @@
       <?php echo form_open("attendee/reset", array("class" => "form-signin")); ?>
         <?php if($this->session->flashdata('message')) ?>
 						<?php echo $this->session->flashdata('message'); ?>
-        <input type="text" class="input-block-level" placeholder="Your Email" name="inputEmail">
+        <input type="hidden" value="<?php echo $attendeeID; ?>" name="inputAttendeeID">
+				<input type="hidden" value="<?php echo $forgot_hash; ?>" name="inputForgotHash">
+        <input type="password" class="input-block-level" placeholder="Password" name="inputPassword" id="inputLoginPwd">
+        <input type="password" class="input-block-level" placeholder="Confirm Password" name="inputPasswordConfirm" id="inputLoginPwd">
         <button class="btn btn-large btn-primary" type="submit">Submit</button>
       <?php echo form_close(); ?>
     </div> 
