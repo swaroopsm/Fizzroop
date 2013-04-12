@@ -448,16 +448,16 @@
 						//echo $dob;
 						$data = array(
 							"attendeeFirstName" => $p['participant_information'][0]['info'],
-							"attendeeLastName" => $p['participant_information'][1]['info'],
+							"attendeeLastName" => $p['participant_information'][2]['info'],
 							"attendeeEmail" => $p["Email"],
 							"registered" => 1,
-							"attendeeGender" => $p['participant_information'][2]['info'],
+							"attendeeGender" => $p['participant_information'][1]['info'],
 							"attendeeDOB" => $dob,
 							"attendeeAcademic" => $p['participant_information'][4]['info'],
 							"attendeeInstAffiliation" => $p['participant_information'][5]['info'],
-							"attendeeAddress" => "", //@TODO Get Address key from the doAttend json.
+							"attendeeAddress" => $p['participant_information'][7]['info'],
 							"attendeePhone" => $p['participant_information'][6]['info'],
-							"attendeeNationality" => $p['participant_information'][7]['info'],
+							"attendeeNationality" => $p['participant_information'][8]['info'],
 							"attendeePassport" => "",
 							"attendeeTicket" => $p["Ticket_Number"],
 							"conferenceID" => $conferenceID
@@ -479,16 +479,16 @@
 							//echo $dob;
 							$data = array(
 								"attendeeFirstName" => $p['participant_information'][0]['info'],
-								"attendeeLastName" => $p['participant_information'][1]['info'],
+								"attendeeLastName" => $p['participant_information'][2]['info'],
 								"attendeeEmail" => $p["Email"],
 								"registered" => 1,
-								"attendeeGender" => $p['participant_information'][2]['info'],
+								"attendeeGender" => $p['participant_information'][1]['info'],
 								"attendeeDOB" => $dob,
 								"attendeeAcademic" => $p['participant_information'][4]['info'],
 								"attendeeInstAffiliation" => $p['participant_information'][5]['info'],
-								"attendeeAddress" => "", //@TODO Get Address key from the doAttend json.
+								"attendeeAddress" => $p['participant_information'][7]['info'],
 								"attendeePhone" => $p['participant_information'][6]['info'],
-								"attendeeNationality" => $p['participant_information'][7]['info'],
+								"attendeeNationality" => $p['participant_information'][8]['info'],
 								"attendeePassport" => "",
 								"attendeeTicket" => $p["Ticket_Number"],
 								"conferenceID" => $conferenceID
