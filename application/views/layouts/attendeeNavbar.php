@@ -1,6 +1,7 @@
 <div class="message">
   <p>Hi <?php echo $attendeeFirstName." ".$attendeeLastName; ?>!</p>
-        <p>This page is where you can <a href="#" class="absubmit"> submit your abstract</a> and sign up for <a href="#" class="workshops">workshops</a> for SCCS. Make sure you <a href="#" class="absguide">read the abstract submission guidelines</a> before you submit. Once submitted, you cannot change your abstract, so please be sure of it.</p></div>
+        <p>This page is where you can <a href="#" class="absubmit"> submit your abstract</a> and sign up for <a href="#" class="workshops">workshops</a> for SCCS-2013. Make sure you <a href="#" class="absguide">read the abstract submission guidelines</a> before you submit. Once submitted, you cannot change your abstract."</p>
+      </div>
       <div class="submitabstractform">
         <h2>Submit Abstract</h2>
         <p>Be sure you <a href="#" class="absguide">read the abstract submission guidelines</a> first!</p>
