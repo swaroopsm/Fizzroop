@@ -196,7 +196,8 @@
 			 				"score" => $q2,
 			 				"comments" => $r3,
 			 				"detailed_scores" => $detailed_score,
-			 				"approved" => $row->approved
+			 				"approved" => $row->approved,
+			 				"bursary" => $row->bursary
 			 			);
 			 		}
 			 		echo json_encode($result);
