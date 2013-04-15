@@ -45,7 +45,7 @@
         <?php echo form_radio(array('name'=>'bursary_pref', 'id' => 'bursary_yes', 'value'=>'1', 'class'=>'radio')); ?>Yes
         <?php echo form_radio(array('name'=>'bursary_pref', 'id' => 'bursary_no', 'value'=>'0','class'=>'radio')); ?>No
         <br>
-        <div class="bursaries" id="bursaries">
+        <div class="bursaries_options" id="bursaries_options">
         	<?php // echo form_input(array("id" => "inputBursary_For", "name" => "inputBursary_For", "placeholder" => "bursary for")) ?>
           <p>If yes, please us the space below to provide a justification for why you should receive a bursary</p>
         	<?php echo form_input(array("id" => "inputBursary_Why", "name" => "inputBursary_Why", "placeholder" => "Why do you want a bursary?")) ?>
