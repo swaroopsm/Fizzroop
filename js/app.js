@@ -275,6 +275,12 @@ $(".abstract_title").live("click", function(){
 	$("#abstractContent").html("");
 	$.getJSON("abstract/"+id, function(data){
 		console.log(data);
+		if(data[0].bursary){
+			var bursary = $.parseJSON(data[0].bursary);
+		}
+		else{
+			var bursary = "";
+		}
 		$("#hidden_abstractID").html("<input type='hidden' id='abstractID' value='"+data[0].abstractID+"'/>");
 		$("#abstractModalLabel").html(data[0].abstractTitle);
 		var abstractimageurl = "";
@@ -360,6 +366,10 @@ $(".abstract_title").live("click", function(){
 			+"<div class='editable' contenteditable='true' id='edit_abstract_conservation'>"+abstractcontent.conservation+"</div></div>"
 			+"<div class='abscontentdiv'><h3>Results</h3>"
 			+"<div class='editable' contenteditable='true' id='edit_abstract_results'>"+abstractcontent.results+"</div>"
+			+"</div>"
+			+"<div><br><h3>Bursary</h3>"
+			+"<p>Why Bursar: "+bursary.bursary_why+"</p>"
+			+"<p>Reason for Bursar: "+bursary.bursary_for+"</p>"
 			+"</div>"
 			+"<br><button class='btn btn-primary' id='abstract_edit_submit'>Save changes</button>"
 			+"</div>"
