@@ -131,10 +131,10 @@ $("a.abview").click(function(){
 		messagediv.append("<h2>"+data[0].abstractTitle+"</h2><p class='name'>"+name+"</p><img src='"+data[0].abstractImageFolder+"'>");
 		var abscontent = data[0].abstractContent;
 		abscontent = $.parseJSON(abscontent);
-		messagediv.append("<h3>Methods</h3><p>"+abscontent.methods+"</p>");
-		messagediv.append("<h3>Aim</h3><p>"+abscontent.aim+"</p>");
-		messagediv.append("<h3>Results</h3><p>"+abscontent.results+"</p>");
-		messagediv.append("<h3>Conservation</h3><p>"+abscontent.conservation+"</p>");
+		messagediv.append("<h3>What conservation problem or question does your talk/poster address?</h3><p>"+abscontent.aim+"</p>");
+		messagediv.append("<h3>What were the main research methods you used?</h3><p>"+abscontent.methods+"</p>");
+		messagediv.append("<h3>What are your most important results?</h3><p>"+abscontent.results+"</p>");
+		messagediv.append("<h3>What is the relevance of your results to conservation?</h3><p>"+abscontent.conservation+"</p>");
 		console.log(abscontent);
 		
 	});
