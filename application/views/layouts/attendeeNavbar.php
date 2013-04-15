@@ -41,9 +41,8 @@
         <?php echo form_radio(array('name'=>'bursary_pref', 'id' => 'bursary_no', 'value'=>'0','class'=>'radio')); ?>No
         <br>
         <div class="bursaries" id="bursaries">
-        	<?php echo form_input(array("id" => "bursary_for", "placeholder" => "bursary for")) ?>
-        	<?php echo form_input(array("id" => "bursary_why", "placeholder" => "bursary why")) ?>
-					<button id="submit_bursary">Submit Bursary</button>
+        	<?php echo form_input(array("id" => "inputBursary_For", "name" => "inputBursary_For", "placeholder" => "bursary for")) ?>
+        	<?php echo form_input(array("id" => "inputBursary_Why", "name" => "inputBursary_Why", "placeholder" => "bursary why")) ?>
 				</div>
         <input class="subButton" type="submit" value="Submit Abstract"/> <div class="preview">PREVIEW ABSTRACT</div>
         <?php echo form_close(); ?>
