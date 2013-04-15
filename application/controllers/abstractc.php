@@ -27,7 +27,8 @@
 						echo json_encode(array("success" => false, "message" => "You have already submitted an Abstract for this Conference"));
 					}
 					else{
-						$abstractTitle = $this->input->post("inputAbstractTitle");str_replace('"',"'",$text);
+						$abstractTitle = $this->input->post("inputAbstractTitle");
+						//str_replace('"',"'",$text);
 						$abstractContent = '{"methods": "'.str_replace('"',"'",$this->input->post('inputAbstractMethods')).'", "aim": "'.str_replace('"',"'",$this->input->post('inputAbstractAim')).'", "results": "'.str_replace('"',"'",$this->input->post('inputAbstractResults')).'", "conservation": "'.str_replace('"',"'",$this->input->post('inputAbstractConservation')).'"}';
 						$file = "inputAbstractImage";
 						$config['upload_path'] = $this->config->item("upload_path");
