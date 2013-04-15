@@ -13,18 +13,23 @@
         ?>
         
         <?php
-          echo form_label("Methods:", "inputAbstractMethods", array("class" => "control-label")); 
-          echo form_textarea(array("name" => "inputAbstractMethods", "id" => "inputAbstractMethods", "class" => "", "placeholder" => "What methods did you use for your abstract?"));
-          echo "<div class='counters' id='charmeth'></div>";
-          echo form_label("Aim:", "inputAbstractAim", array("class" => "control-label")); 
-          echo form_textarea(array("name" => "inputAbstractAim", "id" => "inputAbstractAim", "class" => "", "placeholder" => "What aims have you set up?"));
+
+          echo form_label("What conservation problem or question does your talk/poster address?", "inputAbstractAim", array("class" => "control-label")); 
+          echo form_textarea(array("name" => "inputAbstractAim", "id" => "inputAbstractAim", "class" => "", "placeholder" => "What conservation problem or question does your talk/poster address?"));
           echo "<div class='counters' id='charaim'></div>";
-          echo form_label("Conservation:", "inputAbstractConservation", array("class" => "control-label")); 
-          echo form_textarea(array("name" => "inputAbstractConservation", "id" => "inputAbstractConservation", "class" => "", "placeholder" => "What methods did you use for your abstract?"));
-          echo "<div class='counters' id='charcons'></div>";
-          echo form_label("Results:", "inputAbstractResults", array("class" => "control-label")); 
-          echo form_textarea(array("name" => "inputAbstractResults", "id" => "inputAbstractResults", "class" => "", "placeholder" => "What aims have you set up?"));
+
+          echo form_label("What were the main research methods you used?", "inputAbstractMethods", array("class" => "control-label")); 
+          echo form_textarea(array("name" => "inputAbstractMethods", "id" => "inputAbstractMethods", "class" => "", "placeholder" => "What were the main research methods you used?"));
+          echo "<div class='counters' id='charmeth'></div>";
+          
+          echo form_label("What are your most important results?", "inputAbstractResults", array("class" => "control-label")); 
+          echo form_textarea(array("name" => "inputAbstractResults", "id" => "inputAbstractResults", "class" => "", "placeholder" => "What are your most important results?"));
           echo "<div class='counters' id='charres'></div>";
+
+          echo form_label("What is the relevance of your results to conservation?", "inputAbstractConservation", array("class" => "control-label")); 
+          echo form_textarea(array("name" => "inputAbstractConservation", "id" => "inputAbstractConservation", "class" => "", "placeholder" => "What is the relevance of your results to conservation?"));
+          echo "<div class='counters' id='charcons'></div>";
+          
         ?>
         
         <p>Upload your graphical abstract. <em>Your image must be of this specified size and this thing.</em></p>
