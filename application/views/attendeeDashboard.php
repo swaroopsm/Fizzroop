@@ -22,7 +22,6 @@
 				 
 				<a href="#" class="absguide">Abstract Submission Guidelines</a> 
 				<a href="#" class="workshops">Register for Workshops</a> 
-				<a href="#" class="burse">Bursaries</a> 
 				<a href="<?php echo base_url().'logout' ?>">Log out</a></div>
 				<div class="clear"></div>
 		</div>
