@@ -100,13 +100,6 @@
 			<p>No workshops have been finalised yet. Come back later and check it out.</p>
 		</div>
 
-		<div class="bursaries">
-			<input id="bursary_for" placeholder="bursary for"/>
-			<input id="bursary_why" placeholder="bursar why">
-			<button id="submit_bursary">Submit Bursary</button>
-		</div>
-
-
 		<br><br><br><br><br><br><br><br><br>
 		<script src="<?php echo base_url().'js/jquery.js'; ?>"></script>
 		<script src="<?php echo base_url().'js/jquery.form.js'; ?>"></script>
