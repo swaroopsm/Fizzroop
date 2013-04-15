@@ -41,8 +41,12 @@
         <?php echo form_radio(array('name'=>'bursary_pref', 'id' => 'bursary_no', 'value'=>'0','class'=>'radio')); ?>No
         <br>
         <div class="bursaries" id="bursaries">
-        	<?php echo form_input(array("id" => "inputBursary_For", "name" => "inputBursary_For", "placeholder" => "bursary for")) ?>
-        	<?php echo form_input(array("id" => "inputBursary_Why", "name" => "inputBursary_Why", "placeholder" => "bursary why")) ?>
+        	<?php // echo form_input(array("id" => "inputBursary_For", "name" => "inputBursary_For", "placeholder" => "bursary for")) ?>
+          <p>If yes, please us the space below to provide a justification for why you should receive a bursary</p>
+        	<?php echo form_input(array("id" => "inputBursary_Why", "name" => "inputBursary_Why", "placeholder" => "Why do you want a bursary?")) ?>
+          <p>Would you like SCCS-2013 to arrange accommodation for you during the conference (September 24th-29th)?</p>
+          <?php echo form_radio(array('name'=>'inputBursary_For', 'id'=>'full', 'value'=>'Travel+Accommodation','class'=>'radio')); ?>Yes
+          <?php echo form_radio(array('name'=>'inputBursary_For', 'id'=>'travel', 'value'=>'Travel', 'class'=>'radio')); ?>No
 				</div>
         <input class="subButton" type="submit" value="Submit Abstract"/> <div class="preview">PREVIEW ABSTRACT</div>
         <?php echo form_close(); ?>
