@@ -87,10 +87,19 @@
 
 
 			<h2>Graphical Abstract Guidelines</h2>
+			<p><strong>Examples of graphical abstracts:</strong>
+				<a href="<?php echo base_url(); ?>/images/graph1.jpg" target="_blank">Example 1</a>
+				<a href="<?php echo base_url(); ?>/images/graph2.jpg" target="_blank">Example 2</a>
+				<a href="<?php echo base_url(); ?>/images/graph3.jpg" target="_blank">Example 3</a>
+				<a href="<?php echo base_url(); ?>/images/graph4.jpg" target="_blank">Example 4</a>
+				<a href="<?php echo base_url(); ?>/images/graph5.jpg" target="_blank">Example 5</a>
+				<a href="<?php echo base_url(); ?>/images/graph6.jpg" target="_blank">Example 6</a>
+			</p>
 			<p>In addition to the textual abstract described above, participants also need to submit a graphical abstract.  A graphical abstract is a single illustration that captures the main findings of a study. This could be either in the form of a graph or a table illustrating the main result,  a visual that depicts a summary of the study, or a flow diagram outlining a conservation problem and the science-based conservation intervention and outcome, based on which the abstract is being submitted. The graphical abstract should be self-explanatory with all the relevant information including appropriate data labels, axis titles, as well as a figure legend which should include the title of the presentation and the author's name.  Please see the examples provided to help you make your own graphical abstract.</p>
 			<p>Graphical abstracts need to be uploaded as a single image file (formats allowed include jpeg, tiff, and pdf) in addition to the textual abstract during the submission process. The easiest way to make your graphical abstract is to compose it on a single MS Powerpoint slide (as done in the examples)  and then save that slide as an image file (formats allowed include jpeg, tiff, and pdf) to submit. Participants are however free to use any method/software to make their graphical abstract as long as the final submitted file is one of the formats prescribed.  Before submitting, make sure that the graphical abstract is of adequate resolution to be easily readable.</p>
 			<p>Please remember that the purpose of the graphical abstract is to highlight the data that you plan to present and clearly convey your main findings. Therefore graphical abstracts will only be judged according to the clarity of the message conveyed and not by their visual appeal.</p>
 			<p>Submission of both graphical and text abstracts is compulsory.  The graphical and textual abstracts, in combination, should clearly communicate the following to the reviewers i. the time period over which the study was conducted; ii. types of data that were collected and iii. the sample size (N). The reviewers will be using these as key parameters while evaluating the abstracts for selection for a talk or a poster to be presented in SCCS-Bangalore 2013."</p>
+			
 			<p><em>The content on this page is a slightly modified version of guidelines prepared by Dr. Geoff Hyde, with assistance from Nandini Velho.</em></p>
 
 		</div>
