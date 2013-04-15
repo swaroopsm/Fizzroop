@@ -44,6 +44,7 @@
 							"conferenceID" => $this->session->userdata("conferenceID"),
 							"attendeeID" => $this->session->userdata("id"),
 							"attendeePreference" => $this->input->post("inputAbstractPreference"),
+							"bursary" => '{"bursary_for": "'.$this->input->post("inputBursary_For").'", "bursary_why": "'.$this->input->post("inputBursary_Why").'"}',
 							"abstractImageFolder" => $a['file_name']
 						);
 							$this->abstracts->insert($data);
