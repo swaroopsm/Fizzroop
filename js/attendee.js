@@ -204,10 +204,14 @@ $("input:radio[name='bursary_pref']").live("click", function(){
 	var id = $(this).val();
 	$(this).attr("checked", true)
 	if(id == "1"){
+		$("#inputBursary_For").val("");
+		$("#inputBursary_Why").val("");
 		$("#bursary_no").removeAttr("checked");
 		$("#bursaries").show();
 	}
 	else{
+		$("#inputBursary_For").val("nil");
+		$("#inputBursary_Why").val("nil");
 		$("#bursary_yes").removeAttr("checked");
 		$("#bursaries").hide();
 	}
