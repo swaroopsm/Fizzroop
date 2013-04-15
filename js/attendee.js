@@ -194,3 +194,22 @@ $("#submit_bursary").click(function(){
 	}
 	return false;
 })
+
+
+/**
+	*	Bursaries radio button click function.
+**/
+
+$("input:radio[name='bursary_pref']").live("click", function(){
+	var id = $(this).val();
+	$(this).attr("checked", true)
+	if(id == "1"){
+		$("#bursary_no").removeAttr("checked");
+		$("#bursaries").show();
+	}
+	else{
+		$("#bursary_yes").removeAttr("checked");
+		$("#bursaries").hide();
+	}
+	return false;
+});
