@@ -32,7 +32,7 @@
           
         ?>
         
-        <p>Upload your graphical abstract. <em>Your image must be of this specified size and this thing.</em></p>
+        <p>Upload your graphical abstract. <em>Your image must be no wider than 1024px and no taller than 800px. Only JPG, PNG, GIF formats.</em></p>
         <?php
           echo form_upload(array("name" => "inputAbstractImage", "onchange"=>"readURL(this);"));
         ?>
