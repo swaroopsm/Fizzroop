@@ -974,6 +974,8 @@ $(".single_page").live("click", function(){
 
 			show: true
 		});
+		var wysiwyg = new Wysiwyg;
+		wysiwyg.el.insertBefore('#pageContent');
 	});
 	return false;
 })
