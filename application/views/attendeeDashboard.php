@@ -22,6 +22,7 @@
 				 
 				<a href="#" class="absguide">Abstract Submission Guidelines</a> 
 				<a href="#" class="workshops">Register for Workshops</a> 
+				<a href="#" class="account">My Account</a> 
 				<a href="<?php echo base_url().'logout' ?>">Log out</a></div>
 				<div class="clear"></div>
 		</div>
@@ -49,7 +50,7 @@
 				}
 			?>
 		</div>
-
+		<input type="hidden" id="hidden_attendeeID" value="<?php echo $this->session->userdata('id'); ?>">
 		<div class="guidelines">
 			<h1>Abstract Guidelines</h1>
 			<p><strong>Your abstract should be organized in the following four sections, each with its own sub-heading:</strong><br>
