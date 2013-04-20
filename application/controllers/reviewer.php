@@ -563,7 +563,8 @@
 						$this->reviewers->delete($data);
 						echo json_encode(array(
 								"success" => true,
-								"responseMsg" => "Reviewer has been removed!"
+								"responseMsg" => "Reviewer has been removed!",
+								"total_reviewers" => $this->reviewers->select(array("reviewerID"))->num_rows()
 							)
 						);
 				}
