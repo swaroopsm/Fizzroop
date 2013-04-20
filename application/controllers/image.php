@@ -10,6 +10,7 @@
 			parent::__construct();
 			$this->load->library("session");
 			$this->load->model("images");
+			$this->load->library("uri");
 		}
 		
 		
@@ -111,7 +112,7 @@
 		
 		public function delete(){
 			if($this->session->userdata("adminLoggedin") == true){
-				$id = $this->input->post("inputImageID");
+				$id = $this->uri->segment(3);
 				$q = $this->images->view_where(array("imageID" => $id));
 				if($q->num_rows() > 0){
 					$r = $q->result();
