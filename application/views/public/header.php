@@ -21,10 +21,36 @@
 
 <div id="mainmenu">
 	<ul id="nav_main">
-		<li><a href="<?php echo base_url()."plenaries/"; ?>">Plenaries</a></li>
-		<li><a href="<?php echo base_url()."viewabstracts/"; ?>">Talks/Posters</a></li>
-		<li><a href="<?php echo base_url()."workshops/"; ?>">Workshops</a></li>
-		<li><a href="<?php echo base_url()."specialsessions/"; ?>">Special Sessions</a></li>
+		<li><a href="#" class="main_top">Participate</a>
+			<ul>
+				<li><a href="<?php echo base_url()."viewpage/16"; ?>">Who Can Participate</a></li>
+				<li><a href="<?php echo base_url()."viewpage/17"; ?>">Register To Attend</a></li>
+				<li><a href="<?php echo base_url()."viewpage/19"; ?>">Submit an Abstract</a></li>
+				<li><a href="<?php echo base_url()."viewpage/23"; ?>">Workshop Registration</a></li>
+				<li><a href="<?php echo base_url()."viewpage/20"; ?>">Fees and Bursaries</a></li>
+				<li><a href="<?php echo base_url()."viewpage/21"; ?>">Accomodation</a></li>
+				<li><a href="<?php echo base_url()."viewpage/22"; ?>">Who's Who in Conservation</a></li>
+			</ul>
+		</li>
+		<li><a href="#" class="main_top">Programme</a>
+			<ul>
+				<li><a href="<?php echo base_url()."schedule/" ?>">Schedule</a></li>
+				<li><a href="<?php echo base_url()."plenaries/"; ?>">Plenaries</a></li>
+				<li><a href="<?php echo base_url()."viewabstracts/"; ?>">Talks/Posters</a></li>
+				<li><a href="<?php echo base_url()."workshops/"; ?>">Workshops</a></li>
+				<li><a href="<?php echo base_url()."specialsessions/"; ?>">Special Sessions</a></li>
+			</ul>
+		</li>
+		<li><a href="#" class="main_top">Venue</a>
+			<ul>
+				<li><a href="<?php echo base_url()."viewpage/16"; ?>">Getting to IISc</a></li>
+				<li><a href="<?php echo base_url()."viewpage/16"; ?>"></a>Getting Around IISc</li>
+				<li><a href="<?php echo base_url()."viewpage/16"; ?>"></a>About Bangalore</li>
+			</ul>
+		</li>
+		<li><a href="#" class="main_top">Information for Presenters</a></li>
+		<li><a href="#" class="main_top">Earlier Events</a></li>
+		
 	</ul>
 	<div class="timer1 yellowback"><a href="<?php echo base_url(); ?>login">Login</a> | <a href="http://copyof-shortwing2.doattend.com/">Register</a></div>
 </div>
