@@ -1387,6 +1387,7 @@ $("#reviewer_delete_submit").live("click", function(){
 			if(obj.success){
 				$("#reviewersModal").modal('hide');
 				$("#reviewer_row_"+reviewer).parent().parent().fadeOut(300);
+				$("#total_reviewers_count").html(obj.total_reviewers);
 			}
 		}
 	);
