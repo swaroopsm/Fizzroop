@@ -114,6 +114,7 @@ ul#nav_main li {
 	display: inline-block;
 	margin-left: 30px;
 	padding: 10px;
+	position: relative;
 }
 
 ul#nav_main li:first-child {
@@ -126,6 +127,28 @@ ul#nav_main li:hover {
 
 ul#nav_main li a {
 	color: white;
+}
+
+ul#nav_main li ul {
+	display: none;
+	position: absolute;
+	background-color: black;
+	margin-top: 10px;
+	margin-left: -10px;
+	text-align: left;
+}
+
+ul#nav_main li ul li {
+	margin: 0px;
+	width: 170px;
+}
+
+ul#nav_main li ul li a {
+	margin: 0px;
+}
+
+ul#nav_main li:hover ul {
+	display: block;
 }
 
 .timer1 {

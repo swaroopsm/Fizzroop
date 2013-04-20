@@ -9,8 +9,17 @@ if ($singlepage['pageType'] == 3) {
 ?>
 </div>
 
+
+
 <h1><?php echo $singlepage['pageTitle']; ?></h1>
-<div class="full" style="background-image: url('<?php echo base_url(); ?>/uploads/<?php print_r($imagepath["image"]); ?>');"></div>
+<?php
+	if (array_key_exists('images', $imagepath)){ ?>
+		<div class="full" style="background-image: url('<?php echo base_url(); ?>/uploads/<?php print_r($imagepath["image"]); ?>');"></div>
+<?php	} else {
+		
+	}
+?>
+
 
 <?php echo $singlepage['pageContent']; ?>
 
