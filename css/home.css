@@ -420,8 +420,8 @@ span.small {
 
 
 #sponsorsandpartners {
-	width: 100%;
-	margin-bottom: 60px;
+	margin: 60px auto;
+	text-align: center;
 }
 
 #organisingcomittee {
@@ -440,12 +440,12 @@ span.small {
 
 
 .s {
-	width: 120px;
+	width: 80px;
 	display: inline-block;
 }
 
 .l {
-	width: 290px;
+	width: 200px;
 	display: inline-block;
 }
 
@@ -514,6 +514,10 @@ ul.footerlinks li a:hover {
 	display: inline-block;
 }
 
+.timer p {
+	font-size: 80%;
+}
+
 .timer h2 {
 	margin-top: -10px;
 	margin-bottom: 10px;
@@ -525,13 +529,20 @@ ul.footerlinks li a:hover {
 
 .timerdate {
 	display: inline-block;
-	font-size: 250%;
+	font-size: 150%;
+	position: relative;
+	top: 0px;
+	line-height: 1;
 }
 
 .timermonth {
 	display: inline-block;
-	position: relative;
-	top: -20px;
+	font-size: 250%;
+}
+
+.timeryear {
+	font-size: 50%;
+	line-height: .8;
 }
 
 
