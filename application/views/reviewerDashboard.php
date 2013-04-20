@@ -16,7 +16,7 @@
 				<h1>SCCS</h1>
 				<p id="poweredby">powered by Colloquy </p>
 				<p id="down"> <a href="#"> <img src="images/dropdown.jpg" width="23" height="23" alt=""> </a></p>
-				<p>You are logged in as <?php echo $reviewerName; ?> | <a href="logout">Logout </a> </p>
+				<p>You are logged in as <?php echo $reviewerName; ?> | <a href="#" id="account_link">My Account</a> | <a href="logout">Logout </a> </p>
 				<div class="clear"></div>
 			</div>
 		</div>
@@ -43,6 +43,26 @@
 	<!-- End Abstract Modal -->
 	
 	
+	<!-- Account Modal -->
+	
+	<div id="accountModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="accountModalLabel" aria-hidden="true"  style="display: none;">
+		<div class="modal-header">
+		  <a class="close" data-dismiss="modal" aria-hidden="true" href="#">&times;</a>
+		  <h3 id="accountModalLabel">My Account</h3>
+		  <div id="accountBy"></div>
+		</div>
+		<div class="modal-body">
+			<input type="hidden" id="hidden_reviewerID" value="<?php echo $this->session->userdata('id'); ?>"/>
+		  <div id="accountContent"></div>
+		</div>
+		<div class="modal-footer">
+		  <button class="btn btn-primary" id="reviewer_account_submit">Save changes</button>
+		</div>
+	</div>
+	
+	<!-- End Account Modal -->
+	
+	
 	
 	<div class="container">
 		<div id="ajaxer">
@@ -61,6 +81,8 @@
 	<script src="<?php echo base_url().'js/vendor.js'; ?>"></script>
 	<script src="<?php echo base_url().'js/jquery.dataTables.min.js'; ?>"></script>
 	<script>
+		base_url = "<?php echo base_url(); ?>";
+		
 		jQuery.ajaxSetup({
 			data: {
 				 <?php echo $this->security->get_csrf_token_name(); ?>: '<?php echo $this->security->get_csrf_hash(); ?>'
