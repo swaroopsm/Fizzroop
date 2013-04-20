@@ -1372,3 +1372,23 @@ $("form#set_timer_form").submit(function(){
 	});
 	return false;
 });
+
+
+/**
+	*	Delete Reviewer click function.
+**/
+
+$("#reviewer_delete_submit").live("click", function(){
+	var reviewer = $("#inputReviewerID").val();
+	$.post(base_url+"reviewer/delete",
+		{ inputReviewerID: reviewer },
+		function(data){
+			var obj = $.parseJSON(data);
+			if(obj.success){
+				$("#reviewersModal").modal('hide');
+				$("#reviewer_row_"+reviewer).parent().parent().fadeOut(300);
+			}
+		}
+	);
+	return false;
+});
