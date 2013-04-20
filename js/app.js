@@ -416,7 +416,7 @@ $("#manageReviewers").live("click", function(){
 					var obj = [];
 					for(var j=0;j<data.length;j++){
 						obj.push({
-							"reviewerFirstName": "<a href='#"+data[j].reviewerID+"' class='reviewer_id'>"+data[j].reviewerFirstName+" "+data[j].reviewerLastName+"</a>",
+							"reviewerFirstName": "<a href='#"+data[j].reviewerID+"' id='reviewer_row_"+data[j].reviewerID+"'  class='reviewer_id'>"+data[j].reviewerFirstName+" "+data[j].reviewerLastName+"</a>",
 							//"reviewerLastName": "<a href='#"+data[j].reviewerID+"' class='reviewer_id'>"+data[j].reviewerLastName+"</a>",
 							"reviewerEmail": data[j].reviewerEmail,
 							"workingAbstracts": data[j].workingAbstracts
@@ -479,9 +479,7 @@ $(".reviewer_id").live("click", function(){
 	$.getJSON("reviewer/"+id, function(data){
 		$("#hidden_reviewerID").html("<input type='hidden' id='inputReviewerID' value='"+data.reviewerID+"'/>");
 		$("#reviewersModalLabel").html(data.reviewerFirstName+" "+data.reviewerLastName);
-		if(data.abstracts){
-			if(data.abstracts.length>0){
-				$("#reviewersData").html("");
+		$("#reviewersData").html("");
 				$("#reviewersData").append(
 					"<div id='editReviewerForm'>"
 					+"<label for='inputFirstName'>Firstname</label> <input id='inputFirstName' value='"+data.reviewerFirstName+"'<br><br>"
@@ -489,13 +487,15 @@ $(".reviewer_id").live("click", function(){
 					+"<label for='inputEmail'>Email</label> <input id='inputEmail' value='"+data.reviewerEmail+"'"
 					+"</div>"
 				);
+		if(data.abstracts){
+			if(data.abstracts.length>0){
 				$("#reviewersData").append("<div class='larger'>Abstracts Assigned</div> ");
 				for(var i=0;i<data.abstracts.length;i++){
 					$("#reviewersData").append("<div id='abstract_"+data.abstracts[i].abstractID+"'>"+data.abstracts[i].abstractTitle+" <a href='#"+data.abstracts[i].abstractID+"' data-reviewer='"+data.reviewerID+"' class='unassign_reviewer'>Unassign</a><br></div>");
 				}
 			}
 			else{
-				$("#reviewersData").html("This reviewer has not been assigned any abstracts to review.");
+				$("#reviewersData").append("<p>This reviewer has not been assigned any abstracts to review.</p>");
 			}	
 		}
 	});
@@ -1370,5 +1370,26 @@ $("form#set_timer_form").submit(function(){
 			console.log(data)
 		}
 	});
+	return false;
+});
+
+
+/**
+	*	Delete Reviewer click function.
+**/
+
+$("#reviewer_delete_submit").live("click", function(){
+	var reviewer = $("#inputReviewerID").val();
+	$.post(base_url+"reviewer/delete",
+		{ inputReviewerID: reviewer },
+		function(data){
+			var obj = $.parseJSON(data);
+			if(obj.success){
+				$("#reviewersModal").modal('hide');
+				$("#reviewer_row_"+reviewer).parent().parent().fadeOut(300);
+				$("#total_reviewers_count").html(obj.total_reviewers);
+			}
+		}
+	);
 	return false;
 });
