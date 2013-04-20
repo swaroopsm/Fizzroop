@@ -90,6 +90,7 @@ $("a.absubmit").click(function(){
 	$('.message').css({display: 'none'});
 	$('.guidelines').css({display: 'none'});
 	$('.workshop').css({display: 'none'});
+	$('.account').css({display: 'none'});
 	return false;
 });
 
@@ -100,6 +101,7 @@ $("a.absguide").click(function(){
 	$('.attcontainer').css({display: 'none'});
 	$('.submitabstractform').css({display:'none'});
 	$('.workshop').css({display: 'none'});
+	$('.account').css({display: 'none'});
 	return false;
 });
 
@@ -142,6 +144,7 @@ $("a.abview").click(function(){
 	$('.workshop').css({display: 'none'});
 	$('.attcontainer').css({display: 'block'});
 	$('.message').css({display: 'block'});
+	$('.account').css({display: 'none'});
 });
 
 
@@ -151,6 +154,7 @@ $("a.workshops").click(function(){
 	$('.guidelines').css({display: 'none'});
 	$('.attcontainer').css({display: 'none'});
 	$('.workshop').css({display: 'block'});
+	$('.account').css({display: 'none'});
 
 	// $.getJSON("page/view_page_type/3", function(data) {
 	// 	console.log(data);
@@ -172,6 +176,15 @@ $("a.workshops").click(function(){
 
 });
 
+
+$("a.my_account").click(function(){
+	$('.submitabstractform').css({display:'none'});
+	$('.message').css({display: 'none'});
+	$('.guidelines').css({display: 'none'});
+	$('.attcontainer').css({display: 'none'});
+	$('.workshop').css({display: 'none'});
+	$(".account").css({display: 'block'});
+});
 
 /**
 	*	Bursary Submission.
