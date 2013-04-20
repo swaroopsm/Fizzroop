@@ -182,8 +182,8 @@
 		  	echo form_input(array("name" => "inputLastName", "id" => "inputLastName", "class" => "", "placeholder" => "Attendee's Lastname"));
 		  	echo form_label("Email:", "inputEmail", array("class" => "control-label")); 
 		  	echo form_input(array("name" => "inputEmail", "id" => "inputEmail", "class" => "", "placeholder" => "Attendee's Email"));
-		  	echo form_label("Password:", "inputPassword", array("class" => "control-label")); 
-		  	echo form_password(array("name" => "inputPassword", "id" => "inputPassword", "class" => "", "placeholder" => "Attendee' Password"));
+#		  	echo form_label("Password:", "inputPassword", array("class" => "control-label")); 
+#		  	echo form_password(array("name" => "inputPassword", "id" => "inputPassword", "class" => "", "placeholder" => "Attendee' Password"));
 		  	echo form_label("Gender:", "inputGender", array("class" => "control-label")); 
 		  	echo form_input(array("name" => "inputGender", "id" => "inputGender", "class" => "", "placeholder" => "Attendee's Gender"));
 		  	echo form_label("Date of Birth:", "inputDOB", array("class" => "control-label")); 
