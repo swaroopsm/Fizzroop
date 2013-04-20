@@ -227,3 +227,26 @@ $("#account_link").live("click", function(){
 	});
 	return false;
 })
+
+
+/**
+	*	Account save changes submit button.
+**/
+
+$("#reviewer_account_submit").live("click", function(){
+	if($.trim($("#new_password").val()) != $.trim($("#conf_password").val())){
+		console.log("New password and confirm password does not match");
+	}
+	else{
+		$.post(base_url+"reviewer/reset",
+		{
+			inputConfPassword: $.trim($("#old_password").val()),
+			inputNewPassword: $.trim($("#new_password").val()),
+			inputReviewerID: $("#hidden_reviewerID").val()
+		},
+		function(data){
+			console.log(data);
+		});
+	}
+	return false;
+});
