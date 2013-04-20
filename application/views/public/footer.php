@@ -1,24 +1,5 @@
 <div id="footer">
 
-	<div id="sponsorsandpartners">
-
-
-		<div id="sponsors">
-			<h2>Sponsors</h2>
-			<p>Sponsor logos here</p>
-		</div>
-
-		<div id="organisingcomittee">
-			<h2>Organising Institutions</h2>
-			<div class="s"><img src="<?php echo base_url(); ?>images/sponsors/iisc.jpg" alt=""></div>
-			<div class="s"><img src="<?php echo base_url(); ?>images/sponsors/mcbt.jpg" alt=""></div>
-			<div class="s"><img src="<?php echo base_url(); ?>images/sponsors/ncbs.jpg" alt=""></div>
-			<div class="l"><img src="<?php echo base_url(); ?>images/sponsors/ncf.jpg" alt=""></div>
-			<div class="s"><img src="<?php echo base_url(); ?>images/sponsors/sacon.jpg" alt=""></div>
-
-		</div>
-	</div>
-
 	<br><br>
 
 	<div class="wrap">

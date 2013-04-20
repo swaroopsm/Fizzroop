@@ -50,7 +50,7 @@
 		</li>
 		<li><a href="#" class="main_top">Information for Presenters</a></li>
 		<li><a href="#" class="main_top">Earlier Events</a></li>
-		
+		<li><a href="<?php echo base_url(); ?>login">Login</a></li>
+		<div class="timer1 yellowback"><a href="http://copyof-shortwing2.doattend.com/">Register</a></div>
 	</ul>
-	<div class="timer1 yellowback"><a href="<?php echo base_url(); ?>login">Login</a> | <a href="http://copyof-shortwing2.doattend.com/">Register</a></div>
 </div>

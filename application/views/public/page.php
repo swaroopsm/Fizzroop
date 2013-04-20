@@ -20,7 +20,7 @@ if ($singlepage['pageType'] == 3) {
 	}
 ?>
 
-
+<div class="pageview">
 <?php echo $singlepage['pageContent']; ?>
 
 <?php 
@@ -30,6 +30,6 @@ if ($singlepage['pageType'] == 3) {
 // print_r($imagepath['image']);
 
 ?>
-
+</div>
 
 </div>

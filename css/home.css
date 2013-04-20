@@ -151,9 +151,31 @@ ul#nav_main li:hover ul {
 	display: block;
 }
 
+.registerholder {
+	width: 800px;
+	margin: 0 auto;
+	position: absolute;
+	top: 360px;
+}
+
 .timer1 {
+	left: 20px;
+	z-index: 10;
 	display: inline-block;
-	padding: 10px;
+	padding: 15px;
+	font-weight: 900;
+	transition: padding-top 0.3s;
+	-webkit-transition: padding-top 0.3s; /* Safari */
+	/*box-shadow: 4px 4px 3px #000;*/
+}
+
+.timer1:hover {
+	padding-top: 20px;
+}
+
+.timer1 a {
+	color: black;
+	font-size: 13px;
 }
 
 .wrap {
@@ -465,13 +487,16 @@ ul.footerlinks li a:hover {
 }
 
 .item {
-	min-height: 300px;
-	padding: 30px;
+	height: 300px;
+	padding: 2%;
 	background-position: center;
+	width: 20%;
+	float: left;
 }
 
-.item h1 {
-	background-color: white;
+.item h1 a {
+	background-color: black;
+	color: white;
 	display: inline-block;
 	padding: 5px;
 }
@@ -495,5 +520,32 @@ ul.footerlinks li a:hover {
 }
 
 .timer h2:before {
-	content: "Days to ";
+	/*content: "Days to ";*/
+}
+
+.timerdate {
+	display: inline-block;
+	font-size: 250%;
+}
+
+.timermonth {
+	display: inline-block;
+	position: relative;
+	top: -20px;
+}
+
+
+.pageview {
+	width: 90%;
+	max-width: 800px;
+	margin: 0 auto;
+	text-align: left;
+}
+
+.pageview h3 {
+	text-align: center;
+}
+
+.pageview b {
+	font-weight: 900;
 }

@@ -85,7 +85,7 @@ class Colloquy extends CI_Controller {
 		
 			$this->load->view('public/header');
 			// print_r($allabstracts);
-			$this->load->view('public/abstracts');
+			$this->load->view('public/abstracts', $data);
 			$this->load->view('public/footer');
 	}
 	

@@ -19,7 +19,10 @@ $(window).load(function() {
 	var i = 0;
 	
 	var slideanimate = function(){
-		$(".galwrap1").animate({"marginLeft": slidewidth1 }).delay(slidetiming).animate({"marginLeft": slidewidth2 }).delay(slidetiming).animate({"marginLeft": 0 }).delay(slidetiming);
+		$(".galwrap1").animate({"marginLeft": slidewidth1 }).delay(slidetiming)
+			// .animate({"marginLeft": slidewidth2 }).delay(slidetiming)
+			.animate({"marginLeft": 0 }).delay(slidetiming);
+		;
 	};
 
 

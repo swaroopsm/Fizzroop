@@ -53,11 +53,13 @@
 		<div class="guidelines">
 			<h1>Abstract Guidelines</h1>
 			<p><strong>Your abstract should be organized in the following four sections, each with its own sub-heading:</strong><br>
+				Please note, the character limit for each section is metioned below in parantheses.
 			<ol>
-				<li>What conservation problem or question does your talk address?</li>
-				<li>What were the main research methods you used?</li>
-				<li>What are your most important results?</li>
-				<li>What is the relevance of your results to conservation?</li>
+				<li>Title (120)</li>
+				<li>What conservation problem or question does your talk address? (400)</li>
+				<li>What were the main research methods you used? (400)</li>
+				<li>What are your most important results? (400)</li>
+				<li>What is the relevance of your results to conservation? (400)</li>
 			</ol>
 			</p>
 			<h2>What is expected in each of these sections?</h2>
@@ -133,8 +135,8 @@
             function setCount(src, elem) {
                 var chars = src.value.length;
                 if (chars > limit) {
-                    src.value = src.value.substr(0, limit);
-                    chars = limit;
+                    // src.value = src.value.substr(0, limit);
+                    // chars = limit;
                 }
                 elem.html(limit - chars );
             }

@@ -10,38 +10,41 @@
           echo form_label("Abstract Title:", "inputAbstractTitle", array("class" => "control-label")); 
           echo form_input(array("name" => "inputAbstractTitle", "id" => "inputAbstractTitle", "class" => "", "placeholder" => "Your Abstract's Title goes here"));
           echo "<div class='counters' id='chartitle'></div>";
+
+          // echo form_label("Authors", "inputAbstractAuthors", array("class" => "control-label")); 
+          // echo form_input(array("name" => "inputAbstractAuthors", "id" => "inputAbstractAuthors", "class" => "", "placeholder" => "Separate Author Names with commas, eg: Richard Dawkins, E.O. Wilson, Ishan Agarwal."));
         ?>
         
         <?php
 
           echo form_label("What conservation problem or question does your talk/poster address?", "inputAbstractAim", array("class" => "control-label")); 
-          echo form_textarea(array("name" => "inputAbstractAim", "id" => "inputAbstractAim", "class" => "", "placeholder" => "What conservation problem or question does your talk/poster address?"));
+          echo form_textarea(array("name" => "inputAbstractAim", "id" => "inputAbstractAim", "class" => "", "placeholder" => ""));
           echo "<div class='counters' id='charaim'></div>";
 
           echo form_label("What were the main research methods you used?", "inputAbstractMethods", array("class" => "control-label")); 
-          echo form_textarea(array("name" => "inputAbstractMethods", "id" => "inputAbstractMethods", "class" => "", "placeholder" => "What were the main research methods you used?"));
+          echo form_textarea(array("name" => "inputAbstractMethods", "id" => "inputAbstractMethods", "class" => "", "placeholder" => ""));
           echo "<div class='counters' id='charmeth'></div>";
           
           echo form_label("What are your most important results?", "inputAbstractResults", array("class" => "control-label")); 
-          echo form_textarea(array("name" => "inputAbstractResults", "id" => "inputAbstractResults", "class" => "", "placeholder" => "What are your most important results?"));
+          echo form_textarea(array("name" => "inputAbstractResults", "id" => "inputAbstractResults", "class" => "", "placeholder" => ""));
           echo "<div class='counters' id='charres'></div>";
 
           echo form_label("What is the relevance of your results to conservation?", "inputAbstractConservation", array("class" => "control-label")); 
-          echo form_textarea(array("name" => "inputAbstractConservation", "id" => "inputAbstractConservation", "class" => "", "placeholder" => "What is the relevance of your results to conservation?"));
+          echo form_textarea(array("name" => "inputAbstractConservation", "id" => "inputAbstractConservation", "class" => "", "placeholder" => ""));
           echo "<div class='counters' id='charcons'></div>";
           
         ?>
         
-        <p>Upload your graphical abstract. <em>Your image must be no wider than 1024px and no taller than 800px. Only JPG, PNG, GIF formats.</em></p>
+        <p>Upload your graphical abstract. <em>Your image must be no larger than 900kb. Only JPG, PNG and GIF formats are allowed.</em></p>
         <?php
           echo form_upload(array("name" => "inputAbstractImage", "onchange"=>"readURL(this);"));
         ?>
         <p>Choose your preference.</p>
         <?php echo form_radio(array('name'=>'pref', 'id'=>'talk', 'value'=>'1', 'class'=>'radio')); ?>Talk
         <?php echo form_radio(array('name'=>'pref', 'id'=>'poster', 'value'=>'2','class'=>'radio')); ?>Poster
-        <?php echo form_radio(array('name'=>'pref', 'id'=>'noPref', 'value'=>'3','class'=>'radio')); ?>No Preference
+        <?php echo form_radio(array('name'=>'pref', 'id'=>'noPref', 'value'=>'3','class'=>'radio')); ?>Either Talk or Poster
         <br>
-        <p>Need Bursary?</p>
+        <p>Do you wish to apply for a Bursary?</p>
         <?php echo form_radio(array('name'=>'bursary_pref', 'id' => 'bursary_yes', 'value'=>'1', 'class'=>'radio')); ?>Yes
         <?php echo form_radio(array('name'=>'bursary_pref', 'id' => 'bursary_no', 'value'=>'0','class'=>'radio')); ?>No
         <br>

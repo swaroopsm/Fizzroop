@@ -46,20 +46,43 @@ function daysto($when){
 ?>
 
 <div class="timer">
-	<h1><?php echo daysto($timerJSON['timerDate1']); ?></h1>
-	<h2><?php echo $timerJSON['timerTitle1']; ?></h2>
+	<p><?php echo $timerJSON['timerTitle1']; ?></p>
+	<?php 
+		$date1 = strtotime($timerJSON['timerDate1']);
+	?>
+	<div class="timermonth"><?php echo date('M',$date1); ?></div>
+	<div class="timerdate"><?php echo date('d',$date1); ?></div>
+	<p><?php echo daysto($timerJSON['timerDate1']); ?> days to go.</p>
 </div>
 <div class="timer">
-	<h1><?php echo daysto($timerJSON['timerDate2']); ?></h1>
-	<h2><?php echo $timerJSON['timerTitle2']; ?></h2>
+	<p><?php echo $timerJSON['timerTitle2']; ?></p>
+	<?php 
+		$date2 = strtotime($timerJSON['timerDate2']);
+	?>
+	<div class="timermonth"><?php echo date('M',$date2); ?></div>
+	<div class="timerdate"><?php echo date('d',$date2); ?></div>
+	<p><?php echo daysto($timerJSON['timerDate2']); ?> days to go.</p>
+
 </div>
 <div class="timer">
-	<h1><?php echo daysto($timerJSON['timerDate3']); ?></h1>
-	<h2><?php echo $timerJSON['timerTitle3']; ?></h2>
+	<p><?php echo $timerJSON['timerTitle3']; ?></p>
+	<?php 
+		$date3 = strtotime($timerJSON['timerDate3']);
+	?>
+	<div class="timermonth"><?php echo date('M',$date3); ?></div>
+	<div class="timerdate"><?php echo date('d',$date3); ?></div>
+	<p><?php echo daysto($timerJSON['timerDate3']); ?> days to go.</p>
+
 </div>
 <div class="timer">
-	<h1><?php echo daysto($timerJSON['timerDate4']); ?></h1>
-	<h2><?php echo $timerJSON['timerTitle4']; ?></h2>
+	<p><?php echo $timerJSON['timerTitle4']; ?></p>
+	<?php 
+		$date4 = strtotime($timerJSON['timerDate4']);
+	?>
+	<div class="timermonth"><?php echo date('M',$date4); ?></div>
+	<div class="timerdate"><?php echo date('d',$date4); ?></div>
+	<p><?php echo daysto($timerJSON['timerDate4']); ?> days to go.</p>
+
 </div>
 
 
@@ -120,3 +143,22 @@ function daysto($when){
 </div>
 
 <div class="clear"></div>
+
+	<div id="sponsorsandpartners">
+
+
+		<!-- <div id="sponsors">
+			<h2>Sponsors</h2>
+			<p>Sponsor logos here</p>
+		</div> -->
+
+		<div id="organisingcomittee">
+			<h2>Organising Institutions</h2>
+			<div class="s"><img src="<?php echo base_url(); ?>images/sponsors/iisc.jpg" alt=""></div>
+			<div class="s"><img src="<?php echo base_url(); ?>images/sponsors/mcbt.jpg" alt=""></div>
+			<div class="s"><img src="<?php echo base_url(); ?>images/sponsors/ncbs.jpg" alt=""></div>
+			<div class="l"><img src="<?php echo base_url(); ?>images/sponsors/ncf.jpg" alt=""></div>
+			<div class="s"><img src="<?php echo base_url(); ?>images/sponsors/sacon.jpg" alt=""></div>
+
+		</div>
+	</div>
