@@ -22,7 +22,7 @@
 				 
 				<a href="#" class="absguide">Abstract Submission Guidelines</a> 
 				<a href="#" class="workshops">Register for Workshops</a> 
-				<a href="#" class="account">My Account</a> 
+				<a href="#" class="my_account">My Account</a> 
 				<a href="<?php echo base_url().'logout' ?>">Log out</a></div>
 				<div class="clear"></div>
 		</div>
@@ -106,7 +106,29 @@
 			<p><em>The content on this page is a slightly modified version of guidelines prepared by Dr. Geoff Hyde, with assistance from Nandini Velho.</em></p>
 
 		</div>
+		
+		<div class="account">
+			<h2>My Account</h2>
+			<?php
+							echo form_open(base_url()."attendee/reset", array("class" => "form form-horizontal", "id" => "attendee_reset", "style" => "margin-left: 0px;"));
+				      echo form_label("Old Password:", "inputConfPassword", array("class" => "control-label")); 
+				      echo form_password(array("name" => "inputConfPassword", "id" => "inputConfPassword", "class" => "", "placeholder" => ""));
 
+				       echo form_label("New Password", "inputNewPassword", array("class" => "control-label")); 
+				       echo form_password(array("name" => "inputNewPassword", "id" => "inputNewPassword", "class" => "", "placeholder" => ""));
+				    ?>
+				    
+				    <?php
+
+				      echo form_label("Confirm Password", "inputConfNewPwd", array("class" => "control-label")); 
+				      echo form_password(array("name" => "inputConfNewPwd", "id" => "inputConfNewPwd", "class" => "", "placeholder" => ""));
+				      
+				      echo form_submit("save_account", "Save Changes");
+				      echo form_close();
+				      
+				    ?>
+		</div>
+		
 		<div class="workshop">
 			<h2>Workshops</h2>
 			<p>No workshops have been finalised yet. Come back later and check it out.</p>
