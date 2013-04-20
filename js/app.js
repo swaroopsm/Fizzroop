@@ -945,9 +945,11 @@ $(".single_page").live("click", function(){
 		console.log(data)
 		if(data[0].images.length > 0){
 			var page_img = data[0].images[0].image;
+			var del_page = "<a href='"+base_url+"/image/delete/"+data[0].images[0].imageID+"' id='delete_page_image'>Delete Image</a>"
 		}
 		else{
 			var page_img = "";
+			var del_page = "";
 		}
 		if(data[0].pageType == 3){
 			var seats = "<div><input type='hidden' id='seats_taken_count' value='"+data[0].seats_taken+"'/>Seats Taken: <span id='seats_taken_dynamic'>"+data[0].seats_taken+"</span> / <input type='text' id='page_seats_edit' value='"+data[0].seats+"'/></div>"
@@ -967,7 +969,7 @@ $(".single_page").live("click", function(){
 			var attended_by_label = "";
 		}
 		$("#pageModalLabel").html("<h2>"+data[0].pageTitle+"</h2>");
-		$("#pageData").html("<div><label>Title: </label> <input id='page_title_edit' value='"+data[0].pageTitle+"'/><input id='page_id' type='hidden' value='"+data[0].pageID+"'/><input id='page_type' type='hidden' value='"+data[0].pageType+"'/></div> Content: <div id='pageContent' class='pageContent' contenteditable='true'>"+data[0].pageContent+"</div> Extra Info: <div id='pageSubHeading' class='pageContent' contenteditable='true'>"+data[0].pageSubHeading+"</div>"+seats+" <form action='image/create' method='POST' id='page_image_form'><input type='hidden' id='inputPageID' name='inputPageID' value='"+data[0].pageID+"'/><input type='hidden' name='"+token[0]+"' value='"+token[1]+"'/>Upload Image: <input type='file' id='inputPageImage' name='inputPageImage'/></form> <a href='"+base_url+"/page/"+data[0].pageID+"/image/"+data[0].images[0].imageID+"' id='delete_page_image'>Delete Image</a> <p>Uploaded Image: <img src='"+page_img+"' id='cur_img'/></p>"+attended_by_label);
+		$("#pageData").html("<div><label>Title: </label> <input id='page_title_edit' value='"+data[0].pageTitle+"'/><input id='page_id' type='hidden' value='"+data[0].pageID+"'/><input id='page_type' type='hidden' value='"+data[0].pageType+"'/></div> Content: <div id='pageContent' class='pageContent' contenteditable='true'>"+data[0].pageContent+"</div> Extra Info: <div id='pageSubHeading' class='pageContent' contenteditable='true'>"+data[0].pageSubHeading+"</div>"+seats+" <form action='image/create' method='POST' id='page_image_form'><input type='hidden' id='inputPageID' name='inputPageID' value='"+data[0].pageID+"'/><input type='hidden' name='"+token[0]+"' value='"+token[1]+"'/>Upload Image: <input type='file' id='inputPageImage' name='inputPageImage'/></form> "+del_page+" <p>Uploaded Image: <img src='"+page_img+"' id='cur_img' alt='None'/></p>"+attended_by_label);
 		$("#pageModal").modal({
 			keyboard: true,
 			backdrop: 'static',
@@ -1391,5 +1393,21 @@ $("#reviewer_delete_submit").live("click", function(){
 			}
 		}
 	);
+	return false;
+});
+
+
+/**
+	*	Delete image click function.
+**/
+
+$("#delete_page_image").live("click", function(){
+	$.get($(this).attr("href"), function(data){
+		var obj = $.parseJSON(data);
+		if(obj.success){
+			$("#cur_img").fadeOut(300);
+			$("#delete_page_image").hide();
+		}
+	});
 	return false;
 });
