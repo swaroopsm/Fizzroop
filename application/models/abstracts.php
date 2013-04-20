@@ -29,7 +29,7 @@
 		*/
 		
 		public function view_where($abstractID, $conferenceID){
-			$this->db->select(array("abstracts.abstractID", "abstracts.abstractTitle", "abstracts.abstractContent", "abstracts.abstractImageFolder", "abstracts.attendeeID", "abstracts.reviewer1", "abstracts.reviewer2", "abstracts.reviewer3", "attendees.attendeeFirstName", "attendees.attendeeLastName", "abstracts.approved", "abstracts.bursary"))->from("abstracts");
+			$this->db->select(array("abstracts.abstractID", "abstracts.abstractTitle", "abstracts.abstractContent", "abstracts.abstractImageFolder", "abstracts.attendeeID", "abstracts.reviewer1", "abstracts.reviewer2", "abstracts.reviewer3", "attendees.attendeeFirstName", "attendees.attendeeLastName", "abstracts.approved", "abstracts.bursary", "abstractAuthors"))->from("abstracts");
 			$this->db->join("attendees", "attendees.attendeeID=abstracts.attendeeID AND abstracts.abstractID=$abstractID AND abstracts.conferenceID=$conferenceID");
 			$q = $this->db->get();
 			return $q;

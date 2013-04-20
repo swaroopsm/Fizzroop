@@ -198,7 +198,8 @@
 			 				"comments" => $r3,
 			 				"detailed_scores" => $detailed_score,
 			 				"approved" => $row->approved,
-			 				"bursary" => $row->bursary
+			 				"bursary" => $row->bursary,
+			 				"abstractAuthors" => $row->abstractAuthors
 			 			);
 			 		}
 			 		echo json_encode($result);
