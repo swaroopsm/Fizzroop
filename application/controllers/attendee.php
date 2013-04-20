@@ -60,10 +60,12 @@
 					$registered = 1;
 				else
 					$registered = 0;
+				$forgot_hash = $this->encrypt->sha1($this->input->post("inputEmail").$this->encrypt->sha1($this->config->item("password_salt")).$this->encrypt->sha1(time()));
 				$data = array(
 					"attendeeFirstName" => $this->input->post("inputFirstName"),
 					"attendeeLastName" => $this->input->post("inputLastName"),
 					"attendeeEmail" => $this->input->post("inputEmail"),
+					"forgot_hash" => $forgot_hash,
 					"attendeePassword" => NULL,
 					"registered" => $registered,
 					"attendeeGender" => $this->input->post("inputGender"),
@@ -76,6 +78,24 @@
 					"attendeePassport" => $this->input->post("inputPassport")
 				);
 				$this->attendees->insert($data);
+				$this->load->library('email');
+				$this->email->set_mailtype("html");
+				$this->email->from($this->config->item('service_email'), 'SCCS Administrator created an account for you.');
+				$this->email->to($this->input->post("inputEmail")); 
+				#$this->email->cc('another@another-example.com'); 
+				$this->email->subject('CCS Administrator created an account for you.');
+				$this->email->message(
+						"Hello ".$this->input->post("inputFirstName")." ".$this->input->post("inputLastName").", 
+						<p>
+							Please click the below link for instructions on setting a password. By doing so, your account will get activated and gain access to SCCS which lets you submit an Abstract and much more. <br>
+							<a href='".base_url()."reset/".$this->db->insert_id()."/".$forgot_hash."'>Activate your Account.</a>
+						</p>
+						<p>
+							Thank You!
+						</p>"
+					);	
+
+				$this->email->send();
 				if($this->session->userdata("adminLoggedin") == true){
 					echo json_encode(
 						array(
