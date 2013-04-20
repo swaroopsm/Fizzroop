@@ -590,7 +590,7 @@ ul.dropdown-menu li {
 	line-height: 60px;
 }
 
-.attcontainer , .guidelines, .workshop {
+.attcontainer , .guidelines, .workshop, .account{
 	max-width: 800px;
 	padding: 20px;
 	margin: 0 auto;
@@ -607,7 +607,7 @@ ul.dropdown-menu li {
 	margin-top: 20px;
 }
 
-.guidelines, .workshop {
+.guidelines, .workshop, .account{
 	display: none;
 }
 
