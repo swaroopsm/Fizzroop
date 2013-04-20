@@ -92,6 +92,7 @@
 		</div>
 		<div class="modal-footer">
 		  <button class="btn btn-primary" id="reviewer_edit_submit">Save changes</button>
+		  <button class="btn btn-primary" id="reviewer_delete_submit">Delete Reviewer</button>
 		</div>
 	</div>
 	
