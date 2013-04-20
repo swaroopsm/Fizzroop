@@ -81,6 +81,7 @@ $route['specialsessions'] ="colloquy/viewtype/4";
 $route['viewabstracts'] = "colloquy/viewabstracts";
 $route['forgot'] = "colloquy/forgot";
 $route['reset/(:num)/(:any)'] = "attendee/reset_view/$1/$2";
+$route['image/delete/(:num)'] = "image/delete/$1";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
