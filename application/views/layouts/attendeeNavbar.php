@@ -11,8 +11,8 @@
           echo form_input(array("name" => "inputAbstractTitle", "id" => "inputAbstractTitle", "class" => "", "placeholder" => "Your Abstract's Title goes here"));
           echo "<div class='counters' id='chartitle'></div>";
 
-          // echo form_label("Authors", "inputAbstractAuthors", array("class" => "control-label")); 
-          // echo form_input(array("name" => "inputAbstractAuthors", "id" => "inputAbstractAuthors", "class" => "", "placeholder" => "Separate Author Names with commas, eg: Richard Dawkins, E.O. Wilson, Ishan Agarwal."));
+           echo form_label("Authors", "inputAbstractAuthors", array("class" => "control-label")); 
+           echo form_input(array("name" => "inputAbstractAuthors", "id" => "inputAbstractAuthors", "class" => "", "placeholder" => "Separate Author Names with commas, eg: Richard Dawkins, E.O. Wilson, Ishan Agarwal."));
         ?>
         
         <?php
