@@ -30,7 +30,7 @@
 				<p><a href="#" id="manageAbstracts">Manage Abstracts</a></p>
 
 				<h2>Reviewers</h2>
-				<p><?php echo $total_reviewers; ?> reviewers | <?php echo $recommendations; ?> recommended</p>
+				<p><span id="total_reviewers_count"><?php echo $total_reviewers; ?></span> reviewer(s) | <?php echo $recommendations; ?> recommended</p>
 				<p><a href="#" id="manageReviewers">Manage Reviewers</a> | <a href="#" id="add_reviewer">Add reviewer</a></p>
 
 				<h2>Attendees</h2>
