@@ -202,3 +202,28 @@ if(page == "reviewerAbstract"){
 		console.log(data)
 	});	
 }
+
+
+/**
+	*	Account Modal open.
+**/
+
+$("#account_link").live("click", function(){
+	$("#accountContent").html(
+		"<div>"+
+		"<label>Old Password: </label> <input type='password' id='old_password' />"+
+		"</div>"+
+		"<div>"+
+		"<label>New Password: </label> <input type='password' id='new_password' />"+
+		"</div>"+
+		"<div>"+
+		"<label>Confirm New Password: </label> <input type='password' id='conf_password' />"+
+		"</div>"
+	);
+	$("#accountModal").modal({
+		keyboard: true,
+		backdrop: 'static',
+		show: true
+	});
+	return false;
+})
