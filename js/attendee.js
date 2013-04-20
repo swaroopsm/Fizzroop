@@ -217,3 +217,30 @@ $("#submit_bursary").click(function(){
 // 	}
 // 	return false;
 // });
+
+
+/**
+	*	Attended reset form submit function
+**/
+
+$("#attendee_reset").live("submit", function(){
+	if($.trim($("#inputNewPassword").val()) != $.trim($("#inputConfNewPwd").val())){
+		console.log("Confirm your passwords");
+	}
+	else{
+		$.post($(this).attr("action"),
+		{
+			inputAttendeeID: $("#hidden_attendeeID").val(),
+			inputConfPassword: $("#inputConfPassword").val(),
+			inputNewPassword: $("#inputNewPassword").val()
+		},
+		function(data){
+			var obj = $.parseJSON(data);
+			console.log(obj);
+			if(obj.success){
+				$("#attendee_reset")[0].reset();
+			}
+		});
+	}
+	return false;
+});
