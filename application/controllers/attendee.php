@@ -64,7 +64,7 @@
 					"attendeeFirstName" => $this->input->post("inputFirstName"),
 					"attendeeLastName" => $this->input->post("inputLastName"),
 					"attendeeEmail" => $this->input->post("inputEmail"),
-					"attendeePassword" => $this->encrypt->sha1($this->input->post("inputPassword").$this->encrypt->sha1($this->config->item("password_salt"))),
+					"attendeePassword" => NULL,
 					"registered" => $registered,
 					"attendeeGender" => $this->input->post("inputGender"),
 					"attendeeDOB" => $this->input->post("inputDOB"),
