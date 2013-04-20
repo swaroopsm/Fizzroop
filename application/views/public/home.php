@@ -11,38 +11,6 @@ function daysto($when){
     return floor($datediff/(60*60*24));
 }
 
-
-
-// function GetDays($sStartDate, $sEndDate){
-//   // Firstly, format the provided dates.
-//   // This function works best with YYYY-MM-DD
-//   // but other date formats will work thanks
-//   // to strtotime().
-//   $sStartDate = gmdate("Y-m-d", strtotime($sStartDate));
-//   $sEndDate = gmdate("Y-m-d", strtotime($sEndDate));
-
-//   // Start the variable off with the start date
-//   $aDays[] = $sStartDate;
-
-//   // Set a 'temp' variable, sCurrentDate, with
-//   // the start date - before beginning the loop
-//   $sCurrentDate = $sStartDate;
-
-//   // While the current date is less than the end date
-//   while($sCurrentDate < $sEndDate){
-//     // Add a day to the current date
-//     $sCurrentDate = gmdate("Y-m-d", strtotime("+1 day", strtotime($sCurrentDate)));
-
-//     // Add this new day to the aDays array
-//     $aDays[] = $sCurrentDate;
-//   }
-
-//   // Once the loop has finished, return the
-//   // array of days.
-//   return $aDays;
-// }
-
-// $sStartDate = date("Y-m-d");
 ?>
 
 <div class="timer">
@@ -51,7 +19,8 @@ function daysto($when){
 		$date1 = strtotime($timerJSON['timerDate1']);
 	?>
 	<div class="timermonth"><?php echo date('M',$date1); ?></div>
-	<div class="timerdate"><?php echo date('d',$date1); ?></div>
+	<div class="timerdate"><?php echo date('d',$date1); ?><br>
+		<div class="timeryear">2013</div></div>
 	<p><?php echo daysto($timerJSON['timerDate1']); ?> days to go.</p>
 </div>
 <div class="timer">
@@ -60,7 +29,8 @@ function daysto($when){
 		$date2 = strtotime($timerJSON['timerDate2']);
 	?>
 	<div class="timermonth"><?php echo date('M',$date2); ?></div>
-	<div class="timerdate"><?php echo date('d',$date2); ?></div>
+	<div class="timerdate"><?php echo date('d',$date2); ?><br>
+		<div class="timeryear">2013</div></div>
 	<p><?php echo daysto($timerJSON['timerDate2']); ?> days to go.</p>
 
 </div>
@@ -70,7 +40,8 @@ function daysto($when){
 		$date3 = strtotime($timerJSON['timerDate3']);
 	?>
 	<div class="timermonth"><?php echo date('M',$date3); ?></div>
-	<div class="timerdate"><?php echo date('d',$date3); ?></div>
+	<div class="timerdate"><?php echo date('d',$date3); ?><br>
+		<div class="timeryear">2013</div></div>
 	<p><?php echo daysto($timerJSON['timerDate3']); ?> days to go.</p>
 
 </div>
@@ -80,7 +51,8 @@ function daysto($when){
 		$date4 = strtotime($timerJSON['timerDate4']);
 	?>
 	<div class="timermonth"><?php echo date('M',$date4); ?></div>
-	<div class="timerdate"><?php echo date('d',$date4); ?></div>
+	<div class="timerdate"><?php echo date('d',$date4); ?><br>
+		<div class="timeryear">2013</div></div>
 	<p><?php echo daysto($timerJSON['timerDate4']); ?> days to go.</p>
 
 </div>
