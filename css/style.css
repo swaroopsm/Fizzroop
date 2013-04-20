@@ -47,6 +47,14 @@ table {
 	border-spacing: 0;
 }
 
+i {
+	font-style: italic;
+}
+
+b {
+	font-weight: 900;
+}
+
 /*CONTENTEDITABLE RESET*/
 
 [contenteditable="true"]:active, [contenteditable="true"]:focus{

@@ -4,6 +4,7 @@
 	<title>SCCS :: COLLOQUY</title>
 	<link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/wysiwyg.css">
 </head>
 <body>
 
@@ -457,5 +458,6 @@
 	<script src="<?php echo base_url().'js/jquery.form.js'; ?>"></script>
 	<script src="<?php echo base_url().'js/app.js'; ?>"></script>
 	<script src="<?php echo base_url().'js/jquery.dataTables.min.js'; ?>"></script>
+	<script src="<?php echo base_url().'js/wysiwyg.js'; ?>"></script>
 </body>
 </html>
