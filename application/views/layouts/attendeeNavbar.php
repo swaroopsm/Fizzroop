@@ -6,7 +6,7 @@
         <h2>Submit Abstract</h2>
         <p>Be sure you <a href="#" class="absguide">read the abstract submission guidelines</a> first!</p>
         <?php
-          echo form_open("abstract/create", array("class" => "form form-horizontal", "id" => "new_abstract", "style" => "margin-left: 0px;"));
+          echo form_open("abstract/create", array("class" => "form form-horizontal", "id" => "new_abstract", "style" => "margin-left: 0px;", "data-validate"=>"parsley"));
           echo form_label("Abstract Title:", "inputAbstractTitle", array("class" => "control-label")); 
           echo form_input(array("name" => "inputAbstractTitle", "id" => "inputAbstractTitle", "class" => "", "placeholder" => "Your Abstract's Title goes here"));
           echo "<div class='counters' id='chartitle'></div>";

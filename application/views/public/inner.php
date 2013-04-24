@@ -3,10 +3,10 @@
 
 <?php
 
+
 if (empty($listofpages)) {
 
 	print("no pages found");
-
 } else {
 
 	// print_r($listofpages);
@@ -15,7 +15,7 @@ if (empty($listofpages)) {
 		if ($page['pageType'] == 1) {
 			$type = "";
 		} elseif ($page['pageType'] == 2) {
-			$type = "P L E N A R Y";
+			$type = "Plenaries";
 			?>
 			<div class="item" style="background-image: url('<?php echo base_url(); ?>uploads/<?php echo $page["imagepath"]; ?>');">
 			<br>
@@ -29,7 +29,7 @@ if (empty($listofpages)) {
 			</div>
 			<?php
 		} elseif ($page['pageType'] == 3) {
-			$type = "W O R K S H O P";
+			$type = "Workshops";
 			?>
 			<div class="item" style="background-image: url('<?php echo base_url(); ?>uploads/<?php echo $page["imagepath"]; ?>');">
 			<br>
@@ -42,7 +42,7 @@ if (empty($listofpages)) {
 			</div>
 			<?php
 		} elseif ($page['pageType'] == 4) {
-			$type = "S P E C I A L &nbsp S E S S I O N";
+			$type = "Special Sessions";
 		} else {
 
 		}
@@ -54,6 +54,11 @@ if (empty($listofpages)) {
 	}
 }
 ?>
+<?php if(isset($type)){ ?>
+<div class="item yellowback">
+	<h1>MORE <?php echo $type; ?> will be announced in the coming weeks.</h1>
+</div>
+<?php } ?>
 <div class="clear"></div>
 
 </div>

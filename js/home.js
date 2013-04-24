@@ -1,7 +1,43 @@
+var waitForFinalEvent = (function () {
+  var timers = {};
+  return function (callback, ms, uniqueId) {
+    if (!uniqueId) {
+      uniqueId = "Don't call this twice without a uniqueId";
+    }
+    if (timers[uniqueId]) {
+      clearTimeout (timers[uniqueId]);
+    }
+    timers[uniqueId] = setTimeout(callback, ms);
+  };
+})();
+
+
 $(document).ready(function() {
 	// Stuff to do as soon as the DOM is ready;
-	
-	var i=0;
+	// var i=0;
+	$("#earlybird").click(function(){
+		window.location.href = base_url+"viewpage/17";
+	});
+
+	$("#abstractsubmissiondeadline").click(function(){
+		window.location.href = base_url+"viewpage/19";
+	});
+
+	$("#workshopregistrationopen").click(function(){
+		window.location.href = base_url+"viewpage/23";
+	});
+
+	$("#onlineclose").click(function(){
+		window.location.href = "http://copyof-shortwing2.doattend.com/";
+	});
+
+	$(".workslide").click(function(){
+		window.location.href = base_url+"workshops/";
+	});
+
+	$(".slide").click(function(){
+		window.location.href = base_url+"plenaries/";
+	});
 
 });
 

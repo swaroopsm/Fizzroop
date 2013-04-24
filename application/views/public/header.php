@@ -2,10 +2,11 @@
 <head>
 	<title>SCCS : STUDENTS' CONFERENCE ON CONSERVATION SCIENCE</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<link href='http://fonts.googleapis.com/css?family=Averia+Serif+Libre:300|Titillium+Web:300,400italic' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Averia+Serif+Libre:300|Open+Sans+Condensed:300,300italic,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="<?php echo base_url(); ?>/css/home.css">
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>
+	<script>var base_url = "<?php echo base_url(); ?>"</script>
 </head>
 <body>
 
@@ -43,12 +44,17 @@
 		</li>
 		<li><a href="#" class="main_top">Venue</a>
 			<ul>
-				<li><a href="<?php echo base_url()."viewpage/16"; ?>">Getting to IISc</a></li>
-				<li><a href="<?php echo base_url()."viewpage/16"; ?>"></a>Getting Around IISc</li>
-				<li><a href="<?php echo base_url()."viewpage/16"; ?>"></a>About Bangalore</li>
+				<li><a href="<?php echo base_url()."viewpage/24"; ?>">Getting to IISc</a></li>
+				<li><a href="<?php echo base_url()."viewpage/36"; ?>">Getting Around IISc</a></li>
+				<li><a href="<?php echo base_url()."viewpage/37"; ?>">About Bangalore</a></li>
 			</ul>
 		</li>
-		<li><a href="#" class="main_top">Information for Presenters</a></li>
+		<li><a href="#" class="main_top">Information for Presenters</a>
+			<ul>
+				<li><a href="<?php echo base_url()."viewpage/38"; ?>">Talk Guidelines</a></li>
+				<li><a href="<?php echo base_url()."viewpage/39"; ?>">Poster Guidelines</a></li>
+			</ul>
+		</li>
 		<li><a href="#" class="main_top">Earlier Events</a></li>
 		<li><a href="<?php echo base_url(); ?>login">Login</a></li>
 		<div class="timer1 yellowback"><a href="http://copyof-shortwing2.doattend.com/">Register</a></div>

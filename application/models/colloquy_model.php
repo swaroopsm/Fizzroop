@@ -23,6 +23,7 @@ class Colloquy_model extends CI_Model {
 
 	public function get_four_page_by_type($pageType){
 		$limit = 4;
+		$this->db->order_by("id", "random");
 		$query = $this->db->get_where('pages', array('pageType' => $pageType), $limit, $offset=0);
 		foreach ($query as $q) {
 			# code...
