@@ -14,8 +14,9 @@
 	<body>
 		 <div class="container">
       <?php echo form_open("doattend/check_ticket", array("class" => "form-signin", "id" => "signupForm")); ?>
-        <h2 class="form-signin-heading">Signup</h2>
+        <h2 class="form-signin-heading">Participate</h2>
         <hr>
+        Once you click on "Signup", it will take upto a minute to sync your information into our databases. Please be patient.
         <div id="js-messages"></div>
         <?php 
         	echo form_label("Ticket Number:", "inputTicketNumber", array("style" => "display: none;"));
@@ -83,7 +84,7 @@
                                 +"<p><input type='password' id='inputPasswordCheck' name='inputPasswordCheck' placeholder='Confirm Password'></p>"
         						+"<input type='hidden' name='inputAttendeeID' id='inputAttendeeID' value='"+obj.attendee.attendeeID+"'>"
         						+"<input type='hidden' name='"+token[0]+"' id='"+token[0]+"' value='"+token[1]+"'>"
-        						+"<p><button class='btn btn-primary btn-large' type='submit'>Update</button></p>"
+        						+"<p><button class='btn btn-primary btn-large' type='submit'>Submit</button></p>"
     								+"</form>"
     							);
     						}

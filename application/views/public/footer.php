@@ -4,15 +4,15 @@
 
 	<div class="wrap">
 		<ul class="footerlinks">
-			<li><a href="<?php echo base_url(); ?>login">About</a></li>
+			<li><a href="<?php echo base_url(); ?>viewpage/43/">About</a></li>
 		</ul>
 
 		<ul class="footerlinks">
-			<li><a href="#">Contact</a></li>
+			<li><a href="<?php echo base_url(); ?>viewpage/44/">Contact</a></li>
 		</ul>
 
 		<ul class="footerlinks">
-			<li><a href="#">Organisers</a></li>
+			<li><a href="<?php echo base_url(); ?>viewpage/45">Organisers</a></li>
 		</ul>
 
 		<div class="clear"></div>

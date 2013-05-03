@@ -1,13 +1,15 @@
 <div id="content">
-<div class="plenary yellowback">
 <?php
 if ($singlepage['pageType'] == 3) {
+	echo '<div class="plenary yellowback">';
 	echo "W O R K S H O P S";
+	echo '</div>';
 } elseif ($singlepage['pageType'] == 2) {
+	echo '<div class="plenary yellowback">';
 	echo "P L E N A R Y";
+	echo '</div>';
 }
 ?>
-</div>
 
 
 

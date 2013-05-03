@@ -22,6 +22,7 @@
 
 <div id="mainmenu">
 	<ul id="nav_main">
+		<li><a href="http://www.sccs-bng.org/">Home</a></li>
 		<li><a href="#" class="main_top">Participate</a>
 			<ul>
 				<li><a href="<?php echo base_url()."viewpage/16"; ?>">Who Can Participate</a></li>
@@ -51,12 +52,13 @@
 		</li>
 		<li><a href="#" class="main_top">Information for Presenters</a>
 			<ul>
+				<li><a href="<?php echo base_url()."viewpage/46"; ?>">Abstract Submission Guidelines</a></li>
 				<li><a href="<?php echo base_url()."viewpage/38"; ?>">Talk Guidelines</a></li>
 				<li><a href="<?php echo base_url()."viewpage/39"; ?>">Poster Guidelines</a></li>
 			</ul>
 		</li>
 		<li><a href="#" class="main_top">Earlier Events</a></li>
 		<li><a href="<?php echo base_url(); ?>login">Login</a></li>
-		<div class="timer1 yellowback"><a href="http://copyof-shortwing2.doattend.com/">Register</a></div>
+		<div class="timer1 yellowback"><a href="#">Register</a></div>
 	</ul>
 </div>

@@ -222,6 +222,7 @@
 			 				"abstractImageFolder" => base_url().$this->config->item("upload_path").$row->abstractImageFolder,
 			 				"attendeeFirstName" => $row->attendeeFirstName,
 			 				"attendeeLastName" => $row->attendeeLastName,
+			 				"abstractAuthors" => $row->abstractAuthors,
 			 				"approved" => $row->approved
 			 			);
 			 		}

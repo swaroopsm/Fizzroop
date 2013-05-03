@@ -6,6 +6,8 @@ jQuery.fn.validateFormEmpty = function(){
 	
 	var inputsTextList = $(this).find("input[type=text], input[type=password], textarea, select, input[type=file]");
 	var inputsLabelList = $(this).find("label");
+	console.log(inputsLabelList);
+	console.log(inputsTextList);
 	var flag = 0;
 	var errorMsg = "";
 	for(var i=0;i<inputsTextList.length;i++){
@@ -108,8 +110,10 @@ $("a.absguide").click(function(){
 
 $("form#new_abstract").live("submit", function(e){
 	e.preventDefault();
+	$('body').css({"cursor":"progress"});
+	$('#loaderspace').css({"display":"block"}).animate({"opacity":0.8}, 1000);
 	var stat = $(this).validateFormEmpty();
-	if(stat.success){
+	// if(stat.success){
 		$(this).ajaxSubmit(function(data){
 		var success = $.parseJSON(data);
 		console.log(success);
@@ -121,24 +125,22 @@ $("form#new_abstract").live("submit", function(e){
 		// reload the page
 		window.location="attendee";
 	});
-	}
+	// }
 	return false;
 });
 
 $("a.abview").click(function(){
 	$.getJSON("abstract/"+absid, function(data){
-		// console.log(data);
+		console.log(data);
 		var messagediv = $('.message');
 		messagediv.html('');
-		messagediv.append("<h2>"+data[0].abstractTitle+"</h2><p class='name'>"+name+"</p><img src='"+data[0].abstractImageFolder+"'>");
+		messagediv.append("<h2>"+data[0].abstractTitle+"</h2><a id='absdown' href='#'>download abstract as pdf</a><p class='name'>"+data[0].abstractAuthors+"</p><br><img src='"+data[0].abstractImageFolder+"'>");
 		var abscontent = data[0].abstractContent;
 		abscontent = $.parseJSON(abscontent);
-		messagediv.append("<h3>What conservation problem or question does your talk/poster address?</h3><p>"+abscontent.aim+"</p>");
-		messagediv.append("<h3>What were the main research methods you used?</h3><p>"+abscontent.methods+"</p>");
-		messagediv.append("<h3>What are your most important results?</h3><p>"+abscontent.results+"</p>");
-		messagediv.append("<h3>What is the relevance of your results to conservation?</h3><p>"+abscontent.conservation+"</p>");
-		console.log(abscontent);
-		
+		messagediv.append("<br><br><strong>What conservation problem or question does your talk/poster address?</strong><p>"+abscontent.aim+"</p>");
+		messagediv.append("<br><br><strong>What were the main research methods you used?</strong><p>"+abscontent.methods+"</p>");
+		messagediv.append("<br><br><strong>What are your most important results?</strong><p>"+abscontent.results+"</p>");
+		messagediv.append("<br><br><strong>What is the relevance of your results to conservation?</strong><p>"+abscontent.conservation+"</p>");
 	});
 	$('.guidelines').css({display:'none'});
 	$('.workshop').css({display: 'none'});
@@ -256,4 +258,12 @@ $("#attendee_reset").live("submit", function(){
 		});
 	}
 	return false;
+});
+
+$("input#bursary_yes").click(function(){
+	$("#bursaries_options").html('<p>If yes, please us the space below to provide a justification for why you should receive a bursary (max 400 characters)</p><input type="text" id="inputBursary_Why" name="inputBursary_Why" placeholder="Tell us why you think you need a bursary." "data-maxlength"="400" "data-required"="true">');
+});
+
+$("input#bursary_no").click(function(){
+	$("#bursaries_options").html('');
 });

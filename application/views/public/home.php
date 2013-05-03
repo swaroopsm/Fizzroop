@@ -126,11 +126,21 @@ function daysto($when){
 
 		<div id="organisingcomittee">
 			<h2>Organising Institutions</h2>
-			<div class="s"><img src="<?php echo base_url(); ?>images/sponsors/iisc.jpg" alt=""></div>
-			<div class="s"><img src="<?php echo base_url(); ?>images/sponsors/mcbt.jpg" alt=""></div>
-			<div class="s"><img src="<?php echo base_url(); ?>images/sponsors/ncbs.jpg" alt=""></div>
-			<div class="l"><img src="<?php echo base_url(); ?>images/sponsors/ncf.jpg" alt=""></div>
-			<div class="s"><img src="<?php echo base_url(); ?>images/sponsors/sacon.jpg" alt=""></div>
+			<div class="s"><a 
+href="http://www.iisc.ernet.in"><img 
+src="<?php echo base_url(); ?>images/sponsors/iisc.jpg" 
+alt=""</a></div>
+			<div class="s"><a href="http://www.madrascrocodilebank.org"><img src="<?php echo 
+base_url(); 
+?>images/sponsors/mcbt.jpg" 
+alt=""></a></div>
+			<div class="s"><a href="http://www.ncbs.res.in"><img src="<?php echo base_url(); 
+?>images/sponsors/ncbs.jpg" alt=""></a></div>
+			<div class="l"><a href="http://ncf-india.org"><img src="<?php echo base_url(); 
+?>images/sponsors/ncf.jpg" alt=""></a></div>
+			<div class="s"><a href="http://www.sacon.in"><img src="<?php echo base_url(); 
+?>images/sponsors/sacon.jpg" 
+alt=""></a></div>
 
 		</div>
 	</div>
