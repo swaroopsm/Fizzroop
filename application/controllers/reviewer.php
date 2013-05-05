@@ -55,10 +55,11 @@
 						"reviewerPassword" => $this->encrypt->sha1($this->input->post("inputPassword").$this->encrypt->sha1($this->config->item("password_salt")))
 					);
 					$this->reviewers->insert($data);
+					$r = $this->reviewers->view_where(array("reviewerID" => $this->db->insert_id()));
 					echo json_encode(
 						array(
 							"success" => true,
-							"reviewerID" => $this->db->insert_id()
+							"reviewer" => $r->result()
 						)
 					);
 				}
