@@ -143,13 +143,14 @@ $("a.abview").click(function(){
 		messagediv.append("<br><br><strong>What conservation problem or question does your talk/poster address?</strong><p>"+abscontent.aim+"</p>");
 		messagediv.append("<br><br><strong>What were the main research methods you used?</strong><p>"+abscontent.methods+"</p>");
 		messagediv.append("<br><br><strong>What are your most important results?</strong><p>"+abscontent.results+"</p>");
-		messagediv.append("<br><br><strong>What is the relevance of your results to conservation?</strong><p>"+abscontent.conservation+"</p>");
+		messagediv.append("<br><br><strong>What is the relevance of your results to conservation?</strong><p>"+abscontent.conservation+"</p><br><br><br><hr>");
 		if (bursary.bursary_for == "No") {
 			messagediv.append("You have not applied for a bursary.");
 		} else {
 			messagediv.append("Bursary applied for : "+bursary.bursary_for);
 			messagediv.append("Bursary applied for : "+bursary.bursary_why);
 		};
+		messagediv.append("<br>Accomodation applied for : "+bursary.accomodation);
 		
 	});
 	$('.guidelines').css({display:'none'});
