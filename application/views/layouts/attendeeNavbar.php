@@ -6,7 +6,7 @@
         <h2>Submit Abstract</h2>
         <p>Be sure you <a href="#" class="absguide">read the abstract submission guidelines</a> first!</p>
         <?php
-          echo form_open("abstract/create", array("class" => "form form-horizontal", "id" => "new_abstract", "data-validate"=>"parsley", "style" => "margin-left: 0px;"));
+          echo form_open("abstract/create", array("class" => "form form-horizontal", "id" => "new_abstract", "style" => "margin-left: 0px;"));
           echo form_label("Abstract Title (max 120 characters):", "inputAbstractTitle", array("class" => "control-label")); 
           echo form_input(array("name" => "inputAbstractTitle", "id" => "inputAbstractTitle", "class" => "", "placeholder" => "Your Abstract's Title goes here","data-required"=>"true", "data-maxlength"=>"120", "data-trigger"=>"change", "data-error-message"=>"The text in this box should not exceed 120 characters and cannot be blank."));
           // echo "<div class='counters' id='chartitle'></div>";
@@ -50,6 +50,7 @@
         <?php echo form_radio(array('name'=>'bursary_pref', 'id' => 'bursary_no', 'value'=>'0','class'=>'radio', 'data-group'=>'bursary_pref')); ?>No</div>
         <br>
         <div class="bursaries_options" id="bursaries_options">
+          <div class="burwhy"><p>If yes, please us the space below to provide a justification for why you should receive a bursary (max 400 characters)</p><textarea id="inputBursary_Why" name="inputBursary_Why" placeholder="Tell us why you think you need a bursary." "data-maxlength"="400" "data-required"="true"></textarea></div>
 				</div>
         <div class="accompref">
           <p>Would you like SCCS-2013 to arrange accommodation for you during the conference (September 24th-29th)?</p>
