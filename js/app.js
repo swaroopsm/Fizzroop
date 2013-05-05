@@ -533,6 +533,7 @@ $("#manageAttendees").live("click", function(){
 							var reg="NO";
 						}
 						obj.push({
+							"attendeeID": data[i].attendeeID,
 							"attendeeFirstName": "<a href='#"+data[i].attendeeID+"' class='attendee_id'>"+data[i].attendeeFirstName+" "+data[i].attendeeLastName+"</a>",
 							//"attendeeLastName": "<a href='#"+data[i].attendeeID+"' class='attendee_id'>"+data[i].attendeeLastName+"</a>",
 							"attendeeEmail": data[i].attendeeEmail,
@@ -545,6 +546,8 @@ $("#manageAttendees").live("click", function(){
 					$("#ajaxer").html("<h2 id='title'>ATTENDEES MANAGER</h2><button class='csv-btn' id='attendees_csv_btn'><a href='"+base_url+"export/attendees'>Export as CSV &#11015;</a></button><table id='test'></table>");
 					$('table#test').dataTable({
 								"aaData": obj,
+								"fnCreatedRow": function( nRow, aData, iDataIndex ) {
+							    },
 								"sScrollX": "100%",
 				 				"bScrollCollapse": true,
 				 				"bScrollAutoCss": false,
