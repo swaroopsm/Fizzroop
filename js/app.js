@@ -1424,6 +1424,7 @@ $("#delete_page_image").live("click", function(){
 
 
 function new_attendee_change(obj){
+	$("#addAttendeeModal").modal("hide");
 	var attendee = obj.attendee;
 	$("table#test tbody").prepend("<tr class='even'>"+
 		"<td class='sorting_1'><a href='#"+attendee[0].attendeeID+"' class='attendee_id'>"+attendee[0].attendeeFirstName+" "+attendee[0].attendeeLastName+"</a></td>"+
