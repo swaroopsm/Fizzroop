@@ -591,6 +591,59 @@
 	 		}
 	 	}
 	 	
+
+	 	/**
+	 	 * Handles PDF generation of an abstract.
+	 	 */
+
+	 	public function pdf(){
+	 		if($this->session->userdata("loggedin") == true || $this->session->userdata("adminLoggedin") == true)
+	 		$a = $this->abstracts->view_where($this->uri->segment(3), $this->session->userdata("conferenceID"));
+	 		if($a->num_rows() > 0){
+	 			$res = $a->result();
+	 			$content = json_decode($res[0]->abstractContent, true);
+	 			$bursary = json_decode($res[0]->bursary, true);
+	 			if($bursary['bursary_for'] == ""){
+	 				$b_f = "NIL";
+	 			}
+	 			else{
+	 				$b_f = $bursary['bursary_for'];
+	 			}
+	 			if($bursary['bursary_why'] == ""){
+	 				$b_y = "NIL";
+	 			}
+	 			else{
+	 				$b_y = $bursary['bursary_why'];
+	 			}
+	 			$abs_name = str_replace(" ", "_", $res[0]->abstractTitle);
+	 			$this->load->library('html2pdf');
+		 		$this->html2pdf->folder("uploads/");
+		 		$this->html2pdf->filename($abs_name);
+		 		$this->html2pdf->paper('a4', 'portrait');
+		 		$this->html2pdf->html("<h2>".$res[0]->abstractTitle."</h2>
+		 			<p>By ".$res[0]->attendeeFirstName." ".$res[0]->attendeeLastName."</p><p>Authors: ".$res[0]->abstractAuthors."</p>
+		 			<p><img src='".base_url()."uploads/".$res[0]->abstractImageFolder."' width='99%'/></p>
+		 			<p>What conservation problem or question does your talk/poster address?</p>
+		 			<p>".$content['aim']."</p>
+		 			<p>What were the main research methods you used?</p>
+		 			<p>".$content['methods']."</p>
+		 			<p>What are your most important results?</p>
+		 			<p>".$content['results']."</p>
+		 			<p>What is the relevance of your results to conservation?</p>
+		 			<p>".$content['conservation']."</p>
+		 			<hr>
+		 			<h4>Bursary(if any)</h4>
+		 			<p>For: ".$b_f."</p>
+		 			<p>Reason: ".$b_y."</p>
+		 			");
+		 		$this->html2pdf->create('download');
+	 		}
+	 		else{
+	 			show_404();	
+	 		}
+	 	}
+
+
 	 	/**
 		 * Handles deletion of an Abstract.
 		**/

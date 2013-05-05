@@ -64,6 +64,7 @@ $route['abstract/schedule/(:num)'] = "abstractc/schedule/$1";
 $route['abstract/alert_selected_attendees'] = "abstractc/alert_selected_attendees";
 $route['abstract/alert_rejected_attendees'] = "abstractc/alert_rejected_attendees";
 $route['abstract/add_bursary'] = "abstractc/add_bursary";
+$route['abstract/pdf/(:num)'] = "abstractc/pdf/$1";
 $route['reviewer/abstract/(:num)'] = "reviewer/abstract_view/$1";
 $route['reviewer/abstract/assigned/(:num)'] = "reviewer/reviewer_abstracts_by_id/$1";
 $route['attendee/abstract'] = "attendee/abstract_view";
