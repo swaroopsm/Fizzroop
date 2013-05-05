@@ -272,7 +272,10 @@ $("#attendee_reset").live("submit", function(){
 });
 
 $("input#bursary_yes").click(function(){
-	$("#bursaries_options").html('<p>If yes, please us the space below to provide a justification for why you should receive a bursary (max 400 characters)</p><input type="text" id="inputBursary_Why" name="inputBursary_Why" placeholder="Tell us why you think you need a bursary." "data-maxlength"="400" "data-required"="true">');
+	$("#bursaries_options").html('<div class="burwhy"><p>If yes, please us the space below to provide a justification for why you should receive a bursary (max 400 characters)</p><textarea id="inputBursary_Why" name="inputBursary_Why" placeholder="Tell us why you think you need a bursary." "data-maxlength"="400" "data-required"="true"></textarea></div>').delay(50, function(){
+		console.log("binding parsley");
+		$('#new_abstract').parsley('addItem', '#inputBursary_Why');
+	});
 });
 
 $("input#bursary_no").click(function(){
