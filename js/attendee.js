@@ -132,6 +132,9 @@ $("form#new_abstract").live("submit", function(e){
 $("a.abview").click(function(){
 	$.getJSON("abstract/"+absid, function(data){
 		console.log(data);
+		var bursary = data[0].bursary;
+		bursary = $.parseJSON(bursary);
+		console.log(bursary);
 		var messagediv = $('.message');
 		messagediv.html('');
 		messagediv.append("<h2>"+data[0].abstractTitle+"</h2><a id='absdown' href='#'>download abstract as pdf</a><p class='name'>"+data[0].abstractAuthors+"<br>Presented by: "+data[0].attendeeFirstName+" "+data[0].attendeeLastName+"</p><br><img src='"+data[0].abstractImageFolder+"'>");
@@ -141,6 +144,13 @@ $("a.abview").click(function(){
 		messagediv.append("<br><br><strong>What were the main research methods you used?</strong><p>"+abscontent.methods+"</p>");
 		messagediv.append("<br><br><strong>What are your most important results?</strong><p>"+abscontent.results+"</p>");
 		messagediv.append("<br><br><strong>What is the relevance of your results to conservation?</strong><p>"+abscontent.conservation+"</p>");
+		if (bursary.bursary_for == "No") {
+			messagediv.append("You have not applied for a bursary.");
+		} else {
+			messagediv.append("Bursary applied for : "+bursary.bursary_for);
+			messagediv.append("Bursary applied for : "+bursary.bursary_why);
+		};
+		
 	});
 	$('.guidelines').css({display:'none'});
 	$('.workshop').css({display: 'none'});
