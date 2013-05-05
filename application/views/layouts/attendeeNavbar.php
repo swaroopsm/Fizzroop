@@ -50,7 +50,6 @@
         <?php echo form_radio(array('name'=>'bursary_pref', 'id' => 'bursary_no', 'value'=>'0','class'=>'radio', 'data-group'=>'bursary_pref')); ?>No</div>
         <br>
         <div class="bursaries_options" id="bursaries_options">
-          <div class="burwhy"><p>If yes, please us the space below to provide a justification for why you should receive a bursary (max 400 characters)</p><textarea id="inputBursary_Why" name="inputBursary_Why" placeholder="Tell us why you think you need a bursary." "data-maxlength"="400" "data-required"="true"></textarea></div>
 				</div>
         <div class="accompref">
           <p>Would you like SCCS-2013 to arrange accommodation for you during the conference (September 24th-29th)?</p>
