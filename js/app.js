@@ -734,6 +734,7 @@ $("#attendee_edit_submit").live("click", function(){
 		inputPassport: $.trim($("#inputAttendeePassport").val())
 	},
 	function(data){
+		edit_attendee_change($.parseJSON(data));
 		console.log(data);
 	});
 });
@@ -1427,6 +1428,10 @@ $("#delete_page_image").live("click", function(){
 });
 
 
+/**
+  *	Handles on change after new attendee has been created.
+ */
+
 function new_attendee_change(obj){
 	$("#addAttendeeModal").modal("hide");
 	var attendee = obj.attendee;
@@ -1437,5 +1442,27 @@ function new_attendee_change(obj){
 		"<td>"+attendee[0].attendeeAddress+"</td>"+
 		"<td>"+attendee[0].attendeePhone+"</td>"+
 		"<td>NO</td>"+
-		"</tr>");
+		"</tr>").hide().fadeIn(500);
 }
+
+/**
+  *	Handles on change after attendee has been updated.
+ */
+
+ function edit_attendee_change(obj){
+ 	if(obj.submitted == 0){
+ 		var reg = "NO";
+ 	}
+ 	else{
+ 		var reg = "YES";
+ 	}
+ 	$("#attendeeModal").modal("hide");
+ 	$("tr#attendeeRow_"+obj.attendee.inputAttendeeID).html(
+		"<td class='sorting_1'><a href='#"+obj.attendee.inputAttendeeID+"' class='attendee_id'>"+obj.attendee.inputFirstName+" "+obj.attendee.inputLastName+"</a></td>"+
+		"<td>"+obj.attendee.inputEmail+"</td>"+
+		"<td>"+obj.attendee.inputInstAffiliation+"</td>"+
+		"<td>"+obj.attendee.inputAddress+"</td>"+
+		"<td>"+obj.attendee.inputPhone+"</td>"+
+		"<td>"+reg+"</td>"
+ 	).hide().fadeIn(500);
+ }
