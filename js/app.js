@@ -64,6 +64,11 @@ jQuery.fn.asyncSubmit = function(options){
 			$(options.target).html(resp).hide().fadeIn(500);
 			$(formID)[0].reset();
 			$(options.loadTarget).html('').show();
+			if(options.callback){
+				switch(options.callback){
+					case 'new_attendee': new_attendee_change(obj);
+				}
+			}
 		},
 		error: function(data){
 			console.log(data);
@@ -854,7 +859,8 @@ $("form#new_attendee").submit(function(){
 			'loadTarget': '#loader',
 			'loader': '<br><img src="<?php echo base_url()."images/loader.gif"; ?>">',
 			'successMsg': 'Attendee added successfully!',
-			'errorMsg': 'There was an error, please try again later!'
+			'errorMsg': 'There was an error, please try again later!',
+			'callback': 'new_attendee'
 		});
 	}else{
 		$("#js-messages2").html("<span class='span6 alert alert-danger'>"+stat.errorMsg+"</span>").hide().fadeIn(500);
@@ -1415,3 +1421,16 @@ $("#delete_page_image").live("click", function(){
 	});
 	return false;
 });
+
+
+function new_attendee_change(obj){
+	var attendee = obj.attendee;
+	$("table#test tbody").prepend("<tr class='even'>"+
+		"<td class='sorting_1'><a href='#"+attendee[0].attendeeID+"' class='attendee_id'>"+attendee[0].attendeeFirstName+" "+attendee[0].attendeeLastName+"</a></td>"+
+		"<td>"+attendee[0].attendeeEmail+"</td>"+
+		"<td>"+attendee[0].attendeeInstAffiliation+"</td>"+
+		"<td>"+attendee[0].attendeeAddress+"</td>"+
+		"<td>"+attendee[0].attendeePhone+"</td>"+
+		"<td>NO</td>"+
+		"</tr>");
+}
