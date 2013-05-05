@@ -600,7 +600,6 @@
 	 		$a = $this->abstracts->view_where($this->uri->segment(3), $this->session->userdata("conferenceID"));
 	 		if($a->num_rows() > 0){
 	 			$res = $a->result();
-	 			echo json_encode($res);
 	 			$content = json_decode($res[0]->abstractContent, true);
 	 			$bursary = json_decode($res[0]->bursary, true);
 	 			if($bursary['bursary_for'] == ""){
@@ -635,7 +634,7 @@
 		 			<p>For: ".$b_f."</p>
 		 			<p>Reason: ".$b_y."</p>
 		 			");
-		 		$this->html2pdf->create('save');
+		 		$this->html2pdf->create('download');
 	 		}
 	 		else{
 	 			show_404();	
