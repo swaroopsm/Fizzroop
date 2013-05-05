@@ -223,6 +223,7 @@
 			 				"attendeeFirstName" => $row->attendeeFirstName,
 			 				"attendeeLastName" => $row->attendeeLastName,
 			 				"abstractAuthors" => $row->abstractAuthors,
+			 				"bursary" => $row->bursary,
 			 				"approved" => $row->approved
 			 			);
 			 		}
