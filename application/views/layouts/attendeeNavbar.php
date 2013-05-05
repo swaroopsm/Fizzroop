@@ -40,9 +40,9 @@
           echo form_upload(array("name" => "inputAbstractImage", "id"=>"gupload", 'data-required'=>'true', "onchange"=>"readURL(this);"));
         ?>
         <div class="prefdiv"><p>Choose your preference.</p>
-        <?php echo form_radio(array('name'=>'pref', 'id'=>'talk', 'value'=>'1', 'class'=>'radio', 'data-group'=>'pref', 'data-required'=>'true')); ?>Talk
-        <?php echo form_radio(array('name'=>'pref', 'id'=>'poster', 'value'=>'2','class'=>'radio', 'data-group'=>'pref')); ?>Poster
-        <?php echo form_radio(array('name'=>'pref', 'id'=>'noPref', 'value'=>'3','class'=>'radio', 'data-group'=>'pref')); ?>Either Talk or Poster
+        <?php echo form_radio(array('name'=>'inputAbstractPreference', 'id'=>'talk', 'value'=>'1', 'class'=>'radio', 'data-group'=>'pref', 'data-required'=>'true')); ?>Talk
+        <?php echo form_radio(array('name'=>'inputAbstractPreference', 'id'=>'poster', 'value'=>'2','class'=>'radio', 'data-group'=>'pref')); ?>Poster
+        <?php echo form_radio(array('name'=>'inputAbstractPreference', 'id'=>'noPref', 'value'=>'3','class'=>'radio', 'data-group'=>'pref')); ?>Either Talk or Poster
         </div>
         <br>
         <div class="burpref"><p>Do you wish to apply for a Bursary?</p>
