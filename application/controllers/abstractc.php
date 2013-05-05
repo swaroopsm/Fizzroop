@@ -614,9 +614,10 @@
 	 			else{
 	 				$b_y = $bursary['bursary_why'];
 	 			}
+	 			$abs_name = str_replace(" ", "_", $res[0]->abstractTitle);
 	 			$this->load->library('html2pdf');
 		 		$this->html2pdf->folder("uploads/");
-		 		$this->html2pdf->filename('test.pdf');
+		 		$this->html2pdf->filename($abs_name);
 		 		$this->html2pdf->paper('a4', 'portrait');
 		 		$this->html2pdf->html("<h2>".$res[0]->abstractTitle."</h2>
 		 			<p>By ".$res[0]->attendeeFirstName." ".$res[0]->attendeeLastName."</p><p>Authors: ".$res[0]->abstractAuthors."</p>
