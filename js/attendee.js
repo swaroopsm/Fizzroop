@@ -147,8 +147,8 @@ $("a.abview").click(function(){
 		if (bursary.bursary_for == "No") {
 			messagediv.append("You have not applied for a bursary.");
 		} else {
-			messagediv.append("Bursary applied for : "+bursary.bursary_for);
-			messagediv.append("Bursary applied for : "+bursary.bursary_why);
+			messagediv.append("Bursary applied for : "+bursary.bursary_for+"<br>");
+			messagediv.append("Because : "+bursary.bursary_why);
 		};
 		messagediv.append("<br>Accomodation applied for : "+bursary.accomodation);
 		
@@ -271,10 +271,14 @@ $("#attendee_reset").live("submit", function(){
 	return false;
 });
 
-$("input#bursary_yes").click(function(){
-	$("#bursaries_options").html('<div class="burwhy"><p>If yes, please us the space below to provide a justification for why you should receive a bursary (max 400 characters)</p><textarea id="inputBursary_Why" name="inputBursary_Why" placeholder="Tell us why you think you need a bursary." "data-maxlength"="400" "data-required"="true"></textarea></div>').delay(50, function(){
-		console.log("binding parsley");
-		$('#new_abstract').parsley('addItem', '#inputBursary_Why');
+//"data-validate"=>"parsley"
+$("#new_abstract").parsley();
+
+
+$("input#bursary_yes").live("click", function(){
+	$("#bursaries_options").html('<div class="burwhy"><p>If yes, please us the space below to provide a justification for why you should receive a bursary (max 400 characters)</p><textarea name="inputBursary_Why" cols="40" rows="10" id="inputBursary_Why" class="" placeholder="Tell us why you think you need a bursary." data-required="true" data-maxlength="400" data-trigger="change" data-error-message="The text in this box should not exceed 400 characters and cannot be blank."></textarea>').delay(10, function(){
+		console.log("hi");
+		$( '#new_abstract' ).parsley( 'addItem', '#inputBursary_Why' );
 	});
 });
 
