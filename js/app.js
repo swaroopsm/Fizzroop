@@ -67,6 +67,10 @@ jQuery.fn.asyncSubmit = function(options){
 			if(options.callback){
 				switch(options.callback){
 					case 'new_attendee': new_attendee_change(obj);
+										 break;
+
+					case 'new_reviewer': new_reviewer_change(obj);
+										 break;
 				}
 			}
 		},
@@ -767,7 +771,8 @@ $("form#new_reviewer").submit(function(){
 			'loadTarget': '#loader',
 			'loader': '<br><img src="<?php echo base_url()."images/loader.gif"; ?>">',
 			'successMsg': 'Reviewer added successfully!',
-			'errorMsg': 'There was an error, please try again later!'
+			'errorMsg': 'There was an error, please try again later!',
+			'callback': 'new_reviewer'
 		});
 	}else{
 		$("#js-messages").html("<span class='span6 alert alert-danger'>"+stat.errorMsg+"</span>").hide().fadeIn(500);
@@ -1466,3 +1471,21 @@ function new_attendee_change(obj){
 		"<td>"+reg+"</td>"
  	).hide().fadeIn(500);
  }
+
+
+ /**
+   *	New Reviewer Change function.
+  */
+
+function new_reviewer_change(obj){
+	var reviewer = obj.reviewer;
+	var total_reviewers_count = parseInt($("#total_reviewers_count").html());
+	total_reviewers_count += 1;
+	$("#addReviewerModal").modal('hide');
+	$("#total_reviewers_count").html(total_reviewers_count);
+	$("table#test tbody").prepend("<tr class='even'>"+
+		"<td class='sorting_1'><a href='#"+reviewer[0].reviewerID+"' class='reviewer_id' id='reviewer_row_"+reviewer[0].reviewerID+"'>"+reviewer[0].reviewerFirstName+" "+reviewer[0].reviewerLastName+"</a></td>"+
+		"<td>"+reviewer[0].reviewerEmail+"</td>"+
+		"<td>0</td>"+
+		"</tr>").hide().fadeIn(500);
+}
