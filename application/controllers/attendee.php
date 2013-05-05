@@ -173,9 +173,20 @@
 							"attendeeID" => $this->input->post("inputAttendeeID")
 						);
 						$this->attendees->update($data, $where);
+						require_once(APPPATH."controllers/abstractc.php");
+						$a = new Abstractc();
+						$attendeeID = $this->input->post("inputAttendeeID");
+						$aq = $a->select_where(array("abstractID"), array("attendeeID" => $attendeeID, "conferenceID" => $this->session->userdata("conferenceID")));
+						if($aq->num_rows() > 0){
+							$registered = "1";
+						}
+						else{
+							$registered = "0";
+						}
 						echo json_encode(array(
 								"success" => true,
-								"attendeeID" => $this->input->post("inputAttendeeID")
+								"attendee" => $this->input->post(),
+								"submitted" => $registered
 							)
 						);
 					}
