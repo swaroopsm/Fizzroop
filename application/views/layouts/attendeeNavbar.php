@@ -53,8 +53,8 @@
 				</div>
         <div class="accompref">
           <p>Would you like SCCS-2013 to arrange accommodation for you during the conference (September 24th-29th)?</p>
-          <?php echo form_radio(array('name'=>'inputBursary_For', 'id'=>'full', 'value'=>'Travel+Accommodation','class'=>'radio', 'data-group'=>'acco', 'data-required'=>'true')); ?>Yes
-          <?php echo form_radio(array('name'=>'inputBursary_For', 'id'=>'travel', 'value'=>'Travel', 'class'=>'radio', 'data-group'=>'acco')); ?>No
+          <?php echo form_radio(array('name'=>'inputBursary_For', 'id'=>'full', 'value'=>'Yes','class'=>'radio', 'data-group'=>'acco', 'data-required'=>'true')); ?>Yes
+          <?php echo form_radio(array('name'=>'inputBursary_For', 'id'=>'travel', 'value'=>'No', 'class'=>'radio', 'data-group'=>'acco')); ?>No
         </div>
         <p><strong>NOTE: Once you have submitted your abstract you will not be able to make any changes.</strong></p>
         <input class="subButton" type="submit" value="Submit Abstract"/> <div class="preview">PREVIEW ABSTRACT</div>
