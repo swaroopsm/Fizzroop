@@ -97,10 +97,11 @@
 
 				$this->email->send();
 				if($this->session->userdata("adminLoggedin") == true){
+					$a_new = $this->attendees->view_where(array("attendeeID" => $this->db->insert_id()));
 					echo json_encode(
 						array(
 							"success" => true,
-							"attendeeID" => $this->db->insert_id()
+							"attendee" => $a_new->result()
 						)
 					);
 			 }
