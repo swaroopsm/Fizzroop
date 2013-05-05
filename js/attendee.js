@@ -134,7 +134,7 @@ $("a.abview").click(function(){
 		console.log(data);
 		var messagediv = $('.message');
 		messagediv.html('');
-		messagediv.append("<h2>"+data[0].abstractTitle+"</h2><a id='absdown' href='#'>download abstract as pdf</a><p class='name'>"+data[0].abstractAuthors+"</p><br><img src='"+data[0].abstractImageFolder+"'>");
+		messagediv.append("<h2>"+data[0].abstractTitle+"</h2><a id='absdown' href='"+base_url+"abstract/pdf/"+data[0].abstractID+"'>download abstract as pdf</a><p class='name'>"+data[0].abstractAuthors+"</p><br><img src='"+data[0].abstractImageFolder+"'>");
 		var abscontent = data[0].abstractContent;
 		abscontent = $.parseJSON(abscontent);
 		messagediv.append("<br><br><strong>What conservation problem or question does your talk/poster address?</strong><p>"+abscontent.aim+"</p>");
