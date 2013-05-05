@@ -547,6 +547,7 @@ $("#manageAttendees").live("click", function(){
 					$('table#test').dataTable({
 								"aaData": obj,
 								"fnCreatedRow": function( nRow, aData, iDataIndex ) {
+							        $(nRow).attr('id', "attendeeRow_"+aData.attendeeID);
 							    },
 								"sScrollX": "100%",
 				 				"bScrollCollapse": true,
