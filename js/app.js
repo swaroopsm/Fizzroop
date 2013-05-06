@@ -1037,7 +1037,7 @@ $("button#save_page").live("click", function(){
 			"inputSeatsTaken": seats_taken_count
 		},
 	function(data){
-		console.log(data);
+		edit_page_changes($.parseJSON(data));
 	});
 });
 
@@ -1551,5 +1551,34 @@ function new_page_change(obj){
 			"<td class='title'><a href='#"+obj.pageID+"' class='single_page' id='page_"+obj.pageID+"'>"+obj.page.inputPageTitle+"</a></td>"+
 			"<td class='pageType'>"+pageType+"</td>"+
 		"</tr>"
+	).hide().fadeIn(500);
+}
+
+
+/**
+	*	Edit Page changes.
+**/
+
+function edit_page_changes(obj){
+	console.log(obj)
+	var pageType="";
+						switch(obj.page.inputPageType){
+							case "1": pageType = "Normal Page";
+												break;
+											
+							case "2": pageType = "Plenary";
+												break;
+											
+							case "3": pageType = "Workshop";
+												break;
+											
+							case "4": pageType = "Special Talks";
+												break;
+						}
+	$("#pageModal").modal('hide');
+	$("tr#pageRow_"+obj.page.inputPageID).html(
+		"<td class='title sorting_1'>1</td>"+
+		"<td class='title'><a href='#"+obj.page.inputPageID+"' class='single_page' id='page_"+obj.page.inputPageID+"'>"+obj.page.inputPageTitle+"</a></td>"+
+		"<td class='pageType'>"+pageType+"</td>"
 	).hide().fadeIn(500);
 }
