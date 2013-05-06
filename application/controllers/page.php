@@ -30,7 +30,7 @@
 					"conferenceID" => $this->session->userdata("conferenceID")
 				);
 				$this->pages->insert($data);
-				echo json_encode(array("success" => true, "pageID" => $this->db->insert_id()));
+				echo json_encode(array("success" => true, "page" => $this->input->post(), "pageID" => $this->db->insert_id()));
 			}
 			else{
 				show_404();
