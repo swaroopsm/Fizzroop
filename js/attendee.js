@@ -132,15 +132,26 @@ $("form#new_abstract").live("submit", function(e){
 $("a.abview").click(function(){
 	$.getJSON("abstract/"+absid, function(data){
 		console.log(data);
+		var bursary = data[0].bursary;
+		bursary = $.parseJSON(bursary);
+		console.log(bursary);
 		var messagediv = $('.message');
 		messagediv.html('');
-		messagediv.append("<h2>"+data[0].abstractTitle+"</h2><a id='absdown' href='"+base_url+"abstract/pdf/"+data[0].abstractID+"'>download abstract as pdf</a><p class='name'>"+data[0].abstractAuthors+"</p><br><img src='"+data[0].abstractImageFolder+"'>");
+		messagediv.append("<h2>"+data[0].abstractTitle+"</h2><a id='absdown' href='"+base_url+"abstract/pdf/"+data[0].abstractID+"'>download abstract as pdf</a><p class='name'>"+data[0].abstractAuthors+"<br>Presented by: "+data[0].attendeeFirstName+" "+data[0].attendeeLastName+"</p><br><img src='"+data[0].abstractImageFolder+"'>");
 		var abscontent = data[0].abstractContent;
 		abscontent = $.parseJSON(abscontent);
 		messagediv.append("<br><br><strong>What conservation problem or question does your talk/poster address?</strong><p>"+abscontent.aim+"</p>");
 		messagediv.append("<br><br><strong>What were the main research methods you used?</strong><p>"+abscontent.methods+"</p>");
 		messagediv.append("<br><br><strong>What are your most important results?</strong><p>"+abscontent.results+"</p>");
-		messagediv.append("<br><br><strong>What is the relevance of your results to conservation?</strong><p>"+abscontent.conservation+"</p>");
+		messagediv.append("<br><br><strong>What is the relevance of your results to conservation?</strong><p>"+abscontent.conservation+"</p><br><br><br><hr>");
+		if (bursary.bursary_for == "No") {
+			messagediv.append("You have not applied for a bursary.");
+		} else {
+			messagediv.append("Bursary applied for : "+bursary.bursary_for+"<br>");
+			messagediv.append("Because : "+bursary.bursary_why);
+		};
+		messagediv.append("<br>Accomodation applied for : "+bursary.accomodation);
+		
 	});
 	$('.guidelines').css({display:'none'});
 	$('.workshop').css({display: 'none'});
@@ -260,8 +271,15 @@ $("#attendee_reset").live("submit", function(){
 	return false;
 });
 
-$("input#bursary_yes").click(function(){
-	$("#bursaries_options").html('<p>If yes, please us the space below to provide a justification for why you should receive a bursary (max 400 characters)</p><input type="text" id="inputBursary_Why" name="inputBursary_Why" placeholder="Tell us why you think you need a bursary." "data-maxlength"="400" "data-required"="true">');
+//"data-validate"=>"parsley"
+$("#new_abstract").parsley();
+
+
+$("input#bursary_yes").live("click", function(){
+	$("#bursaries_options").html('<div class="burwhy"><p>If yes, please us the space below to provide a justification for why you should receive a bursary (max 400 characters)</p><textarea name="inputBursary_Why" cols="40" rows="10" id="inputBursary_Why" class="" placeholder="Tell us why you think you need a bursary." data-required="true" data-maxlength="400" data-trigger="change" data-error-message="The text in this box should not exceed 400 characters and cannot be blank."></textarea>').delay(10, function(){
+		console.log("hi");
+		$( '#new_abstract' ).parsley( 'addItem', '#inputBursary_Why' );
+	});
 });
 
 $("input#bursary_no").click(function(){

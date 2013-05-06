@@ -6,7 +6,7 @@
         <h2>Submit Abstract</h2>
         <p>Be sure you <a href="#" class="absguide">read the abstract submission guidelines</a> first!</p>
         <?php
-          echo form_open("abstract/create", array("class" => "form form-horizontal", "id" => "new_abstract", "data-validate"=>"parsley", "style" => "margin-left: 0px;"));
+          echo form_open("abstract/create", array("class" => "form form-horizontal", "id" => "new_abstract", "style" => "margin-left: 0px;"));
           echo form_label("Abstract Title (max 120 characters):", "inputAbstractTitle", array("class" => "control-label")); 
           echo form_input(array("name" => "inputAbstractTitle", "id" => "inputAbstractTitle", "class" => "", "placeholder" => "Your Abstract's Title goes here","data-required"=>"true", "data-maxlength"=>"120", "data-trigger"=>"change", "data-error-message"=>"The text in this box should not exceed 120 characters and cannot be blank."));
           // echo "<div class='counters' id='chartitle'></div>";
@@ -40,9 +40,9 @@
           echo form_upload(array("name" => "inputAbstractImage", "id"=>"gupload", 'data-required'=>'true', "onchange"=>"readURL(this);"));
         ?>
         <div class="prefdiv"><p>Choose your preference.</p>
-        <?php echo form_radio(array('name'=>'pref', 'id'=>'talk', 'value'=>'1', 'class'=>'radio', 'data-group'=>'pref', 'data-required'=>'true')); ?>Talk
-        <?php echo form_radio(array('name'=>'pref', 'id'=>'poster', 'value'=>'2','class'=>'radio', 'data-group'=>'pref')); ?>Poster
-        <?php echo form_radio(array('name'=>'pref', 'id'=>'noPref', 'value'=>'3','class'=>'radio', 'data-group'=>'pref')); ?>Either Talk or Poster
+        <?php echo form_radio(array('name'=>'inputAbstractPreference', 'id'=>'talk', 'value'=>'1', 'class'=>'radio', 'data-group'=>'pref', 'data-required'=>'true')); ?>Talk
+        <?php echo form_radio(array('name'=>'inputAbstractPreference', 'id'=>'poster', 'value'=>'2','class'=>'radio', 'data-group'=>'pref')); ?>Poster
+        <?php echo form_radio(array('name'=>'inputAbstractPreference', 'id'=>'noPref', 'value'=>'3','class'=>'radio', 'data-group'=>'pref')); ?>Either Talk or Poster
         </div>
         <br>
         <div class="burpref"><p>Do you wish to apply for a Bursary?</p>
@@ -53,8 +53,8 @@
 				</div>
         <div class="accompref">
           <p>Would you like SCCS-2013 to arrange accommodation for you during the conference (September 24th-29th)?</p>
-          <?php echo form_radio(array('name'=>'inputBursary_For', 'id'=>'full', 'value'=>'Travel+Accommodation','class'=>'radio', 'data-group'=>'acco', 'data-required'=>'true')); ?>Yes
-          <?php echo form_radio(array('name'=>'inputBursary_For', 'id'=>'travel', 'value'=>'Travel', 'class'=>'radio', 'data-group'=>'acco')); ?>No
+          <?php echo form_radio(array('name'=>'inputAbstractAccommodation', 'id'=>'full', 'value'=>'Yes','class'=>'radio', 'data-group'=>'acco', 'data-required'=>'true')); ?>Yes
+          <?php echo form_radio(array('name'=>'inputAbstractAccommodation', 'id'=>'travel', 'value'=>'No', 'class'=>'radio', 'data-group'=>'acco')); ?>No
         </div>
         <p><strong>NOTE: Once you have submitted your abstract you will not be able to make any changes.</strong></p>
         <input class="subButton" type="submit" value="Submit Abstract"/> <div class="preview">PREVIEW ABSTRACT</div>

@@ -45,7 +45,7 @@
 							"conferenceID" => $this->session->userdata("conferenceID"),
 							"attendeeID" => $this->session->userdata("id"),
 							"attendeePreference" => $this->input->post("inputAbstractPreference"),
-							"bursary" => '{"bursary_for": "'.$this->input->post("inputBursary_For").'", "bursary_why": "'.$this->input->post("inputBursary_Why").'"}',
+							"bursary" => '{"bursary_for": "'.$this->input->post("inputBursary_For").'", "bursary_why": "'.$this->input->post("inputBursary_Why").'", "accomodation":"'.$this->input->post("inputAbstractAccommodation").'"}',
 							"abstractAuthors" => $this->input->post("inputAbstractAuthors"),
 							"abstractImageFolder" => $a['file_name']
 						);
@@ -223,6 +223,7 @@
 			 				"attendeeFirstName" => $row->attendeeFirstName,
 			 				"attendeeLastName" => $row->attendeeLastName,
 			 				"abstractAuthors" => $row->abstractAuthors,
+			 				"bursary" => $row->bursary,
 			 				"approved" => $row->approved
 			 			);
 			 		}

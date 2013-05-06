@@ -212,6 +212,8 @@ $('input#gupload').fileValidator({
 	type:         'image'
 });
 
+        
+
 
 		</script>
 		<script src="<?php echo base_url().'js/vendor.js'; ?>"></script>
