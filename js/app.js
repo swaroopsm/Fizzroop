@@ -429,6 +429,7 @@ $("#manageReviewers").live("click", function(){
 					var obj = [];
 					for(var j=0;j<data.length;j++){
 						obj.push({
+							"reviewerID": data[j].reviewerID,
 							"reviewerFirstName": "<a href='#"+data[j].reviewerID+"' id='reviewer_row_"+data[j].reviewerID+"'  class='reviewer_id'>"+data[j].reviewerFirstName+" "+data[j].reviewerLastName+"</a>",
 							//"reviewerLastName": "<a href='#"+data[j].reviewerID+"' class='reviewer_id'>"+data[j].reviewerLastName+"</a>",
 							"reviewerEmail": data[j].reviewerEmail,
@@ -438,6 +439,9 @@ $("#manageReviewers").live("click", function(){
 					$("#ajaxer").html("<h2 id='title'>REVIEWERS MANAGER</h2><table id='test'></table>");
 					$('table#test').dataTable({
 								"aaData": obj,
+								"fnCreatedRow": function( nRow, aData, iDataIndex ) {
+							       $(nRow).attr('id', "reviewerRow_"+aData.reviewerID);
+							   },
 								"sScrollX": "100%",
 				 				"bScrollCollapse": true,
 				 				"bScrollAutoCss": false,
@@ -691,6 +695,7 @@ $("#reviewer_edit_submit").live("click", function(){
 			inputReviewerID: $("#inputReviewerID").val()
 		},
 	function(data){
+		edit_reviewer_change($.parseJSON(data));
 		console.log(data);
 	});
 	return false;
@@ -1489,3 +1494,17 @@ function new_reviewer_change(obj){
 		"<td>0</td>"+
 		"</tr>").hide().fadeIn(500);
 }
+
+/**
+	*	Edit Reviewer changes.
+ */
+
+ function edit_reviewer_change(obj){
+ 	var abs = $("#reviewerRow_"+obj.reviewer.inputReviewerID).find("td")[2].innerHTML;
+ 	$("#reviewersModal").modal('hide');
+ 	$("tr#reviewerRow_"+obj.reviewer.inputReviewerID).html(
+ 		"<td class='sorting_1'><a href='#"+obj.reviewer.inputReviewerID+"' class='reviewer_id' id='reviewer_row_"+obj.reviewer.inputReviewerID+"'>"+obj.reviewer.inputFirstName+" "+obj.reviewer.inputLastName+"</a></td>"+
+		"<td>"+obj.reviewer.inputEmail+"</td>"+
+		"<td>"+abs+"</td>"
+ 	).hide().fadeIn(500);
+ }
