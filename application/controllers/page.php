@@ -187,7 +187,7 @@
 					echo json_encode(
 						array(
 							"success" => true,
-							"pageID" => $this->input->post("inputPageID")
+							"page" => $this->input->post()
 						)
 					);
 				}
