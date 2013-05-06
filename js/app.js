@@ -914,6 +914,7 @@ $("#managePages").live("click", function(){
 												break;
 						}
 						obj.push({
+							"pageDbId": data[i].pageID,
 							"pageID": ++c,
 							"pageTitle": "<a href='#"+data[i].pageID+"' class='single_page' id='page_"+data[i].pageID+"'>"+data[i].pageTitle+"</a>",
 							"pageType": pageType
@@ -922,6 +923,9 @@ $("#managePages").live("click", function(){
 						$("#ajaxer").html("<h2 id='title'>PAGES MANAGER</h2><table id='test'></table>");
 						$("table#test").dataTable({
 								"aaData": obj,
+								"fnCreatedRow": function( nRow, aData, iDataIndex ) {
+							        $(nRow).attr('id', "pageRow_"+aData.pageDbId);
+							    },
 								"sScrollX": "100%",
 				 				"bScrollCollapse": true,
 				 				"bScrollAutoCss": false,
@@ -1095,6 +1099,7 @@ $("form#new_page").live("submit", function(){
 	function(data){
 		var obj = $.parseJSON(data);
 		if(obj.success){
+			new_page_change(obj);
 			$("#js-messages3").html("<span class='alert alert-success'>Page added!</span>");
 			$("form#new_page")[0].reset();
 			$("#inputPageContent").html('');
@@ -1507,4 +1512,44 @@ function new_reviewer_change(obj){
 		"<td>"+obj.reviewer.inputEmail+"</td>"+
 		"<td>"+abs+"</td>"
  	).hide().fadeIn(500);
- }
+}
+
+
+/**
+	*	New Page Changes function.
+*/
+
+function new_page_change(obj){
+	console.log(obj);
+	var tds = $("table#test tr td");
+	var trs = $("table#test tr");
+	var i,j;
+	for(i=1;i<trs.length;i++){
+		var p_id = $(trs[i]).attr("id");
+		var c = parseInt($(trs[i]).find("td")[0].innerHTML)+1;
+		var ch = $("#"+p_id).find("td")[0];
+		$(ch).html(c);
+	}
+	var pageType="";
+						switch(obj.page.inputPageType){
+							case "1": pageType = "Normal Page";
+												break;
+											
+							case "2": pageType = "Plenary";
+												break;
+											
+							case "3": pageType = "Workshop";
+												break;
+											
+							case "4": pageType = "Special Talks";
+												break;
+						}
+	$("#createPageModal").modal('hide');
+	$("table#test").prepend(
+		"<tr id='"+obj.pageID+"'> class='even'"+
+			"<td class='title sorting_1'>1</td>"+
+			"<td class='title'><a href='#"+obj.pageID+"' class='single_page' id='page_"+obj.pageID+"'>"+obj.page.inputPageTitle+"</a></td>"+
+			"<td class='pageType'>"+pageType+"</td>"+
+		"</tr>"
+	).hide().fadeIn(500);
+}
