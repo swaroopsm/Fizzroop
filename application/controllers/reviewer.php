@@ -125,7 +125,7 @@
 						$this->reviewers->update($data, $where);
 						echo json_encode(array(
 								"success" => true,
-								"reviewerID" => $this->input->post("inputReviewerID")
+								"reviewer" => $this->input->post()
 							)
 						);
 					}
