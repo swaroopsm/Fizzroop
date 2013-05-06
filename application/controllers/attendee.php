@@ -75,7 +75,8 @@
 					"attendeeAddress" => $this->input->post("inputAddress"),
 					"attendeePhone" => $this->input->post("inputPhone"),
 					"attendeeNationality" => $this->input->post("inputNationality"),
-					"attendeePassport" => $this->input->post("inputPassport")
+					"attendeePassport" => $this->input->post("inputPassport"),
+					"conferenceID" => $this->session->userdata("conferenceID")
 				);
 				$this->attendees->insert($data);
 				$this->load->library('email');
