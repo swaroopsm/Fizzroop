@@ -1,11 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 	class Attendee extends CI_Controller{
-		
+
 		/**
 			* Constructor function
 		**/
-		
+
 		public function __construct(){
 			parent::__construct();
 			$this->load->library("session");
@@ -13,8 +13,8 @@
 			$this->load->model("attendees");
 			$this->load->library("uri");
 		}
-		
-		
+
+
 		/**
 			* Index function for the Attendee Dashboard.
 		*/
@@ -82,11 +82,11 @@
 				$this->load->library('email');
 				$this->email->set_mailtype("html");
 				$this->email->from($this->config->item('service_email'), 'SCCS Administrator created an account for you.');
-				$this->email->to($this->input->post("inputEmail")); 
-				#$this->email->cc('another@another-example.com'); 
+				$this->email->to($this->input->post("inputEmail"));
+				#$this->email->cc('another@another-example.com');
 				$this->email->subject('CCS Administrator created an account for you.');
 				$this->email->message(
-						"Hello ".$this->input->post("inputFirstName")." ".$this->input->post("inputLastName").", 
+						"Hello ".$this->input->post("inputFirstName")." ".$this->input->post("inputLastName").",
 						<p>
 							Please click the below link for instructions on setting a password. By doing so, your account will get activated and gain access to SCCS which lets you submit an Abstract and much more. <br>
 							<a href='".base_url()."reset/".$this->db->insert_id()."/".$forgot_hash."'>Activate your Account.</a>
@@ -94,7 +94,7 @@
 						<p>
 							Thank You!
 						</p>"
-					);	
+					);
 
 				$this->email->send();
 				if($this->session->userdata("adminLoggedin") == true){
@@ -114,19 +114,19 @@
 				show_404();
 			}
 		}
-		
-		
+
+
 		/*
 			*	Handles login of Attendee.
 		**/
-		
+
 		public function login(){
 			if($_SERVER['REQUEST_METHOD'] == "POST"){
 				$data = array(
 					"attendeeEmail" => $this->input->post("inputLoginEmail"),
 					"attendeePassword" => $this->encrypt->sha1($this->input->post("inputLoginPwd").$this->encrypt->sha1($this->config->item("password_salt")))
 				);
-				
+
 				if($this->attendees->view_where($data)->num_rows() > 0){
 					require_once(APPPATH."controllers/conference.php");
 					$c = new Conference();
@@ -149,11 +149,11 @@
 				show_404();
 			}
 		}
-		
+
 		/**
 			*	Handles edit/update of Attendee.
 		**/
-	
+
 		public function update(){
 				if($_SERVER['REQUEST_METHOD'] == "POST"){
 					if($this->session->userdata("loggedin") == true || $this->session->userdata("adminLoggedin") == true){
@@ -196,12 +196,12 @@
 					show_404();
 				}
 			}
-		
-		
+
+
 		/**
 			*	Handles registration of an Attendee that changes the password.
 		**/
-		
+
 		public function register(){
 			if($_SERVER['REQUEST_METHOD'] == "POST"){
 				if($this->input->post("inputPassport")){
@@ -218,7 +218,7 @@
 					"attendeeID" => $this->input->post("inputAttendeeID")
 				);
 				$this->attendees->update($data, $where);
-				
+
 				// Email Attendee saying he/she has completed registration.
 				$q = $this->attendees->select_where(array("attendeeFirstName", "attendeeLastName", "attendeeEmail"), array("attendeeID" => $this->input->post("inputAttendeeID")));
 				$r = $q->result();
@@ -229,7 +229,7 @@
 	 			$this->email->subject("SCCS Registration is complete!");
 	 			$this->email->message("Hello ".$r[0]->attendeeFirstName." ".$r[0]->attendeeLastName." <br><br> Your Registration process with SCCS is complete now. You can login to ypur account, and start submitting an Abstract.");
 	 			$this->email->send();
-	 			
+
 				echo json_encode(array(
 						"success" => true,
 						"attendeeID" => $this->input->post("inputAttendeeID")
@@ -240,11 +240,11 @@
 				show_404();
 			}
 		}
-		
+
 		/**
 			* Handles viewing of a particular Attendee.
 		**/
-		
+
 		public function view_where(){
 			if($this->session->userdata("adminLoggedin") == true || ($this->session->userdata("loggedin") == true && $this->session->userdata("id") == $this->uri->segment(2))){
 				$data = array(
@@ -257,12 +257,12 @@
 				show_404();
 			}
 		}
-		
-		
+
+
 		/**
 			*	Handles viewing of all Attendees.
 		**/
-		
+
 		public function view(){
 			if($this->session->userdata("adminLoggedin") == true){
 				$data = array(
@@ -321,12 +321,12 @@
 				show_404();
 			}
 		}
-		
-		
+
+
 		/**
 			*	Handles rendering of view for Abstract submission.
 		**/
-		
+
 		public function abstract_view(){
 			if($this->session->userdata("loggedin")){
 				$attendeeEmail = array(
@@ -346,12 +346,12 @@
 				redirect(base_url()."login");
 			}
 		}
-		
-		
+
+
 		/**
 			*	Handles creation of a forgot_hash and sends email instructions to the attendee's email if it exists.
 		**/
-		
+
 		public function forgot(){
 			$to = $this->input->post("inputEmail");
 			$q = $this->attendees->select_where(
@@ -380,11 +380,11 @@
 					$this->load->library('email');
 					$this->email->set_mailtype("html");
 					$this->email->from($this->config->item('service_email'), 'Password Reset for your SCCS account.');
-					$this->email->to($to); 
-					#$this->email->cc('another@another-example.com'); 
+					$this->email->to($to);
+					#$this->email->cc('another@another-example.com');
 					$this->email->subject('Password Reset Instructions for your SCCS account.');
 					$this->email->message(
-						"Hello ".$r[0]->attendeeFirstName." ".$r[0].attendeeLastName.", 
+						"Hello ".$r[0]->attendeeFirstName." ".$r[0].attendeeLastName.",
 						<p>
 							Please click the below link for instructions on reseting your password. <br>
 							<a href='".base_url()."reset/".$r[0]->attendeeID."/".$forgot_hash."'>Reset your password.</a>
@@ -392,10 +392,10 @@
 						<p>
 							Thank You!
 						</p>"
-					);	
+					);
 
 					$this->email->send();
-					
+
 					$this->session->set_flashdata("message", "<span class='span3 alert alert-success'><center>Password reset instructions are sent to your email.</center></span>");
 					redirect(base_url()."forgot");
 				}
@@ -409,15 +409,15 @@
 				redirect(base_url()."forgot");
 			}
 		}
-		
-		
+
+
 		/**
 			* Handles change password view when link sent email is clicked.
 		**/
-	
+
 		public function reset_view(){
 			if($_SERVER['REQUEST_METHOD'] == "GET"){
-				$segment_array = $this->uri->segment_array(); 
+				$segment_array = $this->uri->segment_array();
 				$attendeeID = $segment_array[2];
 				$forgot_hash = $segment_array[3];
 				$q = $this->attendees->view_where(
@@ -440,11 +440,11 @@
 				show_404();
 			}
 		}
-		
+
 		/**
 			* Handles password reset for an Attendee.
 		**/
-		
+
 		public function reset(){
 			if($_SERVER['REQUEST_METHOD'] == "POST"){
 				if($this->session->userdata("loggedin") == true || $this->session->userdata("adminLoggedin") == true){
@@ -543,14 +543,14 @@
 			else{
 				show_404();
 			}
-			
+
 		}
-		
-		
+
+
 		/**
 	 		*	Email all Attendees.
 	 	**/
-	 	
+
 	 	public function alert_all_attendees(){
 	 		if($this->session->userdata("adminLoggedin") == true && $_SERVER['REQUEST_METHOD'] == "POST"){
 	 			$this->load->library('email');
@@ -573,31 +573,31 @@
 	 			show_404();
 	 		}
 	 	}
-		
-		
+
+
 		/**
 			*	Get certain data from attendee.
 		**/
-		
+
 		public function attendee_data($data, $where){
 			return $this->attendees->select_where($data, $where);
 		}
-		
-		
+
+
 		/**
 			*	Get last Attendee.
 		**/
-		
+
 		public function latest_ticket(){
 			return $this->attendees->get_order_limit(array("attendeeTicket"), "attendeeTicket", "DESC", "1");
 		}
-		
-		
-		
+
+
+
 		/**
 			*	Handles Sync of Attendees from doAttend API.
 		**/
-		
+
 		public function sync(){
 				//$my_ticket = $this->uri->segment(3);
 				$flag = 0;
@@ -669,12 +669,12 @@
 					}
 				}
 		}
-		
-		
+
+
 		/**
 			*	 Handles checking of doAttend ticket number.
 		**/
-		
+
 		public function check_ticket(){
 			if($_SERVER['REQUEST_METHOD'] == "POST"){
 				$this->sync();
@@ -684,6 +684,7 @@
 				if($q->num_rows > 0){
 					$r = $q->result();
 					if($r[0]->attendeePassword != NULL){
+						//Already Registered and has changed password.
 						echo json_encode(array("success" => true, "flag" => 1));
 					}
 					else{
@@ -697,23 +698,69 @@
 								"attendeeTicket" => $a->attendeeTicket
 							);
 						}
+						//Synched properly and attendee is prompted for changing his password.
 						echo json_encode(array("success" => true, "flag" => 2, "attendee" => $attendee));
 					}
 				}
 				else{
-					echo json_encode(array("success" => false, "flag" => 0));
+					$this->safe_sync();
 				}
 			}
 			else{
 				show_404();
 			}
 		}
-		
-		
+
+
+		/**
+			*	Sync function that takes care if doAttend API is screwed.
+		**/
+
+		public function safe_sync(){
+					$url = "http://doattend.com/api/events/".$this->config->item('doAttend_event')."/participants_list.json?api_key=".$this->config->item('doAttend_key');
+					$jsonObject = json_decode(file_get_contents($url), true);
+					require_once(APPPATH."controllers/conference.php");
+					$co = new Conference();
+					$q = $co->get_order_limit(array("conferenceID"), "conferenceID", "DESC", "1");
+					$conferenceID = $q[0]->conferenceID;
+					$participants = $jsonObject['participants'];
+					foreach($participants as $p){
+						$ticket = $p["Ticket_Number"];
+						$q = $this->attendees->view_where(array("attendeeTicket" => $ticket));
+						if($q->num_rows == 0){
+							$flag = 1;
+							$dob = $p['participant_information'][3]['info'];
+							$parse_dob = date_parse_from_format("M-d-Y", $dob);
+							//print_r($parse_dob);
+							$dob = $parse_dob['year']."-".$parse_dob['month']."-".$parse_dob['day'];
+							//echo $dob;
+							$data = array(
+								"attendeeFirstName" => $p['participant_information'][0]['info'],
+								"attendeeLastName" => $p['participant_information'][2]['info'],
+								"attendeeEmail" => $p["Email"],
+								"registered" => 1,
+								"attendeeGender" => $p['participant_information'][1]['info'],
+								"attendeeDOB" => $dob,
+								"attendeeAcademic" => $p['participant_information'][4]['info'],
+								"attendeeInstAffiliation" => $p['participant_information'][5]['info'],
+								"attendeeAddress" => $p['participant_information'][7]['info'],
+								"attendeePhone" => $p['participant_information'][6]['info'],
+								"attendeeNationality" => $p['participant_information'][8]['info'],
+								"attendeePassport" => "",
+								"attendeeTicket" => $p["Ticket_Number"],
+								"conferenceID" => $conferenceID
+							);
+							//echo json_encode($data);
+							$this->attendees->insert($data);
+						}
+					}
+					$this->check_ticket();
+		}
+
 		/**
 			* Handles deletion of an Attendee.
 		**/
-		
+
 		public function delete(){
 			if($_SERVER['REQUEST_METHOD'] == "POST"){
 				if($this->session->userdata("adminLoggedin") == true){
@@ -744,8 +791,8 @@
 				show_404();
 			}
 		}
-		
-		
+
+
 	}
 
 ?>
