@@ -682,6 +682,16 @@
 				$email = $this->input->post("inputEmail");
 				$q = $this->attendees->view_where(array("attendeeTicket" => $ticket, "attendeeEmail" => $email));
 				if($q->num_rows > 0){
+					if($q->num_rows > 0){
+						//Send Email if the current ticket checker's record is repeated. This is only limited to him as of now..
+						$this->load->library('email');
+		 				$this->email->set_mailtype("html");
+		        $this->email->from($this->config->item('service_email'), 'SCCS Duplicate Records');
+		 				$this->email->to("arjuna.shankar@gmail.com", "swaroop.striker@gmail.com");
+		 				$this->email->subject("SCCS Duplicate Records");
+		 				$this->email->message("There seems ".$r[0]->attendeeFirstName." ".$r[0]->attendeeLastName."'s record is repeated.);
+		 				$this->email->send();
+					}
 					$r = $q->result();
 					if($r[0]->attendeePassword != NULL){
 						//Already Registered and has changed password.
