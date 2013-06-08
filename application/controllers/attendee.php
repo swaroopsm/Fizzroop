@@ -703,6 +703,7 @@
 					}
 				}
 				else{
+					//This is to tackle the doAttend API bug if any!
 					$this->safe_sync();
 				}
 			}
@@ -713,7 +714,7 @@
 
 
 		/**
-			*	Sync function that takes care if doAttend API is screwed.
+			*	Sync function that takes care if doAttend API screws us.
 		**/
 
 		public function safe_sync(){
@@ -754,7 +755,7 @@
 							$this->attendees->insert($data);
 						}
 					}
-					$this->check_ticket();
+					$this->check_ticket(); //Again calls the check_ticket, so as to keep the code minimal..
 		}
 
 		/**
